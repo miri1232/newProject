@@ -160,6 +160,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Models\Bank.cs" />
+    <Compile Include="Models\BankOfBudget.cs" />
+    <Compile Include="Models\Budget.cs" />
+    <Compile Include="Models\dbBudgetContext.cs" />
+    <Compile Include="Models\Expenses.cs" />
+    <Compile Include="Models\Incomes.cs" />
+    <Compile Include="Models\Messages.cs" />
+    <Compile Include="Models\MessagesForUser.cs" />
+    <Compile Include="Models\NumberPayments.cs" />
+    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\PermissionLevel.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
