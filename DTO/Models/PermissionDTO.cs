@@ -7,12 +7,13 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class BankOfBudget
+    public partial class PermissionDTO
     {
-        public int IdBank { get; set; }
+        public string IdUser { get; set; }
         public int IdBudget { get; set; }
+        public int PermissionLevel { get; set; }
 
-        public virtual Bank IdBankNavigation { get; set; }
-        public virtual Budget IdBudgetNavigation { get; set; }
+        public virtual UsersDTO IdUserNavigation { get; set; }
+        public virtual PermissionLevelDTO PermissionLevelNavigation { get; set; }
     }
 }

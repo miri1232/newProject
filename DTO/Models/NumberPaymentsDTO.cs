@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class NumberPayments
+    public partial class NumberPaymentsDTO
     {
         public int Id { get; set; }
         public int IdExpenses { get; set; }
@@ -16,6 +16,6 @@ namespace DTO.Models
         public string Status { get; set; }
         public string Detail { get; set; }
 
-        public virtual Expenses IdExpensesNavigation { get; set; }
+        public virtual ExpensesDTO IdExpensesNavigation { get; set; }
     }
 }

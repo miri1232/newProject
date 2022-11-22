@@ -7,18 +7,16 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class Bank
+    public partial class PermissionLevelDTO
     {
-        public Bank()
+        public PermissionLevelDTO()
         {
-            Messages = new HashSet<Messages>();
+            Permission = new HashSet<PermissionDTO>();
         }
 
         public int Id { get; set; }
-        public string NameBank { get; set; }
-        public string Link { get; set; }
+        public string Description { get; set; }
 
-        public virtual BankOfBudget BankOfBudget { get; set; }
-        public virtual ICollection<Messages> Messages { get; set; }
+        public virtual ICollection<PermissionDTO> Permission { get; set; }
     }
 }

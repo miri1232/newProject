@@ -8,28 +8,28 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DTO.Models
 {
-    public partial class dbBudgetContext : DbContext
+    public partial class dbBudgetContextDTO : DbContext
     {
-        public dbBudgetContext()
+        public dbBudgetContextDTO()
         {
         }
 
-        public dbBudgetContext(DbContextOptions<dbBudgetContext> options)
+        public dbBudgetContextDTO(DbContextOptions<dbBudgetContextDTO> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Bank> Bank { get; set; }
-        public virtual DbSet<BankOfBudget> BankOfBudget { get; set; }
-        public virtual DbSet<Budget> Budget { get; set; }
-        public virtual DbSet<Expenses> Expenses { get; set; }
-        public virtual DbSet<Incomes> Incomes { get; set; }
-        public virtual DbSet<Messages> Messages { get; set; }
-        public virtual DbSet<MessagesForUser> MessagesForUser { get; set; }
-        public virtual DbSet<NumberPayments> NumberPayments { get; set; }
-        public virtual DbSet<Permission> Permission { get; set; }
-        public virtual DbSet<PermissionLevel> PermissionLevel { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<BankDTO> Bank { get; set; }
+        public virtual DbSet<BankOfBudgetDTO> BankOfBudget { get; set; }
+        public virtual DbSet<BudgetDTO> Budget { get; set; }
+        public virtual DbSet<ExpensesDTO> Expenses { get; set; }
+        public virtual DbSet<IncomesDTO> Incomes { get; set; }
+        public virtual DbSet<MessagesDTO> Messages { get; set; }
+        public virtual DbSet<MessagesForUserDTO> MessagesForUser { get; set; }
+        public virtual DbSet<NumberPaymentsDTO> NumberPayments { get; set; }
+        public virtual DbSet<PermissionDTO> Permission { get; set; }
+        public virtual DbSet<PermissionLevelDTO> PermissionLevel { get; set; }
+        public virtual DbSet<UsersDTO> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,7 +42,7 @@ namespace DTO.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bank>(entity =>
+            modelBuilder.Entity<BankDTO>(entity =>
             {
                 entity.ToTable("bank");
 
@@ -61,7 +61,7 @@ namespace DTO.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<BankOfBudget>(entity =>
+            modelBuilder.Entity<BankOfBudgetDTO>(entity =>
             {
                 entity.HasKey(e => e.IdBank)
                     .HasName("PK__Bank_of___DCE603C04DA31C6C");
@@ -76,7 +76,7 @@ namespace DTO.Models
 
                 entity.HasOne(d => d.IdBankNavigation)
                     .WithOne(p => p.BankOfBudget)
-                    .HasForeignKey<BankOfBudget>(d => d.IdBank)
+                    .HasForeignKey<BankOfBudgetDTO>(d => d.IdBank)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Bank_of_b__idBan__30F848ED");
 
@@ -87,7 +87,7 @@ namespace DTO.Models
                     .HasConstraintName("FK__Bank_of_b__idBud__31EC6D26");
             });
 
-            modelBuilder.Entity<Budget>(entity =>
+            modelBuilder.Entity<BudgetDTO>(entity =>
             {
                 entity.Property(e => e.Manager)
                     .IsRequired()
@@ -114,7 +114,7 @@ namespace DTO.Models
                     .IsFixedLength();
             });
 
-            modelBuilder.Entity<Expenses>(entity =>
+            modelBuilder.Entity<ExpensesDTO>(entity =>
             {
                 entity.Property(e => e.Category)
                     .IsRequired()
@@ -170,7 +170,7 @@ namespace DTO.Models
                     .HasConstraintName("FK__Expenses__idBudg__3A81B327");
             });
 
-            modelBuilder.Entity<Incomes>(entity =>
+            modelBuilder.Entity<IncomesDTO>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -224,7 +224,7 @@ namespace DTO.Models
                     .HasConstraintName("FK__Incomes__idBudge__37A5467C");
             });
 
-            modelBuilder.Entity<Messages>(entity =>
+            modelBuilder.Entity<MessagesDTO>(entity =>
             {
                 entity.Property(e => e.Category)
                     .IsRequired()
@@ -256,7 +256,7 @@ namespace DTO.Models
                     .HasConstraintName("FK__Messages__idBank__4AB81AF0");
             });
 
-            modelBuilder.Entity<MessagesForUser>(entity =>
+            modelBuilder.Entity<MessagesForUserDTO>(entity =>
             {
                 entity.HasKey(e => new { e.IdUser, e.IdMessages })
                     .HasName("PK__Messages__5C5ECA108E66270A");
@@ -287,7 +287,7 @@ namespace DTO.Models
                     .HasConstraintName("FK__Messages___idUse__4E88ABD4");
             });
 
-            modelBuilder.Entity<NumberPayments>(entity =>
+            modelBuilder.Entity<NumberPaymentsDTO>(entity =>
             {
                 entity.ToTable("Number_payments");
 
@@ -318,7 +318,7 @@ namespace DTO.Models
                     .HasConstraintName("FK__Number_pa__idExp__3E52440B");
             });
 
-            modelBuilder.Entity<Permission>(entity =>
+            modelBuilder.Entity<PermissionDTO>(entity =>
             {
                 entity.HasKey(e => e.IdUser)
                     .HasName("PK__Permissi__3717C9822BFBB658");
@@ -334,7 +334,7 @@ namespace DTO.Models
 
                 entity.HasOne(d => d.IdUserNavigation)
                     .WithOne(p => p.Permission)
-                    .HasForeignKey<Permission>(d => d.IdUser)
+                    .HasForeignKey<PermissionDTO>(d => d.IdUser)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Permissio__idUse__300424B4");
 
@@ -345,7 +345,7 @@ namespace DTO.Models
                     .HasConstraintName("FK_Permission_PermissionLevel");
             });
 
-            modelBuilder.Entity<PermissionLevel>(entity =>
+            modelBuilder.Entity<PermissionLevelDTO>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -355,7 +355,7 @@ namespace DTO.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<UsersDTO>(entity =>
             {
                 entity.Property(e => e.Id)
                     .HasMaxLength(9)

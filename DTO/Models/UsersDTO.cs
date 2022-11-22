@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class Users
+    public partial class UsersDTO
     {
-        public Users()
+        public UsersDTO()
         {
-            MessagesForUser = new HashSet<MessagesForUser>();
+            MessagesForUser = new HashSet<MessagesForUserDTO>();
         }
 
         public string Id { get; set; }
@@ -22,7 +22,7 @@ namespace DTO.Models
         public string Phone { get; set; }
         public DateTime DateBirth { get; set; }
 
-        public virtual Permission Permission { get; set; }
-        public virtual ICollection<MessagesForUser> MessagesForUser { get; set; }
+        public virtual PermissionDTO Permission { get; set; }
+        public virtual ICollection<MessagesForUserDTO> MessagesForUser { get; set; }
     }
 }

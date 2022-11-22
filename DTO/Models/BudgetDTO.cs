@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class Budget
+    public partial class BudgetDTO
     {
-        public Budget()
+        public BudgetDTO()
         {
-            BankOfBudget = new HashSet<BankOfBudget>();
-            Expenses = new HashSet<Expenses>();
-            Incomes = new HashSet<Incomes>();
+            BankOfBudget = new HashSet<BankOfBudgetDTO>();
+            Expenses = new HashSet<ExpensesDTO>();
+            Incomes = new HashSet<IncomesDTO>();
         }
 
         public int Id { get; set; }
@@ -22,8 +22,8 @@ namespace DTO.Models
         public string Permissions { get; set; }
         public string Manager { get; set; }
 
-        public virtual ICollection<BankOfBudget> BankOfBudget { get; set; }
-        public virtual ICollection<Expenses> Expenses { get; set; }
-        public virtual ICollection<Incomes> Incomes { get; set; }
+        public virtual ICollection<BankOfBudgetDTO> BankOfBudget { get; set; }
+        public virtual ICollection<ExpensesDTO> Expenses { get; set; }
+        public virtual ICollection<IncomesDTO> Incomes { get; set; }
     }
 }

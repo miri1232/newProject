@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class Expenses
+    public partial class ExpensesDTO
     {
-        public Expenses()
+        public ExpensesDTO()
         {
-            NumberPayments = new HashSet<NumberPayments>();
+            NumberPayments = new HashSet<NumberPaymentsDTO>();
         }
 
         public int Id { get; set; }
@@ -27,7 +27,7 @@ namespace DTO.Models
         public string Statusstatus { get; set; }
         public byte[] Document { get; set; }
 
-        public virtual Budget IdBudgetNavigation { get; set; }
-        public virtual ICollection<NumberPayments> NumberPayments { get; set; }
+        public virtual BudgetDTO IdBudgetNavigation { get; set; }
+        public virtual ICollection<NumberPaymentsDTO> NumberPayments { get; set; }
     }
 }

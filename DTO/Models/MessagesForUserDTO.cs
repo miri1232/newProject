@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class MessagesForUser
+    public partial class MessagesForUserDTO
     {
         public string IdUser { get; set; }
         public int IdMessages { get; set; }
         public bool? Status { get; set; }
 
-        public virtual Messages IdMessagesNavigation { get; set; }
-        public virtual Users IdUserNavigation { get; set; }
+        public virtual MessagesDTO IdMessagesNavigation { get; set; }
+        public virtual UsersDTO IdUserNavigation { get; set; }
     }
 }
