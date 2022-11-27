@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BudgetBL.cs" />
     <Compile Include="ExpensesBL.cs" />
+    <Compile Include="IBudgetBL.cs" />
     <Compile Include="IncomesBL.cs" />
     <Compile Include="IUsersBL.cs" />
     <Compile Include="LookupBL.cs" />

@@ -173,9 +173,12 @@
   <ItemGroup>
     <Compile Include="BudgetDAL.cs" />
     <Compile Include="IBudgetDAL.cs" />
+    <Compile Include="IExpensesDAL.cs" />
+    <Compile Include="IIncomesDAL.cs" />
     <Compile Include="IMessagesDAL.cs" />
     <Compile Include="IMessagesForUserDAL.cs" />
     <Compile Include="IncomesDAL.cs" />
+    <Compile Include="INumberPaymentsDAL.cs" />
     <Compile Include="IUsersDAL.cs" />
     <Compile Include="LookupDAL.cs" />
     <Compile Include="MessagesDAL.cs" />
