@@ -21,6 +21,10 @@ namespace newProject
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
+
+
+
                 });
     }
 }
