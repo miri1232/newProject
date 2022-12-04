@@ -62,7 +62,12 @@
     <Compile Include="BudgetBL.cs" />
     <Compile Include="ExpensesBL.cs" />
     <Compile Include="IBudgetBL.cs" />
+    <Compile Include="IExpensesBL.cs" />
+    <Compile Include="IIncomesBL.cs" />
+    <Compile Include="IMessagesBL.cs" />
+    <Compile Include="IMessagesForUserBL.cs" />
     <Compile Include="IncomesBL.cs" />
+    <Compile Include="INumberPaymentsBL.cs" />
     <Compile Include="IUsersBL.cs" />
     <Compile Include="LookupBL.cs" />
     <Compile Include="MessagesBL.cs" />

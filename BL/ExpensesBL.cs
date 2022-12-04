@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class ExpensesBL
+    public class ExpensesBL : IExpensesBL
     {
         private IExpensesDAL _expensesDAL;
         IMapper mapper;
@@ -28,7 +28,7 @@ namespace BL
 
         public List<ExpensesDTO> GetAllExpenses()
         {
-            List<Expenses> ExpensesList = _expensesDAL.GetAllExpenses();
+            List<Expenses> expensesList = _expensesDAL.GetAllExpenses();
             List<ExpensesDTO> listExpensesDTO = mapper.Map<List<Expenses>, List<ExpensesDTO>>(expensesList);
             return listExpensesDTO;
         }
@@ -36,15 +36,15 @@ namespace BL
 
         public bool AddExpenses(ExpensesDTO expensesDTO)
         {
-            Budget currentBudget = mapper.Map<BudgetDTO, Budget>(expensesDTO);
-            bool isSucsess = _expensesDAL.AddExpenses(currentBudget);
+            Expenses currentExpenses = mapper.Map<ExpensesDTO, Expenses>(expensesDTO);
+            bool isSucsess = _expensesDAL.AddExpense(currentExpenses);
             return isSucsess;
         }
 
         public bool UpdateExpenses(ExpensesDTO expensesDTO)
         {
             Expenses currentExpenses = mapper.Map<ExpensesDTO, Expenses>(expensesDTO);
-            bool isSucsess = _ExpensesDAL.UpdateExpenses(currentExpenses.Id, currentExpenses);
+            bool isSucsess = _expensesDAL.UpdateExpenses(currentExpenses.Id, currentExpenses);
             return isSucsess;
         }
 
@@ -54,5 +54,9 @@ namespace BL
             bool isSucsess = _expensesDAL.DeleteExpenses(idToDelete);
             return isSucsess;
         }
+
+      
     }
+
+    
 }

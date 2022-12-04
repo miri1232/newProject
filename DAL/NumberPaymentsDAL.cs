@@ -52,7 +52,7 @@ namespace DAL
             }
         }
 
-        public bool DeletenmberPayments(int id)
+        public bool DeleteNumberPayments(int id)
         {
             try
             {
