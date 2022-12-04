@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperProfile.cs" />
+    <Compile Include="AutoMapping.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Models\BankDTO.cs" />
     <Compile Include="Models\BankOfBudgetDTO.cs" />

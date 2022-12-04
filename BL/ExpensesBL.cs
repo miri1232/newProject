@@ -1,4 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using DAL;
+using DAL.Models;
+using DTO;
+using DTO.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class ExpensesBL
+    public class ExpensesBL : IExpensesBL
     {
-        private IBudgetDAL _budgetDAL;
+        private IExpensesDAL _expensesDAL;
         IMapper mapper;
 
-        public BudgetBL(IBudgetDAL budgetDAL)
+        public ExpensesBL(IExpensesDAL expensesDAL)
         {
-            _budgetDAL = budgetDAL;
+            _expensesDAL = expensesDAL;
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<AutoMapperProfile>();
@@ -21,33 +26,37 @@ namespace BL
             mapper = config.CreateMapper();
         }
 
-        public List<BudgetDTO> GetAllBudget()
+        public List<ExpensesDTO> GetAllExpenses()
         {
-            List<Budget> budgetList = _budgetDAL.GetAllBudgets();
-            List<BudgetDTO> listBudgetDTO = mapper.Map<List<Budget>, List<BudgetDTO>>(budgetList);
-            return listBudgetDTO;
+            List<Expenses> expensesList = _expensesDAL.GetAllExpenses();
+            List<ExpensesDTO> listExpensesDTO = mapper.Map<List<Expenses>, List<ExpensesDTO>>(expensesList);
+            return listExpensesDTO;
         }
 
 
-        public bool AddBudget(BudgetDTO budgetDTO)
+        public bool AddExpenses(ExpensesDTO expensesDTO)
         {
-            Budget currentBudget = mapper.Map<BudgetDTO, Budget>(budgetDTO);
-            bool isSucsess = _budgetDAL.AddBudget(currentBudget);
+            Expenses currentExpenses = mapper.Map<ExpensesDTO, Expenses>(expensesDTO);
+            bool isSucsess = _expensesDAL.AddExpense(currentExpenses);
             return isSucsess;
         }
 
-        public bool UpdateBudget(BudgetDTO budgetDTO)
+        public bool UpdateExpenses(ExpensesDTO expensesDTO)
         {
-            Budget currentBudget = mapper.Map<BudgetDTO, Budget>(budgetDTO);
-            bool isSucsess = _budgetDAL.UpdateBudget(currentBudget.Id, currentBudget);
+            Expenses currentExpenses = mapper.Map<ExpensesDTO, Expenses>(expensesDTO);
+            bool isSucsess = _expensesDAL.UpdateExpenses(currentExpenses.Id, currentExpenses);
             return isSucsess;
         }
 
-        public bool DeleteBudget(BudgetDTO budgetDTO)
+        public bool DeleteExpenses(ExpensesDTO expensesDTO)
         {
-            int idToDelete = budgetDTO.Id;
-            bool isSucsess = _budgetDAL.DeleteBudget(idToDelete);
+            int idToDelete = expensesDTO.Id;
+            bool isSucsess = _expensesDAL.DeleteExpenses(idToDelete);
             return isSucsess;
         }
+
+      
     }
+
+    
 }

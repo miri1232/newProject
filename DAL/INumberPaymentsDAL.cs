@@ -8,7 +8,7 @@ namespace DAL
         List<NumberPayments> GetAllNumberPayments();
         bool AddNumberPayments(NumberPayments nmberPayments);
         bool UpdateNumberPayments(int id, NumberPayments nmberPayments);
-        bool DeletenmberPayments(int id);
+        bool DeleteNumberPayments(int id);
 
     }
 }
