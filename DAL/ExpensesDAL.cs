@@ -9,7 +9,7 @@ namespace DAL
 {
     public class ExpensesDAL : IExpensesDAL
     {
-        dbBudgetContext _context = new dbBudgetContext();
+        dbExpensesContext _context = new dbExpensesContext();
 
         public List<Expenses> GetAllExpenses()
         {
