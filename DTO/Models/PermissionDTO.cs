@@ -13,7 +13,7 @@ namespace DTO.Models
         public int IdBudget { get; set; }
         public int PermissionLevel { get; set; }
 
-        public virtual UsersDTO IdUserNavigation { get; set; }
-        public virtual PermissionLevelDTO PermissionLevelNavigation { get; set; }
+        //public virtual UsersDTO IdUserNavigation { get; set; }
+        //public virtual PermissionLevelDTO PermissionLevelNavigation { get; set; }
     }
 }

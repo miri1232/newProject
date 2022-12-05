@@ -9,10 +9,10 @@ namespace DTO.Models
 {
     public partial class MessagesDTO
     {
-        public MessagesDTO()
-        {
-            MessagesForUser = new HashSet<MessagesForUserDTO>();
-        }
+        //public MessagesDTO()
+        //{
+        //    MessagesForUser = new HashSet<MessagesForUserDTO>();
+        //}
 
         public int Id { get; set; }
         public string Subject { get; set; }
@@ -21,7 +21,7 @@ namespace DTO.Models
         public int? IdBank { get; set; }
         public DateTime? EligibilityAge { get; set; }
 
-        public virtual BankDTO IdBankNavigation { get; set; }
-        public virtual ICollection<MessagesForUserDTO> MessagesForUser { get; set; }
+        //public virtual BankDTO IdBankNavigation { get; set; }
+        //public virtual ICollection<MessagesForUserDTO> MessagesForUser { get; set; }
     }
 }

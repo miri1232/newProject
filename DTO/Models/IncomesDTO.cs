@@ -20,6 +20,6 @@ namespace DTO.Models
         public string Status { get; set; }
         public byte[] Document { get; set; }
 
-        public virtual BudgetDTO IdBudgetNavigation { get; set; }
+        //public virtual BudgetDTO IdBudgetNavigation { get; set; }
     }
 }

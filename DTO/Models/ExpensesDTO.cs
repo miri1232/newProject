@@ -9,10 +9,10 @@ namespace DTO.Models
 {
     public partial class ExpensesDTO
     {
-        public ExpensesDTO()
-        {
-            NumberPayments = new HashSet<NumberPaymentsDTO>();
-        }
+        //public ExpensesDTO()
+        //{
+        //    NumberPayments = new HashSet<NumberPaymentsDTO>();
+        //}
 
         public int Id { get; set; }
         public int IdBudget { get; set; }
@@ -27,7 +27,7 @@ namespace DTO.Models
         public string Statusstatus { get; set; }
         public byte[] Document { get; set; }
 
-        public virtual BudgetDTO IdBudgetNavigation { get; set; }
-        public virtual ICollection<NumberPaymentsDTO> NumberPayments { get; set; }
+        //public virtual BudgetDTO IdBudgetNavigation { get; set; }
+        //public virtual ICollection<NumberPaymentsDTO> NumberPayments { get; set; }
     }
 }

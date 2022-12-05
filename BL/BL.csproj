@@ -1,94 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66EE00AF-8CA8-45DD-9660-5ADF0A73CEC4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BL</RootNamespace>
-    <AssemblyName>BL</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Extensions.Microsoft.DependencyInjection, Version=0.0.0.0, Culture=neutral, PublicKeyToken=7396889f0b081575, processorArchitecture=MSIL">
-      <HintPath>..\packages\SyrianBallaS.AutoMapper.Extensions.Microsoft.DependencyInjection.Signed.3.2.0\lib\netstandard2.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.2.0.0\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyModel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.2.0.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <ProjectReference Include="..\DTO\DTO.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BudgetBL.cs" />
-    <Compile Include="ExpensesBL.cs" />
-    <Compile Include="IBudgetBL.cs" />
-    <Compile Include="IExpensesBL.cs" />
-    <Compile Include="IIncomesBL.cs" />
-    <Compile Include="IMessagesBL.cs" />
-    <Compile Include="IMessagesForUserBL.cs" />
-    <Compile Include="IncomesBL.cs" />
-    <Compile Include="INumberPaymentsBL.cs" />
-    <Compile Include="IUsersBL.cs" />
-    <Compile Include="LookupBL.cs" />
-    <Compile Include="MessagesBL.cs" />
-    <Compile Include="MessagesForUserBL.cs" />
-    <Compile Include="NumberPaymentsBL.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsersBL.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{c4de0acc-b998-480a-bdda-490469b03aab}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{01e539c1-9150-4517-adb3-fd289b344dea}</Project>
-      <Name>DTO</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

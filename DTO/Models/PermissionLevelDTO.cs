@@ -9,14 +9,14 @@ namespace DTO.Models
 {
     public partial class PermissionLevelDTO
     {
-        public PermissionLevelDTO()
-        {
-            Permission = new HashSet<PermissionDTO>();
-        }
+        //public PermissionLevelDTO()
+        //{
+        //    Permission = new HashSet<PermissionDTO>();
+        //}
 
         public int Id { get; set; }
         public string Description { get; set; }
 
-        public virtual ICollection<PermissionDTO> Permission { get; set; }
+        //public virtual ICollection<PermissionDTO> Permission { get; set; }
     }
 }

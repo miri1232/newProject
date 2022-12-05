@@ -13,7 +13,7 @@ namespace DTO.Models
         public int IdMessages { get; set; }
         public bool? Status { get; set; }
 
-        public virtual MessagesDTO IdMessagesNavigation { get; set; }
-        public virtual UsersDTO IdUserNavigation { get; set; }
+        //public virtual MessagesDTO IdMessagesNavigation { get; set; }
+        //public virtual UsersDTO IdUserNavigation { get; set; }
     }
 }

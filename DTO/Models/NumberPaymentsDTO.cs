@@ -16,6 +16,6 @@ namespace DTO.Models
         public string Status { get; set; }
         public string Detail { get; set; }
 
-        public virtual ExpensesDTO IdExpensesNavigation { get; set; }
+        //public virtual ExpensesDTO IdExpensesNavigation { get; set; }
     }
 }

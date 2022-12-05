@@ -12,7 +12,7 @@ namespace DTO.Models
         public int IdBank { get; set; }
         public int IdBudget { get; set; }
 
-        public virtual BankDTO IdBankNavigation { get; set; }
-        public virtual BudgetDTO IdBudgetNavigation { get; set; }
+        //public virtual BankDTO IdBankNavigation { get; set; }
+        //public virtual BudgetDTO IdBudgetNavigation { get; set; }
     }
 }

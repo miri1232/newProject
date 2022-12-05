@@ -8,23 +8,22 @@ using System.Threading.Tasks;
 
 namespace newProject.Controllers
 {
-    public class BudgetController
-    {
+  
 
         [Route("api/[controller]")]
         [ApiController]
-        public class FlightsController : ControllerBase
+        public class BudgetController : ControllerBase
         {
             private IBudgetBL _budgetBL;
 
-            public FlightsController(IBudgetBL budgetBL)
+            public BudgetController(IBudgetBL budgetBL)
             {
                 _budgetBL = budgetBL;
             }
 
             //שליפה
             [HttpGet]
-            [Route("Budget")]
+            [Route("GetAllBudget")]
             public IActionResult GetAllBudget()
             {
                 try
@@ -86,4 +85,4 @@ namespace newProject.Controllers
             }
         }
 }
-}
+

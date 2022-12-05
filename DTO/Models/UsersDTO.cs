@@ -9,10 +9,10 @@ namespace DTO.Models
 {
     public partial class UsersDTO
     {
-        public UsersDTO()
-        {
-            MessagesForUser = new HashSet<MessagesForUserDTO>();
-        }
+        //public UsersDTO()
+        //{
+        //    MessagesForUser = new HashSet<MessagesForUserDTO>();
+        //}
 
         public string Id { get; set; }
         public string FirstName { get; set; }
@@ -22,7 +22,7 @@ namespace DTO.Models
         public string Phone { get; set; }
         public DateTime DateBirth { get; set; }
 
-        public virtual PermissionDTO Permission { get; set; }
-        public virtual ICollection<MessagesForUserDTO> MessagesForUser { get; set; }
+        //public virtual PermissionDTO Permission { get; set; }
+        //public virtual ICollection<MessagesForUserDTO> MessagesForUser { get; set; }
     }
 }
