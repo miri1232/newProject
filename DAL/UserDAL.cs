@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class UsersDAL : IUsersDAL
+    public class UserDAL : IUserDAL
     {
         dbBudgetContext _context = new dbBudgetContext();
 
-        public List<Users> GetAllUsers()
+        public List<User> GetAllUsers()
         {
             try
             {
-                return _context.Users.ToList();
+                return _context.User.ToList();
             }
             catch (Exception ex)
             {
@@ -23,11 +23,25 @@ namespace DAL
             }
         }
 
-        public bool AddUsers(Users user)
+        public User GetUserByID(string idUser)
         {
             try
             {
-                _context.Users.Add(user);
+                User user = _context.User.Where(p => p.Id == idUser).FirstOrDefault();
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public bool AddUser(User user)
+        {
+            try
+            {
+                _context.User.Add(user);
                 _context.SaveChanges();
                 return true;
             }
@@ -37,11 +51,11 @@ namespace DAL
             }
         }
 
-        public bool UpdateUsers(string id, Users user)
+        public bool UpdateUser(string id, User user)
         {
             try
             {
-                Users currentUser = _context.Users.SingleOrDefault(x => x.Id == id);
+                User currentUser = _context.User.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentUser).CurrentValues.SetValues(user);
                 _context.SaveChanges();
                 return true;
@@ -52,11 +66,11 @@ namespace DAL
             }
         }
 
-        public bool DeleteUsers(string id)
+        public bool DeleteUser(string id)
         {
             try
             {
-                Users currentUser = _context.Users.SingleOrDefault(x => x.Id == id);
+                User currentUser = _context.User.SingleOrDefault(x => x.Id == id);
                 _context.Remove(currentUser);
                 _context.SaveChanges();
                 return true;

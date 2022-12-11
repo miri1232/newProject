@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class ExpensesDTO
+    public partial class ExpenseDTO
     {
         //public ExpensesDTO()
         //{

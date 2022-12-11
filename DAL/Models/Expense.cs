@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
+#nullable disable
 
 namespace DAL.Models
 {
-    public partial class Expenses
+    public partial class Expense
     {
-        public Expenses()
+        public Expense()
         {
-            NumberPayments = new HashSet<NumberPayments>();
+            NumberPayments = new HashSet<NumberPayment>();
         }
 
         public int Id { get; set; }
@@ -28,6 +26,6 @@ namespace DAL.Models
         public byte[] Document { get; set; }
 
         public virtual Budget IdBudgetNavigation { get; set; }
-        public virtual ICollection<NumberPayments> NumberPayments { get; set; }
+        public virtual ICollection<NumberPayment> NumberPayments { get; set; }
     }
 }

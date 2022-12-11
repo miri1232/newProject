@@ -23,12 +23,12 @@ namespace newProject.Controllers
 
             //שליפה
             [HttpGet]
-            [Route("GetAllBudget")]
-            public IActionResult GetAllBudget()
+            [Route("Budget")]
+            public IActionResult GetAllBudgets()
             {
                 try
                 {
-                    return Ok(_budgetBL.GetAllBudget());
+                    return Ok(_budgetBL.GetAllBudgets());
                 }
                 catch (Exception ex)
                 {
@@ -36,8 +36,23 @@ namespace newProject.Controllers
                 }
             }
 
-            //הוספה
-            [HttpPost]
+        //שליפת ערך יחיד
+        [HttpGet]
+        [Route("BudgetByID")]
+        public IActionResult GetBudgetByID(int idBudget)
+        {
+            try
+            {
+                return Ok(_budgetBL.GetBudgetByID(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //הוספה
+        [HttpPost]
             [Route("AddBudget")]
             public ActionResult<bool> AddBudget([FromBody] BudgetDTO budgetDTO)
             {

@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class MessagesDAL : IMessagesDAL
+    public class ExpenseDAL : IExpenseDAL
     {
         dbBudgetContext _context = new dbBudgetContext();
 
-        public List<Messages> GetAllMessages()
+        public List<Expense> GetAllExpenses()
         {
             try
             {
-                return _context.Messages.ToList();
+                return _context.Expense.ToList();
             }
             catch (Exception ex)
             {
@@ -23,11 +23,11 @@ namespace DAL
             }
         }
 
-        public bool AddMessages(Messages message)
+        public bool AddExpense(Expense expense)
         {
             try
             {
-                _context.Messages.Add(message);
+                _context.Expense.Add(expense);
                 _context.SaveChanges();
                 return true;
             }
@@ -37,12 +37,12 @@ namespace DAL
             }
         }
 
-        public bool UpdateMessages(int id, Messages message)
+        public bool UpdateExpense(int id, Expense expense)
         {
             try
             {
-                Messages currentMessage = _context.Messages.SingleOrDefault(x => x.Id == id);
-                _context.Entry(currentMessage).CurrentValues.SetValues(message);
+                Expense currentExpense = _context.Expense.SingleOrDefault(x => x.Id == id);
+                _context.Entry(currentExpense).CurrentValues.SetValues(expense);
                 _context.SaveChanges();
                 return true;
             }
@@ -52,12 +52,12 @@ namespace DAL
             }
         }
 
-        public bool DeleteMessage(int id)
+        public bool DeleteExpense(int id)
         {
             try
             {
-                Messages currentMessage = _context.Messages.SingleOrDefault(x => x.Id == id);
-                _context.Remove(currentMessage);
+                Expense currentExpense = _context.Expense.SingleOrDefault(x => x.Id == id);
+                _context.Remove(currentExpense);
                 _context.SaveChanges();
                 return true;
             }

@@ -7,21 +7,22 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class MessagesDTO
+    public partial class UserDTO
     {
-        //public MessagesDTO()
+        //public UsersDTO()
         //{
         //    MessagesForUser = new HashSet<MessagesForUserDTO>();
         //}
 
-        public int Id { get; set; }
-        public string Subject { get; set; }
-        public string Details { get; set; }
-        public string Category { get; set; }
-        public int? IdBank { get; set; }
-        public DateTime? EligibilityAge { get; set; }
+        public string Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public DateTime DateBirth { get; set; }
 
-        //public virtual BankDTO IdBankNavigation { get; set; }
+        //public virtual PermissionDTO Permission { get; set; }
         //public virtual ICollection<MessagesForUserDTO> MessagesForUser { get; set; }
     }
 }

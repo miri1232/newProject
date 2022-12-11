@@ -23,11 +23,11 @@ namespace DAL
             }
         }
 
-        public bool AddNumberPayments(NumberPayments nmberPayments)
+        public bool AddNumberPayments(NumberPayments numberPayments)
         {
             try
             {
-                _context.NumberPayments.Add(nmberPayments);
+                _context.NumberPayments.Add(numberPayments);
                 _context.SaveChanges();
                 return true;
             }
@@ -37,12 +37,12 @@ namespace DAL
             }
         }
 
-        public bool UpdateNumberPayments(int id, NumberPayments nmberPayments)
+        public bool UpdateNumberPayments(int id, NumberPayments numberPayments)
         {
             try
             {
                 NumberPayments currentNumberPayments = _context.NumberPayments.SingleOrDefault(x => x.Id == id);
-                _context.Entry(currentNumberPayments).CurrentValues.SetValues(nmberPayments);
+                _context.Entry(currentNumberPayments).CurrentValues.SetValues(numberPayments);
                 _context.SaveChanges();
                 return true;
             }
@@ -56,8 +56,8 @@ namespace DAL
         {
             try
             {
-                NumberPayments currentnmberPayments = _context.NumberPayments.SingleOrDefault(x => x.Id == id);
-                _context.Remove(currentnmberPayments);
+                NumberPayments currentnumberPayments = _context.NumberPayments.SingleOrDefault(x => x.Id == id);
+                _context.Remove(currentnumberPayments);
                 _context.SaveChanges();
                 return true;
             }

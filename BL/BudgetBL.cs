@@ -26,13 +26,19 @@ namespace BL
             mapper = config.CreateMapper();
         }
 
-        public List<BudgetDTO> GetAllBudget()
+        public List<BudgetDTO> GetAllBudgets()
         {
             List<Budget> budgetList = _budgetDAL.GetAllBudgets();
             List<BudgetDTO> listBudgetDTO = mapper.Map<List<Budget>, List<BudgetDTO>>(budgetList);
             return listBudgetDTO;
         }
 
+        public BudgetDTO GetBudgetByID(int idBudget)
+        {
+            Budget budget = _budgetDAL.GetBudgetByID( idBudget);
+            BudgetDTO BudgetDTO = mapper.Map<Budget, BudgetDTO>(budget);
+            return BudgetDTO;
+        }
 
         public bool AddBudget(BudgetDTO budgetDTO)
         {

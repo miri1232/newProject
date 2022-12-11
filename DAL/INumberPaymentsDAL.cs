@@ -6,8 +6,8 @@ namespace DAL
     public interface INumberPaymentsDAL
     {
         List<NumberPayments> GetAllNumberPayments();
-        bool AddNumberPayments(NumberPayments nmberPayments);
-        bool UpdateNumberPayments(int id, NumberPayments nmberPayments);
+        bool AddNumberPayments(NumberPayments numberPayments);
+        bool UpdateNumberPayments(int id, NumberPayments numberPayments);
         bool DeleteNumberPayments(int id);
 
     }

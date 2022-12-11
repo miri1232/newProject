@@ -48,20 +48,20 @@ namespace newProject
 
             services.AddScoped<IBudgetBL, BudgetBL>();
             services.AddScoped<IBudgetDAL, BudgetDAL>();
-            services.AddScoped<IExpensesBL, ExpensesBL>();
-            services.AddScoped<IExpensesDAL, ExpensesDAL>();
-            services.AddScoped<IMessagesBL, MessagesBL>();
-            services.AddScoped<IMessagesDAL, MessagesDAL>();
+            services.AddScoped<IExpenseBL, ExpenseBL>();
+            services.AddScoped<IExpenseDAL, ExpenseDAL>();
+            services.AddScoped<IMessageBL, MessageBL>();
+            services.AddScoped<IMessageDAL, MessageDAL>();
             services.AddScoped<IMessagesForUserBL, MessagesForUserBL>();
             services.AddScoped<IMessagesForUserDAL, MessagesForUserDAL>();
             services.AddScoped<INumberPaymentsBL, NumberPaymentsBL>();
             services.AddScoped<INumberPaymentsDAL, NumberPaymentsDAL>();
-            services.AddScoped<IIncomesBL, IncomesBL>();
-            services.AddScoped<IIncomesDAL, IncomesDAL>();
-            services.AddScoped<IUsersBL, UsersBL>();
-            services.AddScoped<IUsersDAL, UsersDAL>();
-            //  services.AddScoped<ILookupBL, LookupBL>();
-            //  services.AddScoped<ILookupDAL, LookupDAL>();
+            services.AddScoped<IIncomeBL, IncomeBL>();
+            services.AddScoped<IIncomeDAL, IncomeDAL>();
+            services.AddScoped<IUserBL, UserBL>();
+            services.AddScoped<IUserDAL, UserDAL>();
+             services.AddScoped<ILookupBL, LookupBL>();
+              services.AddScoped<ILookupDAL, LookupDAL>();
 
             services.AddSwaggerGen(c =>
             {

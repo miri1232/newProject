@@ -12,16 +12,16 @@ namespace DTO
     {
         public AutoMapperProfile()
         {
-            CreateMap<UsersDTO, Users>();
-            CreateMap<Users, UsersDTO>();
+            CreateMap<UserDTO, User>();
+            CreateMap<User, UserDTO>();
             CreateMap<BudgetDTO, Budget>();
             CreateMap<Budget, BudgetDTO>();
-            CreateMap<ExpensesDTO, Expenses>();
-            CreateMap<Expenses, ExpensesDTO>();
-            CreateMap<IncomesDTO, Incomes>();
-            CreateMap<Incomes, IncomesDTO>();
-            CreateMap<MessagesDTO, Messages>();
-            CreateMap<Messages, MessagesDTO>();
+            CreateMap<ExpenseDTO, Expense>();
+            CreateMap<Expense, ExpenseDTO>();
+            CreateMap<IncomeDTO, Income>();
+            CreateMap<Income, IncomeDTO>();
+            CreateMap<MessageDTO, Message>();
+            CreateMap<Message, MessageDTO>();
             CreateMap<MessagesForUserDTO, MessagesForUser>();
             CreateMap<MessagesForUser, MessagesForUserDTO>();
             CreateMap<NumberPaymentsDTO, NumberPayments>();

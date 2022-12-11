@@ -19,7 +19,7 @@ namespace DTO.Models
         public int Id { get; set; }
         public string NameBudget { get; set; }
         public string Type { get; set; }
-        public string Permissions { get; set; }
+        //public string Permissions { get; set; }
         public string Manager { get; set; }
 
         //public virtual ICollection<BankOfBudgetDTO> BankOfBudget { get; set; }

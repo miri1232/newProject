@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DTO.Models
 {
-    public partial class IncomesDTO
+    public partial class IncomeDTO
     {
         public int Id { get; set; }
         public int IdBudget { get; set; }

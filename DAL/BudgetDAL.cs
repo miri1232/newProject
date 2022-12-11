@@ -22,6 +22,17 @@ namespace DAL
                 throw ex;
             }
         }
+        public Budget GetBudgetByID(int idBudget)
+        {
+            try
+            {
+                return _context.Budget.Where(p => p.Id == idBudget).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public bool AddBudget(Budget budget)
         {

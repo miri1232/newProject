@@ -16,6 +16,6 @@ namespace DAL.Models
         public string Status { get; set; }
         public string Detail { get; set; }
 
-        public virtual Expenses IdExpensesNavigation { get; set; }
+        public virtual Expense IdExpensesNavigation { get; set; }
     }
 }

@@ -11,23 +11,23 @@ namespace newProject.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class MessagesForUserController : ControllerBase
+    public class IncomeController : ControllerBase
     {
-        private IMessagesForUserBL _messagesForUserBL;
+        private IIncomeBL _incomeBL;
 
-        public MessagesForUserController(IMessagesForUserBL messagesForUserBL)
+        public IncomeController(IIncomeBL incomeBL)
         {
-            _messagesForUserBL = messagesForUserBL;
+            _incomeBL = incomeBL;
         }
 
         //שליפה
         [HttpGet]
-        [Route("MessagesForUser")]
-        public IActionResult GetAllMessagesForUser()
+        [Route("Income")]
+        public IActionResult GetAllIncomes()
         {
             try
             {
-                return Ok(_messagesForUserBL.GetAllMessagesForUser());
+                return Ok(_incomeBL.GetAllIncomes());
             }
             catch (Exception ex)
             {
@@ -37,12 +37,12 @@ namespace newProject.Controllers
 
         //הוספה
         [HttpPost]
-        [Route("AddMessagesForUser")]
-        public ActionResult<bool> AddMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("AddIncome")]
+        public ActionResult<bool> AddIncome([FromBody] IncomeDTO incomeDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.AddMessagesForUser(messagesForUserDTO);
+                bool x = _incomeBL.AddIncome(incomeDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -53,12 +53,12 @@ namespace newProject.Controllers
 
         //עידכון
         [HttpPut]
-        [Route("UpdateMessagesForUser")]
-        public ActionResult<bool> UpdateMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("UpdateIncome")]
+        public ActionResult<bool> UpdateIncome([FromBody] IncomeDTO incomeDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.UpdateMessagesForUser(messagesForUserDTO);
+                bool x = _incomeBL.UpdateIncome(incomeDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -69,12 +69,12 @@ namespace newProject.Controllers
 
         //מחיקה
         [HttpDelete]
-        [Route("DeleteMessagesForUser")]
-        public ActionResult<bool> DeleteMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("DeleteIncome")]
+        public ActionResult<bool> DeleteIncome([FromBody] IncomeDTO incomeDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.DeleteMessagesForUser(messagesForUserDTO);
+                bool x = _incomeBL.DeleteIncome(incomeDTO);
                 return Ok(x);
             }
             catch (Exception ex)

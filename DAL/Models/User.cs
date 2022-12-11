@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
+#nullable disable
 
 namespace DAL.Models
 {
-    public partial class Users
+    public partial class User
     {
-        public Users()
+        public User()
         {
-            MessagesForUser = new HashSet<MessagesForUser>();
+            MessagesForUsers = new HashSet<MessagesForUser>();
         }
 
         public string Id { get; set; }
@@ -23,6 +21,6 @@ namespace DAL.Models
         public DateTime DateBirth { get; set; }
 
         public virtual Permission Permission { get; set; }
-        public virtual ICollection<MessagesForUser> MessagesForUser { get; set; }
+        public virtual ICollection<MessagesForUser> MessagesForUsers { get; set; }
     }
 }

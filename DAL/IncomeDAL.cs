@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ExpensesDAL : IExpensesDAL
+    public class IncomeDAL : IIncomeDAL
     {
         dbBudgetContext _context = new dbBudgetContext();
 
-        public List<Expenses> GetAllExpenses()
+        public List<Income> GetAllIncomes()
         {
             try
             {
-                return _context.Expenses.ToList();
+                return _context.Income.ToList();
             }
             catch (Exception ex)
             {
@@ -23,11 +23,11 @@ namespace DAL
             }
         }
 
-        public bool AddExpense(Expenses expenses)
+        public bool AddIncome(Income income)
         {
             try
             {
-                _context.Expenses.Add(expenses);
+                _context.Income.Add(income);
                 _context.SaveChanges();
                 return true;
             }
@@ -37,12 +37,12 @@ namespace DAL
             }
         }
 
-        public bool UpdateExpenses(int id, Expenses expenses)
+        public bool UpdateIncome(int id, Income income)
         {
             try
             {
-                Expenses currentExpenses = _context.Expenses.SingleOrDefault(x => x.Id == id);
-                _context.Entry(currentExpenses).CurrentValues.SetValues(expenses);
+                Income currentIncome = _context.Income.SingleOrDefault(x => x.Id == id);
+                _context.Entry(currentIncome).CurrentValues.SetValues(income);
                 _context.SaveChanges();
                 return true;
             }
@@ -52,12 +52,12 @@ namespace DAL
             }
         }
 
-        public bool DeleteExpenses(int id)
+        public bool DeleteIncome(int id)
         {
             try
             {
-                Expenses currentExpenses = _context.Expenses.SingleOrDefault(x => x.Id == id);
-                _context.Remove(currentExpenses);
+                Income currentIncome = _context.Income.SingleOrDefault(x => x.Id == id);
+                _context.Remove(currentIncome);
                 _context.SaveChanges();
                 return true;
             }
@@ -66,5 +66,6 @@ namespace DAL
                 throw ex;
             }
         }
+
     }
 }

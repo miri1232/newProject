@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
+#nullable disable
 
 namespace DAL.Models
 {
@@ -11,7 +9,7 @@ namespace DAL.Models
     {
         public Bank()
         {
-            Messages = new HashSet<Messages>();
+            Messages = new HashSet<Message>();
         }
 
         public int Id { get; set; }
@@ -19,6 +17,6 @@ namespace DAL.Models
         public string Link { get; set; }
 
         public virtual BankOfBudget BankOfBudget { get; set; }
-        public virtual ICollection<Messages> Messages { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

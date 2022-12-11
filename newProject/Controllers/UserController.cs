@@ -1,33 +1,36 @@
 ﻿using BL;
 using DTO.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace newProject.Controllers
 {
 
+
     [Route("api/[controller]")]
     [ApiController]
-    public class MessagesForUserController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private IMessagesForUserBL _messagesForUserBL;
+        private IUserBL _userBL;
 
-        public MessagesForUserController(IMessagesForUserBL messagesForUserBL)
+        public UserController(IUserBL userBL)
         {
-            _messagesForUserBL = messagesForUserBL;
+            _userBL = userBL;
         }
 
         //שליפה
         [HttpGet]
-        [Route("MessagesForUser")]
-        public IActionResult GetAllMessagesForUser()
+        [Route("User")]
+        public IActionResult GetAllUsers()
         {
             try
             {
-                return Ok(_messagesForUserBL.GetAllMessagesForUser());
+                return Ok(_userBL.GetAllUsers());
             }
             catch (Exception ex)
             {
@@ -35,14 +38,30 @@ namespace newProject.Controllers
             }
         }
 
-        //הוספה
-        [HttpPost]
-        [Route("AddMessagesForUser")]
-        public ActionResult<bool> AddMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        //שליפת ערך יחיד
+        [HttpGet]
+        [Route("UserByID")]
+        public IActionResult GetUserByID(string idUser)
         {
             try
             {
-                bool x = _messagesForUserBL.AddMessagesForUser(messagesForUserDTO);
+                return Ok(_userBL.GetUserByID(idUser));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        //הוספה
+        [HttpPost]
+        [Route("AddUser")]
+        public ActionResult<bool> AddUser([FromBody] UserDTO userDTO)
+        {
+            try
+            {
+                bool x = _userBL.AddUser(userDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -53,12 +72,12 @@ namespace newProject.Controllers
 
         //עידכון
         [HttpPut]
-        [Route("UpdateMessagesForUser")]
-        public ActionResult<bool> UpdateMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("UpdateUser")]
+        public ActionResult<bool> UpdateUser([FromBody] UserDTO userDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.UpdateMessagesForUser(messagesForUserDTO);
+                bool x = _userBL.UpdateUser(userDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -69,12 +88,12 @@ namespace newProject.Controllers
 
         //מחיקה
         [HttpDelete]
-        [Route("DeleteMessagesForUser")]
-        public ActionResult<bool> DeleteMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("DeleteUser")]
+        public ActionResult<bool> DeleteUsers([FromBody] UserDTO userDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.DeleteMessagesForUser(messagesForUserDTO);
+                bool x = _userBL.DeleteUser(userDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -84,3 +103,4 @@ namespace newProject.Controllers
         }
     }
 }
+

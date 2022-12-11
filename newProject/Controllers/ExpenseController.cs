@@ -8,26 +8,25 @@ using System.Threading.Tasks;
 
 namespace newProject.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    public class MessagesForUserController : ControllerBase
+    public class ExpenseController : ControllerBase
     {
-        private IMessagesForUserBL _messagesForUserBL;
+        private IExpenseBL _expenseBL;
 
-        public MessagesForUserController(IMessagesForUserBL messagesForUserBL)
+        public ExpenseController(IExpenseBL expenseBL)
         {
-            _messagesForUserBL = messagesForUserBL;
+            _expenseBL = expenseBL;
         }
 
         //שליפה
         [HttpGet]
-        [Route("MessagesForUser")]
-        public IActionResult GetAllMessagesForUser()
+        [Route("Expenses")]
+        public IActionResult GetAllExpenses()
         {
             try
             {
-                return Ok(_messagesForUserBL.GetAllMessagesForUser());
+                return Ok(_expenseBL.GetAllExpenses());
             }
             catch (Exception ex)
             {
@@ -37,12 +36,12 @@ namespace newProject.Controllers
 
         //הוספה
         [HttpPost]
-        [Route("AddMessagesForUser")]
-        public ActionResult<bool> AddMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("AddExpense")]
+        public ActionResult<bool> AddExpense([FromBody] ExpenseDTO expenseDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.AddMessagesForUser(messagesForUserDTO);
+                bool x = _expenseBL.AddExpense(expenseDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -53,12 +52,12 @@ namespace newProject.Controllers
 
         //עידכון
         [HttpPut]
-        [Route("UpdateMessagesForUser")]
-        public ActionResult<bool> UpdateMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("UpdateExpense")]
+        public ActionResult<bool> UpdateExpense([FromBody] ExpenseDTO expenseDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.UpdateMessagesForUser(messagesForUserDTO);
+                bool x = _expenseBL.UpdateExpense(expenseDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -69,12 +68,12 @@ namespace newProject.Controllers
 
         //מחיקה
         [HttpDelete]
-        [Route("DeleteMessagesForUser")]
-        public ActionResult<bool> DeleteMessagesForUser([FromBody] MessagesForUserDTO messagesForUserDTO)
+        [Route("DeleteExpense")]
+        public ActionResult<bool> DeleteExpense([FromBody] ExpenseDTO expenseDTO)
         {
             try
             {
-                bool x = _messagesForUserBL.DeleteMessagesForUser(messagesForUserDTO);
+                bool x = _expenseBL.DeleteExpense(expenseDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -84,3 +83,4 @@ namespace newProject.Controllers
         }
     }
 }
+
