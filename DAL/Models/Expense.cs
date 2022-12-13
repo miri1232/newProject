@@ -9,7 +9,7 @@ namespace DAL.Models
     {
         public Expense()
         {
-            NumberPayments = new HashSet<NumberPayments>();
+            NumberPayments = new HashSet<NumberPayment>();
         }
 
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace DAL.Models
         public byte[] Document { get; set; }
 
         public virtual Budget IdBudgetNavigation { get; set; }
-        public virtual ICollection<NumberPayments> NumberPayments { get; set; }
+        public virtual ICollection<NumberPayment> NumberPayments { get; set; }
     }
 }

@@ -9,7 +9,10 @@ namespace DAL
 {
     public class NumberPaymentsDAL : INumberPaymentsDAL
     {
+     //   dbBudgetContext _context = new dbBudgetContext();
+
         dbBudgetContext _context = new dbBudgetContext();
+
 
         public List<NumberPayments> GetAllNumberPayments()
         {

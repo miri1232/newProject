@@ -15,7 +15,7 @@ namespace DAL
         {
             try
             {
-                return _context.Income.ToList();
+                return _context.Incomes.ToList();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace DAL
         {
             try
             {
-                _context.Income.Add(income);
+                _context.Incomes.Add(income);
                 _context.SaveChanges();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace DAL
         {
             try
             {
-                Income currentIncome = _context.Income.SingleOrDefault(x => x.Id == id);
+                Income currentIncome = _context.Incomes.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentIncome).CurrentValues.SetValues(income);
                 _context.SaveChanges();
                 return true;
@@ -56,7 +56,7 @@ namespace DAL
         {
             try
             {
-                Income currentIncome = _context.Income.SingleOrDefault(x => x.Id == id);
+                Income currentIncome = _context.Incomes.SingleOrDefault(x => x.Id == id);
                 _context.Remove(currentIncome);
                 _context.SaveChanges();
                 return true;

@@ -15,7 +15,7 @@ namespace DAL
         {
             try
             {
-                return _context.Message.ToList();
+                return _context.Messages.ToList();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace DAL
         {
             try
             {
-                _context.Message.Add(message);
+                _context.Messages.Add(message);
                 _context.SaveChanges();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace DAL
         {
             try
             {
-                Message currentMessage = _context.Message.SingleOrDefault(x => x.Id == id);
+                Message currentMessage = _context.Messages.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentMessage).CurrentValues.SetValues(message);
                 _context.SaveChanges();
                 return true;
@@ -56,7 +56,7 @@ namespace DAL
         {
             try
             {
-                Message currentMessage = _context.Message.SingleOrDefault(x => x.Id == id);
+                Message currentMessage = _context.Messages.SingleOrDefault(x => x.Id == id);
                 _context.Remove(currentMessage);
                 _context.SaveChanges();
                 return true;

@@ -17,17 +17,17 @@ namespace DAL.Models
         {
         }
 
-        public virtual DbSet<Bank> Bank { get; set; }
-        public virtual DbSet<BankOfBudget> BankOfBudget { get; set; }
-        public virtual DbSet<Budget> Budget { get; set; }
-        public virtual DbSet<Expense> Expense { get; set; }
-        public virtual DbSet<Income> Income { get; set; }
-        public virtual DbSet<Message> Message { get; set; }
-        public virtual DbSet<MessagesForUser> MessagesForUser { get; set; }
+        public virtual DbSet<Bank> Banks { get; set; }
+        public virtual DbSet<BankOfBudget> BankOfBudgets { get; set; }
+        public virtual DbSet<Budget> Budgets { get; set; }
+        public virtual DbSet<Expense> Expenses { get; set; }
+        public virtual DbSet<Income> Incomes { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<MessagesForUser> MessagesForUsers { get; set; }
         public virtual DbSet<NumberPayments> NumberPayments { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<PermissionLevel> PermissionLevels { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -51,32 +51,27 @@ namespace DAL.Models
                 entity.Property(e => e.Link)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false)
                     .HasColumnName("link");
 
                 entity.Property(e => e.NameBank)
                     .IsRequired()
                     .HasMaxLength(20)
-                    .IsUnicode(false)
                     .HasColumnName("name_bank");
             });
 
             modelBuilder.Entity<BankOfBudget>(entity =>
             {
-                entity.HasKey(e => e.IdBank)
-                    .HasName("PK__Bank_of___DCE603C04DA31C6C");
-
                 entity.ToTable("Bank_of_budget");
 
-                entity.Property(e => e.IdBank)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idBank");
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.IdBank).HasColumnName("idBank");
 
                 entity.Property(e => e.IdBudget).HasColumnName("idBudget");
 
                 entity.HasOne(d => d.IdBankNavigation)
-                    .WithOne(p => p.BankOfBudget)
-                    .HasForeignKey<BankOfBudget>(d => d.IdBank)
+                    .WithMany(p => p.BankOfBudgets)
+                    .HasForeignKey(d => d.IdBank)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Bank_of_b__idBan__30F848ED");
 
@@ -93,29 +88,28 @@ namespace DAL.Models
 
                 entity.Property(e => e.Manager)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("manager")
-                    .IsFixedLength(true);
+                    .HasMaxLength(9)
+                    .IsUnicode(false)
+                    .HasColumnName("manager");
 
                 entity.Property(e => e.NameBudget)
                     .IsRequired()
                     .HasMaxLength(20)
-                    .IsUnicode(false)
                     .HasColumnName("name_budget");
 
                 entity.Property(e => e.Type)
                     .IsRequired()
-                    .HasMaxLength(4)
-                    .HasColumnName("type")
-                    .IsFixedLength(true);
+                    .HasMaxLength(7)
+                    .HasColumnName("type");
             });
 
             modelBuilder.Entity<Expense>(entity =>
             {
+                entity.ToTable("Expense");
+
                 entity.Property(e => e.Category)
                     .IsRequired()
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("category");
 
                 entity.Property(e => e.Date)
@@ -124,12 +118,10 @@ namespace DAL.Models
 
                 entity.Property(e => e.Detail)
                     .IsRequired()
-                    .HasMaxLength(25)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("detail");
 
                 entity.Property(e => e.Document)
-                    .IsRequired()
                     .HasColumnType("image")
                     .HasColumnName("document");
 
@@ -141,20 +133,17 @@ namespace DAL.Models
 
                 entity.Property(e => e.PaymentMethod)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("payment_method");
 
                 entity.Property(e => e.Statusstatus)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("statusstatus");
 
                 entity.Property(e => e.Subcategory)
                     .IsRequired()
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("subcategory");
 
                 entity.Property(e => e.Sum).HasColumnName("sum");
@@ -166,14 +155,16 @@ namespace DAL.Models
                     .HasConstraintName("FK__Expenses__idBudg__3A81B327");
             });
 
+        
             modelBuilder.Entity<Income>(entity =>
             {
+                entity.ToTable("Income");
+
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Category)
                     .IsRequired()
                     .HasMaxLength(15)
-                    .IsUnicode(false)
                     .HasColumnName("category");
 
                 entity.Property(e => e.Date)
@@ -183,11 +174,9 @@ namespace DAL.Models
                 entity.Property(e => e.Detail)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsUnicode(false)
                     .HasColumnName("detail");
 
                 entity.Property(e => e.Document)
-                    .IsRequired()
                     .HasColumnType("image")
                     .HasColumnName("document");
 
@@ -196,19 +185,16 @@ namespace DAL.Models
                 entity.Property(e => e.PaymentMethod)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsUnicode(false)
                     .HasColumnName("Payment method");
 
                 entity.Property(e => e.SourceOfIncome)
                     .IsRequired()
                     .HasMaxLength(15)
-                    .IsUnicode(false)
                     .HasColumnName("source_of_income");
 
                 entity.Property(e => e.Status)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("status");
 
                 entity.Property(e => e.Sum).HasColumnName("sum");
@@ -222,16 +208,16 @@ namespace DAL.Models
 
             modelBuilder.Entity<Message>(entity =>
             {
+                entity.ToTable("Message");
+
                 entity.Property(e => e.Category)
                     .IsRequired()
                     .HasMaxLength(15)
-                    .IsUnicode(false)
                     .HasColumnName("category");
 
                 entity.Property(e => e.Details)
                     .IsRequired()
                     .HasMaxLength(150)
-                    .IsUnicode(false)
                     .HasColumnName("details");
 
                 entity.Property(e => e.EligibilityAge)
@@ -243,7 +229,6 @@ namespace DAL.Models
                 entity.Property(e => e.Subject)
                     .IsRequired()
                     .HasMaxLength(15)
-                    .IsUnicode(false)
                     .HasColumnName("subject");
 
                 entity.HasOne(d => d.IdBankNavigation)
@@ -254,21 +239,21 @@ namespace DAL.Models
 
             modelBuilder.Entity<MessagesForUser>(entity =>
             {
-                entity.HasKey(e => new { e.IdUser, e.IdMessages })
-                    .HasName("PK__Messages__5C5ECA108E66270A");
-
                 entity.ToTable("Messages_for_user");
 
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.IdMessages).HasColumnName("idMessages");
+
                 entity.Property(e => e.IdUser)
+                    .IsRequired()
                     .HasMaxLength(9)
                     .IsUnicode(false)
                     .HasColumnName("idUser");
 
-                entity.Property(e => e.IdMessages).HasColumnName("idMessages");
-
-                entity.Property(e => e.Status)
-                    .HasColumnName("status")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.HasOne(d => d.IdMessagesNavigation)
                     .WithMany(p => p.MessagesForUsers)
@@ -294,7 +279,6 @@ namespace DAL.Models
                 entity.Property(e => e.Detail)
                     .IsRequired()
                     .HasMaxLength(25)
-                    .IsUnicode(false)
                     .HasColumnName("detail");
 
                 entity.Property(e => e.IdExpenses).HasColumnName("idExpenses");
@@ -302,7 +286,6 @@ namespace DAL.Models
                 entity.Property(e => e.Status)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsUnicode(false)
                     .HasColumnName("status");
 
                 entity.Property(e => e.Sum).HasColumnName("sum");
@@ -316,23 +299,29 @@ namespace DAL.Models
 
             modelBuilder.Entity<Permission>(entity =>
             {
-                entity.HasKey(e => e.IdUser)
-                    .HasName("PK__Permissi__3717C9822BFBB658");
-
                 entity.ToTable("Permission");
 
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.IdBudget).HasColumnName("idBudget");
+
                 entity.Property(e => e.IdUser)
+                    .IsRequired()
                     .HasMaxLength(9)
                     .IsUnicode(false)
                     .HasColumnName("idUser");
 
-                entity.Property(e => e.IdBudget).HasColumnName("idBudget");
-
                 entity.Property(e => e.PermissionLevel).HasColumnName("permission_level");
 
+                entity.HasOne(d => d.IdBudgetNavigation)
+                    .WithMany(p => p.Permissions)
+                    .HasForeignKey(d => d.IdBudget)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Permission_Budget");
+
                 entity.HasOne(d => d.IdUserNavigation)
-                    .WithOne(p => p.Permission)
-                    .HasForeignKey<Permission>(d => d.IdUser)
+                    .WithMany(p => p.Permissions)
+                    .HasForeignKey(d => d.IdUser)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Permissio__idUse__300424B4");
 
@@ -341,22 +330,27 @@ namespace DAL.Models
                     .HasForeignKey(d => d.PermissionLevel)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Permission_PermissionLevel");
+
+                entity.HasOne(d => d.PermissionLevel1)
+                    .WithMany(p => p.Permissions)
+                    .HasForeignKey(d => d.PermissionLevel)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Permission_PermissionLevel1");
             });
 
             modelBuilder.Entity<PermissionLevel>(entity =>
             {
                 entity.ToTable("PermissionLevel");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Description)
                     .IsRequired()
-                    .HasMaxLength(9)
-                    .IsUnicode(false);
+                    .HasMaxLength(10);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.ToTable("User");
+
                 entity.Property(e => e.Id)
                     .HasMaxLength(9)
                     .IsUnicode(false);
@@ -373,14 +367,12 @@ namespace DAL.Models
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("first name");
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
+                    .HasMaxLength(50)
                     .HasColumnName("last name");
 
                 entity.Property(e => e.Password)

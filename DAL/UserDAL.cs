@@ -15,7 +15,7 @@ namespace DAL
         {
             try
             {
-                return _context.User.ToList();
+                return _context.Users.ToList();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace DAL
         {
             try
             {
-                User user = _context.User.Where(p => p.Id == idUser).FirstOrDefault();
+                User user = _context.Users.Where(p => p.Id == idUser).FirstOrDefault();
                 return user;
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace DAL
         {
             try
             {
-                _context.User.Add(user);
+                _context.Users.Add(user);
                 _context.SaveChanges();
                 return true;
             }
@@ -55,7 +55,7 @@ namespace DAL
         {
             try
             {
-                User currentUser = _context.User.SingleOrDefault(x => x.Id == id);
+                User currentUser = _context.Users.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentUser).CurrentValues.SetValues(user);
                 _context.SaveChanges();
                 return true;
@@ -70,7 +70,7 @@ namespace DAL
         {
             try
             {
-                User currentUser = _context.User.SingleOrDefault(x => x.Id == id);
+                User currentUser = _context.Users.SingleOrDefault(x => x.Id == id);
                 _context.Remove(currentUser);
                 _context.SaveChanges();
                 return true;

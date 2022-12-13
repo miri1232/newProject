@@ -9,6 +9,7 @@ namespace DAL.Models
     {
         public Bank()
         {
+            BankOfBudgets = new HashSet<BankOfBudget>();
             Messages = new HashSet<Message>();
         }
 
@@ -16,7 +17,7 @@ namespace DAL.Models
         public string NameBank { get; set; }
         public string Link { get; set; }
 
-        public virtual BankOfBudget BankOfBudget { get; set; }
+        public virtual ICollection<BankOfBudget> BankOfBudgets { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
     }
 }

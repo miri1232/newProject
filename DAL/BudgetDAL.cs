@@ -15,7 +15,7 @@ namespace DAL
         {
             try
             {
-                return _context.Budget.ToList();
+                return _context.Budgets.ToList();
             }
             catch (Exception ex)
             {
@@ -26,7 +26,7 @@ namespace DAL
         {
             try
             {
-                return _context.Budget.Where(p => p.Id == idBudget).FirstOrDefault();
+                return _context.Budgets.Where(p => p.Id == idBudget).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace DAL
         {
             try
             {
-                _context.Budget.Add(budget);
+                _context.Budgets.Add(budget);
                 _context.SaveChanges();
                 return true;
             }
@@ -52,7 +52,7 @@ namespace DAL
         {
             try
             {
-                Budget currentBudget = _context.Budget.SingleOrDefault(x => x.Id == id);
+                Budget currentBudget = _context.Budgets.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentBudget).CurrentValues.SetValues(budget);
                 _context.SaveChanges();
                 return true;
@@ -67,7 +67,7 @@ namespace DAL
         {
             try
             {
-                Budget currentBudget = _context.Budget.SingleOrDefault(x => x.Id == id);
+                Budget currentBudget = _context.Budgets.SingleOrDefault(x => x.Id == id);
                 _context.Remove(currentBudget);
                 _context.SaveChanges();
                 return true;

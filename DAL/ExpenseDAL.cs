@@ -15,7 +15,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expense.ToList();
+                return _context.Expenses.ToList();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace DAL
         {
             try
             {
-                _context.Expense.Add(expense);
+                _context.Expenses.Add(expense);
                 _context.SaveChanges();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace DAL
         {
             try
             {
-                Expense currentExpense = _context.Expense.SingleOrDefault(x => x.Id == id);
+                Expense currentExpense = _context.Expenses.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentExpense).CurrentValues.SetValues(expense);
                 _context.SaveChanges();
                 return true;
@@ -56,7 +56,7 @@ namespace DAL
         {
             try
             {
-                Expense currentExpense = _context.Expense.SingleOrDefault(x => x.Id == id);
+                Expense currentExpense = _context.Expenses.SingleOrDefault(x => x.Id == id);
                 _context.Remove(currentExpense);
                 _context.SaveChanges();
                 return true;

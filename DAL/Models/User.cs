@@ -10,6 +10,7 @@ namespace DAL.Models
         public User()
         {
             MessagesForUsers = new HashSet<MessagesForUser>();
+            Permissions = new HashSet<Permission>();
         }
 
         public string Id { get; set; }
@@ -20,7 +21,7 @@ namespace DAL.Models
         public string Phone { get; set; }
         public DateTime DateBirth { get; set; }
 
-        public virtual Permission Permission { get; set; }
         public virtual ICollection<MessagesForUser> MessagesForUsers { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace DAL
         {
             try
             {
-                return _context.MessagesForUser.ToList();
+                return _context.MessagesForUsers.ToList();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace DAL
         {
             try
             {
-                _context.MessagesForUser.Add(messagesForUser);
+                _context.MessagesForUsers.Add(messagesForUser);
                 _context.SaveChanges();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace DAL
         {
             try
             {
-                MessagesForUser currentMessagesForUser = _context.MessagesForUser.SingleOrDefault(x => x.IdUser == id);
+                MessagesForUser currentMessagesForUser = _context.MessagesForUsers.SingleOrDefault(x => x.IdUser == id);
                 _context.Entry(currentMessagesForUser).CurrentValues.SetValues(messagesForUser);
                 _context.SaveChanges();
                 return true;
@@ -56,7 +56,7 @@ namespace DAL
         {
             try
             {
-                MessagesForUser currentMessagesForUser = _context.MessagesForUser.SingleOrDefault(x => x.IdUser == id);
+                MessagesForUser currentMessagesForUser = _context.MessagesForUsers.SingleOrDefault(x => x.IdUser == id);
                 _context.Remove(currentMessagesForUser);
                 _context.SaveChanges();
                 return true;

@@ -16,7 +16,7 @@ namespace DAL
         {
             try
             {
-                return _context.Bank.ToList();
+                return _context.Banks.ToList();
             }
             catch (Exception ex)
             {
@@ -28,7 +28,7 @@ namespace DAL
         {
             try
             {
-                return _context.BankOfBudget.ToList();
+                return _context.BankOfBudgets.ToList();
             }
             catch (Exception ex)
             {

@@ -9,10 +9,10 @@ namespace DTO.Models
 {
     public partial class BankOfBudgetDTO
     {
-        public int IdBank { get; set; }
+        public int Id { get; set; }
         public int IdBudget { get; set; }
+        public int IdBank { get; set; }
 
-        //public virtual BankDTO IdBankNavigation { get; set; }
-        //public virtual BudgetDTO IdBudgetNavigation { get; set; }
+
     }
 }

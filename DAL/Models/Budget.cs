@@ -12,6 +12,7 @@ namespace DAL.Models
             BankOfBudgets = new HashSet<BankOfBudget>();
             Expenses = new HashSet<Expense>();
             Incomes = new HashSet<Income>();
+            Permissions = new HashSet<Permission>();
         }
 
         public int Id { get; set; }
@@ -22,5 +23,6 @@ namespace DAL.Models
         public virtual ICollection<BankOfBudget> BankOfBudgets { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Income> Incomes { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

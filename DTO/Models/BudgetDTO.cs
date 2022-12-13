@@ -9,21 +9,10 @@ namespace DTO.Models
 {
     public partial class BudgetDTO
     {
-        //public BudgetDTO()
-        //{
-        //    BankOfBudget = new HashSet<BankOfBudgetDTO>();
-        //    Expenses = new HashSet<ExpensesDTO>();
-        //    Incomes = new HashSet<IncomesDTO>();
-        //}
-
         public int Id { get; set; }
         public string NameBudget { get; set; }
         public string Type { get; set; }
-        //public string Permissions { get; set; }
         public string Manager { get; set; }
-
-        //public virtual ICollection<BankOfBudgetDTO> BankOfBudget { get; set; }
-        //public virtual ICollection<ExpensesDTO> Expenses { get; set; }
-        //public virtual ICollection<IncomesDTO> Incomes { get; set; }
+    
     }
 }
