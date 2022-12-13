@@ -54,5 +54,15 @@ namespace BL
             bool isSucsess = _messageDAL.DeleteMessage(idToDelete);
             return isSucsess;
         }
+
+        public bool AddMessage(MessageDTO messageDTO)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateMessage(MessageDTO messageDTO)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

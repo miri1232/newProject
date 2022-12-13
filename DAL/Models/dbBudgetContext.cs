@@ -283,7 +283,7 @@ namespace DAL.Models
                     .HasConstraintName("FK__Messages___idUse__4E88ABD4");
             });
 
-            modelBuilder.Entity<NumberPayment>(entity =>
+            modelBuilder.Entity<NumberPayments>(entity =>
             {
                 entity.ToTable("Number_payments");
 
