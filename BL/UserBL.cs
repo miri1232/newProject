@@ -33,6 +33,11 @@ namespace BL
             return listUserDTO;
         }
 
+        public bool LoginUserByID(string idUser, string password)
+        {
+            //User currentUser = mapper.Map<UserDTO, User>(userDTO);
+          return _userDAL.LoginUserByID(idUser, password);
+        }
         public UserDTO GetUserByID(string idUser)
         {
             User user = _userDAL.GetUserByID(idUser);

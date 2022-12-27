@@ -34,7 +34,20 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
+        //שליפה לפי טווח תאריכים
+        [HttpGet]
+        [Route("IncomesByDate")]
+        public IActionResult GetIncomesByDate(DateTime start, DateTime end)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByDate( start,  end));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         //הוספה
         [HttpPost]
         [Route("AddIncome")]

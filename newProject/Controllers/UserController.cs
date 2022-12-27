@@ -38,6 +38,22 @@ namespace newProject.Controllers
             }
         }
 
+         //אימות משתמש
+        [HttpGet]
+        [Route("Login")]
+        public IActionResult LoginUserByID(string idUser, string password)
+        {
+            try
+            {
+                return Ok(_userBL.LoginUserByID( idUser,  password));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
         //שליפת ערך יחיד
         [HttpGet]
         [Route("UserByID")]

@@ -54,5 +54,11 @@ namespace BL
             bool isSucsess = _incomeDAL.DeleteIncome(idToDelete);
             return isSucsess;
         }
+        public List<IncomeDTO> GetIncomesByDate(DateTime start, DateTime end)
+        {
+            List<Income> incomeList = _incomeDAL.GetIncomesByDate( start,  end);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+            return listIncomeDTO;
+        }
     }
 }
