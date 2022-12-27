@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DAL
@@ -9,5 +10,6 @@ namespace DAL
         bool AddIncome(Income income);
         bool UpdateIncome(int id, Income income);
         bool DeleteIncome(int id);
+        List<Income> GetIncomesByDate(DateTime start, DateTime end);
     }
 }

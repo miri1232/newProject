@@ -36,14 +36,41 @@ namespace DAL
             }
         }
 
+        public bool LoginUserByID(string idUser, string password)
+        {
+            try
+            {
+                User user = GetUserByID(idUser);
+                if (user.Password.Equals(password))
+                    return true;
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
         public bool AddUser(User user)
         {
             try
             {
+                User currentUser = _context.Users.SingleOrDefault(x => x.Id == user.Id);
+                if (currentUser == null) {
                 _context.Users.Add(user);
                 _context.SaveChanges();
-                return true;
+                  return true;
+                }
+                else
+                {
+                Console.WriteLine("המשתמש קיים במערכת");
+                return false;
+                }
             }
             catch (Exception ex)
             {
@@ -80,6 +107,8 @@ namespace DAL
                 throw ex;
             }
         }
+
+
 
     }
 }

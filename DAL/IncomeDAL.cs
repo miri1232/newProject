@@ -23,6 +23,18 @@ namespace DAL
             }
         }
 
+        public List<Income> GetIncomesByDate(DateTime start, DateTime end )
+        {
+            try
+            {
+                return _context.Incomes.Where(x =>x.Date >= start && x.Date <= end).ToList() ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool AddIncome(Income income)
         {
             try
