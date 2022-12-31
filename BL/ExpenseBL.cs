@@ -32,6 +32,36 @@ namespace BL
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
+        public List<ExpenseDTO> GetExpensesByDate(DateTime start, DateTime end)
+        {
+            List<Expense> expenseList = _expenseDAL.GetExpensesByDate(start, end);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
+        public List<Expense> GetExpensesBySum(double start, double end)
+        {
+            List<Expense> expenseList = _expenseDAL.GetExpensesBySum(start, end);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
+        public List<Expense> GetExpensesByCategory(string category)
+        {
+            List<Expense> expenseList = _expenseDAL.GetExpensesByCategory(category);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
+        public List<ExpenseDTO> GetExpensesByPaymentMethod(string paymentMethod)
+        {
+            List<Expense> expenseList = _expenseDAL.GetExpensesByPaymentMethod(paymentMethod);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
+        public List<ExpenseDTO> GetExpensesByStatus(string status)
+        {
+            List<Expense> expenseList = _expenseDAL.GetExpensesByStatus(status);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
 
 
         public bool AddExpense(ExpenseDTO expenseDTO)
