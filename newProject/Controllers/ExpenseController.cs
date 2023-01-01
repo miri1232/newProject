@@ -63,7 +63,7 @@ namespace newProject.Controllers
         }
         //שליפה לפי קטגוריה
         [HttpGet]
-        [Route("ExpensesByCategory")]
+        [Route("GetExpensesByCategory")]
         public IActionResult GetExpensesByCategory(string category)
         {
             try

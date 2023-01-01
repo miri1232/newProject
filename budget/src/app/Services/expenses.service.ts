@@ -18,14 +18,15 @@ export class ExpensesService {
 
     GetAllExpenses(): Observable<Expense[]>{
           return this.http.get<Expense[]>(this.V_API+'/GetAllExpenses');
+    }
 
-      GetExpensesByCategory(ctg):Observable<Expense[]>{
-            return this.http.get<Expense[]>(this.V_API+'/GetAllExpenses');
-
+      GetExpensesByCategory(ctg:string):Observable<Expense[]>{
+            return this.http.get<Expense[]>(this.V_API+'/GetExpensesByCategory');
+      }
         
    // AddExpense(newExpense :Expense): Observable {
    //   this.http.AddExpense<Expense>(this.V_API+'/AddExpense' );
-       }
+       
 
 
 

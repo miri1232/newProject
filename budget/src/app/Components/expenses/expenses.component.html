@@ -3,8 +3,22 @@
     הצג כל ההוצאות
   </button>
 
-  <span>{{CategoryToShow}}</span>
+  <!-- <p>
+    <label >הכנס קטגוריה: </label>
+    <input type="text" 
+    name="Category"
+    [(ngModel)]="CategoryToShow"  > 
+</p> -->
+
+ <p>
+    <label >הכנס קטגוריה: </label>
+<input  type="text" 
+ name="question" [(ngModel)]="CategoryToShow"  >
+   {{CategoryToShow}} 
+
+</p>
+
  <button (click)="ShowExpensesByCategory()">
     הוצאות לפי קטגוריה
   </button>
-  
+ 

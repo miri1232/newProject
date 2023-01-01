@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Expense } from 'src/app/Classes/Expense';
 import { ExpensesService } from 'src/app/Services/expenses.service';
 
@@ -17,22 +17,28 @@ ExpensesList : Expense[] = [];
   ) { }
 
   //הכנת משתנה לקליטת הקטגוריה שמתקבל מהמשתמש
-  @Input() CategoryToShow:string="";
+  // @Input() CategoryToShow="";
 
   ngOnInit(): void {
   }
 
+ CategoryToShow:string="גגגגגגגגגגגגג";
+  
   ShowAllExpenses(){
     this.myExpensesServise.GetAllExpenses().subscribe(exp => { 
       this.ExpensesList = exp;
       console.log(exp);
   } );
-
-  ShowExpensesByCategory(){
-    this.myExpensesServise.ShowExpensesByCategory(CategoryToShow).subscribe(exp => { 
-      this.ExpensesList = exp;
-      console.log(exp);
   }
 
+  ShowExpensesByCategory(){
+    this.myExpensesServise.GetExpensesByCategory(this.CategoryToShow).subscribe(exp => { 
+      this.ExpensesList = exp;
+      console.log(exp);
+      });
+                          }
+
+
+
 }
-}
+

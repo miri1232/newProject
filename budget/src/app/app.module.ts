@@ -13,6 +13,7 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { AddIncomeComponent } from './Components/add-income/add-income.component';
 import { AddExpenseComponent } from './Components/add-expense/add-expense.component';
 import { PaymentsListComponent } from './Components/payments-list/payments-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PaymentsListComponent } from './Components/payments-list/payments-list.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
