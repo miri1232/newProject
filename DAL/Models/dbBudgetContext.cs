@@ -24,7 +24,7 @@ namespace DAL.Models
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<MessagesForUser> MessagesForUsers { get; set; }
-        public virtual DbSet<NumberPayments> NumberPayments { get; set; }
+        public virtual DbSet<NumberPayment> NumberPayments { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<PermissionLevel> PermissionLevels { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -136,10 +136,10 @@ namespace DAL.Models
                     .HasMaxLength(50)
                     .HasColumnName("payment_method");
 
-                entity.Property(e => e.Statusstatus)
+                entity.Property(e => e.Status)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("statusstatus");
+                    .HasColumnName("status");
 
                 entity.Property(e => e.Subcategory)
                     .IsRequired()
@@ -155,7 +155,6 @@ namespace DAL.Models
                     .HasConstraintName("FK__Expenses__idBudg__3A81B327");
             });
 
-        
             modelBuilder.Entity<Income>(entity =>
             {
                 entity.ToTable("Income");
@@ -185,7 +184,7 @@ namespace DAL.Models
                 entity.Property(e => e.PaymentMethod)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("Payment method");
+                    .HasColumnName("payment_method");
 
                 entity.Property(e => e.SourceOfIncome)
                     .IsRequired()
@@ -194,7 +193,7 @@ namespace DAL.Models
 
                 entity.Property(e => e.Status)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(10)
                     .HasColumnName("status");
 
                 entity.Property(e => e.Sum).HasColumnName("sum");
@@ -268,7 +267,7 @@ namespace DAL.Models
                     .HasConstraintName("FK__Messages___idUse__4E88ABD4");
             });
 
-            modelBuilder.Entity<NumberPayments>(entity =>
+            modelBuilder.Entity<NumberPayment>(entity =>
             {
                 entity.ToTable("Number_payments");
 
@@ -329,12 +328,6 @@ namespace DAL.Models
                     .WithMany(p => p.Permissions)
                     .HasForeignKey(d => d.PermissionLevel)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Permission_PermissionLevel");
-
-                entity.HasOne(d => d.PermissionLevel1)
-                    .WithMany(p => p.Permissions)
-                    .HasForeignKey(d => d.PermissionLevel)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Permission_PermissionLevel1");
             });
 
@@ -368,12 +361,12 @@ namespace DAL.Models
                 entity.Property(e => e.FirstName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("first name");
+                    .HasColumnName("first_name");
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("last name");
+                    .HasColumnName("last_name");
 
                 entity.Property(e => e.Password)
                     .IsRequired()

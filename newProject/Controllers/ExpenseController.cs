@@ -21,7 +21,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("Expenses")]
+        [Route("GetAllExpenses")]
         public IActionResult GetAllExpenses()
         {
             try

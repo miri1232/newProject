@@ -71,7 +71,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expenses.Where(x => x.Statusstatus.Equals(status)).ToList();
+                return _context.Expenses.Where(x => x.Status.Equals(status)).ToList();
             }
             catch (Exception ex)
             {

@@ -14,7 +14,6 @@ namespace DAL.Models
 
         public virtual Budget IdBudgetNavigation { get; set; }
         public virtual User IdUserNavigation { get; set; }
-        public virtual PermissionLevel PermissionLevel1 { get; set; }
-        public object PermissionLevelNavigation { get; internal set; }
+        public virtual PermissionLevel PermissionLevelNavigation { get; set; }
     }
 }

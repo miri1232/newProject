@@ -23,7 +23,7 @@ namespace newProject.Controllers
 
             //שליפה
             [HttpGet]
-            [Route("Budget")]
+            [Route("GetAllBudgets")]
             public IActionResult GetAllBudgets()
             {
                 try

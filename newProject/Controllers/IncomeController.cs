@@ -22,7 +22,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("Incomes")]
+        [Route("GetAllIncomes")]
         public IActionResult GetAllIncomes()
         {
             try
@@ -41,7 +41,7 @@ namespace newProject.Controllers
         {
             try
             {
-                return Ok(_incomeBL.GetIncomesByDate( start,  end));
+                return Ok(_incomeBL.GetIncomesByDate(start, end));
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace newProject.Controllers
 
         //שליפה לפי קטגוריה
         [HttpGet]
-        [Route("IncomesByDate")]
+        [Route("IncomesByCategory")]
         public IActionResult GetIncomesByCategory(string category)
         {
             try
@@ -81,7 +81,7 @@ namespace newProject.Controllers
 
         //שליפה לפי מקור הכנסה
         [HttpGet]
-        [Route("IncomesByDate")]
+        [Route("IncomesBySourceOfIncome")]
         public IActionResult GetIncomesBySourceOfIncome(string sourceOfIncome)
         {
             try
@@ -96,7 +96,7 @@ namespace newProject.Controllers
 
         //שליפה לפי סטטוס
         [HttpGet]
-        [Route("IncomesByDate")]
+        [Route("IncomesByStatus")]
         public IActionResult GetIncomesByStatus(string status)
         {
             try

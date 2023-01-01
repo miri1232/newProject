@@ -25,7 +25,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("User")]
+        [Route("GetAllUsers")]
         public IActionResult GetAllUsers()
         {
             try

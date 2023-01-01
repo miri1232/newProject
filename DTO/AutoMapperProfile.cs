@@ -24,8 +24,8 @@ namespace DTO
             CreateMap<Message, MessageDTO>();
             CreateMap<MessagesForUserDTO, MessagesForUser>();
             CreateMap<MessagesForUser, MessagesForUserDTO>();
-            CreateMap<NumberPaymentsDTO, NumberPayments>();
-            CreateMap<NumberPayments, NumberPaymentsDTO>();
+            CreateMap<NumberPaymentsDTO, NumberPayment>();
+            CreateMap<NumberPayment, NumberPaymentsDTO>();
             CreateMap<BankDTO, Bank>();
             CreateMap<Bank, BankDTO>();
             CreateMap<BankOfBudgetDTO, BankOfBudget>();
