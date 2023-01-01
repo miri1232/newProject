@@ -34,7 +34,54 @@ namespace DAL
                 throw ex;
             }
         }
-      
+       public List<Income> GetIncomesBySum(double min, double max)
+        {
+            try
+            {
+                return _context.Incomes.Where(x => x.Sum >= min && x.Sum <= max).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Income> GetIncomesByCategory(string category)
+        {
+            try
+            {
+                return _context.Incomes.Where(x => x.Category.Equals(category)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Income> GetIncomesBySourceOfIncome(string sourceOfIncome)
+        {
+            try
+            {
+                return _context.Incomes.Where(x => x.SourceOfIncome.Equals(sourceOfIncome)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Income> GetIncomesByStatus(string status)
+        {
+            try
+            {
+                return _context.Incomes.Where(x => x.Status.Equals(status)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public bool AddIncome(Income income)
         {

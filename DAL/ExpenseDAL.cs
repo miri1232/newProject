@@ -34,11 +34,11 @@ namespace DAL
             }
         }
        
-        public List<Expense> GetExpensesBySum(double start, double end)
+        public List<Expense> GetExpensesBySum(double min, double max)
         {
             try
             {
-                return _context.Expenses.Where(x => x.Sum >= start && x.Sum <= end).ToList();
+                return _context.Expenses.Where(x => x.Sum >= min && x.Sum <= max).ToList();
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expenses.Where(x => x.Category == category).ToList();
+                return _context.Expenses.Where(x => x.Category.Equals(category)).ToList();
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
+                return _context.Expenses.Where(x => x.PaymentMethod.Equals(paymentMethod)).ToList();
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expenses.Where(x => x.Statusstatus == status).ToList();
+                return _context.Expenses.Where(x => x.Statusstatus.Equals(status)).ToList();
             }
             catch (Exception ex)
             {

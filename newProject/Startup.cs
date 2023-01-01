@@ -93,11 +93,6 @@ namespace newProject
 
             app.UseCors("CorsPolicy");
 
-            /////
-            ///
-            
-            ///
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

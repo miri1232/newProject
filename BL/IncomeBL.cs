@@ -33,6 +33,41 @@ namespace BL
             return listIncomeDTO;
         }
 
+        public List<IncomeDTO> GetIncomesByDate(DateTime start, DateTime end)
+        {
+            List<Income> incomeList = _incomeDAL.GetIncomesByDate( start,  end);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+            return listIncomeDTO;
+        }
+    
+
+        public List<IncomeDTO> GetIncomesBySum(double min, double max)
+        {
+            List<Income> incomeList = _incomeDAL.GetIncomesBySum(min, max);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+            return listIncomeDTO;
+        }
+
+        public List<IncomeDTO> GetIncomesByCategory(string category)
+        {
+            List<Income> incomeList = _incomeDAL.GetIncomesByCategory(category);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+            return listIncomeDTO;
+        }
+
+        public List<IncomeDTO> GetIncomesBySourceOfIncome(string sourceOfIncome)
+        {
+            List<Income> incomeList = _incomeDAL.GetIncomesBySourceOfIncome(sourceOfIncome);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+            return listIncomeDTO;
+        }
+
+        public List<IncomeDTO> GetIncomesByStatus(string status)
+        {
+            List<Income> incomeList = _incomeDAL.GetIncomesByStatus(status);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+            return listIncomeDTO;
+        }
 
         public bool AddIncome(IncomeDTO incomeDTO)
         {
@@ -54,11 +89,6 @@ namespace BL
             bool isSucsess = _incomeDAL.DeleteIncome(idToDelete);
             return isSucsess;
         }
-        public List<IncomeDTO> GetIncomesByDate(DateTime start, DateTime end)
-        {
-            List<Income> incomeList = _incomeDAL.GetIncomesByDate( start,  end);
-            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
-            return listIncomeDTO;
-        }
+      
     }
 }

@@ -22,7 +22,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("Income")]
+        [Route("Incomes")]
         public IActionResult GetAllIncomes()
         {
             try
@@ -48,6 +48,67 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        //שליפה לפי טווח סכום
+        [HttpGet]
+        [Route("IncomesBySum")]
+        public IActionResult GetIncomesBySum(double min, double max)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesBySum( min,  max));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //שליפה לפי קטגוריה
+        [HttpGet]
+        [Route("IncomesByDate")]
+        public IActionResult GetIncomesByCategory(string category)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByCategory(category));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //שליפה לפי מקור הכנסה
+        [HttpGet]
+        [Route("IncomesByDate")]
+        public IActionResult GetIncomesBySourceOfIncome(string sourceOfIncome)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesBySourceOfIncome(sourceOfIncome));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //שליפה לפי סטטוס
+        [HttpGet]
+        [Route("IncomesByDate")]
+        public IActionResult GetIncomesByStatus(string status)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByStatus(status));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //הוספה
         [HttpPost]
         [Route("AddIncome")]

@@ -50,11 +50,11 @@ namespace newProject.Controllers
         //שליפה לפי טווח סכום
         [HttpGet]
         [Route("ExpensesBySum")]
-        public IActionResult GetExpensesBySum(double start, double end)
+        public IActionResult GetExpensesBySum(double min, double max)
         {
             try
             {
-                return Ok(_expenseBL.GetExpensesBySum(start, end));
+                return Ok(_expenseBL.GetExpensesBySum( min,  max));
             }
             catch (Exception ex)
             {
