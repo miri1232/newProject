@@ -22,6 +22,62 @@ namespace DAL
                 throw ex;
             }
         }
+        public List<Expense> GetExpensesByDate(DateTime start, DateTime end)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.Date >= start && x.Date <= end).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+       
+        public List<Expense> GetExpensesBySum(double start, double end)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.Sum >= start && x.Sum <= end).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Expense> GetExpensesByCategory(string category)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.Category == category).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Expense> GetExpensesByPaymentMethod(string paymentMethod)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Expense> GetExpensesByStatus(string status)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.Statusstatus == status).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public bool AddExpense(Expense expense)
         {

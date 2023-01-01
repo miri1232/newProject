@@ -33,6 +33,77 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        //שליפה לפי טווח תאריכים
+        [HttpGet]
+        [Route("ExpensesByDate")]
+        public IActionResult GetExpensesByDate(DateTime start, DateTime end)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesByDate(start, end));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        //שליפה לפי טווח סכום
+        [HttpGet]
+        [Route("ExpensesBySum")]
+        public IActionResult GetExpensesBySum(double start, double end)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesBySum(start, end));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        //שליפה לפי קטגוריה
+        [HttpGet]
+        [Route("ExpensesByCategory")]
+        public IActionResult GetExpensesByCategory(string category)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesByCategory(category));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        //שליפה לפי אופן התשלום
+        [HttpGet]
+        [Route("ExpensesByPaymentMethod")]
+        public IActionResult GetExpensesByPaymentMethod(string paymentMethod)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesByPaymentMethod(paymentMethod));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        //שליפה לפי סטטוס
+        [HttpGet]
+        [Route("ExpensesByPaymentStatus")]
+        public IActionResult GetExpensesByStatus(string status)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesByStatus(status));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
         //הוספה
         [HttpPost]

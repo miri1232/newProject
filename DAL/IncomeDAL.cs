@@ -23,7 +23,7 @@ namespace DAL
             }
         }
 
-        public List<Income> GetIncomesByDate(DateTime start, DateTime end )
+        public List<Income> GetIncomesByDate(DateTime start, DateTime end)
         {
             try
             {
@@ -34,6 +34,7 @@ namespace DAL
                 throw ex;
             }
         }
+      
 
         public bool AddIncome(Income income)
         {
