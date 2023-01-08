@@ -14,6 +14,7 @@ import { AddIncomeComponent } from './Components/add-income/add-income.component
 import { AddExpenseComponent } from './Components/add-expense/add-expense.component';
 import { PaymentsListComponent } from './Components/payments-list/payments-list.component';
 import { FormsModule } from '@angular/forms';
+import { HomePageComponent } from './Components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     SignInComponent,
     AddIncomeComponent,
     AddExpenseComponent,
-    PaymentsListComponent
+    PaymentsListComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

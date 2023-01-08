@@ -42,7 +42,7 @@ namespace newProject.Controllers
 
          //אימות משתמש
         [HttpGet]
-        [Route("Login")]
+        [Route("LoginUserByID")]
         public IActionResult LoginUserByID(string idUser, string password)
         {
             try
@@ -58,7 +58,7 @@ namespace newProject.Controllers
 
         //שליפת ערך יחיד
         [HttpGet]
-        [Route("UserByID")]
+        [Route("UserByID/{idUser}")]
         public IActionResult GetUserByID(string idUser)
         {
             try

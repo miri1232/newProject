@@ -62,5 +62,40 @@ namespace DAL
             }
         }
 
+        public List<Status> GetAllStatus()
+        {
+            try
+            {
+                return _context.Statuses.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<PaymentMethod> GetAllPaymentMethod()
+        {
+             try
+            {
+                return _context.PaymentMethods.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<TypeBudget> GetAllTypeBudget()
+        {
+            try
+            {
+                return _context.TypeBudgets.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

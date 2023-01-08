@@ -33,7 +33,7 @@ namespace DAL.Models
         public virtual DbSet<SourceOfIncome> SourceOfIncomes { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<Subcategory> Subcategories { get; set; }
-        public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<TypeBudget> TypeBudgets { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -400,10 +400,10 @@ namespace DAL.Models
 
                 entity.Property(e => e.CategoryIncome).HasColumnName("category_income");
 
-                entity.Property(e => e.SourceOfIncome1)
+                entity.Property(e => e.Detail)
                     .IsRequired()
                     .HasMaxLength(20)
-                    .HasColumnName("source_of_income");
+                    .HasColumnName("detail");
 
                 entity.HasOne(d => d.CategoryIncomeNavigation)
                     .WithMany(p => p.SourceOfIncomes)
@@ -440,9 +440,9 @@ namespace DAL.Models
                     .HasConstraintName("FK_Subcategory_Category");
             });
 
-            modelBuilder.Entity<Type>(entity =>
+            modelBuilder.Entity<TypeBudget>(entity =>
             {
-                entity.ToTable("Type");
+                entity.ToTable("Type_budget");
 
                 entity.Property(e => e.Detail)
                     .IsRequired()

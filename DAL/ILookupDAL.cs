@@ -9,6 +9,10 @@ namespace DAL
         List<BankOfBudget> GetAllBankOfBudget();
         List<Permission> GetAllPermission();
         List<PermissionLevel> GetAllPermissionLevel();
+        List<Status> GetAllStatus();
+        List<PaymentMethod> GetAllPaymentMethod();
+        List<TypeBudget> GetAllTypeBudget();
+
 
     }
 }

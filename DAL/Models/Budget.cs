@@ -19,7 +19,7 @@ namespace DAL.Models
         public int Type { get; set; }
         public string Manager { get; set; }
 
-        public virtual Type TypeNavigation { get; set; }
+        public virtual TypeBudget TypeNavigation { get; set; }
         public virtual ICollection<BankOfBudget> BankOfBudgets { get; set; }
         public virtual ICollection<Income> Incomes { get; set; }
         public virtual ICollection<Permission> Permissions { get; set; }
