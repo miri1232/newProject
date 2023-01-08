@@ -11,8 +11,8 @@ namespace DTO.Models
     {
         public int Id { get; set; }
         public string NameBudget { get; set; }
-        public string Type { get; set; }
+        public int Type { get; set; }
         public string Manager { get; set; }
-    
+
     }
 }

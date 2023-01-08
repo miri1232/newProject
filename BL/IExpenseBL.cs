@@ -10,9 +10,9 @@ namespace BL
         List<ExpenseDTO> GetAllExpenses();
         List<ExpenseDTO> GetExpensesByDate(DateTime start, DateTime end);
         List<ExpenseDTO> GetExpensesBySum(double min, double max);
-        List<ExpenseDTO> GetExpensesByCategory(string category);
-        List<ExpenseDTO> GetExpensesByPaymentMethod(string paymentMethod);
-        List<ExpenseDTO> GetExpensesByStatus(string status);
+        List<ExpenseDTO> GetExpensesByCategory(int category);
+        List<ExpenseDTO> GetExpensesByPaymentMethod(int paymentMethod);
+        List<ExpenseDTO> GetExpensesByStatus(int status);
         bool AddExpense(ExpenseDTO expenseDTO);
         bool UpdateExpense(ExpenseDTO expenseDTO);
         bool DeleteExpense(ExpenseDTO expenseDTO);

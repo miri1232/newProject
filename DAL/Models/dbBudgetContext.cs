@@ -20,13 +20,20 @@ namespace DAL.Models
         public virtual DbSet<Bank> Banks { get; set; }
         public virtual DbSet<BankOfBudget> BankOfBudgets { get; set; }
         public virtual DbSet<Budget> Budgets { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<CategoryIncome> CategoryIncomes { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<MessagesForUser> MessagesForUsers { get; set; }
         public virtual DbSet<NumberPayment> NumberPayments { get; set; }
+        public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<PermissionLevel> PermissionLevels { get; set; }
+        public virtual DbSet<SourceOfIncome> SourceOfIncomes { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
+        public virtual DbSet<Subcategory> Subcategories { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -97,20 +104,40 @@ namespace DAL.Models
                     .HasMaxLength(20)
                     .HasColumnName("name_budget");
 
-                entity.Property(e => e.Type)
+                entity.Property(e => e.Type).HasColumnName("type");
+
+                entity.HasOne(d => d.TypeNavigation)
+                    .WithMany(p => p.Budgets)
+                    .HasForeignKey(d => d.Type)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Budget_Type");
+            });
+
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.ToTable("Category");
+
+                entity.Property(e => e.Detail)
                     .IsRequired()
-                    .HasMaxLength(7)
-                    .HasColumnName("type");
+                    .HasMaxLength(15)
+                    .HasColumnName("detail");
+            });
+
+            modelBuilder.Entity<CategoryIncome>(entity =>
+            {
+                entity.ToTable("Category_income");
+
+                entity.Property(e => e.Detail)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .HasColumnName("detail");
             });
 
             modelBuilder.Entity<Expense>(entity =>
             {
                 entity.ToTable("Expense");
 
-                entity.Property(e => e.Category)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("category");
+                entity.Property(e => e.Category).HasColumnName("category");
 
                 entity.Property(e => e.Date)
                     .HasColumnType("date")
@@ -131,40 +158,44 @@ namespace DAL.Models
 
                 entity.Property(e => e.NumberOfPayments).HasColumnName("number_of_payments");
 
-                entity.Property(e => e.PaymentMethod)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("payment_method");
+                entity.Property(e => e.PaymentMethod).HasColumnName("payment_method");
 
-                entity.Property(e => e.Status)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("status");
+                entity.Property(e => e.Status).HasColumnName("status");
 
-                entity.Property(e => e.Subcategory)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("subcategory");
+                entity.Property(e => e.Subcategory).HasColumnName("subcategory");
 
                 entity.Property(e => e.Sum).HasColumnName("sum");
 
-                entity.HasOne(d => d.IdBudgetNavigation)
+                entity.HasOne(d => d.CategoryNavigation)
                     .WithMany(p => p.Expenses)
-                    .HasForeignKey(d => d.IdBudget)
+                    .HasForeignKey(d => d.Category)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Expenses__idBudg__3A81B327");
+                    .HasConstraintName("FK_Expense_Category");
+
+                entity.HasOne(d => d.PaymentMethodNavigation)
+                    .WithMany(p => p.Expenses)
+                    .HasForeignKey(d => d.PaymentMethod)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Expense_Payment_method");
+
+                entity.HasOne(d => d.StatusNavigation)
+                    .WithMany(p => p.Expenses)
+                    .HasForeignKey(d => d.Status)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Expense_Status");
+
+                entity.HasOne(d => d.SubcategoryNavigation)
+                    .WithMany(p => p.Expenses)
+                    .HasForeignKey(d => d.Subcategory)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Expense_Subcategory");
             });
 
             modelBuilder.Entity<Income>(entity =>
             {
                 entity.ToTable("Income");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Category)
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .HasColumnName("category");
+                entity.Property(e => e.CategoryIncome).HasColumnName("category_income");
 
                 entity.Property(e => e.Date)
                     .HasColumnType("date")
@@ -181,28 +212,43 @@ namespace DAL.Models
 
                 entity.Property(e => e.IdBudget).HasColumnName("idBudget");
 
-                entity.Property(e => e.PaymentMethod)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("payment_method");
+                entity.Property(e => e.PaymentMethod).HasColumnName("payment_method");
 
-                entity.Property(e => e.SourceOfIncome)
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .HasColumnName("source_of_income");
+                entity.Property(e => e.SourceOfIncome).HasColumnName("source_of_income");
 
-                entity.Property(e => e.Status)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("status");
+                entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.Property(e => e.Sum).HasColumnName("sum");
+
+                entity.HasOne(d => d.CategoryIncomeNavigation)
+                    .WithMany(p => p.Incomes)
+                    .HasForeignKey(d => d.CategoryIncome)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Income_Category_income");
 
                 entity.HasOne(d => d.IdBudgetNavigation)
                     .WithMany(p => p.Incomes)
                     .HasForeignKey(d => d.IdBudget)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Incomes__idBudge__37A5467C");
+
+                entity.HasOne(d => d.PaymentMethodNavigation)
+                    .WithMany(p => p.Incomes)
+                    .HasForeignKey(d => d.PaymentMethod)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Income_Payment_method");
+
+                entity.HasOne(d => d.SourceOfIncomeNavigation)
+                    .WithMany(p => p.Incomes)
+                    .HasForeignKey(d => d.SourceOfIncome)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Income_Source_of_income");
+
+                entity.HasOne(d => d.StatusNavigation)
+                    .WithMany(p => p.Incomes)
+                    .HasForeignKey(d => d.Status)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Income_Status");
             });
 
             modelBuilder.Entity<Message>(entity =>
@@ -240,9 +286,7 @@ namespace DAL.Models
             {
                 entity.ToTable("Messages_for_user");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.IdMessages).HasColumnName("idMessages");
 
@@ -296,6 +340,16 @@ namespace DAL.Models
                     .HasConstraintName("FK__Number_pa__idExp__3E52440B");
             });
 
+            modelBuilder.Entity<PaymentMethod>(entity =>
+            {
+                entity.ToTable("Payment_method");
+
+                entity.Property(e => e.Detail)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .HasColumnName("detail");
+            });
+
             modelBuilder.Entity<Permission>(entity =>
             {
                 entity.ToTable("Permission");
@@ -338,6 +392,62 @@ namespace DAL.Models
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(10);
+            });
+
+            modelBuilder.Entity<SourceOfIncome>(entity =>
+            {
+                entity.ToTable("Source_of_income");
+
+                entity.Property(e => e.CategoryIncome).HasColumnName("category_income");
+
+                entity.Property(e => e.SourceOfIncome1)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .HasColumnName("source_of_income");
+
+                entity.HasOne(d => d.CategoryIncomeNavigation)
+                    .WithMany(p => p.SourceOfIncomes)
+                    .HasForeignKey(d => d.CategoryIncome)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Source_of_income_Category_income");
+            });
+
+            modelBuilder.Entity<Status>(entity =>
+            {
+                entity.ToTable("Status");
+
+                entity.Property(e => e.Detail)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .HasColumnName("detail");
+            });
+
+            modelBuilder.Entity<Subcategory>(entity =>
+            {
+                entity.ToTable("Subcategory");
+
+                entity.Property(e => e.Category).HasColumnName("category");
+
+                entity.Property(e => e.Detail)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .HasColumnName("detail");
+
+                entity.HasOne(d => d.CategoryNavigation)
+                    .WithMany(p => p.Subcategories)
+                    .HasForeignKey(d => d.Category)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Subcategory_Category");
+            });
+
+            modelBuilder.Entity<Type>(entity =>
+            {
+                entity.ToTable("Type");
+
+                entity.Property(e => e.Detail)
+                    .IsRequired()
+                    .HasMaxLength(8)
+                    .HasColumnName("detail");
             });
 
             modelBuilder.Entity<User>(entity =>

@@ -64,7 +64,7 @@ namespace newProject.Controllers
         //שליפה לפי קטגוריה
         [HttpGet]
         [Route("GetExpensesByCategory")]
-        public IActionResult GetExpensesByCategory(string category)
+        public IActionResult GetExpensesByCategory(int category)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace newProject.Controllers
         //שליפה לפי אופן התשלום
         [HttpGet]
         [Route("ExpensesByPaymentMethod")]
-        public IActionResult GetExpensesByPaymentMethod(string paymentMethod)
+        public IActionResult GetExpensesByPaymentMethod(int paymentMethod)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace newProject.Controllers
         //שליפה לפי סטטוס
         [HttpGet]
         [Route("ExpensesByPaymentStatus")]
-        public IActionResult GetExpensesByStatus(string status)
+        public IActionResult GetExpensesByStatus(int status)
         {
             try
             {

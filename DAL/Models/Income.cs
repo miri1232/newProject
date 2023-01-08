@@ -11,13 +11,17 @@ namespace DAL.Models
         public int IdBudget { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
-        public string Category { get; set; }
-        public string SourceOfIncome { get; set; }
+        public int CategoryIncome { get; set; }
+        public int SourceOfIncome { get; set; }
         public string Detail { get; set; }
-        public string PaymentMethod { get; set; }
-        public string Status { get; set; }
+        public int PaymentMethod { get; set; }
+        public int Status { get; set; }
         public byte[] Document { get; set; }
 
+        public virtual CategoryIncome CategoryIncomeNavigation { get; set; }
         public virtual Budget IdBudgetNavigation { get; set; }
+        public virtual PaymentMethod PaymentMethodNavigation { get; set; }
+        public virtual SourceOfIncome SourceOfIncomeNavigation { get; set; }
+        public virtual Status StatusNavigation { get; set; }
     }
 }

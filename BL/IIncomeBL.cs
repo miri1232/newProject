@@ -12,8 +12,8 @@ namespace BL
         bool DeleteIncome(IncomeDTO incomeDTO);
         List<IncomeDTO> GetIncomesByDate(DateTime start, DateTime end);
         List<IncomeDTO> GetIncomesBySum(double min, double max);
-        List<IncomeDTO> GetIncomesByCategory(string category);
-        List<IncomeDTO> GetIncomesBySourceOfIncome(string sourceOfIncome);
-        List<IncomeDTO> GetIncomesByStatus(string status);
+        List<IncomeDTO> GetIncomesByCategory(int category);
+        List<IncomeDTO> GetIncomesBySourceOfIncome(int sourceOfIncome);
+        List<IncomeDTO> GetIncomesByStatus(int status);
     }
 }

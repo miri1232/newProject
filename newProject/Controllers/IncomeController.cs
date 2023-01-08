@@ -67,7 +67,7 @@ namespace newProject.Controllers
         //שליפה לפי קטגוריה
         [HttpGet]
         [Route("IncomesByCategory")]
-        public IActionResult GetIncomesByCategory(string category)
+        public IActionResult GetIncomesByCategory(int category)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace newProject.Controllers
         //שליפה לפי מקור הכנסה
         [HttpGet]
         [Route("IncomesBySourceOfIncome")]
-        public IActionResult GetIncomesBySourceOfIncome(string sourceOfIncome)
+        public IActionResult GetIncomesBySourceOfIncome(int sourceOfIncome)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace newProject.Controllers
         //שליפה לפי סטטוס
         [HttpGet]
         [Route("IncomesByStatus")]
-        public IActionResult GetIncomesByStatus(string status)
+        public IActionResult GetIncomesByStatus(int status)
         {
             try
             {

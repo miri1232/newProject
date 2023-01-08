@@ -48,21 +48,21 @@ namespace BL
             return listIncomeDTO;
         }
 
-        public List<IncomeDTO> GetIncomesByCategory(string category)
+        public List<IncomeDTO> GetIncomesByCategory(int category)
         {
             List<Income> incomeList = _incomeDAL.GetIncomesByCategory(category);
             List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
             return listIncomeDTO;
         }
 
-        public List<IncomeDTO> GetIncomesBySourceOfIncome(string sourceOfIncome)
+        public List<IncomeDTO> GetIncomesBySourceOfIncome(int sourceOfIncome)
         {
             List<Income> incomeList = _incomeDAL.GetIncomesBySourceOfIncome(sourceOfIncome);
             List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
             return listIncomeDTO;
         }
 
-        public List<IncomeDTO> GetIncomesByStatus(string status)
+        public List<IncomeDTO> GetIncomesByStatus(int status)
         {
             List<Income> incomeList = _incomeDAL.GetIncomesByStatus(status);
             List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);

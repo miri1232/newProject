@@ -46,11 +46,11 @@ namespace DAL
             }
         }
 
-        public List<Income> GetIncomesByCategory(string category)
+        public List<Income> GetIncomesByCategory(int category)
         {
             try
             {
-                return _context.Incomes.Where(x => x.Category.Equals(category)).ToList();
+                return _context.Incomes.Where(x => x.CategoryIncome==category).ToList();
             }
             catch (Exception ex)
             {
@@ -58,11 +58,11 @@ namespace DAL
             }
         }
 
-        public List<Income> GetIncomesBySourceOfIncome(string sourceOfIncome)
+        public List<Income> GetIncomesBySourceOfIncome(int sourceOfIncome)
         {
             try
             {
-                return _context.Incomes.Where(x => x.SourceOfIncome.Equals(sourceOfIncome)).ToList();
+                return _context.Incomes.Where(x => x.SourceOfIncome==sourceOfIncome).ToList();
             }
             catch (Exception ex)
             {
@@ -70,11 +70,11 @@ namespace DAL
             }
         }
 
-        public List<Income> GetIncomesByStatus(string status)
+        public List<Income> GetIncomesByStatus(int status)
         {
             try
             {
-                return _context.Incomes.Where(x => x.Status.Equals(status)).ToList();
+                return _context.Incomes.Where(x => x.Status==status).ToList();
             }
             catch (Exception ex)
             {

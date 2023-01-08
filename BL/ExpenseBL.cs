@@ -44,20 +44,20 @@ namespace BL
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
-        public List<ExpenseDTO> GetExpensesByCategory(string category)
+        public List<ExpenseDTO> GetExpensesByCategory(int category)
         {
             List<Expense> expenseList = _expenseDAL.GetExpensesByCategory(category);
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
 
-        public List<ExpenseDTO> GetExpensesByPaymentMethod(string paymentMethod)
+        public List<ExpenseDTO> GetExpensesByPaymentMethod(int paymentMethod)
         {
             List<Expense> expenseList = _expenseDAL.GetExpensesByPaymentMethod(paymentMethod);
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
-        public List<ExpenseDTO> GetExpensesByStatus(string status)
+        public List<ExpenseDTO> GetExpensesByStatus(int status)
         {
             List<Expense> expenseList = _expenseDAL.GetExpensesByStatus(status);
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);

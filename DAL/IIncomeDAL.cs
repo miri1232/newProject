@@ -12,9 +12,9 @@ namespace DAL
         bool DeleteIncome(int id);
         List<Income> GetIncomesByDate(DateTime start, DateTime end);
         List<Income> GetIncomesBySum(double min, double max);
-        List<Income> GetIncomesByCategory(string category);
-        List<Income> GetIncomesBySourceOfIncome(string sourceOfIncome);
-        List<Income> GetIncomesByStatus(string status);
+        List<Income> GetIncomesByCategory(int category);
+        List<Income> GetIncomesBySourceOfIncome(int sourceOfIncome);
+        List<Income> GetIncomesByStatus(int status);
 
     }
 }
