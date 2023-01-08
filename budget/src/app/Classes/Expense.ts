@@ -5,13 +5,13 @@ export class Expense{
         public  IdBudget : number,
         public  Date : Date,
         public  Sum : number,
-        public  Category : string,
-        public  Subcategory : string,
+        public  Category : number,
+        public  Subcategory : number,
         public  Detail : string,
-        public  PaymentMethod : string,
+        public  PaymentMethod : number,
         public  Frequency : boolean,
         public  NumberOfPayments : number,
-        public  Status : string,
+        public  Status : number,
         public  Document : string
 
 

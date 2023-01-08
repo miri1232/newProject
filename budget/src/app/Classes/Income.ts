@@ -5,11 +5,11 @@ export class Income{
         public  IdBudget : number,
         public  Date : Date,
         public  Sum : number,
-        public  Category : string,
-        public  SourceOfIncome : string,
+        public  Category : number,
+        public  SourceOfIncome : number,
         public  Detail : string,
-        public  PaymentMethod : string,
-        public  Status : string,
+        public  PaymentMethod : number,
+        public  Status : number,
         public  Document : string
 
 

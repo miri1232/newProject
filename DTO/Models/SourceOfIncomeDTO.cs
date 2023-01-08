@@ -11,7 +11,7 @@ namespace DTO.Models
 
         public int Id { get; set; }
         public int CategoryIncome { get; set; }
-        public string SourceOfIncome1 { get; set; }
+        public string Detail { get; set; }
 
 
     }
