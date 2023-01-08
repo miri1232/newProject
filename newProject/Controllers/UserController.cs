@@ -58,7 +58,7 @@ namespace newProject.Controllers
 
         //שליפת ערך יחיד
         [HttpGet]
-        [Route("UserByID/{idUser}")]
+        [Route("GetUserByID")]
         public IActionResult GetUserByID(string idUser)
         {
             try

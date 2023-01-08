@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   // public user : User  = new User();
 
   id!: string;
-  curentUser: User = new User();
+  currentUser: User = new User();
 
   IdToLogin !: string;
   PassToLogin !: string;
@@ -29,14 +29,19 @@ export class LoginComponent implements OnInit {
 
   checkUser() {
 
-    // this.curentUser !=new User() ;
-    this.userService.LoginUserByID(this.IdToLogin, this.PassToLogin).subscribe(res =>{
-      if(res){
-        alert("התחברת בהצלחה");
-      } else{
+    // this.ccurrentUser !=new User() ;
+    this.userService.LoginUserByID(this.IdToLogin, this.PassToLogin).subscribe(res => {
+      if (res) {
+        this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
+          this.currentUser = res1;
+          console.log("curent user ======>",this.currentUser)
+          alert(this.currentUser.FirstName + " התחברת בהצלחה");
+        });
+
+      } else {
         alert("שם משתמש או סיסמה שגויים, אנא נסה שנית או הירשם");
-      } 
-      console.log(res)
+      }
+      console.log('res===', res)
     });
     // if (www== undefined){
     //   alert("שם משתמש או סיסמה שגויים, אנא נסה שנית או הירשם")

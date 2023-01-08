@@ -21,4 +21,23 @@ export class UserService {
     // return this.http.get<boolean>(this.V_API + '/LoginUserByID/'+id+'/');
     return this.http.get<boolean>(this.V_API + '/LoginUserByID',{params:p});
   }
+
+  GetUserByID(id: string): Observable<User> {
+    const p=new HttpParams().set('idUser',id);
+    
+    return this.http.get<User>(this.V_API + '/GetUserByID',{params:p});
+  }
+
+  // AddUser(newUser: User): Observable<boolean> {
+  //   const u=new HttpParams().set('userDTO',newUser);
+    
+  //   return this.http.post<boolean>(this.V_API + '/AddUser',{params:u});
+  // }
+  
+  // UpdateUser(newUser: User): Observable<boolean> {
+  //   const u=new HttpParams().set('userDTO',newUser);
+    
+  //   return this.http.post<boolean>(this.V_API + '/UpdateUser',{params:u});
+  // }
+
 }
