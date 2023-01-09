@@ -1,14 +1,9 @@
 export class Budget{
   
-    constructor(
-        public Id: number,
-        public NameBudget:string,
-        public Type  : number,
-        public Manager: string
+        Id!: number;
+        NameBudget!:string;
+        Type!  : number;
+        Manager!: string;
 
-         
-            ) {
-     
-        
-            }
+
         }

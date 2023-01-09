@@ -1,13 +1,8 @@
 export class Status{
   
-    constructor(
-        public  Id: number,
-        public  Detail : string
+          Id!: number;
+          Detail! : string;
 
 
          
-            ) {
-     
-        
-            }
         }

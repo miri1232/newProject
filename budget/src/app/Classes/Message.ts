@@ -1,16 +1,12 @@
 export class Message{
   
-    constructor(
-        public  Id: number,
-        public  Subject :string,
-        public  Details :string,
-        public  Category :string,
-        public  IdBank :number,
-        public  EligibilityAge: Date
+        Id!: number;
+        Subject! :string;
+        Details! :string;
+        Category! :string;
+        IdBank! :number;
+        EligibilityAge!: Date;
 
          
-            ) {
-     
-        
-            }
+         
         }

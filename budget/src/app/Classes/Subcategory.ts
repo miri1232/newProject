@@ -1,13 +1,7 @@
-export class PermissionLevel{
+export class Subcategory{
   
-    constructor(
-        public  Id: number,
-        public  Description : string
+          Id!: number;
+          Description! : string;
 
 
-         
-            ) {
-     
-        
-            }
         }

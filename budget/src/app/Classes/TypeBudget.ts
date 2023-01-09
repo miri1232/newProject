@@ -1,13 +1,7 @@
 export class TypeBudget{
   
-    constructor(
-        public  Id: number,
-        public  Detail : string
+         Id!: number;
+         Detail! : string;
 
 
-         
-            ) {
-     
-        
-            }
         }

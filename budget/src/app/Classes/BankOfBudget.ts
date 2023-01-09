@@ -1,13 +1,8 @@
 export class BankOfBudget{
   
-    constructor(
-        public Id: number,
-        public IdBudget:number,
-        public IdBank  : number
+    
+        Id!: number;
+        IdBudget!:number;
+        IdBank!  : number;
 
-         
-            ) {
-     
-        
-            }
         }

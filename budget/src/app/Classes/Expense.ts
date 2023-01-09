@@ -1,23 +1,18 @@
 export class Expense{
   
-    constructor(
-        public  Id: number,
-        public  IdBudget : number,
-        public  Date : Date,
-        public  Sum : number,
-        public  Category : number,
-        public  Subcategory : number,
-        public  Detail : string,
-        public  PaymentMethod : number,
-        public  Frequency : boolean,
-        public  NumberOfPayments : number,
-        public  Status : number,
-        public  Document : string
+         Id!: number;
+         IdBudget! : number;
+         Date !: Date;
+         Sum !: number;
+         Category! : number;
+         Subcategory! : number;
+         Detail! : string;
+         PaymentMethod! : number;
+         Frequency !: boolean;
+         NumberOfPayments !: number;
+         Status! : number;
+         Document ?: string;
 
 
          
-            ) {
-     
-        
-            }
         }
