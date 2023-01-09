@@ -34,14 +34,14 @@ namespace BL
         }
 
 
-        public bool AddMessages(MessageDTO messageDTO)
+        public bool AddMessage(MessageDTO messageDTO)
         {
             Message currentMessages = mapper.Map<MessageDTO, Message>(messageDTO);
             bool isSucsess = _messageDAL.AddMessage(currentMessages);
             return isSucsess;
         }
 
-        public bool UpdateMessages(MessageDTO messageDTO)
+        public bool UpdateMessage(MessageDTO messageDTO)
         {
             Message currentMessage = mapper.Map<MessageDTO, Message>(messageDTO);
             bool isSucsess = _messageDAL.UpdateMessage(currentMessage.Id, currentMessage);
@@ -55,14 +55,6 @@ namespace BL
             return isSucsess;
         }
 
-        public bool AddMessage(MessageDTO messageDTO)
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool UpdateMessage(MessageDTO messageDTO)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

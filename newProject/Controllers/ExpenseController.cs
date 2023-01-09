@@ -61,6 +61,7 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
         //שליפה לפי קטגוריה
         [HttpGet]
         [Route("GetExpensesByCategory")]
@@ -75,6 +76,22 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        //שליפה לפי תת קטגוריה
+        [HttpGet]
+        [Route("GetExpensesBySubcategory")]
+        public IActionResult GetExpensesBySubcategory(int subcategory)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesBySubcategory(subcategory));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //שליפה לפי אופן התשלום
         [HttpGet]
         [Route("ExpensesByPaymentMethod")]

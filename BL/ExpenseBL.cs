@@ -51,6 +51,12 @@ namespace BL
             return listExpenseDTO;
         }
 
+        public List<ExpenseDTO> GetExpensesBySubcategory(int subcategory)
+        {
+            List<Expense> expenseList = _expenseDAL.GetExpensesBySubcategory(subcategory);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
         public List<ExpenseDTO> GetExpensesByPaymentMethod(int paymentMethod)
         {
             List<Expense> expenseList = _expenseDAL.GetExpensesByPaymentMethod(paymentMethod);
@@ -86,7 +92,7 @@ namespace BL
             return isSucsess;
         }
 
-      
+    
     }
 
     

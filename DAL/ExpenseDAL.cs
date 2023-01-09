@@ -58,6 +58,18 @@ namespace DAL
             }
         }
 
+        public List<Expense> GetExpensesBySubcategory(int subcategory)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.Subcategory == subcategory).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Expense> GetExpensesByPaymentMethod(int paymentMethod)
         {
             try
