@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
         });
 
       } else {
+        this.IdToLogin ="";
+        this.PassToLogin ="";
         alert("שם משתמש או סיסמה שגויים, אנא נסה שנית או הירשם");
       }
       console.log('res===', res)

@@ -28,6 +28,26 @@ export class UserService {
     return this.http.get<User>(this.V_API + '/GetUserByID',{params:p});
   }
 
+  // newUser:User=new User();
+  //  newUser.FirstName=FirstName;
+  //  newUser.LastName',LastName)
+  //  newUser.Id',userId)
+  //  newUser.Phone',Phone)
+  //  newUser.Email',Email)
+  //  newUser.DateBirth',DateBirth)
+  //  newUser.password',password);
+
+  AddUser(newUser:User):Observable<boolean> {
+       // const p=new HttpParams().set()
+        // .set('FirstName',FirstName)
+        // .set('LastName',LastName)
+        // .set('Id',userId)
+        // .set('Phone',Phone)
+        // .set('Email',Email)
+        // .set('DateBirth',DateBirth)
+        // .set('password',password);
+        return this.http.post<boolean>(this.V_API + '/AddUser',{newUser});
+  }
   // AddUser(newUser: User): Observable<boolean> {
   //   const u=new HttpParams().set('userDTO',newUser);
     
