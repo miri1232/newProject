@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -13,7 +12,7 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { AddIncomeComponent } from './Components/add-income/add-income.component';
 import { AddExpenseComponent } from './Components/add-expense/add-expense.component';
 import { PaymentsListComponent } from './Components/payments-list/payments-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 
 @NgModule({
@@ -34,7 +33,8 @@ import { HomePageComponent } from './Components/home-page/home-page.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

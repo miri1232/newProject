@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output ,Input} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators ,ReactiveFormsModule} from '@angular/forms';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -25,26 +25,27 @@ constructor(
 eventForm!: FormGroup;
 
 
-  ngOnInit(  ): void {
+  ngOnInit(): void {
     this.eventForm = new FormGroup({
-      Password: new FormControl(0,[Validators.required,Validators.minLength(5)]),
-      FirstName :new FormControl(0,[Validators.required,Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      LastName   :new FormControl(0,[Validators.required,Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      Email :new FormControl(0,[Validators.required,Validators.email]),
+      Password: new FormControl("",[Validators.required,Validators.minLength(5)]),
+      FirstName :new FormControl("",[Validators.required,Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      LastName   :new FormControl("",[Validators.required,Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      Email :new FormControl("",[Validators.required,Validators.email]),
      Id:new FormControl("",[Validators.required]),
 Phone:new FormControl("",[Validators.required]),
-DateBirth:new FormControl("",[Validators.required]),
+DateBirth:new FormControl(new Date(),[Validators.required]),
      }); 
   }
   
   
   AddUser(){
+    if(this.eventForm.value!=undefined){
     this.myUser.AddUser(this.eventForm.value);
     //this.log.ActiveUser=this.newUser;
     this.newUser= new User()
    alert("הרישום נקלט בהצלחה!")
    //this.myRoute.navigate([''])
-   
+    }
    }
    
   }
