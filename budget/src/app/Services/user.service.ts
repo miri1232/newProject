@@ -38,15 +38,17 @@ export class UserService {
   //  newUser.password',password);
 
   AddUser(newUser:User):Observable<boolean> {
-       // const p=new HttpParams().set()
-        // .set('FirstName',FirstName)
-        // .set('LastName',LastName)
-        // .set('Id',userId)
-        // .set('Phone',Phone)
-        // .set('Email',Email)
-        // .set('DateBirth',DateBirth)
-        // .set('password',password);
-        return this.http.post<boolean>(this.V_API + '/AddUser',{newUser});
+        // const p =new HttpParams()
+        //  .set('FirstName',newUser.FirstName)
+        //  .set('LastName',newUser.LastName)
+        //  .set('Id',newUser.Id)
+        //  .set('Phone',newUser.Phone)
+        //  .set('Email',newUser.Email)
+        //  .set('DateBirth', newUser.DateBirth)
+        //  .set('password',newUser.Password);
+        // const p=new HttpParams().set('User',"newUser");
+
+        return this.http.post<boolean>(this.V_API + '/AddUser',newUser);
   }
   // AddUser(newUser: User): Observable<boolean> {
   //   const u=new HttpParams().set('userDTO',newUser);
