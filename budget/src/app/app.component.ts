@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from './Services/user.service';
 import { Logging } from '../shared/log.service';
 import { User } from './Classes/User';
+import { Router } from '@angular/router';
 
 
 @Component({

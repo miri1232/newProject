@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private router:Router,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +39,8 @@ export class LoginComponent implements OnInit {
           this.currentUser = res1;
           console.log("curent user ======>",this.currentUser)
           alert(this.currentUser.FirstName + " התחברת בהצלחה");
+          this.router.navigate(['/ListBudgets']);
+
         });
 
       } else {

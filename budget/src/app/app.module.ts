@@ -7,7 +7,7 @@ import { LoginComponent } from './Components/Users/login/login.component';
 import { BudgetsListComponent } from './Components/Budgets/budgets-list/budgets-list.component';
 import { IncomesComponent } from './Components/Incomes and expenses/add-expense/incomes/incomes.component';
 import { ExpensesComponent } from './Components/Incomes and expenses/add-expense/incomes/expenses/expenses.component';
-import { NewBudgetComponent } from './Components/Budgets/budgets-list/new-budget/new-budget.component';
+import { NewBudgetComponent } from './Components/Budgets/new-budget/new-budget.component';
 import { SignInComponent } from './Components/Users/sign-in/sign-in.component';
 import { AddIncomeComponent } from './Components/add-income/add-income.component';
 import { AddExpenseComponent } from './Components/Incomes and expenses/add-expense/add-expense.component';
@@ -16,6 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { UpdatePasswordComponent } from './Components/Users/update-password/update-password.component';
 import { UpdateUsedComponent } from './Components/Users/update-used/update-used.component';
+import { NavComponent } from './Components/nav/nav.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -31,14 +34,17 @@ import { UpdateUsedComponent } from './Components/Users/update-used/update-used.
     PaymentsListComponent,
     HomePageComponent,
     UpdatePasswordComponent,
-    UpdateUsedComponent
+    UpdateUsedComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

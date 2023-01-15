@@ -2,26 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class NavComponent implements OnInit {
 
   constructor(
     private router:Router,
     private route:ActivatedRoute
   ) { }
+
   ngOnInit(): void {
   }
 
   logIn(){
     this.router.navigate(['/Login'])
     }
-
-SignIn(){
-  this.router.navigate(['/SignIn'])
-
-}
-
 }

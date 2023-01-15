@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -22,6 +23,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private myUser: UserService,
+    private router:Router,
+    private route:ActivatedRoute
   ) { }
 
   eventForm!: FormGroup;
@@ -71,7 +74,7 @@ export class SignInComponent implements OnInit {
         alert(this.newUser.FirstName + " הרישום נקלט בהצלחה ");
         //this.log.ActiveUser = this.newUser;
         this.newUser = new User();
-        //this.myRoute.navigate(['']
+        this.router.navigate(['/ListBudgets']);
       })
 
 
