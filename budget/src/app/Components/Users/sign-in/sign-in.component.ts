@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
+import { Logging } from 'src/shared/log.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,11 +17,12 @@ export class SignInComponent implements OnInit {
 
   newUser = new User();
   IsUser: boolean | undefined;
-  log: any;
 
 
 
   constructor(
+    private log:Logging,
+
     private formBuilder: FormBuilder,
     private myUser: UserService,
     private router:Router,
@@ -72,7 +74,7 @@ export class SignInComponent implements OnInit {
         console.log("curent user ======>", res1)
         this.newUser = this.eventForm.value;
         alert(this.newUser.FirstName + " הרישום נקלט בהצלחה ");
-        //this.log.ActiveUser = this.newUser;
+        this.log.ActiveUser = this.newUser;
         this.newUser = new User();
         this.router.navigate(['/ListBudgets']);
       })

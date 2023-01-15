@@ -19,6 +19,7 @@ import { UpdateUsedComponent } from './Components/Users/update-used/update-used.
 import { NavComponent } from './Components/nav/nav.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BudgetHomePageComponent } from './Components/Budgets/budget-home-page/budget-home-page.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RouterModule } from '@angular/router';
     HomePageComponent,
     UpdatePasswordComponent,
     UpdateUsedComponent,
-    NavComponent
+    NavComponent,
+    BudgetHomePageComponent
   ],
   imports: [
     BrowserModule,

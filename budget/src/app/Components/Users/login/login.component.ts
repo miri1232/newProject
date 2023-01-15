@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
+import { Logging } from 'src/shared/log.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
   @Output() passToLogin: EventEmitter<number> = new EventEmitter()
 
   constructor(
+    private log:Logging,
+
     private userService: UserService,
     private router:Router,
     private route:ActivatedRoute
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
           this.currentUser = res1;
           console.log("curent user ======>",this.currentUser)
           alert(this.currentUser.FirstName + " התחברת בהצלחה");
+          this.log.ActiveUser = this.currentUser;
           this.router.navigate(['/ListBudgets']);
 
         });

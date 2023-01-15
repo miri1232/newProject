@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Budget } from 'src/app/Classes/Budget';
 import { BudgetService } from 'src/app/Services/budget.service';
+import { Logging } from 'src/shared/log.service';
 
 @Component({
   selector: 'app-budgets-list',
@@ -12,6 +13,7 @@ export class BudgetsListComponent implements OnInit {
 BudgetList : Budget[]=[];
 
   constructor(
+    private log:Logging,
     private myBudgetServise: BudgetService ,
 
   ) { }
@@ -20,8 +22,8 @@ BudgetList : Budget[]=[];
   }
 
   ShowAllBudget(){
-    this.myBudgetServise.GetAllBudgets().subscribe(budget => { 
-      this.BudgetList = budget;
+    this.myBudgetServise.GetBudgetByUser().subscribe(budget => { 
+     // this.BudgetList.push(budget);
       console.log(budget);
   } );
   }
