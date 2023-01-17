@@ -54,6 +54,7 @@ namespace DAL
             {
                 _context.Budgets.Add(budget);
                 _context.SaveChanges();
+                _context.Permissions.Add()
                 return true;
             }
             catch (Exception ex)

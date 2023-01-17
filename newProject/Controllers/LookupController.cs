@@ -50,19 +50,6 @@ namespace newProject.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("GetAllPermission")]
-        public IActionResult GetAllPermission()
-        {
-            try
-            {
-                return Ok(_lookupBL.GetAllPermission());
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
 
         [HttpGet]
         [Route("GetAllPermissionLevel")]

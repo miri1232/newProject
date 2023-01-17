@@ -13,7 +13,7 @@ import { Logging } from 'src/shared/log.service';
 export class SignInComponent implements OnInit {
 
   id!: string;
-  // currentUser: User = new User();
+  //currentUser: User = new User();
 
   newUser = new User();
   IsUser: boolean | undefined;

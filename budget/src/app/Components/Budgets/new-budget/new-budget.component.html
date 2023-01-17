@@ -1,2 +1,35 @@
 <p>new-budget works!</p>
 <!-- להוסיף בפונקציה עדכון של טבלת הרשאות -->
+<meta charset="utf-8" />
+  <div class="wrapper">
+    <div class="logo">
+        <img src="../../../../assets/image/Logo.jpg" alt="">
+    </div>
+    <div class="text-center mt-4 name">
+        in & out
+    </div>
+    
+    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddBudget()" >
+
+ 
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text"  id="NameBudget" placeholder="כינוי לתקציב"
+             formControlName="NameBudget" name="NameBudget" />
+        </div>
+ <!-- לבחור מתוך תיבה נפתחת -->
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="number"  id="Type" placeholder="סוג תקציב"
+             formControlName="Type" name="Type" />
+        </div>
+
+   
+        <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">פתיחת תקציב חדש</button>
+
+    </form>
+    <!-- <div class="text-center fs-6">
+        <a href="UpdatePassword">שכחת סיסמא</a> או <a href="Login">התחבר </a>
+
+    </div> -->
+</div>
