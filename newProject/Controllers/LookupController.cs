@@ -23,7 +23,7 @@ namespace newProject.Controllers
 
    
         [HttpGet]
-        [Route("LookupBank")]
+        [Route("GetAllBank")]
         public IActionResult GetAllBank()
         {
             try
@@ -37,7 +37,7 @@ namespace newProject.Controllers
         }
 
         [HttpGet]
-        [Route("LookupBankOfBudget")]
+        [Route("GetAllBankOfBudget")]
         public IActionResult GetAllBankOfBudget()
         {
             try
@@ -50,22 +50,9 @@ namespace newProject.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("LookupPermission")]
-        public IActionResult GetAllPermission()
-        {
-            try
-            {
-                return Ok(_lookupBL.GetAllPermission());
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
 
         [HttpGet]
-        [Route("LookupPermissionLevel")]
+        [Route("GetAllPermissionLevel")]
         public IActionResult GetAllPermissionLevel()
         {
             try
@@ -77,6 +64,48 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+   [HttpGet]
+        [Route("GetAllStatus")]
+        public IActionResult GetAllStatus()
+        {
+            try
+            {
+                return Ok(_lookupBL.GetAllStatus());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+ [HttpGet]
+        [Route("GetAllPaymentMethod")]
+        public IActionResult GetAllPaymentMethod()
+        {
+            try
+            {
+                return Ok(_lookupBL.GetAllPaymentMethod());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+ [HttpGet]
+        [Route("GetAllTypeBudget")]
+        public IActionResult GetAllTypeBudget()
+        {
+            try
+            {
+                return Ok(_lookupBL.GetAllTypeBudget());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
     }
 }

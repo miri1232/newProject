@@ -22,7 +22,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("Messages")]
+        [Route("GetAllMessages")]
         public IActionResult GetAllMessages()
         {
             try

@@ -34,6 +34,20 @@ namespace DAL
             }
         }
 
+        public List<Budget> GetBudgetByUser(string _idUser) {
+          try
+            {
+                List<int> idBudgets;
+                idBudgets = _context.Permissions.Where(pr => pr.IdUser.Equals(_idUser)).Select(x=> x.IdBudget).ToList();
+                return _context.Budgets.Where(b => idBudgets.Contains(b.Id)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public bool AddBudget(Budget budget)
         {
             try

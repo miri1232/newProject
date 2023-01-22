@@ -40,6 +40,13 @@ namespace BL
             return BudgetDTO;
         }
 
+        public List<BudgetDTO> GetBudgetByUser(string idUser)
+        {
+            List<Budget> budgetList = _budgetDAL.GetBudgetByUser(idUser);
+            List<BudgetDTO> listBudgetDTO = mapper.Map<List<Budget>, List<BudgetDTO>>(budgetList);
+            return listBudgetDTO;
+        }
+
         public bool AddBudget(BudgetDTO budgetDTO)
         {
             Budget currentBudget = mapper.Map<BudgetDTO, Budget>(budgetDTO);

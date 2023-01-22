@@ -38,6 +38,7 @@ namespace BL
             //User currentUser = mapper.Map<UserDTO, User>(userDTO);
           return _userDAL.LoginUserByID(idUser, password);
         }
+
         public UserDTO GetUserByID(string idUser)
         {
             User user = _userDAL.GetUserByID(idUser);

@@ -34,44 +34,58 @@ namespace DAL
             }
         }
        
-        public List<Expense> GetExpensesBySum(double start, double end)
+        public List<Expense> GetExpensesBySum(double min, double max)
         {
             try
             {
-                return _context.Expenses.Where(x => x.Sum >= start && x.Sum <= end).ToList();
+                return _context.Expenses.Where(x => x.Sum >= min && x.Sum <= max).ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<Expense> GetExpensesByCategory(string category)
+
+        public List<Expense> GetExpensesByCategory(int category)
         {
             try
             {
-                return _context.Expenses.Where(x => x.Category == category).ToList();
+                return _context.Expenses.Where(x => x.Category==category).ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<Expense> GetExpensesByPaymentMethod(string paymentMethod)
+
+        public List<Expense> GetExpensesBySubcategory(int subcategory)
         {
             try
             {
-                return _context.Expenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
+                return _context.Expenses.Where(x => x.Subcategory == subcategory).ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<Expense> GetExpensesByStatus(string status)
+
+        public List<Expense> GetExpensesByPaymentMethod(int paymentMethod)
         {
             try
             {
-                return _context.Expenses.Where(x => x.Statusstatus == status).ToList();
+                return _context.Expenses.Where(x => x.PaymentMethod==paymentMethod).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Expense> GetExpensesByStatus(int status)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.Status==status).ToList();
             }
             catch (Exception ex)
             {

@@ -9,6 +9,8 @@ namespace BL
         List<BankOfBudgetDTO> GetAllBankOfBudget();
         List<PermissionDTO> GetAllPermission();
         List<PermissionLevelDTO> GetAllPermissionLevel();
-
+        List<StatusDTO> GetAllStatus();
+        List<PaymentMethodDTO> GetAllPaymentMethod();
+        List<TypeBudgetDTO> GetAllTypeBudget();
     }
 }

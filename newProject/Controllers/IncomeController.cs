@@ -22,7 +22,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("Income")]
+        [Route("GetAllIncomes")]
         public IActionResult GetAllIncomes()
         {
             try
@@ -41,13 +41,74 @@ namespace newProject.Controllers
         {
             try
             {
-                return Ok(_incomeBL.GetIncomesByDate( start,  end));
+                return Ok(_incomeBL.GetIncomesByDate(start, end));
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
+
+        //שליפה לפי טווח סכום
+        [HttpGet]
+        [Route("IncomesBySum")]
+        public IActionResult GetIncomesBySum(double min, double max)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesBySum( min,  max));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //שליפה לפי קטגוריה
+        [HttpGet]
+        [Route("IncomesByCategory")]
+        public IActionResult GetIncomesByCategory(int category)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByCategory(category));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //שליפה לפי מקור הכנסה
+        [HttpGet]
+        [Route("IncomesBySourceOfIncome")]
+        public IActionResult GetIncomesBySourceOfIncome(int sourceOfIncome)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesBySourceOfIncome(sourceOfIncome));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //שליפה לפי סטטוס
+        [HttpGet]
+        [Route("IncomesByStatus")]
+        public IActionResult GetIncomesByStatus(int status)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByStatus(status));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //הוספה
         [HttpPost]
         [Route("AddIncome")]

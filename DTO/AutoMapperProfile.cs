@@ -24,8 +24,8 @@ namespace DTO
             CreateMap<Message, MessageDTO>();
             CreateMap<MessagesForUserDTO, MessagesForUser>();
             CreateMap<MessagesForUser, MessagesForUserDTO>();
-            CreateMap<NumberPaymentsDTO, NumberPayments>();
-            CreateMap<NumberPayments, NumberPaymentsDTO>();
+            CreateMap<NumberPaymentsDTO, NumberPayment>();
+            CreateMap<NumberPayment, NumberPaymentsDTO>();
             CreateMap<BankDTO, Bank>();
             CreateMap<Bank, BankDTO>();
             CreateMap<BankOfBudgetDTO, BankOfBudget>();
@@ -34,6 +34,23 @@ namespace DTO
             CreateMap<Permission, PermissionDTO>();
             CreateMap<PermissionLevelDTO, PermissionLevel>();
             CreateMap<PermissionLevel, PermissionLevelDTO>();
+            CreateMap<CategoryDTO, Category>();
+            CreateMap<Category, CategoryDTO>();
+            CreateMap<CategoryIncomeDTO, CategoryIncome>();
+            CreateMap<CategoryIncome, CategoryIncomeDTO>();
+            CreateMap<PaymentMethodDTO, PaymentMethod>();
+            CreateMap<PaymentMethod, PaymentMethodDTO>();
+            CreateMap<SourceOfIncomeDTO, SourceOfIncome>();
+            CreateMap<SourceOfIncome, SourceOfIncomeDTO>();
+            CreateMap<StatusDTO, Status>();
+            CreateMap<Status, StatusDTO>();
+            CreateMap<SubcategoryDTO, Subcategory>();
+            CreateMap<Subcategory, SubcategoryDTO>();
+            CreateMap<TypeBudgetDTO, TypeBudget>();
+            CreateMap<TypeBudget, TypeBudgetDTO>();
+
+
+
         }
 
     }

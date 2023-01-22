@@ -60,12 +60,22 @@ namespace newProject
             services.AddScoped<IIncomeDAL, IncomeDAL>();
             services.AddScoped<IUserBL, UserBL>();
             services.AddScoped<IUserDAL, UserDAL>();
-             services.AddScoped<ILookupBL, LookupBL>();
-              services.AddScoped<ILookupDAL, LookupDAL>();
+            services.AddScoped<ILookupBL, LookupBL>();
+            services.AddScoped<ILookupDAL, LookupDAL>();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "newProject", Version = "v1" });
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policyBuilder => policyBuilder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        );
+
             });
 
         }

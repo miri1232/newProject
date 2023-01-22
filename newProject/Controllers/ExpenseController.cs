@@ -21,7 +21,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("Expenses")]
+        [Route("GetAllExpenses")]
         public IActionResult GetAllExpenses()
         {
             try
@@ -50,21 +50,22 @@ namespace newProject.Controllers
         //שליפה לפי טווח סכום
         [HttpGet]
         [Route("ExpensesBySum")]
-        public IActionResult GetExpensesBySum(double start, double end)
+        public IActionResult GetExpensesBySum(double min, double max)
         {
             try
             {
-                return Ok(_expenseBL.GetExpensesBySum(start, end));
+                return Ok(_expenseBL.GetExpensesBySum( min,  max));
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
+
         //שליפה לפי קטגוריה
         [HttpGet]
-        [Route("ExpensesByCategory")]
-        public IActionResult GetExpensesByCategory(string category)
+        [Route("GetExpensesByCategory")]
+        public IActionResult GetExpensesByCategory(int category)
         {
             try
             {
@@ -75,10 +76,26 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        //שליפה לפי תת קטגוריה
+        [HttpGet]
+        [Route("GetExpensesBySubcategory")]
+        public IActionResult GetExpensesBySubcategory(int subcategory)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesBySubcategory(subcategory));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //שליפה לפי אופן התשלום
         [HttpGet]
         [Route("ExpensesByPaymentMethod")]
-        public IActionResult GetExpensesByPaymentMethod(string paymentMethod)
+        public IActionResult GetExpensesByPaymentMethod(int paymentMethod)
         {
             try
             {
@@ -92,7 +109,7 @@ namespace newProject.Controllers
         //שליפה לפי סטטוס
         [HttpGet]
         [Route("ExpensesByPaymentStatus")]
-        public IActionResult GetExpensesByStatus(string status)
+        public IActionResult GetExpensesByStatus(int status)
         {
             try
             {

@@ -23,7 +23,7 @@ namespace newProject.Controllers
 
             //שליפה
             [HttpGet]
-            [Route("Budget")]
+            [Route("GetAllBudgets")]
             public IActionResult GetAllBudgets()
             {
                 try
@@ -36,9 +36,9 @@ namespace newProject.Controllers
                 }
             }
 
-        //שליפת ערך יחיד
+        //שליפת ערך יחיד לפי ID תקציב
         [HttpGet]
-        [Route("BudgetByID")]
+        [Route("GetBudgetByID")]
         public IActionResult GetBudgetByID(int idBudget)
         {
             try
@@ -51,6 +51,21 @@ namespace newProject.Controllers
             }
         }
 
+
+        //שליפת ערך יחיד לפי ת.ז. משתמש
+        [HttpGet]
+        [Route("GetBudgetByUser")]
+        public IActionResult GetBudgetByUser(string idUser)
+        {
+            try
+            {
+                return Ok(_budgetBL.GetBudgetByUser(idUser));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         //הוספה
         [HttpPost]
             [Route("AddBudget")]

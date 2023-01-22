@@ -13,14 +13,14 @@ namespace DTO.Models
         public int IdBudget { get; set; }
         public DateTime Date { get; set; }
         public double Sum { get; set; }
-        public string Category { get; set; }
-        public string Subcategory { get; set; }
+        public int Category { get; set; }
+        public int Subcategory { get; set; }
         public string Detail { get; set; }
-        public string PaymentMethod { get; set; }
+        public int PaymentMethod { get; set; }
         public bool Frequency { get; set; }
         public int NumberOfPayments { get; set; }
-        public string Statusstatus { get; set; }
+        public int Status { get; set; }
         public byte[] Document { get; set; }
-    
+
     }
 }

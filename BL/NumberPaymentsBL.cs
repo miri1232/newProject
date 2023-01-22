@@ -28,22 +28,22 @@ namespace BL
 
         public List<NumberPaymentsDTO> GetAllNumberPayments()
         {
-            List<NumberPayments> numberPaymentsList = _numberPaymentsDAL.GetAllNumberPayments();
-            List<NumberPaymentsDTO> listNumberPaymentsDTO = mapper.Map<List<NumberPayments>, List<NumberPaymentsDTO>>(numberPaymentsList);
+            List<NumberPayment> numberPaymentsList = _numberPaymentsDAL.GetAllNumberPayments();
+            List<NumberPaymentsDTO> listNumberPaymentsDTO = mapper.Map<List<NumberPayment>, List<NumberPaymentsDTO>>(numberPaymentsList);
             return listNumberPaymentsDTO;
         }
 
 
         public bool AddNumberPayments(NumberPaymentsDTO numberPaymentsDTO)
         {
-            NumberPayments currentNumberPayments = mapper.Map<NumberPaymentsDTO, NumberPayments>(numberPaymentsDTO);
+            NumberPayment currentNumberPayments = mapper.Map<NumberPaymentsDTO, NumberPayment>(numberPaymentsDTO);
             bool isSucsess = _numberPaymentsDAL.AddNumberPayments(currentNumberPayments);
             return isSucsess;
         }
 
         public bool UpdateNumberPayments(NumberPaymentsDTO numberPaymentsDTO)
         {
-            NumberPayments currentNumberPayments = mapper.Map<NumberPaymentsDTO, NumberPayments>(numberPaymentsDTO);
+            NumberPayment currentNumberPayments = mapper.Map<NumberPaymentsDTO, NumberPayment>(numberPaymentsDTO);
             bool isSucsess = _numberPaymentsDAL.UpdateNumberPayments(currentNumberPayments.Id, currentNumberPayments);
             return isSucsess;
         }

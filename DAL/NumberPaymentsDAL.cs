@@ -14,7 +14,7 @@ namespace DAL
         dbBudgetContext _context = new dbBudgetContext();
 
 
-        public List<NumberPayments> GetAllNumberPayments()
+        public List<NumberPayment> GetAllNumberPayments()
         {
             try
             {
@@ -26,7 +26,7 @@ namespace DAL
             }
         }
 
-        public bool AddNumberPayments(NumberPayments numberPayments)
+        public bool AddNumberPayments(NumberPayment numberPayments)
         {
             try
             {
@@ -40,11 +40,11 @@ namespace DAL
             }
         }
 
-        public bool UpdateNumberPayments(int id, NumberPayments numberPayments)
+        public bool UpdateNumberPayments(int id, NumberPayment numberPayments)
         {
             try
             {
-                NumberPayments currentNumberPayments = _context.NumberPayments.SingleOrDefault(x => x.Id == id);
+                NumberPayment currentNumberPayments = _context.NumberPayments.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentNumberPayments).CurrentValues.SetValues(numberPayments);
                 _context.SaveChanges();
                 return true;
@@ -59,7 +59,7 @@ namespace DAL
         {
             try
             {
-                NumberPayments currentnumberPayments = _context.NumberPayments.SingleOrDefault(x => x.Id == id);
+                NumberPayment currentnumberPayments = _context.NumberPayments.SingleOrDefault(x => x.Id == id);
                 _context.Remove(currentnumberPayments);
                 _context.SaveChanges();
                 return true;

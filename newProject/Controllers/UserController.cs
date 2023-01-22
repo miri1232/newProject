@@ -25,7 +25,7 @@ namespace newProject.Controllers
 
         //שליפה
         [HttpGet]
-        [Route("User")]
+        [Route("GetAllUsers")]
         public IActionResult GetAllUsers()
         {
             try
@@ -35,12 +35,14 @@ namespace newProject.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
+
+
             }
         }
 
          //אימות משתמש
         [HttpGet]
-        [Route("Login")]
+        [Route("LoginUserByID")]
         public IActionResult LoginUserByID(string idUser, string password)
         {
             try
@@ -56,7 +58,7 @@ namespace newProject.Controllers
 
         //שליפת ערך יחיד
         [HttpGet]
-        [Route("UserByID")]
+        [Route("GetUserByID")]
         public IActionResult GetUserByID(string idUser)
         {
             try
