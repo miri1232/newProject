@@ -10,7 +10,7 @@ import { Logging } from 'src/shared/log.service';
 })
 export class BudgetsListComponent implements OnInit {
 
-BudgetList : Budget[]=[];
+public BudgetList :Budget[] | undefined;
 
   constructor(
     private log:Logging,
@@ -19,13 +19,17 @@ BudgetList : Budget[]=[];
   ) { }
 
   ngOnInit(): void {
+
   }
 
   ShowAllBudget(){
-    this.myBudgetServise.GetBudgetByUser().subscribe(budget => { 
-     // this.BudgetList.push(budget);
-      console.log(budget);
-  } );
+     this.myBudgetServise.GetBudgetByUser().subscribe(budget => { 
+       this.BudgetList=budget;
+       console.log(this.BudgetList);
+
+     });
+     // this.BudgetList=this.myBudgetServise.GetBudgetByUser();
+    
   }
 
 }

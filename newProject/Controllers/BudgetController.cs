@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 
 namespace newProject.Controllers
 {
-  
 
-        [Route("api/[controller]")]
-        [ApiController]
-        public class BudgetController : ControllerBase
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BudgetController : ControllerBase
+    {
+        private IBudgetBL _budgetBL;
+
+        public BudgetController(IBudgetBL budgetBL)
         {
-            private IBudgetBL _budgetBL;
+            _budgetBL = budgetBL;
+        }
 
-            public BudgetController(IBudgetBL budgetBL)
+        //שליפה
+        [HttpGet]
+        [Route("GetAllBudgets")]
+        public IActionResult GetAllBudgets()
+        {
+            try
             {
-                _budgetBL = budgetBL;
+                return Ok(_budgetBL.GetAllBudgets());
             }
-
-            //שליפה
-            [HttpGet]
-            [Route("GetAllBudgets")]
-            public IActionResult GetAllBudgets()
+            catch (Exception ex)
             {
-                try
-                {
-                    return Ok(_budgetBL.GetAllBudgets());
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return StatusCode(500, ex.Message);
             }
+        }
 
         //שליפת ערך יחיד לפי ID תקציב
         [HttpGet]
@@ -54,7 +54,7 @@ namespace newProject.Controllers
 
         //שליפת ערך יחיד לפי ת.ז. משתמש
         [HttpGet]
-        [Route("GetBudgetByUser")]
+        [Route("GetBudgetByUser/{idUser}")]
         public IActionResult GetBudgetByUser(string idUser)
         {
             try
@@ -68,51 +68,51 @@ namespace newProject.Controllers
         }
         //הוספה
         [HttpPost]
-            [Route("AddBudget")]
-            public ActionResult<bool> AddBudget([FromBody] BudgetDTO budgetDTO)
+        [Route("AddBudget")]
+        public ActionResult<bool> AddBudget([FromBody] BudgetDTO budgetDTO)
+        {
+            try
             {
-                try
-                {
-                    bool x = _budgetBL.AddBudget(budgetDTO);
-                    return Ok(x);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                bool x = _budgetBL.AddBudget(budgetDTO);
+                return Ok(x);
             }
-
-            //עידכון
-            [HttpPut]
-            [Route("UpdateBudget")]
-            public ActionResult<bool> UpdateBudget([FromBody] BudgetDTO budgetDTO)
+            catch (Exception ex)
             {
-                try
-                {
-                    bool x = _budgetBL.UpdateBudget(budgetDTO);
-                    return Ok(x);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
-            }
-
-            //מחיקה
-            [HttpDelete]
-            [Route("DeleteBudget")]
-            public ActionResult<bool> DeleteBudget([FromBody] BudgetDTO budgetDTO)
-            {
-                try
-                {
-                    bool x = _budgetBL.DeleteBudget(budgetDTO);
-                    return Ok(x);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return StatusCode(500, ex.Message);
             }
         }
+
+        //עידכון
+        [HttpPut]
+        [Route("UpdateBudget")]
+        public ActionResult<bool> UpdateBudget([FromBody] BudgetDTO budgetDTO)
+        {
+            try
+            {
+                bool x = _budgetBL.UpdateBudget(budgetDTO);
+                return Ok(x);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //מחיקה
+        [HttpDelete]
+        [Route("DeleteBudget")]
+        public ActionResult<bool> DeleteBudget([FromBody] BudgetDTO budgetDTO)
+        {
+            try
+            {
+                bool x = _budgetBL.DeleteBudget(budgetDTO);
+                return Ok(x);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+    }
 }
 

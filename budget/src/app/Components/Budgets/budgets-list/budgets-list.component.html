@@ -1,10 +1,12 @@
-<p>budgets-list works!</p>
-<!-- <button (click)="ShowAllBudget()">    הצג כל התקציבים  </button> -->
+<button (click)="ShowAllBudget()"> הצג כל התקציבים </button>
 
-<!-- <div *ngFor="let b of BudgetList">
-  <a > {{b.NameBudget}}</a> -->
-  <!-- <a href="/BudgetHomePage"> {{b.NameBudget}}</a> -->
-<!-- 
+<div *ngIf="BudgetList!=undefined">
+  cccccccccc
+  <div *ngFor="let b of BudgetList">
+    <!-- <a> {{b.NameBudget}}</a> -->
+    {{b.nameBudget}}
+    <!-- <a href="/BudgetHomePage"> {{b.NameBudget}}</a>  -->
+  </div>
 </div>
 
- <button (click)="'/NewBudget'"> פתח תקציב חדש </button> -->
+<button (click)="'/NewBudget'"> פתח תקציב חדש </button>
