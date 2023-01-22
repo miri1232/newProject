@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Budget } from 'src/app/Classes/Budget';
 import { TypeBudget } from 'src/app/Classes/TypeBudget';
@@ -19,6 +19,7 @@ export class NewBudgetComponent implements OnInit {
   IsBudget: boolean | undefined;
 
   public listTypeBudget: TypeBudget[] | undefined;
+  typeBudgetFormControl = new FormControl(null, Validators.required);
 
   constructor(
     private log: Logging,
@@ -37,11 +38,11 @@ export class NewBudgetComponent implements OnInit {
       this.listTypeBudget = res;
       console.log(this.listTypeBudget);
     });
-    
+
     this.eventForm = new FormGroup({
       NameBudget: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      Type: new FormControl(""),
       Manager: new FormControl(this.log.ActiveUser.Id),
+      Type: new FormControl(0,this.typeBudgetFormControl.value),
     });
 
     
@@ -52,7 +53,11 @@ export class NewBudgetComponent implements OnInit {
     if (this.eventForm.value != undefined) {
       console.log("**שם תקציב**" + this.eventForm.value.NameBudget)
 
-      this.myBudget.AddBudget(this.eventForm.value).subscribe(res1 => {
+      this.newBudget.type = this.typeBudgetFormControl.value;
+      this.newBudget.manager = 'null';
+      this.newBudget.nameBudget = this.eventForm.controls.NameBudget.value;
+
+      this.myBudget.AddBudget(this.newBudget).subscribe(res1 => {
         console.log("curent Budget ======>", res1)
         this.newBudget = this.eventForm.value;
         alert(this.newBudget.nameBudget + " נוסף תקציב בכינוי");

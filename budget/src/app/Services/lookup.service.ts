@@ -19,7 +19,7 @@ export class LookupService {
   GetAllTypeBudget(): Observable<TypeBudget[]> {
     const typeBudget=new HttpParams();
     
-    return this.http.get<TypeBudget[]>(this.V_API + '/TypeBudget');
+    return this.http.get<TypeBudget[]>(this.V_API + '/GetAllTypeBudget');
   }
 
 }

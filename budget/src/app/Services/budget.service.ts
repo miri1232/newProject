@@ -26,7 +26,6 @@ export class BudgetService {
 
   AddBudget(newBudget:Budget):Observable<boolean> {
   
-
     return this.http.post<boolean>(this.V_API + '/AddBudget',newBudget);
 }
     
