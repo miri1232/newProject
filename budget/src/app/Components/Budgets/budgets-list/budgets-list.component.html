@@ -1,11 +1,13 @@
 <button (click)="ShowAllBudget()"> הצג כל התקציבים </button>
 
 <div *ngIf="BudgetList!=undefined">
-  cccccccccc
+רשימת התקציבים:
+<!-- משוייכים ל{{u.firstName}} -->
   <div *ngFor="let b of BudgetList">
-    <!-- <a> {{b.NameBudget}}</a> -->
-    <!-- {{b.nameBudget}} -->
-    <a href="/BudgetHomePage"> {{b.nameBudget}}</a> 
+
+    <!-- <a href="/BudgetHomePage"> {{b.nameBudget}}</a>  -->
+
+    <button (click)="GoBudget(b)"> {{b.nameBudget}}</button> 
   </div>
 </div>
 <div>

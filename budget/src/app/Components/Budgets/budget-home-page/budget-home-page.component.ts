@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Budget } from 'src/app/Classes/Budget';
+import { Logging } from 'src/shared/log.service';
 
 @Component({
   selector: 'app-budget-home-page',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BudgetHomePageComponent implements OnInit {
 
-  constructor() { }
+
+  addExpenses:boolean=false;
+  addIncomes:boolean=false;
+
+  constructor(
+    private log:Logging,
+
+  ) { }
+
+  b:Budget=this.log.ActiveBudget;
 
   ngOnInit(): void {
   }
