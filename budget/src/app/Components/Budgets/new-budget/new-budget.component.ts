@@ -14,6 +14,7 @@ import { Logging } from 'src/shared/log.service';
   styleUrls: ['./new-budget.component.scss']
 })
 export class NewBudgetComponent implements OnInit {
+  [x: string]: any;
 
   newBudget = new Budget();
   IsBudget: boolean | undefined;
@@ -33,6 +34,7 @@ export class NewBudgetComponent implements OnInit {
 
   eventForm!: FormGroup;
 
+  
   ngOnInit(): void {
     this.lookupSer.GetAllTypeBudget().subscribe(res => {
       this.listTypeBudget = res;
@@ -40,31 +42,31 @@ export class NewBudgetComponent implements OnInit {
     });
 
     this.eventForm = new FormGroup({
-      NameBudget: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      Manager: new FormControl(this.log.ActiveUser.Id),
-      Type: new FormControl(0,this.typeBudgetFormControl.value),
+      nameBudget: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      manager: new FormControl(this.log.ActiveUser.Id),
+      type: new FormControl("",this.typeBudgetFormControl.value),
     });
-
     
   }
 
+
+  
   AddBudget() {
 
     if (this.eventForm.value != undefined) {
-      console.log("**שם תקציב**" + this.eventForm.value.NameBudget)
+      console.log("**שם תקציב**" + this.eventForm.value.nameBudget)
 
       this.newBudget.type = this.typeBudgetFormControl.value;
-      this.newBudget.manager = 'null';
-      this.newBudget.nameBudget = this.eventForm.controls.NameBudget.value;
-
+      this.newBudget.manager = '300668852';
+      this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
+       
+      
       this.myBudget.AddBudget(this.newBudget).subscribe(res1 => {
-        console.log("curent Budget ======>", res1)
+        console.log("curent Budget ======>", res1.valueOf)
         this.newBudget = this.eventForm.value;
         alert(this.newBudget.nameBudget + " נוסף תקציב בכינוי");
-
-        // this.log.ActiveUser = this.newBudget;
         this.newBudget = new Budget();
-        this.router.navigate(['/ListBudgets']);
+        this.router.navigate(['/BudgetHomePage']);
       })
     }
 

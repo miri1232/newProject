@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/Users/login/login.component';
 import { BudgetsListComponent } from './Components/Budgets/budgets-list/budgets-list.component';
-import { IncomesComponent } from './Components/Incomes and expenses/add-expense/incomes/incomes.component';
-import { ExpensesComponent } from './Components/Incomes and expenses/add-expense/incomes/expenses/expenses.component';
+import { IncomesComponent } from './Components/Incomes and expenses/incomes/incomes.component';
+import { ExpensesComponent } from './Components/Incomes and expenses/expenses/expenses.component';
 import { NewBudgetComponent } from './Components/Budgets/new-budget/new-budget.component';
 import { SignInComponent } from './Components/Users/sign-in/sign-in.component';
-import { AddIncomeComponent } from './Components/add-income/add-income.component';
+import { AddIncomeComponent } from './Components/Incomes and expenses/add-income/add-income.component';
 import { AddExpenseComponent } from './Components/Incomes and expenses/add-expense/add-expense.component';
-import { PaymentsListComponent } from './Components/Incomes and expenses/add-expense/payments-list/payments-list.component';
+import { PaymentsListComponent } from './Components/Incomes and expenses/payments-list/payments-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { UpdatePasswordComponent } from './Components/Users/update-password/update-password.component';
@@ -37,7 +37,7 @@ import { BudgetHomePageComponent } from './Components/Budgets/budget-home-page/b
     UpdatePasswordComponent,
     UpdateUsedComponent,
     NavComponent,
-    BudgetHomePageComponent
+    BudgetHomePageComponent,
   ],
   imports: [
     BrowserModule,

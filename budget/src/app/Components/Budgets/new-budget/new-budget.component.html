@@ -14,8 +14,8 @@
 
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text" id="NameBudget" placeholder="כינוי לתקציב" formControlName="NameBudget"
-                name="NameBudget" />
+            <input type="text" id="nameBudget" placeholder="כינוי לתקציב" formControlName="nameBudget"
+                name="nameBudget" />
         </div>
         <!-- לבחור מתוך תיבה נפתחת -->
         <div class="form-field d-flex align-items-center">
@@ -29,18 +29,7 @@
             <!-- <input type="number"  id="TypeBudget" placeholder="סוג תקציב" -->
             <!-- formControlName="TypeBudget" name="TypeBudget" /> -->
 
-            <!-- 
-             <mat-form-field appearance="fill">
-                <mat-label>סוג תקציב</mat-label>
-                <mat-select [formControl]="animalControl" required>
-                  <mat-option>--</mat-option>
-                  <mat-option *ngFor="let animal of animals" [value]="animal">
-                    {{animal.name}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
-                <mat-hint>{{animalControl.value?.sound}}</mat-hint>
-              </mat-form-field> -->
+          
 
         </div>
 
@@ -48,8 +37,5 @@
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">פתיחת תקציב חדש</button>
 
     </form>
-    <!-- <div class="text-center fs-6">
-        <a href="UpdatePassword">שכחת סיסמא</a> או <a href="Login">התחבר </a>
 
-    </div> -->
 </div>
