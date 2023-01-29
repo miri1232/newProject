@@ -34,18 +34,7 @@ namespace DAL
             }
         }
 
-        public List<SourceOfIncome> GetSourceOfIncomeByUser(string _idUser) {
-          try
-            {
-                List<int> idSourceOfIncomes;
-                idSourceOfIncomes = _context.Permissions.Where(pr => pr.IdUser.Equals(_idUser)).Select(x=> x.IdSourceOfIncome).ToList();
-                return _context.SourceOfIncomes.Where(b => idSourceOfIncomes.Contains(b.Id)).ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+    
 
 
         public bool AddSourceOfIncome(SourceOfIncome sourceOfIncome)
