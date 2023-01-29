@@ -12,6 +12,7 @@ export class BudgetHomePageComponent implements OnInit {
 
   addExpenses:boolean=false;
   addIncomes:boolean=false;
+  addPayment:boolean=false;
 
   constructor(
     private log:Logging,
