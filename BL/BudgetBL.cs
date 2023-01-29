@@ -36,8 +36,8 @@ namespace BL
         public BudgetDTO GetBudgetByID(int idBudget)
         {
             Budget budget = _budgetDAL.GetBudgetByID( idBudget);
-            BudgetDTO BudgetDTO = mapper.Map<Budget, BudgetDTO>(budget);
-            return BudgetDTO;
+            BudgetDTO budgetDTO = mapper.Map<Budget, BudgetDTO>(budget);
+            return budgetDTO;
         }
 
         public List<BudgetDTO> GetBudgetByUser(string idUser)
