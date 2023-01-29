@@ -1,5 +1,5 @@
 <p>add-expense works!</p>
-<!-- <meta charset="utf-8" />
+<meta charset="utf-8" />
   <div class="wrapper">
     <div class="logo">
         <img src="../../../../assets/image/Logo.jpg" alt="">
@@ -8,56 +8,78 @@
         in & out
     </div>
     
-    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddUser()" >
+    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddExpense()" >
 
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text"  id="FirstName" placeholder="שם פרטי"
-             formControlName="FirstName" name="FirstName" />
+            <input type="datetime"  id="Date" placeholder="תאריך ההוצאה"
+             formControlName="Date" name="Date" />
         </div>
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text"  id="LastName" placeholder="שם משפחה"
-             formControlName="LastName" name="LastName" />
+            <input type="number"  id="Sum" placeholder="סכום"
+             formControlName="Sum" name="Sum" />
         </div>
 
-   <div class="form-field d-flex align-items-center">
+        <!-- לבחור מתוך תיבה נפתחת -->
+        <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text"  id="userId" placeholder="ת.ז."
-            formControlName="Id" name="userId" />
+            <select placeholder="קטגוריה"  [formControl]="Category" required>
+                <option  type="text" *ngFor="let t of listCategory" [value]="t.id" >
+                    {{t.detail}}
+                </option>
+            </select>
+ 
+            <input type="number"  id="Category" 
+            formControlName="Category" name="Category" />
         </div>
 
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text"  id="Phone" placeholder="טלפון"
-            formControlName="Phone" name="Phone" />
+            <input type="number"  id="Subcategory" placeholder="תת קטגוריה"
+            formControlName="Subcategory" name="Subcategory" />
         </div>
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="email"  id="Email" placeholder="מייל"
-            formControlName="Email" name="Email" />
+            <input type="text"  id="Detail" placeholder="פרטים"
+            formControlName="Detail" name="Detail" />
         </div>
 
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text"  id="DateBirth" placeholder="תאריך לידה"
-            formControlName="DateBirth" name="DateBirth" />
+            <input type="number"  id="PaymentMethod" placeholder="אופן התשלום"
+            formControlName="PaymentMethod" name="PaymentMethod" />
         </div>
   
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="password"  id="Password" placeholder="סיסמא"
-            formControlName="Password" name="Password" />
-
+            <input type="checkbox"  id="Frequency" placeholder="הוצאה קבועה"
+            formControlName="Frequency" name="Frequency" />
         </div>
-        <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הרשם</button>
+
+       <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="number"  id="NumberOfPayments" placeholder="מספר תשלומים"
+            formControlName="NumberOfPayments" name="NumberOfPayments" />
+        </div>
+  
+       <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="number"  id="Status" placeholder="סטטוס"
+            formControlName="Status" name="Status" />
+        </div>
+  
+       <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text"  id="Document" placeholder="צירוף מסמך"
+            formControlName="Document" name="Document" />
+        </div>
+        
+        <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף</button>
 
     </form>
-    <div class="text-center fs-6">
-        <a href="UpdatePassword">שכחת סיסמא</a> או <a href="Login">התחבר </a>
-
-    </div>
-</div> -->
+   
+</div>

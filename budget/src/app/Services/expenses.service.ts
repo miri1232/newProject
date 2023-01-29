@@ -24,10 +24,11 @@ export class ExpensesService {
             return this.http.get<Expense[]>(this.V_API+'/GetExpensesByCategory');
       }
         
-   // AddExpense(newExpense :Expense): Observable {
-   //   this.http.AddExpense<Expense>(this.V_API+'/AddExpense' );
-       
+      AddExpense(newExpense :Expense):Observable<boolean> {
 
+  
+      return this.http.post<boolean>(this.V_API + '/AddExpense',newExpense);
+  }
 
 
 

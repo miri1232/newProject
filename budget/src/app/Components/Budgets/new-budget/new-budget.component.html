@@ -1,5 +1,4 @@
 <p>new-budget works!</p>
-<!-- להוסיף בפונקציה עדכון של טבלת הרשאות -->
 <meta charset="utf-8" />
 <div class="wrapper">
     <div class="logo">
@@ -20,9 +19,9 @@
         <!-- לבחור מתוך תיבה נפתחת -->
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select [formControl]="typeBudgetFormControl" required>
+            <select  [formControl]="typeBudgetFormControl" required>
                 <option>בחר סוג תקציב</option>
-                <option *ngFor="let t of listTypeBudget" [value]="t.id" >
+                <option  type="text" *ngFor="let t of listTypeBudget" [value]="t.id" >
                     {{t.detail}}
                 </option>
             </select>
