@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Income } from '../Classes/Income';
 
 @Injectable({
   providedIn: 'root'
@@ -11,4 +13,11 @@ export class IncomesService {
   constructor(
     private http : HttpClient
   ) { }
+  
+AddIncome(newIncome:Income):Observable<boolean> {
+
+  
+  return this.http.post<boolean>(this.V_API + '/AddIncome',newIncome);
 }
+}
+
