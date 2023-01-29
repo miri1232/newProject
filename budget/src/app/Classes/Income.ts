@@ -1,15 +1,15 @@
 export class Income{
   
-        Id!: number;
-        IdBudget !: number;
-        Date !: Date;
-        Sum! : number;
-        Category! : number;
-        SourceOfIncome! : number;
-        Detail! : string;
-        PaymentMethod! : number;
-        Status!: number;
-        Document ?: string;
+        id!: number;
+        idBudget !: number;
+        date !: Date;
+        sum! : number;
+        category! : number;
+        sourceOfIncome! : number;
+        detail! : string;
+        paymentMethod! : number;
+        status!: number;
+        document ?: string;
 
 
         }

@@ -1,9 +1,9 @@
 export class Babk{
   
    
-         Id!: number;
-         NameBank!: string;
-         Link! : string;
+         id!: number;
+         nameBank!: string;
+         link! : string;
  
          
         }

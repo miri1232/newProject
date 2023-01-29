@@ -1,7 +1,7 @@
 export class Status{
   
-          Id!: number;
-          Detail! : string;
+          id!: number;
+          detail! : string;
 
 
          

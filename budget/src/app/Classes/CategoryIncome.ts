@@ -1,7 +1,7 @@
 export class CategoryIncome{
   
-  Id!: number   ;
-  Detail! : string  ;
+  iId!: number   ;
+  detail! : string  ;
 
          
         }

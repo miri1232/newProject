@@ -1,5 +1,5 @@
 export class PaymentMethod{
   
- Id!: number;
- Detail! : string;
+ id!: number;
+ detail! : string;
         }

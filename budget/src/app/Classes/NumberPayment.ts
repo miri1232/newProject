@@ -1,11 +1,11 @@
  export class NumberPayment{
   
-         Id!: number;
-         IdExpenses! : number;
-         Date! : Date;
-         Sum! : number;     
-         Status! : string;
-         Detail !: string;
+         id!: number;
+         idExpenses! : number;
+         date! : Date;
+         sum! : number;     
+         status! : string;
+         detail !: string;
 
          
         }
