@@ -60,6 +60,16 @@ namespace newProject
             services.AddScoped<IIncomeDAL, IncomeDAL>();
             services.AddScoped<IUserBL, UserBL>();
             services.AddScoped<IUserDAL, UserDAL>();
+            services.AddScoped<ICategoryBL, CategoryBL>();
+            services.AddScoped<ICategoryDAL, CategoryDAL>();
+            services.AddScoped<ISubcategoryBL, SubcategoryBL>();
+            services.AddScoped<ISubcategoryDAL, SubcategoryDAL>();
+            services.AddScoped<ISourceOfIncomeBL, SourceOfIncomeBL>();
+            services.AddScoped<ISourceOfIncomeDAL, SourceOfIncomeDAL>();
+            services.AddScoped<IPermissionBL, PermissionBL>();
+            services.AddScoped<IPermissionDAL, PermissionDAL>();
+            services.AddScoped<ICategoryIncomeBL, CategoryIncomeBL>();
+            services.AddScoped<ICategoryIncomeDAL, CategoryIncomeDAL>();
             services.AddScoped<ILookupBL, LookupBL>();
             services.AddScoped<ILookupDAL, LookupDAL>();
 

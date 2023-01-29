@@ -8,6 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
+  public showLogin:boolean=false;
+  public showSignIn:boolean=false;
+
   constructor(
     private router:Router,
     private route:ActivatedRoute
@@ -15,12 +18,16 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logIn(){
-    this.router.navigate(['/Login'])
+  Login(){
+    this.showLogin=!this.showLogin;
+    if(this.showSignIn)this.showSignIn=!this.showSignIn;
+    // this.router.navigate(['/Login'])
     }
 
 SignIn(){
-  this.router.navigate(['/SignIn'])
+this.showSignIn=!this.showSignIn;
+    if(this.showLogin) this.showLogin=!this.showLogin;
+   // this.router.navigate(['/SignIn'])
 
 }
 

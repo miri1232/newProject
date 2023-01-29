@@ -1,10 +1,19 @@
-<p>budgets-list works!</p>
-<!-- <button (click)="ShowAllBudget()">    הצג כל התקציבים  </button> -->
+<button type="button" class="btn btn-success" (click)="ShowAllBudget()"> הצג כל התקציבים </button>
 
-<!-- <div *ngFor="let b of BudgetList">
-  <a > {{b.NameBudget}}</a> -->
-  <!-- <a href="/BudgetHomePage"> {{b.NameBudget}}</a> -->
-<!-- 
+<div *ngIf="BudgetList!=undefined">
+רשימת התקציבים:
+
+
+<!-- משוייכים ל{{u.firstName}} -->
+  <div class="d-grid gap-2 col-6 mx-auto" *ngFor="let b of BudgetList">
+
+    <!-- <a href="/BudgetHomePage"> {{b.nameBudget}}</a>  -->
+
+    <button type="button" class="btn btn-outline-success" (click)="GoBudget(b)"> {{b.nameBudget}}</button> 
+    <br/>
+  </div>
 </div>
-
- <button (click)="'/NewBudget'"> פתח תקציב חדש </button> -->
+<div>
+  <br/>
+<a type="button" class="btn btn-success" href="NewBudget"> פתח תקציב חדש </a>
+</div>

@@ -18,15 +18,17 @@ export class BudgetService {
   ) { }
 
   GetBudgetByUser(): Observable<Budget[]>{
-     return this.http.get<Budget[]>(this.V_API+'/GetBudgetByUser'+this.log.ActiveUser.Id);
+     return this.http.get<Budget[]>(this.V_API+'/GetBudgetByUser'+'/300668852');
 
     // return this.http.get<Budget[]>(this.V_API+'/GetBudgetByUser'+"300668852");
  }
 
 
-  AddBudget(newBudget:Budget):Observable<boolean> {
-  
 
+
+  AddBudget(newBudget:Budget):Observable<boolean> {
+
+  
     return this.http.post<boolean>(this.V_API + '/AddBudget',newBudget);
 }
     

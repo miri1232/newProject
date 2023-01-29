@@ -12,23 +12,23 @@ namespace newProject.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class BudgetController : ControllerBase
+    public class SourceOfIncomeController : ControllerBase
     {
-        private IBudgetBL _budgetBL;
+        private ISourceOfIncomeBL _sourceOfIncomeBL;
 
-        public BudgetController(IBudgetBL budgetBL)
+        public SourceOfIncomeController(ISourceOfIncomeBL sourceOfIncomeBL)
         {
-            _budgetBL = budgetBL;
+            _sourceOfIncomeBL = sourceOfIncomeBL;
         }
 
         //שליפה
         [HttpGet]
-        [Route("GetAllBudgets")]
-        public IActionResult GetAllBudgets()
+        [Route("GetAllSourceOfIncomes")]
+        public IActionResult GetAllSourceOfIncomes()
         {
             try
             {
-                return Ok(_budgetBL.GetAllBudgets());
+                return Ok(_sourceOfIncomeBL.GetAllSourceOfIncomes());
             }
             catch (Exception ex)
             {
@@ -36,14 +36,14 @@ namespace newProject.Controllers
             }
         }
 
-        //שליפת ערך יחיד לפי ID תקציב
+        //שליפת ערך יחיד לפי ID 
         [HttpGet]
-        [Route("GetBudgetByID")]
-        public IActionResult GetBudgetByID(int idBudget)
+        [Route("GetSourceOfIncomeByID")]
+        public IActionResult GetSourceOfIncomeByID(int idSourceOfIncome)
         {
             try
             {
-                return Ok(_budgetBL.GetBudgetByID(idBudget));
+                return Ok(_sourceOfIncomeBL.GetSourceOfIncomeByID(idSourceOfIncome));
             }
             catch (Exception ex)
             {
@@ -51,29 +51,14 @@ namespace newProject.Controllers
             }
         }
 
-
-        //שליפת ערך יחיד לפי ת.ז. משתמש
-        [HttpGet]
-        [Route("GetBudgetByUser/{idUser}")]
-        public IActionResult GetBudgetByUser(string idUser)
-        {
-            try
-            {
-                return Ok(_budgetBL.GetBudgetByUser(idUser));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
         //הוספה
         [HttpPost]
-        [Route("AddBudget")]
-        public ActionResult<bool> AddBudget([FromBody] BudgetDTO budgetDTO)
+        [Route("AddSourceOfIncome")]
+        public ActionResult<bool> AddSourceOfIncome([FromBody] SourceOfIncomeDTO sourceOfIncomeDTO)
         {
             try
             {
-                bool x = _budgetBL.AddBudget(budgetDTO);
+                bool x = _sourceOfIncomeBL.AddSourceOfIncome(sourceOfIncomeDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -84,12 +69,12 @@ namespace newProject.Controllers
 
         //עידכון
         [HttpPut]
-        [Route("UpdateBudget")]
-        public ActionResult<bool> UpdateBudget([FromBody] BudgetDTO budgetDTO)
+        [Route("UpdateSourceOfIncome")]
+        public ActionResult<bool> UpdateSourceOfIncome([FromBody] SourceOfIncomeDTO sourceOfIncomeDTO)
         {
             try
             {
-                bool x = _budgetBL.UpdateBudget(budgetDTO);
+                bool x = _sourceOfIncomeBL.UpdateSourceOfIncome(sourceOfIncomeDTO);
                 return Ok(x);
             }
             catch (Exception ex)
@@ -100,12 +85,12 @@ namespace newProject.Controllers
 
         //מחיקה
         [HttpDelete]
-        [Route("DeleteBudget")]
-        public ActionResult<bool> DeleteBudget([FromBody] BudgetDTO budgetDTO)
+        [Route("DeleteSourceOfIncome")]
+        public ActionResult<bool> DeleteSourceOfIncome([FromBody] SourceOfIncomeDTO sourceOfIncomeDTO)
         {
             try
             {
-                bool x = _budgetBL.DeleteBudget(budgetDTO);
+                bool x = _sourceOfIncomeBL.DeleteSourceOfIncome(sourceOfIncomeDTO);
                 return Ok(x);
             }
             catch (Exception ex)

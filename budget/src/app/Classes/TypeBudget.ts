@@ -1,7 +1,7 @@
 export class TypeBudget{
   
-         Id!: number;
-         Detail! : string;
+         id!: number;
+         detail! : string;
 
 
         }

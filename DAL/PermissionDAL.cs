@@ -64,4 +64,5 @@ namespace DAL
                 throw ex;
             }
         }
+    }
 }

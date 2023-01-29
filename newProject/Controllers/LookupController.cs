@@ -14,14 +14,14 @@ namespace newProject.Controllers
     {
 
         private ILookupBL _lookupBL;
-      
+
 
         public LookupController(ILookupBL lookupBL)
-            {
+        {
             _lookupBL = lookupBL;
-            }
+        }
 
-   
+
         [HttpGet]
         [Route("GetAllBank")]
         public IActionResult GetAllBank()
@@ -64,7 +64,7 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-   [HttpGet]
+        [HttpGet]
         [Route("GetAllStatus")]
         public IActionResult GetAllStatus()
         {
@@ -78,7 +78,7 @@ namespace newProject.Controllers
             }
         }
 
- [HttpGet]
+        [HttpGet]
         [Route("GetAllPaymentMethod")]
         public IActionResult GetAllPaymentMethod()
         {
@@ -92,7 +92,7 @@ namespace newProject.Controllers
             }
         }
 
- [HttpGet]
+        [HttpGet]
         [Route("GetAllTypeBudget")]
         public IActionResult GetAllTypeBudget()
         {
