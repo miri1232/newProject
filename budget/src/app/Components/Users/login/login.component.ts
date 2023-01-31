@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
           this.currentUser = res1;
           console.log("curent user ======>",this.currentUser)
-          alert(this.currentUser.FirstName + " התחברת בהצלחה");
+          alert(this.currentUser.firstName + " התחברת בהצלחה");
           this.log.ActiveUser = this.currentUser;
           this.router.navigate(['/ListBudgets']);
 

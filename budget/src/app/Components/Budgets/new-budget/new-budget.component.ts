@@ -43,10 +43,9 @@ export class NewBudgetComponent implements OnInit {
 
     this.eventForm = new FormGroup({
       nameBudget: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      manager: new FormControl(this.log.ActiveUser.Id),
+      manager: new FormControl(this.log.ActiveUser.id),
       type: new FormControl("",this.typeBudgetFormControl.value),
-    });
-    
+    });  
   }
 
 
@@ -57,7 +56,7 @@ export class NewBudgetComponent implements OnInit {
       console.log("**שם תקציב**" + this.eventForm.value.nameBudget)
 
       this.newBudget.type = this.typeBudgetFormControl.value;
-      this.newBudget.manager = '300668852';
+      this.newBudget.manager = this.log.ActiveUser.id;
       this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
        
       

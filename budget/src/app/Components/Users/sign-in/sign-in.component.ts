@@ -34,13 +34,13 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventForm = new FormGroup({
-      Password: new FormControl("", [Validators.required, Validators.minLength(5)]),
-      FirstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      LastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      Email: new FormControl("", [Validators.required, Validators.email]),
-      Id: new FormControl("", [Validators.required]),
-      Phone: new FormControl("", [Validators.required]),
-      DateBirth: new FormControl(new Date(), [Validators.required]),
+      password: new FormControl("", [Validators.required, Validators.minLength(5)]),
+      firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      id: new FormControl("", [Validators.required]),
+      phone: new FormControl("", [Validators.required]),
+      dateBirth: new FormControl(new Date(), [Validators.required]),
     });
   }
 
@@ -68,12 +68,12 @@ export class SignInComponent implements OnInit {
 
   AddUser() {
     if (this.eventForm.value != undefined) {
-      console.log("**פרטים**" + this.eventForm.value.FirstName)
+      console.log("**פרטים**" + this.eventForm.value.firstName)
 
       this.myUser.AddUser(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
         this.newUser = this.eventForm.value;
-        alert(this.newUser.FirstName + " הרישום נקלט בהצלחה ");
+        alert(this.newUser.firstName + " הרישום נקלט בהצלחה ");
         this.log.ActiveUser = this.newUser;
         this.newUser = new User();
         this.router.navigate(['/ListBudgets']);

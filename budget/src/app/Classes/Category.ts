@@ -1,7 +1,7 @@
 export class Category{
   
-         Id!: number;
-         Detail !: string;
+         id!: number;
+         detail !: string;
 
 
          

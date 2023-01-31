@@ -1,7 +1,7 @@
 export class PermissionLevel{
   
-          Id!: number;
-          Description! : string;
+          id!: number;
+          description! : string;
 
 
          

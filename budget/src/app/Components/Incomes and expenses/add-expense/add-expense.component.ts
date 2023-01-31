@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/Classes/Category';
 import { Expense } from 'src/app/Classes/Expense';
+import { PaymentMethod } from 'src/app/Classes/PaymentMethod';
 import { Status } from 'src/app/Classes/Status';
 import { Subcategory } from 'src/app/Classes/Subcategory';
 import { CategoryService } from 'src/app/Services/category.service';
@@ -24,9 +25,13 @@ export class AddExpenseComponent implements OnInit {
   public listCategory: Category[] | undefined;
   public listSubcategory: Subcategory[] | undefined;
   public listStatus: Status[] | undefined;
+  public listPaymentMethod: PaymentMethod[] | undefined;
 
 
-  typeExpenseFormControl = new FormControl(null, Validators.required);
+  categoryFormControl = new FormControl(null, Validators.required);
+  statusFormControl = new FormControl(null, Validators.required);
+  SubcategoryFormControl = new FormControl(null, Validators.required);
+  PaymentMethodFormControl = new FormControl(null, Validators.required);
 
 
   constructor(
@@ -46,19 +51,36 @@ export class AddExpenseComponent implements OnInit {
   eventForm!: FormGroup;
 
   ngOnInit(): void {
-    // this.lookupSer.GetAllTypeBudget().subscribe(res => {
-    //   this.listTypeBudget = res;
-    //   console.log(this.listTypeBudget);
-    // });
+    this.lookupSer.GetAllStatus().subscribe(res => {
+      this.listStatus = res;
+      console.log(this.listStatus);
+    });
+    this.lookupSer.GetAllPaymentMethod().subscribe(res => {
+      this.listPaymentMethod = res;
+      console.log(this.listPaymentMethod);
+    });
+     
     this.myCategory.GetAllCategory().subscribe(res => {
       this.listCategory = res;
       console.log(this.listCategory);
     });
+     this.mySubCategory.GetAllSubcategory().subscribe(res => {
+      this.listSubcategory = res;
+      console.log(this.listSubcategory);
+    });
 
     this.eventForm = new FormGroup({
-      nameBudget: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      manager: new FormControl(this.log.ActiveUser.Id),
-      type: new FormControl("",this.typeBudgetFormControl.value),
+      idBudget: new FormControl(this.log.ActiveBudget.id),
+      date: new FormControl("", [Validators.required]),
+      sum: new FormControl("", [Validators.required]),
+      category:  new FormControl("",this.categoryFormControl.value),
+      subCategory:  new FormControl("",this.SubcategoryFormControl.value),
+      detail:new FormControl("", [Validators.required]),
+      paymentMethod:new FormControl( "", this.PaymentMethodFormControl.value),
+      frequency:new FormControl("", [Validators.required]),
+      numberOfPayments:new FormControl(  "", [Validators.required]),
+      status:new FormControl( "",this.statusFormControl.value),
+      document:new FormControl(  "", [Validators.required]),
     });
     
 
