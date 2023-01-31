@@ -26,8 +26,9 @@
         <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select class="form-field d-flex align-items-center" placeholder="בחר קטגוריה"  [formControl]="categoryFormControl" >
-                <option type="text" *ngFor="let t of listCategory" [value]="t.id" >
+            <select class="form-field d-flex align-items-center" placeholder="בחר קטגוריה"  
+            formControlName="category" >
+                <option type="number" *ngFor="let t of listCategory" [value]="t.id" >
                     <label> {{t.detail}} </label>  
                 </option>
             </select>
@@ -36,7 +37,8 @@
         <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select class="form-field d-flex align-items-center" placeholder="בחר תת קטגוריה"  [formControl]="subcategoryFormControl" required>
+            <select class="form-field d-flex align-items-center" placeholder="בחר תת קטגוריה"  
+            formControlName="subCategory" required>
                 <option  type="text" *ngFor="let t of listSubcategory" [value]="t.id" >
                     <label> {{t.detail}} </label> 
                 </option>
@@ -52,7 +54,8 @@
         <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select placeholder="בחר אופן תשלום"  [formControl]="paymentMethodFormControl" required>
+            <select class="form-field d-flex align-items-center" placeholder="בחר אופן תשלום"  
+            formControlName="paymentMethod" required>
                 <option  type="text" *ngFor="let t of listPaymentMethod" [value]="t.id" >
                     <label> {{t.detail}} </label>  
                 </option>
@@ -74,7 +77,7 @@
         <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select placeholder="בחר סטטוס הוצאה"  [formControl]="statusFormControl" required>
+            <select class="form-field d-flex align-items-center" placeholder="בחר סטטוס הוצאה"  formControlName="status" required>
                 <option  type="checkbox" *ngFor="let t of listStatus" [value]="t.id" >
                     <label> {{t.detail}} </label>  
                 </option>

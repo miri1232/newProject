@@ -21,7 +21,7 @@ export class AddExpenseComponent implements OnInit {
 
   
   newExpense = new Expense();
-  IsExpense: boolean | undefined;
+ // IsExpense: boolean | undefined;
 
   //עבור יבוא מערכים לנתוני תיבה נפתחת
   public listCategory: Category[] | undefined;
@@ -30,10 +30,10 @@ export class AddExpenseComponent implements OnInit {
   public listPaymentMethod: PaymentMethod[] | undefined;
 
 //עבור תיבה נפתחת
-  categoryFormControl = new FormControl(null, Validators.required);
-  statusFormControl = new FormControl(null, Validators.required);
-  subcategoryFormControl = new FormControl(null, Validators.required);
-  paymentMethodFormControl = new FormControl(null, Validators.required);
+  // categoryFormControl = new FormControl(Validators.prototype);
+  // statusFormControl = new FormControl( Validators.required);
+  // subcategoryFormControl = new FormControl( Validators.required);
+  // paymentMethodFormControl = new FormControl( Validators.required);
 
 
   constructor(
@@ -89,17 +89,17 @@ export class AddExpenseComponent implements OnInit {
      
     //הקמת הטופס
     this.eventForm = new FormGroup({
-     // idBudget: new FormControl(this.log.ActiveBudget.id),
-      date: new FormControl(),
-      sum: new FormControl(),
-      category:  new FormControl(),
-      subCategory:  new FormControl(),
-      detail:new FormControl(),
-      paymentMethod:new FormControl( ),
-      frequency:new FormControl(),
-      numberOfPayments:new FormControl( ),
-      status:new FormControl(),
-      document:new FormControl(),
+      idBudget: new FormControl(5007),
+      date: new FormControl(""),
+      sum: new FormControl(""),
+      category:  new FormControl(""),
+      subCategory:  new FormControl(""),
+      detail:new FormControl(""),
+      paymentMethod:new FormControl(""),
+      frequency:new FormControl(""),
+      numberOfPayments:new FormControl("" ),
+      status:new FormControl(""),
+      document:new FormControl(""),
     });
 
   }
@@ -110,26 +110,27 @@ export class AddExpenseComponent implements OnInit {
     if (this.eventForm.value != undefined) {
     //  console.log("ההוצאה נקלטה")
 
+      this.newExpense= this.eventForm.value;
 
-      this.newExpense.idBudget = this.log.ActiveBudget.id;
-      this.newExpense.date = this.eventForm.value.date;
-      this.newExpense.sum = this.eventForm.value.sum;
-      this.newExpense.category = this.eventForm.value.category;
-      this.newExpense.subcategory = this.eventForm.value.subCategory;
-      this.newExpense.paymentMethod = this.eventForm.value.paymentMethod;
-      this.newExpense.frequency = this.eventForm.value.frequency;
-      this.newExpense.numberOfPayments = this.eventForm.value.numberOfPayments;
-      this.newExpense.status = this.eventForm.value.status;
-      this.newExpense.document = this.eventForm.value.document;
+      // this.newExpense.idBudget = 5008;
+      // this.newExpense.date = this.eventForm.value.date;
+      // this.newExpense.sum = this.eventForm.value.sum;
+      // this.newExpense.category = this.eventForm.value.category;
+      // this.newExpense.subcategory = this.eventForm.value.subCategory;
+      // this.newExpense.paymentMethod = this.eventForm.value.paymentMethod;
+      // this.newExpense.frequency = this.eventForm.value.frequency;
+      // this.newExpense.numberOfPayments = this.eventForm.value.numberOfPayments;
+      // this.newExpense.status = this.eventForm.value.status;
+      // this.newExpense.document = this.eventForm.value.document;
 
       // this.typeBudgetFormControl.value;
       // this.newBudget.manager = this.log.ActiveUser.id;
       // this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
        
  
-      this.myExpense.AddExpense(this.newExpense).subscribe(res1 => {
+      this.myExpense.AddExpense(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
-       // this.newExpense = this.eventForm.value;
+       this.newExpense = this.eventForm.value;
         alert( " ההוצאה נקלטה בהצלחה ");
         
         this.newExpense = new Expense();
