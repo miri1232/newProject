@@ -1,7 +1,7 @@
 export class Subcategory{
   
           id!: number;
-          description! : string;
+          detail! : string;
 
 
         }

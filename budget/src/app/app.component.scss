@@ -71,7 +71,7 @@ body {
 
 }
 
-.wrapper .form-field input {
+.wrapper .form-field input  {
     width: 100%;
     display: block;
     border: none;
@@ -83,7 +83,7 @@ body {
     /* border: 1px solid red; */
 }
 
-.wrapper .form-field {
+.wrapper .form-field  {
     padding-left: 10px;
     margin-bottom: 20px;
     border-radius: 20px;
@@ -132,4 +132,10 @@ body{
 
 input,a{
     text-align :right;
+}
+
+select{
+    
+    border: none;
+    display: inline-block;
 }

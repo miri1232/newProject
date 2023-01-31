@@ -25,8 +25,6 @@ export class ExpensesService {
       }
         
       AddExpense(newExpense :Expense):Observable<boolean> {
-
-  
       return this.http.post<boolean>(this.V_API + '/AddExpense',newExpense);
   }
 

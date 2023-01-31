@@ -7,7 +7,7 @@
     <div class="text-center mt-4 name">
         in & out
     </div>
-    
+<!--     
     <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddIncome()" >
 
  
@@ -21,7 +21,7 @@
             <span class="far fa-user"></span>
             <input type="number"  id="Sum" placeholder="סכום"
              formControlName="Sum" name="Sum" />
-        </div>
+        </div> -->
 
    <!-- <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
@@ -30,17 +30,17 @@
         </div> -->
 
          <!-- לבחור מתוך תיבה נפתחת -->
-         <div class="form-field d-flex align-items-center">
+         <!-- <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <select placeholder="קטגוריה" [formControl]="Category" required>
                 <option>בחר קטגוריה</option>
                 <option *ngFor="let t of listTypeCategory" [value]="t.id" >
                     {{t.detail}}
                 </option>
-            </select>
+            </select> -->
             <!-- <input type="number"  id="TypeBudget" placeholder="סוג תקציב" -->
             <!-- formControlName="TypeBudget" name="TypeBudget" /> -->
-        </div>
+        <!-- </div> -->
 
 
 
@@ -51,17 +51,17 @@
         </div> -->
 
          <!-- לבחור מתוך תיבה נפתחת -->
-         <div class="form-field d-flex align-items-center">
+         <!-- <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <select placeholder="מקור הכנסה" [formControl]="SourceOfIncome" required>
                 <option>בחר מקור הכנסה</option>
                 <option *ngFor="let t of listTypeSourceOfIncome" [value]="t.CategoryIncome" >
                     {{t.detail}}
                 </option>
-            </select>
+            </select> -->
             <!-- <input type="number"  id="TypeBudget" placeholder="סוג תקציב" -->
             <!-- formControlName="TypeBudget" name="TypeBudget" /> -->
-        </div>
+        <!-- </div>
 
  
         <div class="form-field d-flex align-items-center">
@@ -91,6 +91,6 @@
         </div>
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף</button>
 
-    </form>
+    </form> -->
    
 </div>

@@ -50,31 +50,31 @@ export class AddIncomeComponent implements OnInit {
     
   }
 
-   AddIncome(){
-    if (this.eventForm.value != undefined) {
-      console.log("**הוצאה חדשה**" + this.eventForm.value.newIncome)
+  //  AddIncome(){
+  //   if (this.eventForm.value != undefined) {
+  //     console.log("**הוצאה חדשה**" + this.eventForm.value.newIncome)
 
-      this.newIncome.Id = this.typeIncomeFormControl.value;
-      this.newIncome.IdBudget = this.eventForm.controls.newIncome.value;
-      this.newIncome.Date = this.eventForm.controls.newIncome.value;
-      this.newIncome.Sum = this.eventForm.controls.newIncome.value;
-      this.newIncome.Category = this.eventForm.controls.newIncome.value;
-      this.newIncome.SourceOfIncome = this.eventForm.controls.newIncome.value;
-      this.newIncome.Detail = this.eventForm.controls.newIncome.value;
-      this.newIncome.PaymentMethod = this.eventForm.controls.newIncome.value;
-      this.newIncome.Status = this.eventForm.controls.newIncome.value;
-      this.newIncome.Document = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.Id = this.typeIncomeFormControl.value;
+  //     this.newIncome.IdBudget = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.Date = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.Sum = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.Category = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.SourceOfIncome = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.Detail = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.PaymentMethod = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.Status = this.eventForm.controls.newIncome.value;
+  //     this.newIncome.Document = this.eventForm.controls.newIncome.value;
 
 
       
-      this.newIncome.AddIncome(this.newIncome).subscribe(res1 => {
-        console.log("curent Income ======>", res1.valueOf)
-        this.newIncome = this.eventForm.value;
-        alert( " נוספה הכנסה חדשה נוסף תקציב בכינוי");
-        this.newIncome = new Income();
-        this.router.navigate(['/BudgetHomePage']);
-      })
-    }
-   }
+  //     this.newIncome.AddIncome(this.newIncome).subscribe(res1 => {
+  //       console.log("curent Income ======>", res1.valueOf)
+  //       this.newIncome = this.eventForm.value;
+  //       alert( " נוספה הכנסה חדשה נוסף תקציב בכינוי");
+  //       this.newIncome = new Income();
+  //       this.router.navigate(['/BudgetHomePage']);
+  //     })
+  //   }
+  //  }
 
 }
