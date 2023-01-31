@@ -22,10 +22,6 @@ export class CategoryIncomeService {
     return this.http.get<CategoryIncome[]>(this.V_API + '/GetAllCategoryIncome');
   }
 
-  GetAllSourceOfIncomes(): Observable<SourceOfIncome[]> {
-    const sourceOfIncome=new HttpParams();
-    
-    return this.http.get<SourceOfIncome[]>(this.V_API + '/GetAllSourceOfIncomes');
-  }
+ 
   
 }
