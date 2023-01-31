@@ -13,27 +13,22 @@
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="datetime"  id="Date" placeholder="תאריך ההוצאה"
-             formControlName="Date" name="Date" />
+            <input type="datetime"  id="date" placeholder="תאריך ההכנסה"
+             formControlName="date" name="date" />
         </div>
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="number"  id="Sum" placeholder="סכום"
-             formControlName="Sum" name="Sum" />
+            <input type="number"  id="sum" placeholder="סכום"
+             formControlName="sum" name="sum" />
         </div>
 
-   <!-- <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="number"  id="Category" placeholder="קטגוריה"
-            formControlName="Category" name="Category" />
-        </div> -->
+  
 
          <!-- לבחור מתוך תיבה נפתחת -->
          <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select placeholder="קטגוריה" [formControl]="Category" required>
-                <option>בחר קטגוריה</option>
+            <select placeholder="בחר קטגוריה" formControlName="category" required>
                 <option *ngFor="let t of listTypeCategory" [value]="t.id" >
                     {{t.detail}}
                 </option>
@@ -42,20 +37,11 @@
             <!-- formControlName="TypeBudget" name="TypeBudget" /> -->
         </div>
 
-
-
-        <!-- <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="number"  id="SourceOfIncome" placeholder="מקור הכנסה"
-            formControlName="SourceOfIncome" name="SourceOfIncome" />
-        </div> -->
-
          <!-- לבחור מתוך תיבה נפתחת -->
          <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select placeholder="מקור הכנסה" [formControl]="SourceOfIncome" required>
-                <option>בחר מקור הכנסה</option>
-                <option *ngFor="let t of listTypeSourceOfIncome" [value]="t.CategoryIncome" >
+            <select placeholder="מקור הכנסה"  formControlName="sourceOfIncome" required>
+                <option *ngFor="let t of listTypeSourceOfIncome" [value]="t.id" >
                     {{t.detail}}
                 </option>
             </select>
@@ -66,27 +52,40 @@
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text"  id="Detail" placeholder="פרטים"
-            formControlName="Detail" name="Detail" />
+            <input type="text"  id="detail" placeholder="פרטים"
+            formControlName="detail" name="detail" required />
         </div>
 
-        <div class="form-field d-flex align-items-center">
+      
+           <!-- לבחור מתוך תיבה נפתחת -->
+           <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="number"  id="PaymentMethod" placeholder="אופן התשלום"
-            formControlName="PaymentMethod" name="PaymentMethod" />
+            <select placeholder="בחר אופן התשלום"  formControlName="paymentMethod" required>
+                <option *ngFor="let t of listTypePaymentMethod" [value]="t.id" >
+                    {{t.detail}}
+                </option>
+            </select>
+            <!-- <input type="number"  id="TypeBudget" placeholder="סוג תקציב" -->
+            <!-- formControlName="TypeBudget" name="TypeBudget" /> -->
         </div>
   
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="number"  id="Status" placeholder="סטטוס"
-            formControlName="Status" name="Status" />
-
+       ]
+           <!-- לבחור מתוך תיבה נפתחת -->
+           <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <select placeholder="בחר סטטוס"  formControlName="status" required>
+                <option *ngFor="let t of listTypeStatus" [value]="t.id" >
+                    {{t.detail}}
+                </option>
+            </select>
+            <!-- <input type="number"  id="TypeBudget" placeholder="סוג תקציב" -->
+            <!-- formControlName="TypeBudget" name="TypeBudget" /> -->
         </div>
 
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
-            <input type="text"  id="Document" placeholder="צירוף מסמך"
-            formControlName="Document" name="Document" />
+            <input type="text"  id="document" placeholder="צירוף מסמך"
+            formControlName="document" name="document" />
 
         </div>
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף</button>
