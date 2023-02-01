@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private log:Logging,
-
     private userService: UserService,
     private router:Router,
     private route:ActivatedRoute

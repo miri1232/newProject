@@ -42,7 +42,7 @@ export class NewBudgetComponent implements OnInit {
     });
 
     this.eventForm = new FormGroup({
-      nameBudget: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      nameBudget: new FormControl("", [Validators.required, Validators.pattern("")]),
       manager: new FormControl(this.log.ActiveUser.id),
       type: new FormControl("",this.typeBudgetFormControl.value),
     });  
@@ -52,22 +52,24 @@ export class NewBudgetComponent implements OnInit {
   
   AddBudget() {
 
-    if (this.eventForm.value != undefined) {
+    this.eventForm.value != undefined
       console.log("**שם תקציב**" + this.eventForm.value.nameBudget)
 
       this.newBudget.type = this.typeBudgetFormControl.value;
-      this.newBudget.manager = this.log.ActiveUser.id;
-      this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
+
+      // this.newBudget.type = this.typeBudgetFormControl.value;
+      // this.newBudget.manager = this.log.ActiveUser.id;
+      // this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
        
       
       this.myBudget.AddBudget(this.newBudget).subscribe(res1 => {
-        console.log("curent Budget ======>", res1.valueOf)
+      console.log("curent Budget ======>", res1)
         this.newBudget = this.eventForm.value;
         alert(this.newBudget.nameBudget + " נוסף תקציב בכינוי");
         this.newBudget = new Budget();
         this.router.navigate(['/BudgetHomePage']);
       })
-    }
+    
 
   }
 

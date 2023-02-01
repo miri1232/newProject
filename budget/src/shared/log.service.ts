@@ -16,15 +16,21 @@ export class Logging{
 
 
     constructor(
-      // myUser:UserService,
-      // myBudget:BudgetService,
-
 
     ) { }
 
-  // ActiveUser: User;
+  //  ActiveUser: User;
   
   // ActiveUser= myUser.GetUserByID(300668852);
 
-  // ActiveBudget:Budget=new Budget();
+  //  ActiveBudget:Budget=new Budget();
+
+  logOutUser(){
+    this.ActiveUser=new User();
+  }
+  
+ logOutBudget(){
+  this.ActiveBudget=new Budget();
+  }
+  
   }

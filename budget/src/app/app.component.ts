@@ -15,9 +15,9 @@ export class AppComponent {
   title = 'Budget';
 
 
-//  constructor(
+ constructor(
 //   private log: Logging,
-//  ) {}
+  ) {}
     
  
 
