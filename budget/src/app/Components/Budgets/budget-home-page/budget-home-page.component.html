@@ -1,13 +1,10 @@
-<p>budget-home-page works!</p>
-
 תפריט תקציב בודד
-******
-<div >
-  {{b.nameBudget}}
-  ***
 <br/>
-<!-- <button class="btn mt-3" >הוספת הוצאות</button>
-<button class="btn mt-3" >הוספת הכנסה</button> -->
+
+שם התקציב:  {{b.nameBudget}}
+  
+<br/>
+
 
 <button class="btn mt-3" (click)="addExpenses=!addExpenses">הוספת הוצאה</button>
 <app-add-expense *ngIf="addExpenses"></app-add-expense>

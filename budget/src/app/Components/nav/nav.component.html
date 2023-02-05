@@ -1,51 +1,52 @@
-<li class="nav-item"  >
-    <a class="nav-link"  (click)="logIn()"> כניסה </a>
-  </li> 
+<!-- <ul class="nav nav-tabs nav-justified" style="position: sticky, top=0px"> -->
+<!-- 
+  <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" 
+  style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+    <li class="nav-item" role="presentation"> -->
 
-  <li class="nav-item">
-    <a class="nav-link"   routerLink="/contact_Us">צור קשר – פניה </a>
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page"  (click)="logIn()"> התחבר </a>
+ <!-- *ngIf="activeUser.id == '' ; else user"  -->
+    </li>
+    
+    <ng-template #user>
+
+      <li class="nav-item">
+        <a class="nav-link disabled" > שלום {{activeUser.firstName}} </a>
+      </li>
+    <li class="nav-item">
+      <a class="nav-link"   (click)="logOut()">התנתק </a>
+    </li>  
+
+     </ng-template>
+
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="#">Much longer nav link</a>
+    </li> -->
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li> -->
+    <li class="nav-item">
+      <div class="logo">
+        <a  routerLink='/'>
+        <img src="../../../../assets/image/Logo.jpg" alt="" routerLink='/'></a>
+    </div> 
+    
   </li>
-
-  <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">הכנסות</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">הוצאות</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">דוחות</button>
-    </li>
-  </ul>
+ 
+      
+    <!-- <li class="nav-item">
+      <a class="nav-link"   routerLink="/contact_Us">צור קשר – פניה </a>
+    </li> -->
 
 
-  <ul class="nav nav-tabs nav-justified" style="position: sticky, top=0px">
-  
-    <li class="nav-item">
-      <a class="nav-link active"  routerLink='/'>דף הבית</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link"  routerLink="/search_flight">חיפוש טיסה</a>
-    <!-- </li> 
-     <li class="nav-item" *ngIf="activeUser.IsManager">
+   
+    <!-- <li class="nav-item" *ngIf="activeUser.IsManager">
       <a class="nav-link"   routerLink="/Manager">תפריט מנהל </a>
     </li> -->
 
-    <li class="nav-item" *ngIf="activeUser.id ==''; else user"  >
-      <a class="nav-link"  (click)=logIn()> כניסה </a>
-    </li> 
-    <ng-template #user>
-    <li class="nav-item">
-      <a class="nav-link"   routerLink="/contact_Us">צור קשר – פניה </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link"   (click)="logOut()">התנתק </a>
-    </li> 
-     </ng-template>
   
-    <!-- <li class="nav-item">
-      <a class="nav-link disabled" > שלום {{activeUser.fitstName}} </a>
-    </li> -->
   </ul>
 
 

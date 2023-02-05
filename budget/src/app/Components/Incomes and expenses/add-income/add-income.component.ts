@@ -69,7 +69,7 @@ this.eventForm = new FormGroup({
   idBudget: new FormControl(5007),
       date: new FormControl(""),
        sum: new FormControl(""),
-      category: new FormControl(""),
+       categoryIncome: new FormControl(""),
        sourceOfIncome: new FormControl(""),
         detail: new FormControl(""),
         paymentMethod: new FormControl(""),

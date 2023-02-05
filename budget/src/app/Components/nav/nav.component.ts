@@ -19,6 +19,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+today: Date=new Date();
 
   activeUser: User = this.log.ActiveUser;
 

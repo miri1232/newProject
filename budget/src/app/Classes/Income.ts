@@ -4,7 +4,7 @@ export class Income{
         idBudget !: number;
         date !: Date;
         sum! : number;
-        category! : number;
+        categoryIncome! : number;
         sourceOfIncome! : number;
         detail! : string;
         paymentMethod! : number;

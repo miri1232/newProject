@@ -10,8 +10,9 @@ import { UserService } from "src/app/Services/user.service";
 })
 export class Logging{
 
-  ActiveUser: User=new User();
-  ActiveBudget:Budget=new Budget();
+  public ActiveUser: User=new User();
+ // public ActiveUser: User=new User('0000','qqq','www','00000','0000@gg','0000000',new Date());
+  public ActiveBudget:Budget=new Budget();
 
 
 
@@ -19,9 +20,9 @@ export class Logging{
       // ActiveUser.Id
     ) { }
 
-  //  ActiveUser: User;
+  // ActiveUser.id="0000";
   
-  // ActiveUser= myUser.GetUserByID(300668852);
+ //this.ActiveUser={'0000','qqq','www','00000','0000@gg','0000','28-01-2023'};
 
   //  ActiveBudget:Budget=new Budget();
 
