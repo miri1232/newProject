@@ -19,10 +19,10 @@
         <!-- לבחור מתוך תיבה נפתחת -->
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select  [formControl]="typeBudgetFormControl" required>
-                <option>בחר סוג תקציב</option>
-                <option  type="text" *ngFor="let t of listTypeBudget" [value]="t.id" >
-                    {{t.detail}}
+            <select class="far fa-user" type="input" [formControl]="typeBudgetFormControl" required>
+                <option type="text" selected>בחר סוג תקציב</option>
+                <option  *ngFor="let t of listTypeBudget" [value]="t.id" >
+                    <label type="text"> {{t.detail}} </label>  
                 </option>
             </select>
 

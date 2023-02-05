@@ -23,24 +23,26 @@
              formControlName="sum" name="sum" />
         </div>
 
-        <!-- לבחור מתוך תיבה נפתחת -->
-        
+        <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select placeholder="קטגוריה"  [formControl]="categoryFormControl" required>
-                <option  type="text" *ngFor="let t of listCategory" [value]="t.id" >
-                    {{t.detail}}
+            <select class="form-field d-flex align-items-center" placeholder="בחר קטגוריה"  
+            formControlName="category" >
+                <option type="number" *ngFor="let t of listCategory" [value]="t.id" >
+                    <label> {{t.detail}} </label>  
                 </option>
             </select>
- 
-            <!-- <input type="number"  id="category" 
-            formControlName="category" name="category" /> -->
         </div>
 
+        <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="number"  id="subcategory" placeholder="תת קטגוריה"
-            formControlName="subcategory" name="subcategory" />
+            <select class="form-field d-flex align-items-center" placeholder="בחר תת קטגוריה"  
+            formControlName="subCategory" required>
+                <option  type="text" *ngFor="let t of listSubcategory" [value]="t.id" >
+                    <label> {{t.detail}} </label> 
+                </option>
+            </select>
         </div>
  
         <div class="form-field d-flex align-items-center">
@@ -49,10 +51,15 @@
             formControlName="detail" name="detail" />
         </div>
 
+        <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="number"  id="paymentMethod" placeholder="אופן התשלום"
-            formControlName="paymentMethod" name="paymentMethod" />
+            <select class="form-field d-flex align-items-center" placeholder="בחר אופן תשלום"  
+            formControlName="paymentMethod" required>
+                <option  type="text" *ngFor="let t of listPaymentMethod" [value]="t.id" >
+                    <label> {{t.detail}} </label>  
+                </option>
+            </select>
         </div>
   
         <div class="form-field d-flex align-items-center">
@@ -66,11 +73,15 @@
             <input type="number"  id="numberOfPayments" placeholder="מספר תשלומים"
             formControlName="numberOfPayments" name="numberOfPayments" />
         </div>
-  
-       <div class="form-field d-flex align-items-center">
+
+        <!-- בחירה מתוך תיבה נפתחת -->      
+        <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="number"  id="status" placeholder="סטטוס"
-            formControlName="status" name="status" />
+            <select class="form-field d-flex align-items-center" placeholder="בחר סטטוס הוצאה"  formControlName="status" required>
+                <option  type="checkbox" *ngFor="let t of listStatus" [value]="t.id" >
+                    <label> {{t.detail}} </label>  
+                </option>
+            </select>
         </div>
   
        <div class="form-field d-flex align-items-center">

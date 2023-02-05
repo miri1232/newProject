@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/Classes/User';
+import { Logging } from 'src/shared/log.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NavComponent implements OnInit {
 
   constructor(
+    private log:Logging,
     private router:Router,
     private route:ActivatedRoute
   ) { }
@@ -16,7 +19,14 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  activeUser: User = this.log.ActiveUser;
+
   logIn(){
     this.router.navigate(['/Login'])
+    }
+
+    logOut(){
+      this.log.logOutUser();
     }
 }

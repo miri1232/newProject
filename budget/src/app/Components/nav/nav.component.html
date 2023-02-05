@@ -17,3 +17,36 @@
       <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">דוחות</button>
     </li>
   </ul>
+
+
+  <ul class="nav nav-tabs nav-justified" style="position: sticky, top=0px">
+  
+    <li class="nav-item">
+      <a class="nav-link active"  routerLink='/'>דף הבית</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  routerLink="/search_flight">חיפוש טיסה</a>
+    <!-- </li> 
+     <li class="nav-item" *ngIf="activeUser.IsManager">
+      <a class="nav-link"   routerLink="/Manager">תפריט מנהל </a>
+    </li> -->
+
+    <li class="nav-item" *ngIf="activeUser.id ==''; else user"  >
+      <a class="nav-link"  (click)=logIn()> כניסה </a>
+    </li> 
+    <ng-template #user>
+    <li class="nav-item">
+      <a class="nav-link"   routerLink="/contact_Us">צור קשר – פניה </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"   (click)="logOut()">התנתק </a>
+    </li> 
+     </ng-template>
+  
+    <!-- <li class="nav-item">
+      <a class="nav-link disabled" > שלום {{activeUser.fitstName}} </a>
+    </li> -->
+  </ul>
+
+
+  <router-outlet></router-outlet>

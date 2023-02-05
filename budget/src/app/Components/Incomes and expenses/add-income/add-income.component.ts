@@ -67,7 +67,7 @@ export class AddIncomeComponent implements OnInit {
 //הבאת נתונים מהטופס
     this.eventForm = new FormGroup({
      // id: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-     idBudget: new FormControl(),
+     idBudget: new FormControl(5007),
       date: new FormControl(""),
        sum: new FormControl(""),
       category: new FormControl(""),
