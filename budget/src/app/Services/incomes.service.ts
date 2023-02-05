@@ -15,9 +15,12 @@ export class IncomesService {
   ) { }
   
 AddIncome(newIncome:Income):Observable<boolean> {
-
   
   return this.http.post<boolean>(this.V_API + '/AddIncome',newIncome);
 }
+
+
+
 }
+
 

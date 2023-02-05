@@ -19,8 +19,6 @@ export class BudgetService {
 
   GetBudgetByUser(): Observable<Budget[]>{
      return this.http.get<Budget[]>(this.V_API+'/GetBudgetByUser'+'/300668852');
-
-    // return this.http.get<Budget[]>(this.V_API+'/GetBudgetByUser'+"300668852");
  }
 
 

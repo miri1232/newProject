@@ -69,11 +69,11 @@ namespace newProject.Controllers
         //הוספה
         [HttpPost]
         [Route("AddBudget")]
-        public ActionResult<bool> AddBudget([FromBody] BudgetDTO budgetDTO)
+        public ActionResult<bool> AddBudget([FromBody] BudgetDTO budget)
         {
             try
             {
-                bool x = _budgetBL.AddBudget(budgetDTO);
+                bool x = _budgetBL.AddBudget(budget);
                 return Ok(x);
             }
             catch (Exception ex)

@@ -16,7 +16,7 @@ export class Logging{
 
 
     constructor(
-
+      // ActiveUser.Id
     ) { }
 
   //  ActiveUser: User;

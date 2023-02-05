@@ -24,7 +24,6 @@ export class NewBudgetComponent implements OnInit {
 
   constructor(
     private log: Logging,
-
     private formBuilder: FormBuilder,
     private myBudget: BudgetService,
     private router: Router,
@@ -44,7 +43,7 @@ export class NewBudgetComponent implements OnInit {
     this.eventForm = new FormGroup({
       nameBudget: new FormControl("", [Validators.required, Validators.pattern("")]),
       manager: new FormControl(this.log.ActiveUser.id),
-      type: new FormControl("",this.typeBudgetFormControl.value),
+      typeBudget: new FormControl(""),
     });  
   }
 
@@ -55,11 +54,11 @@ export class NewBudgetComponent implements OnInit {
       if (this.eventForm.value != undefined) {
           console.log("**שם תקציב**" + this.eventForm.value.nameBudget)
 
-          this.newBudget.type = this.typeBudgetFormControl.value;
+          this.newBudget.id = 0;
 
-          // this.newBudget.type = this.typeBudgetFormControl.value;
-          // this.newBudget.manager = this.log.ActiveUser.id;
-          // this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
+          this.newBudget.type = this.eventForm.value.typeBudget;
+          this.newBudget.manager = "0000";
+          this.newBudget.nameBudget = this.eventForm.value.nameBudget;
 
 
           this.myBudget.AddBudget(this.newBudget).subscribe(res1 => {

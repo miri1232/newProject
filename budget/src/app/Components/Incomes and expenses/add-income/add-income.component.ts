@@ -65,9 +65,8 @@ export class AddIncomeComponent implements OnInit {
       console.log(this.listTypeStatus);
     });
 //הבאת נתונים מהטופס
-    this.eventForm = new FormGroup({
-     // id: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-     idBudget: new FormControl(5007),
+this.eventForm = new FormGroup({
+  idBudget: new FormControl(5007),
       date: new FormControl(""),
        sum: new FormControl(""),
       category: new FormControl(""),
@@ -77,22 +76,13 @@ export class AddIncomeComponent implements OnInit {
        status: new FormControl(""),
             document: new FormControl(""),
     }); 
-  //    idBudget: new FormControl(this.log.ActiveUser.id),
-  //   date: new FormControl("",this.typeIncomeFormControl.value),
-  //    sum: new FormControl("",this.typeIncomeFormControl.value),
-  //   category: new FormControl("",this.typeIncomeFormControl.value),
-  //    sourceOfIncome: new FormControl("",this.typeIncomeFormControl.value),
-  //     detail: new FormControl("",this.typeIncomeFormControl.value),
-  //     paymentMethod: new FormControl("",this.typeIncomeFormControl.value),
-  //      status: new FormControl("",this.typeIncomeFormControl.value),
-  //         document: new FormControl("",this.typeIncomeFormControl.value),
-  // });
-    
+
   }
+ 
 
     AddIncome(){
-     if (this.eventForm.value != undefined) {
-      console.log("הכנסה חדשה נקלטה" )
+    if (this.eventForm.value != undefined) {
+     // console.log("הכנסה חדשה נקלטה" )
 
     this.newIncome = this.eventForm.value;
 
@@ -109,7 +99,7 @@ export class AddIncomeComponent implements OnInit {
 
       
       this.myIncome.AddIncome(this.eventForm.value).subscribe(res1 => {
-        console.log("curent Income ======>", res1.valueOf)
+        console.log("curent Income ======>", res1)
         this.newIncome = this.eventForm.value;
         alert( " נוספה הכנסה חדשה ");
         this.newIncome = new Income();

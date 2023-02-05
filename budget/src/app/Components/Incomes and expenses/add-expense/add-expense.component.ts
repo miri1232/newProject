@@ -96,7 +96,7 @@ export class AddExpenseComponent implements OnInit {
       subCategory:  new FormControl(""),
       detail:new FormControl(""),
       paymentMethod:new FormControl(""),
-      frequency:new FormControl(""),
+      frequency:new FormControl(false),
       numberOfPayments:new FormControl("" ),
       status:new FormControl(""),
       document:new FormControl(""),
