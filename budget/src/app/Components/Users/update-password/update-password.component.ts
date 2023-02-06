@@ -44,7 +44,7 @@ this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
 
   UpdateUser() {
     this.userService.LoginUserByID(this.IdToLogin, this.PassToLogin).subscribe(res => {
-      if (res!=undefined) {
+      if (res) {
         this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
           this.UserToUpdate = res1;
           this.UserToUpdate.password = this.PassToUpdate;
@@ -56,6 +56,13 @@ this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
         this.router.navigate(['/ListBudgets']);
       });
     });
+    }
+    else{
+      this.IdToLogin ="";
+      this.PassToLogin ="";
+      this.IsSend=false;
+
+      alert("הסיסמה שגויה, אנא נסה שנית או הירשם");
     }
   }
 );
