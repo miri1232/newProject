@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertComponent implements OnInit {
 isModal:boolean=false;
-  modal!:string;
+modal!:string;
 title!:string;
 notifications!:string;
 accept !:string;

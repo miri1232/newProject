@@ -10,7 +10,8 @@
 <app-add-expense *ngIf="addExpenses"></app-add-expense>
 <button class="btn mt-3" (click)="addIncomes=!addIncomes">הוספת הכנסה</button>
 <app-add-income *ngIf="addIncomes"></app-add-income>
-<button  *ngIf(log.ActiveUser.eqales(log.ActiveBudget.manager)) class="btn mt-3" (click)="addPermission=!addPermission">הוספת משתמשים לתקציב</button>
+<!-- <button  *ngIf="log.ActiveUser.id.equalse(log.ActiveBudget.manager)" class="btn mt-3" (click)="addPermission=!addPermission">הוספת משתמשים לתקציב</button> -->
+<button  class="btn mt-3" (click)="addPermission=!addPermission">הוספת משתמשים לתקציב</button>
 <app-add-permission *ngIf="addPermission"></app-add-permission>
 
 

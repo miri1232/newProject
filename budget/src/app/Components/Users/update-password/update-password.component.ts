@@ -44,14 +44,13 @@ this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
   
     alert(res1.email + "נשלחה סיסמא חדשה לכתובת המייל ")
 
- // this.myAlert.AddAlert1("לתשומת ליבך",res1.email + "נשלחה סיסמא חדשה לכתובת המייל ");
+//  return this.myAlert.AddAlert1("לתשומת ליבך",res1.email + "נשלחה סיסמא חדשה לכתובת המייל ")
 
   this.IsSend=true;
 }
  else{
   alert("מספר תעודת הזהות אינו מופיע במערכת, עליך להרשם")
         this.router.navigate(['/SignIn']);
-
  }
 });
 }
