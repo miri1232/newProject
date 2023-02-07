@@ -13,13 +13,15 @@ import { AddIncomeComponent } from './Components/Incomes and expenses/add-income
 import { AddExpenseComponent } from './Components/Incomes and expenses/add-expense/add-expense.component';
 import { PaymentsListComponent } from './Components/Incomes and expenses/payments-list/payments-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomePageComponent } from './Components/home-page/home-page.component';
+import { HomePageComponent } from './Components/General/home-page/home-page.component';
 import { UpdatePasswordComponent } from './Components/Users/update-password/update-password.component';
 import { UpdateUsedComponent } from './Components/Users/update-used/update-used.component';
-import { NavComponent } from './Components/nav/nav.component';
+import { NavComponent } from './Components/General/nav/nav.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BudgetHomePageComponent } from './Components/Budgets/budget-home-page/budget-home-page.component';
+import { AddPermissionComponent } from './Components/Budgets/add-permission/add-permission.component';
+import { AlertComponent } from './Components/General/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { BudgetHomePageComponent } from './Components/Budgets/budget-home-page/b
     UpdateUsedComponent,
     NavComponent,
     BudgetHomePageComponent,
+    AddPermissionComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

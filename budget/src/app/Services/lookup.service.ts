@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { PaymentMethod } from '../Classes/PaymentMethod';
+import { PermissionLevel } from '../Classes/PermissionLevel';
 import { Status } from '../Classes/Status';
 import { TypeBudget } from '../Classes/TypeBudget';
 
@@ -32,6 +33,12 @@ export class LookupService {
     const paymentMethod=new HttpParams(); 
     return this.http.get<PaymentMethod[]>(this.V_API + '/GetAllPaymentMethod');
   }
+
+  GetAllPermissionLevel(): Observable<PermissionLevel[]> {
+    const permissionLevel=new HttpParams(); 
+    return this.http.get<PermissionLevel[]>(this.V_API + '/GetAllPermissionLevel');
+  }
+
 
 
 }

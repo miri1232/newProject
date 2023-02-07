@@ -1,0 +1,15 @@
+<!-- <button *ngIf="this.isModal"  type="button" class="btn btn-danger" data-toggle="modal" data-target="#form"> {{this.modal}} </button> -->
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+        
+        <h3>{{ this.title}}  </h3>
+            <i class="fa fa-bell"></i>
+            <p class="r3 px-md-5 px-sm-1">{{this.notifications}}</p>
+    
+            <div class="text-center mb-3"> <button class="btn btn-primary w-50 rounded-pill b1">{{this.accept}}</button> </div>
+            
+             <a *ngIf="this.isCancel"   href="#">{{this.cancel}}</a> 
+        </div>
+    </div>
+</div>
