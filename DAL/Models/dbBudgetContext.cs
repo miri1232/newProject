@@ -158,7 +158,7 @@ namespace DAL.Models
 
                 entity.Property(e => e.IdBudget).HasColumnName("idBudget");
 
-                entity.Property(e => e.NumberOfPayments).HasColumnName("number_of_payments");
+         //       entity.Property(e => e.NumberOfPayments).HasColumnName("number_of_payments");
 
                 entity.Property(e => e.PaymentMethod).HasColumnName("payment_method");
 

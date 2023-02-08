@@ -10,6 +10,8 @@ import { ExpensesService } from 'src/app/Services/expenses.service';
 export class ExpensesComponent implements OnInit {
 
 ExpensesList : Expense[] = [];
+counter:number=1;
+
 
   constructor(
         private myExpensesServise: ExpensesService ,
@@ -20,23 +22,30 @@ ExpensesList : Expense[] = [];
   // @Input() CategoryToShow="";
 
   ngOnInit(): void {
-  }
-
- CategoryToShow:string="גגגגגגגגגגגגג";
-  
-  ShowAllExpenses(){
     this.myExpensesServise.GetAllExpenses().subscribe(exp => { 
       this.ExpensesList = exp;
       console.log(exp);
   } );
+
   }
 
-  ShowExpensesByCategory(){
-    this.myExpensesServise.GetExpensesByCategory(this.CategoryToShow).subscribe(exp => { 
-      this.ExpensesList = exp;
-      console.log(exp);
-      });
-                          }
+ CategoryToShow:string="גגגגגגגגגגגגג";
+  
+ //ExpensesList= this.myExpensesServise.GetAllExpenses();
+
+  // ShowAllExpenses(){
+  //   this.myExpensesServise.GetAllExpenses().subscribe(exp => { 
+  //     this.ExpensesList = exp;
+  //     console.log(exp);
+  // } );
+  // }
+
+  // ShowExpensesByCategory(){
+  //   this.myExpensesServise.GetExpensesByCategory(this.CategoryToShow).subscribe(exp => { 
+  //     this.ExpensesList = exp;
+  //     console.log(exp);
+  //     });
+  //                         }
 
 
 

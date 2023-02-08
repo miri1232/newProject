@@ -9,7 +9,7 @@ export class Expense{
          detail! : string;
          paymentMethod! : number;
          frequency !: boolean;
-         numberOfPayments !: number;
+        // numberOfPayments !: number;
          status! : number;
          document ?: string;
 

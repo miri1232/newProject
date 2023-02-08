@@ -1,14 +1,8 @@
-<p>expenses works!</p>
+ <p>expenses works!</p>
+ <!--
 <button (click)="ShowAllExpenses()">
     הצג כל ההוצאות
   </button>
-
-  <!-- <p>
-    <label >הכנס קטגוריה: </label>
-    <input type="text" 
-    name="Category"
-    [(ngModel)]="CategoryToShow"  > 
-</p> -->
 
  <p>
     <label >הכנס קטגוריה: </label>
@@ -20,5 +14,38 @@
 
  <button (click)="ShowExpensesByCategory()">
     הוצאות לפי קטגוריה
-  </button>
+  </button> -->
  
+  <table class="table table-success table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">מספר שורה</th>
+        <th scope="col">תאריך</th>
+        <th scope="col">סכום</th>
+        <th scope="col">קטגוריה</th>
+        <th scope="col">קטגוריה משנית</th> 
+        <th scope="col">פרטים</th>
+        <th scope="col">אופן התשלום</th>
+        <th scope="col">קבוע / חד פעמי</th>
+        <th scope="col">סטטוס הוצאה</th>
+        <th scope="col"> אסמכתא</th>
+      </tr>
+    </thead>
+      <tbody *ngFor ="let e of ExpensesList">
+        <tr>
+          <th scope="row">{{counter}}</th>
+          <td>{{e.date  | date }}</td>
+          <td>{{e.sum  | number: '1.0-0' }}</td>
+          <td>{{e.category}}</td> 
+          <td>{{e.subcategory}}</td>
+          <td>{{e.detail}}</td>
+          <td>{{e.paymentMethod}}</td>
+          <td>{{e.frequency}}</td> 
+          <td>{{e.status}}</td>
+          <td>{{e.document}}</td>
+        </tr>
+
+
+      </tbody>
+
+  </table>

@@ -21,7 +21,7 @@ namespace DAL.Models
         public string Detail { get; set; }
         public int PaymentMethod { get; set; }
         public bool Frequency { get; set; }
-        public int NumberOfPayments { get; set; }
+      //  public int NumberOfPayments { get; set; }
         public int Status { get; set; }
         public byte[] Document { get; set; }
 

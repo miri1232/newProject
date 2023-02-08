@@ -97,7 +97,7 @@ export class AddExpenseComponent implements OnInit {
       detail:new FormControl(""),
       paymentMethod:new FormControl(""),
       frequency:new FormControl(false),
-      numberOfPayments:new FormControl("" ),
+    //  numberOfPayments:new FormControl("" ),
       status:new FormControl(""),
       document:new FormControl(""),
     });
