@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Category } from 'src/app/Classes/Category';
 import { Expense } from 'src/app/Classes/Expense';
+import { CategoryService } from 'src/app/Services/category.service';
 import { ExpensesService } from 'src/app/Services/expenses.service';
 
 @Component({
@@ -10,12 +12,12 @@ import { ExpensesService } from 'src/app/Services/expenses.service';
 export class ExpensesComponent implements OnInit {
 
 ExpensesList : Expense[] = [];
-counter:number=1;
+CategoryList : Category[] = [];
 
 
   constructor(
         private myExpensesServise: ExpensesService ,
-
+        private myCategory:CategoryService,
   ) { }
 
   //הכנת משתנה לקליטת הקטגוריה שמתקבל מהמשתמש
@@ -26,10 +28,19 @@ counter:number=1;
       this.ExpensesList = exp;
       console.log(exp);
   } );
+ this.myCategory.GetAllCategory().subscribe(c => { 
+      this.CategoryList = c;
+      console.log(c);
+  } );
+
 
   }
 
- CategoryToShow:string="גגגגגגגגגגגגג";
+ConvertCategory(id:number){
+
+}
+
+ CategoryToShow:string="";
   
  //ExpensesList= this.myExpensesServise.GetAllExpenses();
 

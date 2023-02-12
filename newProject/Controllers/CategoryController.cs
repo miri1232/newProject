@@ -35,6 +35,22 @@ namespace newProject.Controllers
             }
         }
 
+        //שליפה לפי ID
+        [HttpGet]
+        [Route("GetCategoryByID")]
+        public IActionResult GetCategoryByID(int idCategory)
+        {
+            try
+            {
+
+               return Ok(_categoryBL.GetCategoryByID(idCategory));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //הוספה
         [HttpPost]
         [Route("AddCategory")]

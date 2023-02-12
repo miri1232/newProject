@@ -11,6 +11,8 @@ import { ExpensesService } from 'src/app/Services/expenses.service';
 import { LookupService } from 'src/app/Services/lookup.service';
 import { SubCategoryService } from 'src/app/Services/sub-category.service';
 import { Logging } from 'src/shared/log.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
 
 @Component({
   selector: 'app-add-expense',
@@ -19,9 +21,9 @@ import { Logging } from 'src/shared/log.service';
 })
 export class AddExpenseComponent implements OnInit {
 
-  
+
   newExpense = new Expense();
- // IsExpense: boolean | undefined;
+  // IsExpense: boolean | undefined;
 
   //עבור יבוא מערכים לנתוני תיבה נפתחת
   public listCategory: Category[] | undefined;
@@ -29,7 +31,7 @@ export class AddExpenseComponent implements OnInit {
   public listStatus: Status[] | undefined;
   public listPaymentMethod: PaymentMethod[] | undefined;
 
-//עבור תיבה נפתחת
+  //עבור תיבה נפתחת
   // categoryFormControl = new FormControl(Validators.prototype);
   // statusFormControl = new FormControl( Validators.required);
   // subcategoryFormControl = new FormControl( Validators.required);
@@ -46,13 +48,14 @@ export class AddExpenseComponent implements OnInit {
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
     private mySubCategory: SubCategoryService,
-
-
+    private modalService: NgbModal
   ) { }
 
   eventForm!: FormGroup;
 
   ngOnInit(): void {
+    const modalRef = this.modalService.open(ActionDialogComponent);
+    modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
     //יבוא נתונים עבור רשימות נפתחות
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -62,12 +65,12 @@ export class AddExpenseComponent implements OnInit {
       this.listPaymentMethod = res;
       console.log(this.listPaymentMethod);
     });
-     
+
     this.myCategory.GetAllCategory().subscribe(res => {
       this.listCategory = res;
       console.log(this.listCategory);
     });
-     this.mySubCategory.GetAllSubcategory().subscribe(res => {
+    this.mySubCategory.GetAllSubcategory().subscribe(res => {
       this.listSubcategory = res;
       console.log(this.listSubcategory);
     });
@@ -86,31 +89,31 @@ export class AddExpenseComponent implements OnInit {
     //   status:new FormControl( "",this.statusFormControl.value),
     //   document:new FormControl("", ),
     // });
-     
+
     //הקמת הטופס
     this.eventForm = new FormGroup({
       idBudget: new FormControl(5007),
       date: new FormControl(""),
       sum: new FormControl(""),
-      category:  new FormControl(""),
-      subCategory:  new FormControl(""),
-      detail:new FormControl(""),
-      paymentMethod:new FormControl(""),
-      frequency:new FormControl(false),
-    //  numberOfPayments:new FormControl("" ),
-      status:new FormControl(""),
-      document:new FormControl(""),
+      category: new FormControl(""),
+      subCategory: new FormControl(""),
+      detail: new FormControl(""),
+      paymentMethod: new FormControl(""),
+      frequency: new FormControl(false),
+      //  numberOfPayments:new FormControl("" ),
+      status: new FormControl(""),
+      document: new FormControl(""),
     });
 
   }
 
 
-  AddExpense(){
+  AddExpense() {
 
     if (this.eventForm.value != undefined) {
-    //  console.log("ההוצאה נקלטה")
+      //  console.log("ההוצאה נקלטה")
 
-      this.newExpense= this.eventForm.value;
+      this.newExpense = this.eventForm.value;
 
       // this.newExpense.idBudget = 5008;
       // this.newExpense.date = this.eventForm.value.date;
@@ -126,13 +129,14 @@ export class AddExpenseComponent implements OnInit {
       // this.typeBudgetFormControl.value;
       // this.newBudget.manager = this.log.ActiveUser.id;
       // this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
-       
- 
+
+
       this.myExpense.AddExpense(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
-       this.newExpense = this.eventForm.value;
-        alert( " ההוצאה נקלטה בהצלחה ");
-        
+        this.newExpense = this.eventForm.value;
+        const modalRef = this.modalService.open(ActionDialogComponent);
+        modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
+
         this.newExpense = new Expense();
 
 

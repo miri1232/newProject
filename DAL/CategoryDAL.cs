@@ -23,6 +23,18 @@ namespace DAL
             }
         }
 
+        public Category GetCategoryByID(int idCategory)
+        {
+            try
+            {
+                return _context.Categories.Where(p => p.Id == idCategory).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool AddCategory(Category category)
         {
             try

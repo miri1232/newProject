@@ -33,6 +33,13 @@ namespace BL
             return listCategoryDTO;
         }
 
+        public CategoryDTO GetCategoryByID(int idCategory)
+        {
+            Category category = _categoryDAL.GetCategoryByID(idCategory);
+            CategoryDTO categoryDTO = mapper.Map<Category,CategoryDTO>(category);
+            return categoryDTO;
+        }
+
 
         public bool AddCategory(CategoryDTO categoryDTO)
         {

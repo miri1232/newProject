@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { BudgetHomePageComponent } from './Components/Budgets/budget-home-page/budget-home-page.component';
 import { AddPermissionComponent } from './Components/Budgets/add-permission/add-permission.component';
 import { AlertComponent } from './Components/General/alert/alert.component';
+import { ActionDialogComponent } from './Components/General/action-dialog/action-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AlertComponent } from './Components/General/alert/alert.component';
     BudgetHomePageComponent,
     AddPermissionComponent,
     AlertComponent,
+    ActionDialogComponent,
   ],
   imports: [
     BrowserModule,

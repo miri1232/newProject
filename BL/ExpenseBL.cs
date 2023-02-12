@@ -14,11 +14,19 @@ namespace BL
     public class ExpenseBL : IExpenseBL
     {
         private IExpenseDAL _expenseDAL;
+        private ICategoryDAL _categoryDAL;
+        private ISubcategoryDAL _subcategoryDAL;
+        private ILookupDAL _lookupDAL;
+
         IMapper mapper;
 
-        public ExpenseBL(IExpenseDAL expenseDAL)
+        public ExpenseBL(IExpenseDAL expenseDAL, ICategoryDAL categoryDAL, ISubcategoryDAL subcategoryDAL, ILookupDAL lookupDAL)
         {
             _expenseDAL = expenseDAL;
+            _categoryDAL = categoryDAL;
+            _subcategoryDAL = subcategoryDAL;
+            _lookupDAL = lookupDAL;
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<AutoMapperProfile>();
@@ -30,6 +38,20 @@ namespace BL
         {
             List<Expense> expenseList = _expenseDAL.GetAllExpenses();
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            
+            List<Category> categories = _categoryDAL.GetAllCategory();
+            listExpenseDTO.ForEach(item => item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.Category).Detail);
+           
+            List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
+            listExpenseDTO.ForEach(item => item.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == item.Subcategory).Detail);
+            
+            List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
+            listExpenseDTO.ForEach(item => item.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == item.PaymentMethod).Detail);
+            
+            List<Status> statuses = _lookupDAL.GetAllStatus();
+            listExpenseDTO.ForEach(item => item.StatusDetail = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
+
+
             return listExpenseDTO;
         }
         public List<ExpenseDTO> GetExpensesByDate(DateTime start, DateTime end)
