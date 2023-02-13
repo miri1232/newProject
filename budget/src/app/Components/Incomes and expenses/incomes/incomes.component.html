@@ -1,4 +1,4 @@
-<p>incomes works!</p>
+<p>פירוט הכנסות</p>
 
 <table class="table table-success table-striped">
     <thead>
@@ -9,12 +9,12 @@
         <th scope="col">קטגוריה</th>
         <th scope="col">מקור הכנסה </th>
         <th scope="col">פרטים</th>
-        <th scope="col">אופן התשלום</th>
-        <th scope="col">סטטוס הוצאה</th>
+        <th scope="col">אופן תקבול</th>
+        <th scope="col">סטטוס הכנסה</th>
         <th scope="col"> אסמכתא</th>
       </tr>
     </thead>
-    <tbody *ngFor="let e of ExpensesList; let i=index">
+    <tbody *ngFor="let e of IncomeList; let i=index">
       <tr>
         <th scope="row">{{i+1}}</th>
         <td>{{e.date | date: 'dd/MM/yyyy' }}</td>

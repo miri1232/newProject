@@ -11,7 +11,7 @@ import { ExpensesService } from 'src/app/Services/expenses.service';
 import { LookupService } from 'src/app/Services/lookup.service';
 import { SubCategoryService } from 'src/app/Services/sub-category.service';
 import { Logging } from 'src/shared/log.service';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
 
 @Component({
@@ -48,7 +48,7 @@ export class AddExpenseComponent implements OnInit {
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
     private mySubCategory: SubCategoryService,
-    private modalService: NgModule
+    private modalService: NgbModal
   ) { }
 
   eventForm!: FormGroup;
