@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-alert',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit {
+
+  @Input()
 isModal:boolean=false;
 modal!:string;
 title!:string;
@@ -14,7 +17,9 @@ accept !:string;
 cancel !:string;
 isCancel :boolean=false;
 
-  constructor() { }
+  constructor(
+    public activeModal: NgbActiveModal
+  ) { }
 
   ngOnInit(): void {
   }
@@ -45,5 +50,8 @@ AddAlert2(t:string, n:string ){
   this.cancel ="ביטול" ;
 }
 
+close(){
+  this.activeModal.close();
+}
 
 }
