@@ -14,11 +14,19 @@ namespace BL
     public class IncomeBL : IIncomeBL
     {
         private IIncomeDAL _incomeDAL;
+        private ICategoryIncomeDAL _categoryIncomeDAL;
+        private ISourceOfIncomeDAL _sourceOfIncomeDAL;
+        private ILookupDAL _lookupDAL;
+
         IMapper mapper;
 
-        public IncomeBL(IIncomeDAL incomeDAL)
+        public IncomeBL(IIncomeDAL incomeDAL, ICategoryIncomeDAL categoryIncomeDAL, ISourceOfIncomeDAL sourceOfIncomeDAL, ILookupDAL lookupDAL)
         {
             _incomeDAL = incomeDAL;
+            _categoryIncomeDAL = categoryIncomeDAL;
+            _sourceOfIncomeDAL = sourceOfIncomeDAL;
+            _lookupDAL = lookupDAL;
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<AutoMapperProfile>();
@@ -30,6 +38,19 @@ namespace BL
         {
             List<Income> incomeList = _incomeDAL.GetAllIncomes();
             List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+
+            List<CategoryIncome> categoriesIncome = _categoryIncomeDAL.GetAllCategoryIncome();
+            listIncomeDTO.ForEach(item => item.CategoryIncomeDetail = categoriesIncome.FirstOrDefault(e => e.Id == item.CategoryIncome).Detail);
+
+            List<SourceOfIncome> sourcesOfIncome = _sourceOfIncomeDAL.GetAllSourceOfIncomes();
+            listIncomeDTO.ForEach(item => item.SourceOfIncomeDetail = sourcesOfIncome.FirstOrDefault(e => e.Id == item.SourceOfIncome).Detail);
+
+            List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
+            listIncomeDTO.ForEach(item => item.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == item.PaymentMethod).Detail);
+
+            List<Status> statuses = _lookupDAL.GetAllStatus();
+            listIncomeDTO.ForEach(item => item.StatusDetail = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
+
             return listIncomeDTO;
         }
 
