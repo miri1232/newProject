@@ -6,7 +6,7 @@ namespace BL
    public interface ILookupBL
     {
         List<BankDTO> GetAllBank();
-        List<BankOfBudgetDTO> GetAllBankOfBudget();
+        List<BankOfBudgetDTO> GetAllBankOfBudget(int idBudget);
         List<PermissionDTO> GetAllPermission();
         List<PermissionLevelDTO> GetAllPermissionLevel();
         List<StatusDTO> GetAllStatus();

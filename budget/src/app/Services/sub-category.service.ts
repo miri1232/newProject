@@ -17,9 +17,17 @@ export class SubCategoryService {
 
   
   GetAllSubcategory(): Observable<Subcategory[]> {
-    const category=new HttpParams();
-    
-    return this.http.get<Subcategory[]>(this.V_API + '/GetAllSubcategory');
+    // const category=new HttpParams();
+        return this.http.get<Subcategory[]>(this.V_API + '/GetAllSubcategory');
+
   }
+
+  GetSubcategoryByCategory(category:number) : Observable<Subcategory[]> {
+    const p=new HttpParams().set('category',category);
+
+     return this.http.get<Subcategory[]>(this.V_API + '/GetSubcategoryByCategory',{responseType: 'json',params:p});
+   // return this.http.get<Subcategory[]>(this.V_API + '/GetSubcategoryByCategory'+category);
+
+}
 
 }

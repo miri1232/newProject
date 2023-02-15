@@ -23,13 +23,15 @@ namespace DAL
                 throw ex;
             }
         }
-        public List<BankOfBudget> GetAllBankOfBudget()
+        public List<BankOfBudget> GetAllBankOfBudget(int idBudget)
 
         {
             try
             {
-                return _context.BankOfBudgets.ToList();
+
+                return _context.BankOfBudgets.Where(b => b.IdBudget == idBudget).ToList();
             }
+
             catch (Exception ex)
             {
                 throw ex;

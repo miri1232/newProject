@@ -6,7 +6,7 @@ namespace DAL
     public interface ILookupDAL
     {
         List<Bank> GetAllBank();
-        List<BankOfBudget> GetAllBankOfBudget();
+        List<BankOfBudget> GetAllBankOfBudget(int idBudget);
         List<Permission> GetAllPermission();
         List<PermissionLevel> GetAllPermissionLevel();
         List<Status> GetAllStatus();

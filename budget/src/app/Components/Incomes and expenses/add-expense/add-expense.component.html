@@ -7,8 +7,8 @@
     <div class="text-center mt-4 name">
         in & out
     </div>
-    
-    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddExpense()" >
+   
+    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddExpense()">
 
  
         <div class="form-field d-flex align-items-center">
@@ -22,12 +22,11 @@
             <input type="number"  id="sum" placeholder="סכום"
              formControlName="sum" name="sum" required/>
         </div>
-
         <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <select class="form-field d-flex align-items-center"
-             placeholder="בחר קטגוריה"  
+            <select (change)="filterByCategory()" class="form-field d-flex align-items-center"
+             placeholder="בחר קטגוריה" [(ngModel)] ="idCategory"
             formControlName="category" required>
                 <option type="number" *ngFor="let t of listCategory" [ngValue]="t.id" required>
                     <label> {{t.detail}} </label>  
@@ -36,7 +35,7 @@
         </div>
 
         <!-- בחירה מתוך תיבה נפתחת -->      
-        <div class="form-field d-flex align-items-center">
+        <div *ngIf="idCategory==null; else byCtegory" class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <select class="form-field d-flex align-items-center" placeholder="בחר תת קטגוריה"  
             formControlName="subCategory" required>
@@ -46,6 +45,19 @@
             </select>
         </div>
  
+        <ng-template #byCtegory>
+          <!-- בחירה מתוך תיבה נפתחת לאחר שהוזנו נתונים בתיבת קטגוריה -->      
+          <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <select class="form-field d-flex align-items-center" placeholder="בחר תת קטגוריה"  
+            formControlName="subCategory" required>
+                <option  type="text" *ngFor="let t of listSubcategoryByCategory" [ngValue]="t.id" required>
+                    <label> {{t.detail}} </label> 
+                </option>
+            </select>
+        </div>
+        </ng-template>
+
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <input type="text"  id="detail" placeholder="פרטים"

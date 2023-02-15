@@ -6,6 +6,8 @@ import { PaymentMethod } from '../Classes/PaymentMethod';
 import { PermissionLevel } from '../Classes/PermissionLevel';
 import { Status } from '../Classes/Status';
 import { TypeBudget } from '../Classes/TypeBudget';
+import { Bank } from '../Classes/Bank';
+
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +40,11 @@ export class LookupService {
     const permissionLevel=new HttpParams(); 
     return this.http.get<PermissionLevel[]>(this.V_API + '/GetAllPermissionLevel');
   }
+  
+  GetAllBankOfBudget(idBudget:number):Observable<Bank[]>{
+    return this.http.get<Bank[]>(this.V_API+'/GetAllBankOfBudget'+idBudget);
 
+  }
 
 
 }

@@ -23,6 +23,8 @@ import { BudgetHomePageComponent } from './Components/Budgets/budget-home-page/b
 import { AddPermissionComponent } from './Components/Budgets/add-permission/add-permission.component';
 import { AlertComponent } from './Components/General/alert/alert.component';
 import { ActionDialogComponent } from './Components/General/action-dialog/action-dialog.component';
+import { BankComponent } from './Components/Budgets/bank/bank.component';
+import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ActionDialogComponent } from './Components/General/action-dialog/action
     AddPermissionComponent,
     AlertComponent,
     ActionDialogComponent,
+    BankComponent,
+    AddBankComponent,
   ],
   imports: [
     BrowserModule,

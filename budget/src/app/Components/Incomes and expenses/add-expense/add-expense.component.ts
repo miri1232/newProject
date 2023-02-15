@@ -27,9 +27,14 @@ export class AddExpenseComponent implements OnInit {
 
   //עבור יבוא מערכים לנתוני תיבה נפתחת
   public listCategory: Category[] | undefined;
-  public listSubcategory: Subcategory[] | undefined;
+  public listSubcategory: Subcategory[] =[];
   public listStatus: Status[] | undefined;
   public listPaymentMethod: PaymentMethod[] | undefined;
+
+  //עבור רשימה נפתחת מצומצמת לתת קטגוריה
+  public idCategory!:number;
+  public listSubcategoryByCategory: Subcategory[]=[];
+ 
 
   //עבור תיבה נפתחת
   // categoryFormControl = new FormControl(Validators.prototype);
@@ -53,10 +58,17 @@ export class AddExpenseComponent implements OnInit {
 
   eventForm!: FormGroup;
 
+  // ngDoCheck(): void {
+  //   this.mySubCategory.GetSubcategoryByCategory(this.idCategory).subscribe(res => {
+  //     this.listSubcategoryByCategory = res;
+  //     console.log(this.listSubcategoryByCategory);
+  //   });
+  // }
+
   ngOnInit(): void {
-    const modalRef = this.modalService.open(ActionDialogComponent);
-    modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
-    //יבוא נתונים עבור רשימות נפתחות
+    // const modalRef = this.modalService.open(ActionDialogComponent);
+    // modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
+    // //יבוא נתונים עבור רשימות נפתחות
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
       console.log(this.listStatus);
@@ -75,20 +87,8 @@ export class AddExpenseComponent implements OnInit {
       console.log(this.listSubcategory);
     });
 
-    // //קליטת נתונים מהטופס
-    // this.eventForm = new FormGroup({
-    //   idBudget: new FormControl(this.log.ActiveBudget.id),
-    //   date: new FormControl("", [Validators.required]),
-    //   sum: new FormControl("", [Validators.required]),
-    //   category:  new FormControl("",this.categoryFormControl.value),
-    //   subCategory:  new FormControl("",this.subcategoryFormControl.value),
-    //   detail:new FormControl("", [Validators.required]),
-    //   paymentMethod:new FormControl( "", this.paymentMethodFormControl.value),
-    //   frequency:new FormControl("", [Validators.required]),
-    //   numberOfPayments:new FormControl(  "", [Validators.required]),
-    //   status:new FormControl( "",this.statusFormControl.value),
-    //   document:new FormControl("", ),
-    // });
+
+
 
     //הקמת הטופס
     this.eventForm = new FormGroup({
@@ -105,9 +105,19 @@ export class AddExpenseComponent implements OnInit {
       document: new FormControl(""),
     });
 
+
+
   }
 
+  filterByCategory(){
+  
+    console.log("idCategory",this.idCategory)
+    this.mySubCategory.GetSubcategoryByCategory(2).subscribe(res => {
 
+          this.listSubcategoryByCategory = res;
+          console.log(this.listSubcategoryByCategory);
+        });
+  }
   AddExpense() {
 
     if (this.eventForm.value != undefined) {
@@ -115,32 +125,17 @@ export class AddExpenseComponent implements OnInit {
 
       this.newExpense = this.eventForm.value;
 
-      // this.newExpense.idBudget = 5008;
-      // this.newExpense.date = this.eventForm.value.date;
-      // this.newExpense.sum = this.eventForm.value.sum;
-      // this.newExpense.category = this.eventForm.value.category;
-      // this.newExpense.subcategory = this.eventForm.value.subCategory;
-      // this.newExpense.paymentMethod = this.eventForm.value.paymentMethod;
-      // this.newExpense.frequency = this.eventForm.value.frequency;
-      // this.newExpense.numberOfPayments = this.eventForm.value.numberOfPayments;
-      // this.newExpense.status = this.eventForm.value.status;
-      // this.newExpense.document = this.eventForm.value.document;
-
-      // this.typeBudgetFormControl.value;
-      // this.newBudget.manager = this.log.ActiveUser.id;
-      // this.newBudget.nameBudget = this.eventForm.controls.nameBudget.value;
-
-
       this.myExpense.AddExpense(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
         this.newExpense = this.eventForm.value;
-        const modalRef = this.modalService.open(ActionDialogComponent);
-        modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
-
+     const modalRef = this.modalService.open(ActionDialogComponent);
+    modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
+       
         this.newExpense = new Expense();
-
-
+  
       })
+  
+
     }
 
   }

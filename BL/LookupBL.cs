@@ -36,9 +36,9 @@ namespace BL
         }
 
         
-        public List<BankOfBudgetDTO> GetAllBankOfBudget()
+        public List<BankOfBudgetDTO> GetAllBankOfBudget(int idBudget)
         {
-            List<BankOfBudget> bankOfBudgetList = _lookupDAL.GetAllBankOfBudget();
+            List<BankOfBudget> bankOfBudgetList = _lookupDAL.GetAllBankOfBudget(idBudget);
         List<BankOfBudgetDTO> ListBankOfBudgetDTO = mapper.Map<List<BankOfBudget>, List<BankOfBudgetDTO>>(bankOfBudgetList);
             return ListBankOfBudgetDTO;
         }

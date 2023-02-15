@@ -1,4 +1,4 @@
-export class Babk{
+export class Bank{
   
    
          id!: number;

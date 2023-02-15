@@ -23,6 +23,18 @@ namespace DAL
             }
         }
 
+        public List<Subcategory> GetSubcategoryByCategory(int category)
+        {
+            try
+            {
+                return _context.Subcategories.Where(c => c.Category == category).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool AddSubcategory(Subcategory subcategory)
         {
             try

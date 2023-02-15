@@ -35,6 +35,21 @@ namespace newProject.Controllers
             }
         }
 
+        //שליפה לפי קטגוריה
+        [HttpGet]
+        [Route("GetSubcategoryByCategory")]
+        public IActionResult GetSubcategoryByCategory(int category)
+        {
+            try
+            {
+                return Ok(_subcategoryBL.GetSubcategoryByCategory(category));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //הוספה
         [HttpPost]
         [Route("AddSubcategory")]

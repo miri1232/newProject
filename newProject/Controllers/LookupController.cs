@@ -37,12 +37,12 @@ namespace newProject.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllBankOfBudget")]
-        public IActionResult GetAllBankOfBudget()
+        [Route("GetAllBankOfBudget/{idBudget}")]
+        public IActionResult GetAllBankOfBudget(int idBudget)
         {
             try
             {
-                return Ok(_lookupBL.GetAllBankOfBudget());
+                return Ok(_lookupBL.GetAllBankOfBudget(idBudget));
             }
             catch (Exception ex)
             {

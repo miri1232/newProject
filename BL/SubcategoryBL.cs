@@ -33,7 +33,15 @@ namespace BL
             return listSubcategorysDTO;
         }
 
+        public List<SubcategoryDTO> GetSubcategoryByCategory(int category) 
+        {
+            List<Subcategory> subcategoryList = _subcategoryDAL.GetSubcategoryByCategory(category);
+            List<SubcategoryDTO> subcategoryListDTO = mapper.Map<List<Subcategory>, List<SubcategoryDTO>>(subcategoryList);
+            return subcategoryListDTO;
 
+        }
+
+        
         public bool AddSubcategory(SubcategoryDTO subcategoryDTO)
         {
             Subcategory currentSubcategory = mapper.Map<SubcategoryDTO, Subcategory>(subcategoryDTO);
