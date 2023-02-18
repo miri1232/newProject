@@ -70,6 +70,8 @@ namespace newProject
             services.AddScoped<IPermissionDAL, PermissionDAL>();
             services.AddScoped<ICategoryIncomeBL, CategoryIncomeBL>();
             services.AddScoped<ICategoryIncomeDAL, CategoryIncomeDAL>();
+            services.AddScoped<IBankOfBudgetBL, BankOfBudgetBL>();
+            services.AddScoped<IBankOfBudgetDAL, BankOfBudgetDAL>();
             services.AddScoped<ILookupBL, LookupBL>();
             services.AddScoped<ILookupDAL, LookupDAL>();
 
