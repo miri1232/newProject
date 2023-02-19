@@ -1,1 +1,31 @@
-<p>add-bank works!</p>
+<meta charset="utf-8" />
+<div class="wrapper">
+
+    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddBankOfBudget()">
+
+        <!-- בחירה מתוך תיבה נפתחת -->
+        <div class="form-field d-flex align-items-center">
+            <select class="form-field d-flex align-items-center" placeholder="בחר בנק"
+                formControlName="idBank" required>
+                <option type="number" *ngFor="let b of listBanks" [ngValue]="b.id" required>
+                    <label> {{b.nameBank}} </label>
+                </option>
+            </select>
+        </div>
+
+        <div class="form-field d-flex align-items-center">
+            <input type="text" id="branch_Number" placeholder=" הכנס מספר סניף"
+             formControlName="branch_Number"  name="branch_Number" required />
+        </div>
+        
+        <div class="form-field d-flex align-items-center">
+            <input type="text" id="account_Number" placeholder=" הכנס מספר חשבון"
+             formControlName="account_Number"  name="account_Number" required />
+        </div>
+
+
+
+        <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף חשבון</button>
+
+    </form>
+

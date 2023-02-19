@@ -50,7 +50,7 @@ export class AddPermissionComponent implements OnInit {
   this.eventForm = new FormGroup({
     id: new FormControl(0),
     idUser: new FormControl(""),
-    idBudget: new FormControl(5007),
+    idBudget: new FormControl(5),
     permissionLevel: new FormControl(""),
   });
 

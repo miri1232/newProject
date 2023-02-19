@@ -66,8 +66,6 @@ export class AddExpenseComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    // const modalRef = this.modalService.open(ActionDialogComponent);
-    // modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
     // //יבוא נתונים עבור רשימות נפתחות
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;

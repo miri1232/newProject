@@ -16,6 +16,8 @@ namespace DAL.Models
         public int Id { get; set; }
         public string NameBank { get; set; }
         public string Link { get; set; }
+        public string Logo_Bank { get; set; }
+
 
         public virtual ICollection<BankOfBudget> BankOfBudgets { get; set; }
         public virtual ICollection<Message> Messages { get; set; }

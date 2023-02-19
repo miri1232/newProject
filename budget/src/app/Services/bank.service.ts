@@ -22,9 +22,14 @@ export class BankService {
     GetBankOfBudgetByIdBudget():Observable<BankOfBudget[]>{
       const categoryIncome=new HttpParams();
     
-      return this.http.get<BankOfBudget[]>(this.V_API + '/GetBankOfBudgetByIdBudget'+'/5007');
+      return this.http.get<BankOfBudget[]>(this.V_API + '/GetBankOfBudgetByIdBudget'+'/6');
    
     }
+
+    AddBankOfBudget(newBank:BankOfBudget):Observable<boolean> {
+
+      return this.http.post<boolean>(this.V_API + '/AddBankOfBudget',newBank);
+  }
 
 
 }

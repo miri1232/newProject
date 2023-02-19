@@ -1,6 +1,23 @@
 <p>bank works!</p>
+ <div class="row">
+<div class="card" style="width: 18rem;" *ngFor="let b of listBanksOfBudget">
+    <!-- <a class="nav-link" href="{{b.link}}"><img src="{{b.logo_Bank}}" alt="">
+    </a> -->
+           <!-- <div class="col-sm-5"> -->
 
-<div *ngFor="let b of listBanksOfBudget">
-    <a class="nav-link" href="{{b.link}}">{{b.nameBank}}</a>
+    <!-- <div class="card" style="width: 18rem;"> -->
+        <img src="{{b.logo_Bank}}" class="card-img-top" alt="{{b.nameBank}}">
+        <div class="card-body">
+          <h5 class="card-title">שם הבנק: {{b.nameBank}}</h5>
+          <p class="card-text">מספר סניף: {{b.branch_Number}}</p>
+          <p class="card-text">מספר חשבון: {{b.account_Number}}</p>
+
+          <a href={{b.link}} class="btn btn-success">התחבר לחשבון</a>
+        </div>
+      </div>
+      <button class="btn mt-3" (click)="addBank=!addBank">הוספת בנק לתקציב</button>
+      <app-add-bank *ngIf="addBank" ></app-add-bank>
+      <!-- </div> -->
+      <!-- </div> -->
 
 </div>

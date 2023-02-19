@@ -49,7 +49,8 @@ namespace BL
             listExpenseDTO.ForEach(item => item.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == item.PaymentMethod).Detail);
             
             List<Status> statuses = _lookupDAL.GetAllStatus();
-            listExpenseDTO.ForEach(item => item.StatusDetail = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
+            listExpenseDTO.ForEach(item => item.StatusDetail 
+            = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
 
 
             return listExpenseDTO;

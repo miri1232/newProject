@@ -41,9 +41,9 @@ export class LookupService {
     return this.http.get<PermissionLevel[]>(this.V_API + '/GetAllPermissionLevel');
   }
   
-  GetAllBankOfBudget(idBudget:number):Observable<Bank[]>{
-    return this.http.get<Bank[]>(this.V_API+'/GetAllBankOfBudget'+idBudget);
-
+  GetAllBank():Observable<Bank[]>{
+    const permissionLevel=new HttpParams(); 
+    return this.http.get<Bank[]>(this.V_API + '/GetAllBank');
   }
 
 
