@@ -11,10 +11,10 @@ body {
 }
 
 .wrapper {
-    max-width: 350px;
+    max-width: 700px;
     min-height: 500px;
     margin: 80px auto;
-    padding: 40px 30px 30px 30px;
+    padding: 40px 20px 30px 10px;
     background-color: #ecf0f3;
     border-radius: 15px;
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
@@ -56,13 +56,6 @@ body {
     color: #666;
     padding: 10px 15px 10px 10px;
     /* border: 1px solid red; */
-}
-
-.wrapper .form-field {
-    padding-left: 10px;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 }
 
 .wrapper .form-field .fas {

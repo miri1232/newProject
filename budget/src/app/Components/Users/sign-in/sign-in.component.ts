@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule, EmailValidator } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
@@ -22,7 +22,6 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private log:Logging,
-
     private formBuilder: FormBuilder,
     private myUser: UserService,
     private router:Router,
@@ -33,14 +32,34 @@ export class SignInComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.eventForm = new FormGroup({
-      password: new FormControl("", [Validators.required, Validators.minLength(5)]),
-      firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      id: new FormControl("", [Validators.required]),
-      phone: new FormControl("", [Validators.required]),
-      dateBirth: new FormControl(new Date(), [Validators.required]),
+    
+        //הקמת הטופס
+        this.eventForm = new FormGroup({
+
+          password: new FormControl("", [Validators.required, Validators.minLength(5)]),
+          firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+          lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+          email: new FormControl("", [Validators.required, Validators.email]),
+          id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*")]),
+          phone: new FormControl("", [Validators.required]),
+          dateBirth: new FormControl(new Date(0), [Validators.required]),
+
+          // password: new FormControl("", [Validators.required, Validators.minLength(5)]),
+          // firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+          // lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+          // email: new FormControl("", [Validators.required, Validators.email]),
+          // id: new FormControl("", [Validators.required, Validators.pattern("[0-9]")]),
+          // phone: new FormControl("", [Validators.required]),
+          // dateBirth: new FormControl(new Date(), [Validators.required]),
+
+          // this.eventForm = new FormGroup({
+          //   password: new FormControl("", [Validators.required, Validators.minLength(5)]),
+          //   firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+          //   lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+          //   email: new FormControl("", [Validators.required,  Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" )]),
+          //   id: new FormControl("", [Validators.required, Validators.pattern("[0-9]"), Validators.maxLength(9)]),
+          //   phone: new FormControl("", [Validators.required, Validators.pattern("05[0-9]-?[0-9]{7}")]),
+          //   dateBirth: new FormControl(new Date(), [Validators.required]),
     });
   }
 

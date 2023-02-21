@@ -6,53 +6,86 @@
     <div class="text-center mt-4 name">
         in & out
     </div>
-    
-    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddUser()" >
 
- 
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text"  id="firstName" placeholder="שם פרטי"
-             formControlName="firstName" name="firstName" />
+
+    <form    class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddUser()" >
+    <div class="row">
+           <div class="col-sm-6">
+
+        <div class="form-field align-items-center" style="width: 18rem;">
+            <span class="far fa-user">שם פרטי</span>
+            <input type="text"  id="firstName" 
+             formControlName="firstName" name="firstName"  />
+            <div class="text-danger" *ngIf="eventForm['controls'].firstName.dirty && eventForm['controls'].firstName.errors?.required">שדה חובה</div>
         </div>
- 
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text"  id="lastName" placeholder="שם משפחה"
-             formControlName="lastName" name="lastName" />
         </div>
 
-   <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text"  id="userId" placeholder="ת.ז."
+           <div class="col-sm-6">
+
+        <div class="form-field align-items-center" style="width: 18rem;">
+            <span class="far fa-user">שם משפחה</span>
+            <input type="text"  id="lastName" 
+             formControlName="lastName" name="lastName" required/>
+             <div class="text-danger" *ngIf="eventForm['controls'].lastName.dirty && eventForm['controls'].lastName.errors?.required">שדה חובה</div>
+        </div>
+
+        </div>
+        
+        <div class="col-sm-6">
+
+   <div class="form-field align-items-center" style="width: 18rem;">
+            <span class="far fa-user">תעודת זהות</span>
+            <input type="text"  id="userId" 
             formControlName="id" name="userId" />
+            <div class="text-danger" *ngIf="eventForm['controls'].id.dirty && eventForm['controls'].id.errors?.required">שדה חובה</div>
         </div>
 
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text"  id="phone" placeholder="טלפון"
+        </div>
+
+        <div class="col-sm-6">
+
+        <div class=" form-field align-items-center" style="width: 18rem;">
+            <span class="far fa-user">מספר נייד</span>
+            <input type="text"  id="phone" 
             formControlName="phone" name="phone" />
+            <div class="text-danger" *ngIf="eventForm['controls'].phone.dirty && eventForm['controls'].phone.errors?.required">שדה חובה</div>
         </div>
- 
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="email"  id="email" placeholder="מייל"
+
+        </div>
+
+
+        <div class="form-field align-items-center"  style="width: 39.5rem;">
+            <span class="far fa-user">כתובת מייל</span>
+            <input type="email"  id="email" 
             formControlName="email" name="email" />
+            <div class="text-danger" *ngIf="eventForm['controls'].email.dirty && eventForm['controls'].email.errors?.required">הכנס כתובת מייל תקינה </div>
         </div>
 
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="date"  id="dateBirth" placeholder="תאריך לידה"
+        <div class="col-sm-6">
+
+        <div class="form-field align-items-center"   style="width: 18rem;">
+            <span class="far fa-user">תאריך לידה</span>
+            <input type="date"  id="dateBirth" 
             formControlName="dateBirth" name="dateBirth" />
+            <div class="text-danger" *ngIf="eventForm['controls'].dateBirth.dirty && eventForm['controls'].dateBirth.errors?.required">שדה חובה</div>
         </div>
-  
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="password"  id="password" placeholder="סיסמא"
-            formControlName="password" name="password" />
 
         </div>
-        <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הרשם</button>
+        <div class="col-sm-6">
+
+        <div class="form-field align-items-center"  style="width: 18rem;">
+            <span class="fas fa-key">בחר סיסמא</span>
+            <input type="password"  id="password" 
+            formControlName="password" name="password" />
+            <div class="text-danger" *ngIf="eventForm['controls'].password.dirty && eventForm['controls'].password.errors?.required">שדה חובה</div>
+        </div>
+
+        </div>
+        <div class="text-center fs-6">
+
+        <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid" style="margin-top:40px ; width: 18rem; ">הרשם</button>
+        </div>
+        </div>
 
     </form>
     <div class="text-center fs-6">

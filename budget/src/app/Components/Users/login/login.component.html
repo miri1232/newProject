@@ -1,28 +1,35 @@
- <p>login works!</p>
+<meta charset="utf-8" />
 
-  <div class="wrapper">
+
+<div class="wrapper">
+    
     <div class="logo">
         <img src="../../../../assets/image/Logo.jpg" alt="">
     </div>
     <div class="text-center mt-4 name">
         in & out
     </div>
-    <form class="p-3 mt-3" (submit)="checkUser()">
 
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text"  id="userId" placeholder="ת.ז."
-            required [(ngModel)]="IdToLogin" name="userId" />
+    <form class="p-3 mt-3"  (ngSubmit)="checkUser()">
 
+        <div class="form-outline">
+        <div class="form-field align-items-center">
+            <span class="far fa-user" for="IdToLogin">הכנס ת.ז.</span>
+            <input class="form-control" type="text" id="IdToLogin" [(ngModel)]="IdToLogin" name="IdToLogin" required/>
         </div>
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="password"  id="pwd" placeholder="סיסמא"
-            required [(ngModel)]="PassToLogin" name="password" />
-
         </div>
+
+        <div class="form-outline">
+            <div class="form-field align-items-center">
+                <label class="fas fa-key form-label" for="PassToLogin">הכנס סיסמא</label>
+                <input class="form-control" type="text" id="PassToLogin" [(ngModel)]="PassToLogin" name="PassToLogin" required/>
+            </div>
+        </div>
+        
         <button class="btn mt-3" type="submit">התחבר</button>
     </form>
+
+
     <div class="text-center fs-6">
         <a href="UpdatePassword">שכחת סיסמא</a> או <a href="SignIn">אינך רשום </a>
     </div>

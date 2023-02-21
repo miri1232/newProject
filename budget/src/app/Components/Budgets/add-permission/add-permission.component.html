@@ -1,4 +1,5 @@
 <meta charset="utf-8" />
+
 <div class="wrapper">
 
     <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddPermission()">
@@ -12,7 +13,7 @@
 
         <!-- בחירה מתוך תיבה נפתחת -->
         <div class="form-field d-flex align-items-center">
-            <!-- <span class="far fa-user"><i class="bi bi-unlock-fill"></i></span> -->
+            <!-- <span class="far fa-user"> <i class="bi bi-unlock-fill"></i></span> -->
             <select class="form-field d-flex align-items-center" placeholder="בחר רמת הרשאה"
                 formControlName="permissionLevel" required>
                 <option type="number" *ngFor="let t of listPermissionLevel" [ngValue]="t.id" required>
@@ -23,42 +24,3 @@
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוספת הרשאה</button>
 
     </form>
-
-
-<!--  
-    <div class="form-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8">
-                    <div class="form-container">
-                        <div class="form-icon">
-                            <div class="logo">
-                                <img src="../../../../assets/image/Logo.jpg" alt="">
-                            </div>
-                            <form class="form-horizontal" [formGroup]="eventForm" (ngSubmit)="AddPermission()">
-                                <h3 class="title">הוספת הרשאה לחשבון</h3>
-
-                                <div class="form-group">
-                                    <span class="input-icon"><i class="bi bi-person-fill-add"></i></span>
-                                    <input class="form-control" type="text" id="IdUserToPermission"
-                                        placeholder="ת.ז.הכנס מספר ">
-                                </div>
-
-                                <div class="form-group">
-                                    <span class="input-icon"><i class="bi bi-unlock-fill"></i></span>
--->
-                                    <!-- בחירה מתוך תיבה נפתחת -->
-
-                                    <!-- <select class="form-control" placeholder="בחר רמת הרשאה"
-                                        formControlName="IdPermissionLevel" required>
-                                        <option type="number" *ngFor="let t of listPermissionLevel" [ngValue]="t.id"
-                                            required>
-                                            <label class="form-control"> {{t.description}} </label>
-                                        </option>
-                                    </select>
-
-                                </div>
-
-                                <button class="btn signin" type="submit" [disabled]="!eventForm.valid">הוספת
-                                    הרשאה</button>
-                            </form> -->

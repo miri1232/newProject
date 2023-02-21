@@ -4,7 +4,7 @@
     <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddBankOfBudget()">
 
         <!-- בחירה מתוך תיבה נפתחת -->
-        <div class="form-field d-flex align-items-center">
+        <div class="form-field  align-items-center">
             <select class="form-field d-flex align-items-center" placeholder="בחר בנק"
                 formControlName="idBank" required>
                 <option type="number" *ngFor="let b of listBanks" [ngValue]="b.id" required>
@@ -13,13 +13,14 @@
             </select>
         </div>
 
-        <div class="form-field d-flex align-items-center">
-            <input type="text" id="branch_Number" placeholder=" הכנס מספר סניף"
+        <div class="form-field align-items-center">
+            <span class="far fa-user">הכנס מספר סניף</span>
+            <input type="number" id="branch_Number"
              formControlName="branch_Number"  name="branch_Number" required />
         </div>
         
-        <div class="form-field d-flex align-items-center">
-            <input type="text" id="account_Number" placeholder=" הכנס מספר חשבון"
+        <div class="form-field  align-items-center">
+            <input type="number" id="account_Number" placeholder=" הכנס מספר חשבון"
              formControlName="account_Number"  name="account_Number" required />
         </div>
 

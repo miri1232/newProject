@@ -89,16 +89,31 @@ body {
     font-size: 1.2rem;
     color: #666;
     padding: 10px 15px 10px 10px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
     /* border: 1px solid red; */
 }
 
-.wrapper .form-field {
-    padding-left: 10px;
-    margin-bottom: 20px;
+.wrapper .form-field select {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
     border-radius: 20px;
     box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    /* border: 1px solid red; */
 }
 
+// .wrapper .form-field {
+//     padding-left: 10px;
+//     margin-bottom: 20px;
+//     border-radius: 20px;
+//     box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+// }
 .wrapper .form-field .fas {
     color: #555;
 }
