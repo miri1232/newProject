@@ -1,10 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
 import { Logging } from 'src/shared/log.service';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule, EmailValidator } from '@angular/forms';
-
 
 @Component({
   selector: 'app-login',
@@ -25,18 +24,25 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private log:Logging,
+    private formBuilder: FormBuilder,
     private userService: UserService,
     private router:Router,
     private route:ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
+  eventForm!: FormGroup;
 
+  ngOnInit(): void {
+   //הקמת הטופס
+   this.eventForm = new FormGroup({
+
+    password: new FormControl("", [Validators.required, Validators.minLength(4)]),
+    id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*")]),
+  });   
   }
 
   checkUser() {
-    //if (this.IdToLogin != undefined && this.PassToLogin != undefined && this.IdToLogin != "" && this.PassToLogin != "")
-      // this.ccurrentUser !=new User() ;
+   
       this.userService.LoginUserByID(this.IdToLogin, this.PassToLogin).subscribe(res => {
         if (res) {
           this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
@@ -54,13 +60,11 @@ export class LoginComponent implements OnInit {
           alert("שם משתמש או סיסמה שגויים, אנא נסה שנית או הירשם");
         }
         console.log('res===', res)
-      });
-    
-    // else {
-    //   alert("חובה להכניס שפ משתמש וסיסמא");
-    // }
-   
+      }); 
   }
+
+
+  
 }
 
 

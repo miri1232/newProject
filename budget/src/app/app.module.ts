@@ -48,6 +48,7 @@ import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.compone
     ActionDialogComponent,
     BankComponent,
     AddBankComponent,
+  
   ],
   imports: [
     BrowserModule,

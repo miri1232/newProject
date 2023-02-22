@@ -10,23 +10,25 @@
         in & out
     </div>
 
-    <form class="p-3 mt-3"  (ngSubmit)="checkUser()">
+    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="checkUser()">
 
         <div class="form-outline">
         <div class="form-field align-items-center">
-            <span class="far fa-user" for="IdToLogin">הכנס ת.ז.</span>
-            <input class="form-control" type="text" id="IdToLogin" [(ngModel)]="IdToLogin" name="IdToLogin" required/>
+            <span class="far fa-user" for="id">הכנס ת.ז.</span>
+            <input class="form-control" type="text" id="id" [(ngModel)]="IdToLogin" 
+            formControlName="id" name="id" required/>
         </div>
         </div>
 
         <div class="form-outline">
             <div class="form-field align-items-center">
-                <label class="fas fa-key form-label" for="PassToLogin">הכנס סיסמא</label>
-                <input class="form-control" type="text" id="PassToLogin" [(ngModel)]="PassToLogin" name="PassToLogin" required/>
+                <span class="fas fa-key form-label" for="password">הכנס סיסמא</span>
+                <input class="form-control" type="text" id="password" [(ngModel)]="PassToLogin" 
+                 formControlName="password" name="password" required/>
             </div>
         </div>
         
-        <button class="btn mt-3" type="submit">התחבר</button>
+        <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">התחבר</button>
     </form>
 
 
