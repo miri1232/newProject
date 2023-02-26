@@ -22,4 +22,9 @@ export class CategoryService {
     return this.http.get<Category[]>(this.V_API + '/GetAllCategory');
   }
 
+  AddCategory(newCategory:Category):Observable<boolean> {
+    return this.http.post<boolean>(this.V_API + '/AddCategory',newCategory);
+
+  }
+
 }

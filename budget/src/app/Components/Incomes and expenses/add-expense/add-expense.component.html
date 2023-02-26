@@ -13,7 +13,7 @@
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="date"  id="date" placeholder="תאריך ההוצאה"
+            <input type="date" id="date" placeholder="תאריך ההוצאה"
              formControlName="date" name="date" required/>
         </div>
  
@@ -22,6 +22,7 @@
             <input type="number"  id="sum" placeholder="סכום"
              formControlName="sum" name="sum" required/>
         </div>
+
         <!-- בחירה מתוך תיבה נפתחת -->      
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
@@ -29,19 +30,29 @@
              placeholder="בחר קטגוריה" [(ngModel)] ="idCategory"
             formControlName="category" required>
                 <option type="number" *ngFor="let t of listCategory" [ngValue]="t.id" required>
-                    <label> {{t.detail}} </label>  
+                    <label > {{t.detail}} </label>  
+                </option>
+                <option  type="text"  [ngValue]=-1  required >
+                    <label > הוסף קטגוריה </label> 
                 </option>
             </select>
+
         </div>
 
-        <!-- בחירה מתוך תיבה נפתחת -->      
+            <div *ngIf="idCategory==-1" class="form-field d-flex align-items-center">
+                <input type="text" [(ngModel)]="nameNewCategory" [ngModelOptions]="{standalone: true}" placeholder="שם הקטגוריה"/>
+                <i class="bi bi-check-circle" (click)="AddCategory()"></i>
+            </div>
+
+        <!-- -  בחירה מתוך תיבה נפתחת - לפני בחירת קטגוריה לא יוצג פירוט -->      
         <div *ngIf="idCategory==null; else byCtegory" class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <select class="form-field d-flex align-items-center" placeholder="בחר תת קטגוריה"  
-            formControlName="subCategory" required>
+            formControlName="subCategory"  required>
                 <option  type="text" *ngFor="let t of listSubcategory" [ngValue]="t.id" required>
                     <label> {{t.detail}} </label> 
                 </option>
+              
             </select>
         </div>
  
@@ -50,12 +61,20 @@
           <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <select class="form-field d-flex align-items-center" placeholder="בחר תת קטגוריה"  
-            formControlName="subCategory" required>
+            formControlName="subCategory" [(ngModel)] ="idSubcategory" required>
                 <option  type="text" *ngFor="let t of listSubcategoryByCategory" [ngValue]="t.id" required>
                     <label> {{t.detail}} </label> 
                 </option>
+                <option  type="text"  [ngValue]=-1 required>
+                    <label> הוסף תת קטגוריה </label> 
+                 </option>
             </select>
-        </div>
+       
+             </div>
+              <div *ngIf="idSubcategory==-1" class="form-field d-flex align-items-center">
+                    <input type="text" [(ngModel)]="nameNewSubCategory" [ngModelOptions]="{standalone: true}" placeholder="שם תת קטגוריה"/>
+                    <i class="bi bi-check-circle" (click)="AddSubcategory()"></i>
+                </div>
         </ng-template>
 
         <div class="form-field d-flex align-items-center">
