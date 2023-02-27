@@ -153,7 +153,10 @@ export class AddExpenseComponent implements OnInit {
         console.log("אישור הוספת קטגוריה ======>", res1)
         // this.addCategory = false;
         this.idCategory=0;
-
+        this.myCategory.GetAllCategory().subscribe(res => {
+          this.listCategory = res;
+          console.log(this.listCategory);
+        });
       })
     }
 
