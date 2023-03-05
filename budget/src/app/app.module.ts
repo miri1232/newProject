@@ -26,6 +26,7 @@ import { ActionDialogComponent } from './Components/General/action-dialog/action
 import { BankComponent } from './Components/Budgets/bank/bank.component';
 import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.component';
 import { SearchComponent } from './Components/Incomes and expenses/search/search.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { SearchComponent } from './Components/Incomes and expenses/search/search
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

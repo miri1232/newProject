@@ -1,5 +1,6 @@
-<meta charset="utf-8" />
-  <div class="wrapper">
+
+  <div class="form-dialog wrapper">
+    
     <!-- <div class="logo">
         <img src="../../../../assets/image/Logo.jpg" alt="">
     </div>
@@ -15,17 +16,17 @@
             <div class="col-sm-4">
 
         <div class="form-field  align-items-center">
-            <span class="far fa-user">תאריך ההוצאה</span>
-            <input type="date" id="date" placeholder="תאריך ההוצאה"
+            <span class="far fa-user" for="floatingDate">תאריך ההוצאה</span>
+            <input type="date" id="date" placeholder="תאריך ההוצאה"  class="form-control" id="floatingDate"
              formControlName="date" name="date" required/>
         </div>
                 </div>
-
+              
         <div class="col-sm-4">
 
         <div class="form-field  align-items-center" >
-            <span class="far fa-user">סכום ההוצאה</span>
-            <input type="number"  id="sum"  placeholder="0.00"
+            <span class="far fa-user" for="floatingSum">סכום ההוצאה</span>
+            <input type="number"  id="floatingSum"  placeholder="0.00"
              formControlName="sum" name="sum" required/>
         </div>
                 </div>
@@ -110,7 +111,6 @@
                             </div>
               </div>
             
-          
 
                 <div class="form-field  align-items-center">
             <span class="far fa-user">פרטים</span>
@@ -119,24 +119,22 @@
         </div>
    
         
-<!-- 
-               <div class="col-sm-6">
-
+<!-- <div class="col-sm-6">
        <div class="form-field  align-items-center" style="width: 18rem;">
             <span class="far fa-user"></span>
             <input type="number"  id="numberOfPayments" placeholder="מספר תשלומים"
             formControlName="numberOfPayments" name="numberOfPayments" required/>
-                            </div>
+        </div>
+      </div> -->
 
-        </div> -->
 
         <!-- בחירה מתוך תיבה נפתחת --> 
         <div class="col-sm-4">
      
         <div class="form-field  align-items-center">
             <span class="far fa-user">סטטוס הוצאה</span>
-            <select class="form-field d-flex align-items-center" placeholder="בחר סטטוס הוצאה"  formControlName="status" required>
-                <option  type="checkbox" *ngFor="let t of listStatus" [ngValue]="t.id" required>
+            <select class="form-field-select d-flex align-items-center" placeholder="בחר סטטוס הוצאה"  formControlName="status" required>
+                <option  type="text" *ngFor="let t of listStatus" [ngValue]="t.id" required>
                     <label> {{t.detail}} </label>  
                 </option>
             </select>

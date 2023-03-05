@@ -13,6 +13,9 @@ import { SubCategoryService } from 'src/app/Services/sub-category.service';
 import { Logging } from 'src/shared/log.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-add-expense',
@@ -54,6 +57,7 @@ export class AddExpenseComponent implements OnInit {
 
 
   constructor(
+    public activeModal: NgbActiveModal,
     private log: Logging,
     private formBuilder: FormBuilder,
     //private myBudget: BudgetService,
@@ -138,7 +142,8 @@ export class AddExpenseComponent implements OnInit {
         this.newExpense = this.eventForm.value;
         const modalRef = this.modalService.open(ActionDialogComponent);
         modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
-
+        this.activeModal.close();
+       
         this.newExpense = new Expense();
 
       })

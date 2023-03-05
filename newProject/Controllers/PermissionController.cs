@@ -32,6 +32,22 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        //שליפת הרשאות לפי תקציב
+        [HttpGet]
+        [Route("GetAllPermissionForBudget")]
+        public IActionResult GetAllPermissionForBudget(int idBudget)
+        {
+            try
+            {
+                return Ok(_permissionBL.GetAllPermissionForBudget(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //הוספה
         [HttpPost]
         [Route("AddPermission")]

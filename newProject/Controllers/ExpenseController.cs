@@ -121,7 +121,20 @@ namespace newProject.Controllers
             }
         }
 
-
+        //שליפה לפי כל הסינונים
+        [HttpGet]
+        [Route("SearchExpenses")]
+        public IActionResult SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status)
+        {
+            try
+            {
+                return Ok(_expenseBL.SearchExpenses(start, end, min, max, category, Subcategory, paymentMethod, status));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         //הוספה
         [HttpPost]
         [Route("AddExpense")]
