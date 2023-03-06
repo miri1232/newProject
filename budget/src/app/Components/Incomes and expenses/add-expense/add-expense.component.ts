@@ -53,7 +53,7 @@ export class AddExpenseComponent implements OnInit {
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
     private mySubCategory: SubCategoryService,
-    private modalService: NgbModal
+   private modalService: NgbModal
   ) { }
 
   eventForm!: FormGroup;
@@ -98,7 +98,7 @@ export class AddExpenseComponent implements OnInit {
       detail: new FormControl(""),
       paymentMethod: new FormControl(""),
       frequency: new FormControl(false),
-      //  numberOfPayments:new FormControl("" ),
+      numberOfPayments:new FormControl("" ),
       status: new FormControl(""),
       document: new FormControl(""),
     });
@@ -126,8 +126,8 @@ export class AddExpenseComponent implements OnInit {
       this.myExpense.AddExpense(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
         this.newExpense = this.eventForm.value;
-     const modalRef = this.modalService.open(ActionDialogComponent);
-    modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
+   const modalRef = this.modalService.open(ActionDialogComponent);
+modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
        
         this.newExpense = new Expense();
   

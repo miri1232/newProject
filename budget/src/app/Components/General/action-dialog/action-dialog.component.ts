@@ -18,7 +18,7 @@ export class ActionDialogComponent implements OnInit {
   }
 
   close(){
-    this.activeModal.close();
+    // this.activeModal.close();
   }
 
 }
