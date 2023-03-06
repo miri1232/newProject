@@ -92,7 +92,12 @@ namespace BL
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
-
+ public List<ExpenseDTO> SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status)
+        {
+            List<Expense> expenseList = _expenseDAL.SearchExpenses( start,  end,  min,  max,  category,  Subcategory,  paymentMethod,  status);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
 
         public bool AddExpense(ExpenseDTO expenseDTO)
         {

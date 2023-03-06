@@ -27,6 +27,14 @@ namespace BL
             List<PermissionDTO> listpermissionDTO = mapper.Map<List<Permission>, List<PermissionDTO>>(permissionList);
             return listpermissionDTO;
         }
+
+        public List<PermissionDTO> GetAllPermissionForBudget(int idBudget)
+        {
+            List<Permission> idUsersPermissionList = _permissionDAL.GetAllPermissionForBudget(idBudget);
+            List<PermissionDTO> idUsersPermissionListDTO = mapper.Map<List<Permission>, List<PermissionDTO>>(idUsersPermissionList);
+            return idUsersPermissionListDTO;
+        }
+
         public bool AddPermission(PermissionDTO permissionDTO)
         {
             Permission currentPermission = mapper.Map<PermissionDTO, Permission>(permissionDTO);

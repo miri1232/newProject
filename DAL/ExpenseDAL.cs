@@ -93,6 +93,26 @@ namespace DAL
             }
         }
 
+        public List<Expense> SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status) 
+        {
+            try
+            {
+                List<Expense> listExpenses = _context.Expenses.ToList();
+                if(start!=null)  listExpenses= listExpenses.Where(x => x.Date >= start && x.Date <= end).ToList();
+                if(min!=null)  listExpenses= listExpenses.Where(x => x.Sum >= min && x.Sum <= max).ToList();
+                if(category != null)  listExpenses= listExpenses.Where(x => x.Category == category).ToList();
+                if(Subcategory != null)  listExpenses= listExpenses.Where(x => x.Subcategory == Subcategory).ToList();
+                if(paymentMethod != null)  listExpenses= listExpenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
+                if(status != null)  listExpenses= listExpenses.Where(x => x.Status == status).ToList();
+
+                return listExpenses;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool AddExpense(Expense expense)
         {
             try

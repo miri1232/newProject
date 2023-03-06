@@ -30,4 +30,9 @@ export class SubCategoryService {
 
 }
 
+AddSubcategory(newSubCategory:Subcategory):Observable<boolean> {
+  return this.http.post<boolean>(this.V_API + '/AddSubcategory',newSubCategory);
+
+}
+
 }

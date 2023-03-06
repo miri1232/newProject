@@ -12,6 +12,9 @@ import { IncomesService } from 'src/app/Services/incomes.service';
 import { LookupService } from 'src/app/Services/lookup.service';
 import { SourceOfIncomeService } from 'src/app/Services/source-of-income.service';
 import { Logging } from 'src/shared/log.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+
 
 @Component({
   selector: 'app-add-income',
@@ -31,6 +34,7 @@ export class AddIncomeComponent implements OnInit {
   typeIncomeFormControl = new FormControl(null, Validators.required);
 
   constructor(
+    public activeModal: NgbActiveModal,   
     private log: Logging,
     private formBuilder: FormBuilder,
     // private myBudget: BudgetService,
@@ -40,6 +44,8 @@ export class AddIncomeComponent implements OnInit {
     private myIncome: IncomesService,
     private myCategoryIncomeSer: CategoryIncomeService,
     private mySourceOfIncomeSer: SourceOfIncomeService,
+    private modalService: NgbModal,
+
   ) { }
 
   eventForm!: FormGroup;
@@ -101,7 +107,11 @@ this.eventForm = new FormGroup({
       this.myIncome.AddIncome(this.eventForm.value).subscribe(res1 => {
         console.log("curent Income ======>", res1)
         this.newIncome = this.eventForm.value;
-        alert( " נוספה הכנסה חדשה ");
+
+        const modalRef = this.modalService.open(ActionDialogComponent);
+        modalRef.componentInstance.content = "ההכנסה נקלטה בהצלחה";
+        this.activeModal.close();
+        
         this.newIncome = new Income();
 
         

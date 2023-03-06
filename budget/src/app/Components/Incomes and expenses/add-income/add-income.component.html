@@ -1,15 +1,18 @@
 <p>add-income works!</p>
 <meta charset="utf-8" />
   <div class="wrapper">
-    <div class="logo">
+    <!-- <div class="logo">
         <img src="../../../../assets/image/Logo.jpg" alt="">
     </div>
     <div class="text-center mt-4 name">
         in & out
-    </div>
-
+    </div> -->
+    <div class="text-center mt-4 name">
+        הוספת הכנסה
+     </div> 
+ 
     <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddIncome()" >
-
+        <div class="row">
  
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
@@ -92,6 +95,7 @@
 
         </div>
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף</button>
+        </div>
 
     </form> 
    

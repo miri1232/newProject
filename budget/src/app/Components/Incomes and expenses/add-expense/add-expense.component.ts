@@ -13,6 +13,9 @@ import { SubCategoryService } from 'src/app/Services/sub-category.service';
 import { Logging } from 'src/shared/log.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-add-expense',
@@ -21,20 +24,30 @@ import { ActionDialogComponent } from '../../General/action-dialog/action-dialog
 })
 export class AddExpenseComponent implements OnInit {
 
+  // addCategory: boolean = false;
+  // addSubCategory: boolean = false;
+
+  public nameNewCategory!: string;
+    public nameNewSubCategory!: string;
+
+  newCategory = new Category();
+  newSubCategory = new Subcategory();
 
   newExpense = new Expense();
   // IsExpense: boolean | undefined;
 
   //עבור יבוא מערכים לנתוני תיבה נפתחת
   public listCategory: Category[] | undefined;
-  public listSubcategory: Subcategory[] =[];
+  public listSubcategory: Subcategory[] = [];
   public listStatus: Status[] | undefined;
   public listPaymentMethod: PaymentMethod[] | undefined;
 
   //עבור רשימה נפתחת מצומצמת לתת קטגוריה
-  public idCategory!:number;
-  public listSubcategoryByCategory: Subcategory[]=[];
- 
+  public idCategory: number = 0;
+  public idSubcategory: number = 0;
+
+  public listSubcategoryByCategory: Subcategory[] = [];
+
 
   //עבור תיבה נפתחת
   // categoryFormControl = new FormControl(Validators.prototype);
@@ -44,6 +57,7 @@ export class AddExpenseComponent implements OnInit {
 
 
   constructor(
+    public activeModal: NgbActiveModal,
     private log: Logging,
     private formBuilder: FormBuilder,
     //private myBudget: BudgetService,
@@ -107,14 +121,14 @@ export class AddExpenseComponent implements OnInit {
 
   }
 
-  filterByCategory(){
-  
-    console.log("idCategory",this.idCategory)
-    this.mySubCategory.GetSubcategoryByCategory(2).subscribe(res => {
+  filterByCategory() {
 
-          this.listSubcategoryByCategory = res;
-          console.log(this.listSubcategoryByCategory);
-        });
+    console.log("idCategory", this.idCategory)
+    this.mySubCategory.GetSubcategoryByCategory(this.idCategory).subscribe(res => {
+
+      this.listSubcategoryByCategory = res;
+      console.log(this.listSubcategoryByCategory);
+    });
   }
   AddExpense() {
 
@@ -126,17 +140,50 @@ export class AddExpenseComponent implements OnInit {
       this.myExpense.AddExpense(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
         this.newExpense = this.eventForm.value;
-   const modalRef = this.modalService.open(ActionDialogComponent);
-modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
+        const modalRef = this.modalService.open(ActionDialogComponent);
+        modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
+        this.activeModal.close();
        
         this.newExpense = new Expense();
-  
-      })
-  
 
+      })
     }
+  }
+
+  AddCategory() {
+    if (this.nameNewCategory != undefined) {
+      console.log(this.nameNewCategory)
+      this.newCategory.detail = this.nameNewCategory;
+      this.myCategory.AddCategory(this.newCategory).subscribe(res1 => {
+        console.log("אישור הוספת קטגוריה ======>", res1)
+        // this.addCategory = false;
+        this.idCategory=0;
+        this.myCategory.GetAllCategory().subscribe(res => {
+          this.listCategory = res;
+          console.log(this.listCategory);
+        });
+      })
+    }
+
 
   }
 
+  AddSubcategory() {
+  if (this.nameNewSubCategory != undefined) {
+    console.log(this.nameNewSubCategory)
+    this.newSubCategory.detail = this.nameNewSubCategory;
+    this.newSubCategory.category = this.idCategory;
+  
+    this.mySubCategory.AddSubcategory(this.newSubCategory).subscribe(res1 => {
+      console.log("אישור הוספת תת קטגוריה ======>", res1)
+      // this.addSubCategory = false;
+      this.filterByCategory();
+     this.idSubcategory=0;
 
+    })
+  }
+
+
+  }
 }
+

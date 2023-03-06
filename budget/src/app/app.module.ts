@@ -25,6 +25,8 @@ import { AlertComponent } from './Components/General/alert/alert.component';
 import { ActionDialogComponent } from './Components/General/action-dialog/action-dialog.component';
 import { BankComponent } from './Components/Budgets/bank/bank.component';
 import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.component';
+import { SearchComponent } from './Components/Incomes and expenses/search/search.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.compone
     ActionDialogComponent,
     BankComponent,
     AddBankComponent,
+    SearchComponent,
   
   ],
   imports: [
@@ -57,7 +60,8 @@ import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.compone
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

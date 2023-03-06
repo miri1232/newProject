@@ -11,6 +11,7 @@ export class ActionDialogComponent implements OnInit {
   @Input()
   content!:string;
 
+
   constructor(public activeModal: NgbActiveModal) {
    }
 
@@ -20,5 +21,6 @@ export class ActionDialogComponent implements OnInit {
   close(){
     // this.activeModal.close();
   }
+
 
 }

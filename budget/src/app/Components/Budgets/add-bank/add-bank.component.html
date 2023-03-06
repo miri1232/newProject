@@ -5,6 +5,7 @@
 
         <!-- בחירה מתוך תיבה נפתחת -->
         <div class="form-field  align-items-center">
+            <span class="far fa-user">בחר בנק</span>
             <select class="form-field d-flex align-items-center" placeholder="בחר בנק"
                 formControlName="idBank" required>
                 <option type="number" *ngFor="let b of listBanks" [ngValue]="b.id" required>

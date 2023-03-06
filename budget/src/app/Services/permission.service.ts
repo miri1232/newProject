@@ -19,6 +19,10 @@ export class PermissionService {
 
     return this.http.post<boolean>(this.V_API + '/AddPermission',newPermission);
 }
+GetAllPermissionForBudget(idBudget:number):Observable<Permission[]> {
+
+    return this.http.get<Permission[]>(this.V_API + '/GetAllPermissionForBudget');
+}
 
 
 

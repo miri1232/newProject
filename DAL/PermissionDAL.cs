@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +23,38 @@ namespace DAL
             }
         }
 
-        public bool AddPermission(Permission permission)
+        public List<Permission> GetAllPermissionForBudget(int idBudget)
         {
             try
             {
-                _context.Permissions.Add(permission);
-                _context.SaveChanges();
-                return true;
+                List<Permission> permissionList = _context.Permissions.Where(p => p.IdBudget == idBudget).ToList();
+                return permissionList;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+
+        public bool AddPermission(Permission permission)
+        {
+            var per = _context.Permissions.Where(p => p.IdUser.Equals(permission.IdUser) && p.IdBudget.Equals(permission.IdBudget)).AsNoTracking().FirstOrDefault();
+            if (per == null)
+            {
+                try
+                {
+                    _context.Permissions.Add(permission);
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+                return false;
         }
         public bool UpdatePermission(int id, Permission permission)
         {
