@@ -14,6 +14,7 @@ import { SourceOfIncomeService } from 'src/app/Services/source-of-income.service
 import { Logging } from 'src/shared/log.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { Subcategory } from 'src/app/Classes/Subcategory';
 
 
 @Component({
@@ -23,18 +24,32 @@ import { ActionDialogComponent } from '../../General/action-dialog/action-dialog
 })
 export class AddIncomeComponent implements OnInit {
 
-  newIncome = new Income();
-  IsIncome: boolean | undefined;
+  public nameNewCategory!: string;
+  public nameNewSourceOfIncome!: string;
 
+  newCategory = new Category();
+  newSourceOfIncome = new SourceOfIncome();
+
+  newIncome = new Income();
+ // IsIncome: boolean | undefined;
+
+ //עבר יבוא מערכים לנתוני תיבה נפתחת
   public listTypeCategory: CategoryIncome[] | undefined;
   public listTypeSourceOfIncome: SourceOfIncome[] | undefined;
-  public listTypePaymentMethod : PaymentMethod[] | undefined;
+  public listTypePaymentMethod: PaymentMethod[] | undefined;
   public listTypeStatus: Status[] | undefined;
+
+   //עבור רשימה נפתחת מצומצמת לתת קטגוריה
+   public idCategory: number = 0;
+   public idSourceOfIncome: number = 0;
+
+   public listSourceOfIncomeByCategory: SourceOfIncome[] = [];
+
 
   typeIncomeFormControl = new FormControl(null, Validators.required);
 
   constructor(
-    public activeModal: NgbActiveModal,   
+    public activeModal: NgbActiveModal,
     private log: Logging,
     private formBuilder: FormBuilder,
     // private myBudget: BudgetService,
@@ -51,6 +66,8 @@ export class AddIncomeComponent implements OnInit {
   eventForm!: FormGroup;
 
   ngOnInit(): void {
+    //יבוא נתונים עבור רשימות נפתחות
+
     this.myCategoryIncomeSer.GetAllCategory().subscribe(res => {
       this.listTypeCategory = res;
       console.log(this.listTypeCategory);
@@ -70,40 +87,36 @@ export class AddIncomeComponent implements OnInit {
       this.listTypeStatus = res;
       console.log(this.listTypeStatus);
     });
-//הבאת נתונים מהטופס
-this.eventForm = new FormGroup({
-  idBudget: new FormControl(5007),
+    //הבאת נתונים מהטופס
+    this.eventForm = new FormGroup({
+      idBudget: new FormControl(5007),
       date: new FormControl(""),
-       sum: new FormControl(""),
-       categoryIncome: new FormControl(""),
-       sourceOfIncome: new FormControl(""),
-        detail: new FormControl(""),
-        paymentMethod: new FormControl(""),
-       status: new FormControl(""),
-            document: new FormControl(""),
-    }); 
+      sum: new FormControl(""),
+      categoryIncome: new FormControl(""),
+      sourceOfIncome: new FormControl(""),
+      detail: new FormControl(""),
+      paymentMethod: new FormControl(""),
+      status: new FormControl(""),
+      document: new FormControl(""),
+    });
 
   }
- 
+  filterByCategory() {
 
-    AddIncome(){
+    console.log("idCategory", this.idCategory)
+    this.mySourceOfIncomeSer.GetSourceOfIncomeByID(this.idCategory).subscribe(res => {
+
+      this.listSourceOfIncomeByCategory = res;
+      console.log(this.listSourceOfIncomeByCategory);
+    });
+  }
+
+  AddIncome() {
     if (this.eventForm.value != undefined) {
-     // console.log("הכנסה חדשה נקלטה" )
+      // console.log("הכנסה חדשה נקלטה" )
 
-    this.newIncome = this.eventForm.value;
+      this.newIncome = this.eventForm.value;
 
-      // this.newIncome.idBudget = this.log.ActiveBudget.id;
-      // this.newIncome.date = this.eventForm.controls.date.value;
-      // this.newIncome.sum = this.eventForm.controls.sum.value;
-      // this.newIncome.category = this.eventForm.controls.category.value;
-      // this.newIncome.sourceOfIncome = this.eventForm.controls.sourceOfIncome.value;
-      // this.newIncome.detail = this.eventForm.controls.detail.value;
-      // this.newIncome.paymentMethod = this.eventForm.controls.paymentMethod.value;
-      // this.newIncome.status = this.eventForm.controls.status.value;
-      // this.newIncome.document = this.eventForm.controls.document.value;
-
-
-      
       this.myIncome.AddIncome(this.eventForm.value).subscribe(res1 => {
         console.log("curent Income ======>", res1)
         this.newIncome = this.eventForm.value;
@@ -111,13 +124,47 @@ this.eventForm = new FormGroup({
         const modalRef = this.modalService.open(ActionDialogComponent);
         modalRef.componentInstance.content = "ההכנסה נקלטה בהצלחה";
         this.activeModal.close();
-        
+
         this.newIncome = new Income();
 
-        
-       
+
+
       })
     }
-   }
+  }
+  AddCategoryIncome() {
+    if (this.nameNewCategory != undefined) {
+      console.log(this.nameNewCategory)
+      this.newCategory.detail = this.nameNewCategory;
+      this.myCategoryIncomeSer.AddCategoryIncome(this.newCategory).subscribe(res1 => {
+        console.log("אישור הוספת קטגוריה ======>", res1)
+        // this.addCategory = false;
+        this.idCategory=0;
+        this.myCategoryIncomeSer.GetAllCategory().subscribe(res => {
+          this.listTypeCategory = res;
+          console.log(this.listTypeCategory);
+        });
+      })
+    }
+
+
+  }
+  AddSourceOfIncome() {
+    if (this.nameNewSourceOfIncome != undefined) {
+      console.log(this.nameNewSourceOfIncome)
+      this.newSourceOfIncome.detail = this.nameNewSourceOfIncome;
+      this.newSourceOfIncome.categoryIncome = this.idCategory;
+    
+      this.myCategoryIncomeSer.AddSourceOfIncome(this.newSourceOfIncome).subscribe(res1 => {
+        console.log("אישור הוספת תת קטגוריה ======>", res1)
+        // this.addSubCategory = false;
+        this.filterByCategory();
+       this.idSourceOfIncome=0;
+  
+      })
+    }
+  
+  
+    }
 
 }
