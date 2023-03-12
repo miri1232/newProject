@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Category } from '../Classes/Category';
+import { CategoryIncome } from '../Classes/CategoryIncome';
 import { SourceOfIncome } from '../Classes/SourceOfIncome';
 
 @Injectable({
@@ -22,5 +24,15 @@ export class SourceOfIncomeService {
     return this.http.get<SourceOfIncome[]>(this.V_API + '/GetAllSourceOfIncomes');
   }
 
+  GetSourceOfIncomeByID(category:number) : Observable<SourceOfIncome[]> {
+    const p=new HttpParams().set('category',category);
+
+     return this.http.get<SourceOfIncome[]>(this.V_API + '/GetSourceOfIncomeByID',{responseType: 'json',params:p});
+
+}
+AddSourceOfIncome(newSourceOfIncome:SourceOfIncome):Observable<boolean> {
+  return this.http.post<boolean>(this.V_API + '/AddSourceOfIncome',newSourceOfIncome);
+
+}
 
 }
