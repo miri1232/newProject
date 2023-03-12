@@ -7,6 +7,7 @@ namespace DAL
     public interface IIncomeDAL
     {
         List<Income> GetAllIncomes();
+        List<Income> GetIncomesByBudget(int idBudget);
         bool AddIncome(Income income);
         bool UpdateIncome(int id, Income income);
         bool DeleteIncome(int id);

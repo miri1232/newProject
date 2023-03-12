@@ -7,6 +7,7 @@ namespace DAL
     public interface IExpenseDAL
     {
         List<Expense> GetAllExpenses();
+        List<Expense> GetExpensesByBudget(int budget);
         List<Expense> GetExpensesByDate(DateTime start, DateTime end);
         List<Expense> GetExpensesBySum(double min, double max);
         List<Expense> GetExpensesByCategory(int category);

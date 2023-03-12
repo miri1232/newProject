@@ -104,7 +104,7 @@ export class AddExpenseComponent implements OnInit {
 
     //הקמת הטופס
     this.eventForm = new FormGroup({
-      idBudget: new FormControl(5007),
+      idBudget: new FormControl(this.log.ActiveBudget.id),
       date: new FormControl(""),
       sum: new FormControl(""),
       category: new FormControl(""),

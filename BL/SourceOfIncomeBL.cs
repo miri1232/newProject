@@ -33,10 +33,10 @@ namespace BL
             return listSourceOfIncomeDTO;
         }
 
-        public SourceOfIncomeDTO GetSourceOfIncomeByID(int idSourceOfIncome)
+        public List<SourceOfIncomeDTO> GetSourceOfIncomeByID(int idSourceOfIncome)
         {
-            SourceOfIncome sourceOfIncome = _sourceOfIncomeDAL.GetSourceOfIncomeByID( idSourceOfIncome);
-            SourceOfIncomeDTO sourceOfIncomeDTO = mapper.Map<SourceOfIncome, SourceOfIncomeDTO>(sourceOfIncome);
+            List<SourceOfIncome> sourceOfIncome = _sourceOfIncomeDAL.GetSourceOfIncomeByID( idSourceOfIncome);
+            List<SourceOfIncomeDTO> sourceOfIncomeDTO = mapper.Map<List<SourceOfIncome>, List<SourceOfIncomeDTO>>(sourceOfIncome);
             return sourceOfIncomeDTO;
         }    
 

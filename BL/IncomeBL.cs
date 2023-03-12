@@ -54,6 +54,27 @@ namespace BL
             return listIncomeDTO;
         }
 
+        public List<IncomeDTO> GetIncomesByBudget(int idBudget)
+        {
+            List<Income> incomeList = _incomeDAL.GetIncomesByBudget(idBudget);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomeList);
+
+            List<CategoryIncome> categoriesIncome = _categoryIncomeDAL.GetAllCategoryIncome();
+            listIncomeDTO.ForEach(item => item.CategoryIncomeDetail = categoriesIncome.FirstOrDefault(e => e.Id == item.CategoryIncome).Detail);
+
+            List<SourceOfIncome> sourcesOfIncome = _sourceOfIncomeDAL.GetAllSourceOfIncomes();
+            listIncomeDTO.ForEach(item => item.SourceOfIncomeDetail = sourcesOfIncome.FirstOrDefault(e => e.Id == item.SourceOfIncome).Detail);
+
+            List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
+            listIncomeDTO.ForEach(item => item.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == item.PaymentMethod).Detail);
+
+            List<Status> statuses = _lookupDAL.GetAllStatus();
+            listIncomeDTO.ForEach(item => item.StatusDetail = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
+
+            return listIncomeDTO;
+        }
+
+
         public List<IncomeDTO> GetIncomesByDate(DateTime start, DateTime end)
         {
             List<Income> incomeList = _incomeDAL.GetIncomesByDate( start,  end);

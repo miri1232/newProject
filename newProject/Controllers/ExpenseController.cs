@@ -33,6 +33,22 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        //שליפה לפי תקציב
+        [HttpGet]
+        [Route("GetExpensesByBudget/{idBudget}")]
+        public IActionResult GetExpensesByBudget(int idBudget)
+        {
+            try
+            {
+                return Ok(_expenseBL.GetExpensesByBudget(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //שליפה לפי טווח תאריכים
         [HttpGet]
         [Route("ExpensesByDate")]

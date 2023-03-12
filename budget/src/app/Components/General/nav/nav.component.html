@@ -4,50 +4,80 @@
   style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
     <li class="nav-item" role="presentation"> -->
 
-  <ul class="nav nav-pills nav-fill">
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <button class="btn mt-3" (click)="toHomePage()">לדף הבית</button>
+  </li>
+
+  <li class="nav-item" *ngIf="activeUser.id == ''">
+    <button class="btn btn-outline-success" aria-current="page" (click)="logIn()"> התחבר </button>
+
+  </li>
+
+  <div *ngIf="activeUser.id != ''">
+
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page"  (click)="logIn()"> התחבר </a>
- <!-- *ngIf="activeUser.id == '' ; else user"  -->
+      <a class="nav-link disabled"> שלום {{activeUser.firstName}} </a>
     </li>
-    
-    <ng-template #user>
+    <li class="nav-item">
+      <button class="btn btn-outline-success" (click)="logOut()">התנתק </button>
+    </li>
+
+    <li class="nav-item">
+      <!-- *ngIf="ActiveBudget.id == '' ; else budget" -->
+      <button class="btn btn-outline-success" (click)="listBudget1()" autoClose="outside" [ngbPopover]="listBudget"
+        ngbPopoverPlacement="outside" placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent> עבור
+        בין תקציבים </button>
+      <!-- <button type="button" class="btn btn-outline-success"  autoClose="outside" [ngbPopover]="listBudget" ngbPopoverPlacement="outside" 
+placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוספת הוצאהpop</button> -->
+
+
+      <ng-template class="float-start" style="width: 1000rem;" #listBudget>
+        <div class="d-grid gap-2 col-6 mx-auto" *ngFor="let b of BudgetList">
+          <button type="button" class="btn btn-outline-success" (click)="GoBudget(b)"> {{b.nameBudget}}</button>
+        </div>
+      </ng-template>
+    </li>
+
+    <!-- <ng-template #budget>
 
       <li class="nav-item">
         <a class="nav-link disabled" > שלום {{activeUser.firstName}} </a>
       </li>
     <li class="nav-item">
-      <a class="nav-link"   (click)="logOut()">התנתק </a>
+      <button class="btn btn-outline-success"  (click)="logOut()">התנתק </button>
     </li>  
 
-     </ng-template>
+-->
+</div>
 
-    <!-- <li class="nav-item">
+  <!-- <li class="nav-item">
       <a class="nav-link" href="#">Much longer nav link</a>
     </li> -->
-    <!-- <li class="nav-item">
+  <!-- <li class="nav-item">
       <a class="nav-link" href="#">Link</a>
     </li> -->
-    <li class="nav-item">
-      <div class="logo">
-        <a  routerLink='/'>
+  <li class="nav-item">
+    <div class="logo">
+      <a routerLink='/'>
         <img src="../../../../assets/image/Logo.jpg" alt="" routerLink='/'></a>
-    </div> 
-    
+    </div>
+
   </li>
- 
-      
-    <!-- <li class="nav-item">
+
+
+  <!-- <li class="nav-item">
       <a class="nav-link"   routerLink="/contact_Us">צור קשר – פניה </a>
     </li> -->
 
 
-   
-    <!-- <li class="nav-item" *ngIf="activeUser.IsManager">
+
+  <!-- <li class="nav-item" *ngIf="activeUser.IsManager">
       <a class="nav-link"   routerLink="/Manager">תפריט מנהל </a>
     </li> -->
 
-  
-  </ul>
+
+</ul>
 
 
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>

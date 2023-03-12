@@ -6,7 +6,7 @@ namespace DAL
     public interface ISourceOfIncomeDAL
     {
          List<SourceOfIncome> GetAllSourceOfIncomes();
-         SourceOfIncome GetSourceOfIncomeByID(int idSourceOfIncome);
+         List<SourceOfIncome> GetSourceOfIncomeByID(int idSourceOfIncome);
          bool AddSourceOfIncome(SourceOfIncome SourceOfIncome);
          bool UpdateSourceOfIncome(int id, SourceOfIncome sourceOfIncome);
          bool DeleteSourceOfIncome(int id);

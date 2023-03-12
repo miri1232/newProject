@@ -23,6 +23,17 @@ namespace DAL
             }
         }
 
+        public List<Income> GetIncomesByBudget(int idBudget)
+        {
+            try
+            {
+                return _context.Incomes.Where(x => x.IdBudget==idBudget).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<Income> GetIncomesByDate(DateTime start, DateTime end)
         {
             try

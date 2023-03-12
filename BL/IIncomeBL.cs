@@ -7,6 +7,7 @@ namespace BL
     public interface IIncomeBL
     {
         List<IncomeDTO> GetAllIncomes();
+        List<IncomeDTO> GetIncomesByBudget(int idBudget);
         bool AddIncome(IncomeDTO incomeDTO);
         bool UpdateIncome(IncomeDTO incomeDTO);
         bool DeleteIncome(IncomeDTO incomeDTO);

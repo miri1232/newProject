@@ -38,7 +38,7 @@ namespace newProject.Controllers
 
         //שליפת ערך יחיד לפי ID תקציב
         [HttpGet]
-        [Route("GetBudgetByID")]
+        [Route("GetBudgetByID/{idBudget}")]
         public IActionResult GetBudgetByID(int idBudget)
         {
             try

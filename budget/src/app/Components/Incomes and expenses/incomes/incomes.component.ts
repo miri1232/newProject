@@ -4,6 +4,7 @@ import { Income } from 'src/app/Classes/Income';
 import { CategoryIncomeService } from 'src/app/Services/category-income.service';
 import { CategoryService } from 'src/app/Services/category.service';
 import { IncomesService } from 'src/app/Services/incomes.service';
+import { Logging } from 'src/shared/log.service';
 
 @Component({
   selector: 'app-incomes',
@@ -19,10 +20,12 @@ export class IncomesComponent implements OnInit {
   constructor(
     private myIncomeServise: IncomesService,
     private myCategoryIncome:CategoryIncomeService,
+    private log:Logging,
+
   ) { }
 
   ngOnInit(): void {
-    this.myIncomeServise.GetAllIncomes().subscribe(exp => { 
+    this.myIncomeServise.GetIncomesByBudget(this.log.ActiveBudget.id).subscribe(exp => { 
       this.IncomeList = exp;
       console.log(exp);
   } );
