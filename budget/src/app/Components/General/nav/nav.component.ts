@@ -28,6 +28,7 @@ export class NavComponent implements OnInit {
 today: Date=new Date();
 
   activeUser: User = this.log.ActiveUser;
+activeBudget:Budget=this.log.ActiveBudget;
 
   logIn(){
     this.router.navigate(['/Login'])
@@ -43,11 +44,12 @@ today: Date=new Date();
   }
 
   GoBudget(b:Budget){
+    this.activeBudget=b;
     this.router.navigate(['/BudgetHomePage',b.id]);
 
   }
 
-  listBudget1(){
+  ShowAllBudget(){
       this.myBudgetServise.GetBudgetByUser().subscribe(budget => { 
         this.BudgetList=budget;
         console.log(this.BudgetList);

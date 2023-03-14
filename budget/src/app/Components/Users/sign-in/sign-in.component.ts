@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
 import { Logging } from 'src/shared/log.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sign-in',
@@ -25,7 +29,9 @@ export class SignInComponent implements OnInit {
     private formBuilder: FormBuilder,
     private myUser: UserService,
     private router:Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private modalService: NgbModal
+
   ) { }
 
   eventForm!: FormGroup;
@@ -92,7 +98,8 @@ export class SignInComponent implements OnInit {
       this.myUser.AddUser(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
         this.newUser = this.eventForm.value;
-        alert(this.newUser.firstName + " הרישום נקלט בהצלחה ");
+        const modalRef = this.modalService.open(ActionDialogComponent);
+        modalRef.componentInstance.content = this.newUser.firstName + " הרישום נקלט בהצלחה ";
         this.log.ActiveUser = this.newUser;
         this.newUser = new User();
         this.router.navigate(['/ListBudgets']);

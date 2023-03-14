@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
 import { UserService } from 'src/app/Services/user.service';
 import { Logging } from 'src/shared/log.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +31,9 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router:Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private modalService: NgbModal,
+
   ) { }
 
   eventForm!: FormGroup;
@@ -48,7 +54,8 @@ export class LoginComponent implements OnInit {
           this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
             this.currentUser = res1;
             console.log("curent user ======>",this.currentUser)
-            alert(this.currentUser.firstName + " התחברת בהצלחה");
+            const modalRef = this.modalService.open(ActionDialogComponent);
+            modalRef.componentInstance.content = this.currentUser.firstName + " התחברת בהצלחה";
             this.log.ActiveUser = this.currentUser;
             this.router.navigate(['/ListBudgets']);
   
@@ -57,7 +64,8 @@ export class LoginComponent implements OnInit {
         } else {
           this.IdToLogin ="";
           this.PassToLogin ="";
-          alert("שם משתמש או סיסמה שגויים, אנא נסה שנית או הירשם");
+          const modalRef = this.modalService.open(ActionDialogComponent);
+          modalRef.componentInstance.content = "שם משתמש או סיסמה שגויים, אנא נסה שנית או הירשם";
         }
         console.log('res===', res)
       }); 

@@ -19,15 +19,15 @@ export class HomePageComponent implements OnInit {
   }
 
   Login(){
-    this.showLogin=!this.showLogin;
-    if(this.showSignIn)this.showSignIn=!this.showSignIn;
-    // this.router.navigate(['/Login'])
+    // this.showLogin=!this.showLogin;
+    // if(this.showSignIn)this.showSignIn=!this.showSignIn;
+    this.router.navigate(['/Login'])
     }
 
 SignIn(){
-this.showSignIn=!this.showSignIn;
-    if(this.showLogin) this.showLogin=!this.showLogin;
-   // this.router.navigate(['/SignIn'])
+// this.showSignIn=!this.showSignIn;
+//     if(this.showLogin) this.showLogin=!this.showLogin;
+   this.router.navigate(['/SignIn'])
 
 }
 

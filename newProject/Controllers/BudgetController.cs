@@ -44,7 +44,7 @@ namespace newProject.Controllers
             try
             {
                 return Ok(_budgetBL.GetBudgetByID(idBudget));
-            }
+            }   
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);

@@ -67,7 +67,7 @@ export class AddExpenseComponent implements OnInit {
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
     private mySubCategory: SubCategoryService,
-   private modalService: NgbModal
+   private modalService: NgbModal,
   ) { }
 
   eventForm!: FormGroup;

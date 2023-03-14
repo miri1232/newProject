@@ -7,6 +7,10 @@ import { User } from 'src/app/Classes/User';
 import { BudgetService } from 'src/app/Services/budget.service';
 import { LookupService } from 'src/app/Services/lookup.service';
 import { Logging } from 'src/shared/log.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-new-budget',
@@ -28,7 +32,9 @@ export class NewBudgetComponent implements OnInit {
     private myBudget: BudgetService,
     private router: Router,
     private route: ActivatedRoute,
-    private lookupSer: LookupService
+    private lookupSer: LookupService,
+    private modalService: NgbModal,
+
   ) { }
 
   eventForm!: FormGroup;
@@ -64,7 +70,8 @@ export class NewBudgetComponent implements OnInit {
           this.myBudget.AddBudget(this.newBudget).subscribe(res1 => {
               console.log("curent Budget ======>", res1)
               this.newBudget = this.eventForm.value;
-              alert(this.newBudget.nameBudget + " נוסף תקציב בכינוי");
+              const modalRef = this.modalService.open(ActionDialogComponent);
+              modalRef.componentInstance.content = this.newBudget.nameBudget + " נוסף תקציב בכינוי";
               this.newBudget = new Budget();
               this.router.navigate(['/BudgetHomePage']);
           })

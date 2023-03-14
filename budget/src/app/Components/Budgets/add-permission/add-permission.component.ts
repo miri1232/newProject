@@ -9,6 +9,7 @@ import { UserService } from 'src/app/Services/user.service';
 import { Logging } from 'src/shared/log.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-permission',

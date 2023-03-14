@@ -1,10 +1,8 @@
 <meta charset="utf-8" />
-<!-- <div class="wrapper"> -->
 
 שם התקציב: {{b.nameBudget}}
 
 <br />
-<!-- <app-add-expense></app-add-expense> -->
 <!-- <button type="button" class="btn btn-outline-success"  autoClose="outside" [ngbPopover]="AddExpense" ngbPopoverPlacement="outside" 
 placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוספת הוצאהpop</button>
 
@@ -16,19 +14,8 @@ placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוס
 
 
 <button class="btn btn-outline-success" (click)="AddExpenses()">הוספת הוצאה</button>
-
-<!-- <button class="btn btn-outline-success" (click)="addExpenses=!addExpenses">הוספת הוצאה</button>
-<app-add-expense *ngIf="addExpenses"></app-add-expense> -->
 <button class="btn btn-outline-success" (click)="AddIncomes()">הוספת הכנסה</button>
-<!-- <button class="btn btn-outline-success" (click)="addIncomes=!addIncomes">הוספת הכנסה</button>
-<app-add-income *ngIf="addIncomes"class="float-sm-start" ></app-add-income> -->
-<!-- <button  *ngIf="log.ActiveUser.id.equalse(log.ActiveBudget.manager)" class="btn mt-3" (click)="addPermission=!addPermission">הוספת משתמשים לתקציב</button> -->
 <button class="btn btn-outline-success" (click)="AddPermission()">הוספת משתמשים לתקציב</button>
-<!-- <app-add-permission *ngIf="addPermission"></app-add-permission> -->
-
-
-<!-- <p class="ms-2">but popover will appear <b #target>here</b>.</p> -->
-
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
@@ -43,16 +30,12 @@ placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוס
     <button class="nav-link" id="pills-Expenses-tab" data-bs-toggle="pill" data-bs-target="#pills-Expenses"
       type="button" role="tab" aria-controls="pills-Expenses" aria-selected="false">הוצאות</button>
   </li>
-
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-bank-tab" data-bs-toggle="pill" data-bs-target="#pills-bank" type="button"
       role="tab" aria-controls="pills-bank" aria-selected="false">בנקים</button>
   </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled"
-      type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>מוסתר</button>
-  </li>
 </ul>
+
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
     tabindex="0">תוכן דוחות</div>
@@ -62,7 +45,4 @@ placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוס
     <app-expenses [budget]="b"></app-expenses></div>
   <div class="tab-pane fade" id="pills-bank" role="tabpanel" aria-labelledby="pills-bank-tab" tabindex="0">
     <app-bank></app-bank></div>
-
-  <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">
-    רעדרכעק'א</div>
 </div>
