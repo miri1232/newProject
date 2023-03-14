@@ -71,10 +71,11 @@ export class NewBudgetComponent implements OnInit {
               console.log("curent Budget ======>", res1)
               this.newBudget = this.eventForm.value;
               const modalRef = this.modalService.open(ActionDialogComponent);
-              modalRef.componentInstance.content = this.newBudget.nameBudget + " נוסף תקציב בכינוי";
+              modalRef.componentInstance.content =  " נוסף תקציב בכינוי  " +this.newBudget.nameBudget;
+              this.log.ActiveBudget = this.newBudget;
               this.newBudget = new Budget();
               this.router.navigate(['/BudgetHomePage']);
-          })
+            })
       }
 
   }
