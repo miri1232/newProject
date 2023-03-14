@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Logging } from 'src/shared/log.service';
 import { Budget } from '../Classes/Budget';
+import { User } from '../Classes/User';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class BudgetService {
   }
 
 
-  GetBudgetByUser(): Observable<Budget[]> {
-    return this.http.get<Budget[]>(this.V_API + '/GetBudgetByUser/' + this.log.ActiveUser.id);
+  GetBudgetByUser(activeUser:User): Observable<Budget[]> {
+    return this.http.get<Budget[]>(this.V_API + '/GetBudgetByUser/' + activeUser.id);
   }
 
 

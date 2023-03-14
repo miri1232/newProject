@@ -50,7 +50,7 @@ activeBudget:Budget=this.log.ActiveBudget;
   }
 
   ShowAllBudget(){
-      this.myBudgetServise.GetBudgetByUser().subscribe(budget => { 
+      this.myBudgetServise.GetBudgetByUser(this.activeUser).subscribe(budget => { 
         this.BudgetList=budget;
         console.log(this.BudgetList);
  

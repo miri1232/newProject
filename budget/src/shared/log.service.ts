@@ -23,8 +23,7 @@ export class Logging{
       private route:ActivatedRoute
     ) { 
       this.ActiveUser.id = '300668852';
-            this.ActiveUser.firstName = 'Miri';
-
+      this.ActiveUser.firstName = 'Miri';
       this.ActiveBudget.id=5;
     }
 
@@ -37,6 +36,8 @@ export class Logging{
   logOutUser(){
     this.ActiveUser=new User();
     console.log("current User===> "+ this.ActiveUser.firstName)
+    this.ActiveBudget=new Budget();
+
     this.router.navigate([''])
 
   }

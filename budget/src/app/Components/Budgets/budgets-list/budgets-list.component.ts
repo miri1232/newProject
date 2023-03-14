@@ -20,16 +20,18 @@ public BudgetList :Budget[] | undefined;
     private myBudgetServise: BudgetService ,
     private router:Router,
 
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit(): void {
 
   }
 // b:Budget=this.log.ActiveBudget;
-U:User=this.log.ActiveUser;
+activeUser: User = this.log.ActiveUser;
 
   ShowAllBudget(){
-     this.myBudgetServise.GetBudgetByUser().subscribe(budget => { 
+     this.myBudgetServise.GetBudgetByUser(this.activeUser).subscribe(budget => { 
        this.BudgetList=budget;
        console.log(this.BudgetList);
 
