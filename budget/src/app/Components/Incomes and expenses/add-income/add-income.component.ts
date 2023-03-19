@@ -15,6 +15,7 @@ import { Logging } from 'src/shared/log.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
 import { Subcategory } from 'src/app/Classes/Subcategory';
+import { Budget } from 'src/app/Classes/Budget';
 
 
 @Component({
@@ -23,6 +24,8 @@ import { Subcategory } from 'src/app/Classes/Subcategory';
   styleUrls: ['./add-income.component.scss']
 })
 export class AddIncomeComponent implements OnInit {
+
+  activeBudget!:Budget;
 
   public nameNewCategory!: string;
   public nameNewSourceOfIncome!: string;
@@ -65,6 +68,8 @@ export class AddIncomeComponent implements OnInit {
   eventForm!: FormGroup;
 
   ngOnInit(): void {
+    this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+
     //יבוא נתונים עבור רשימות נפתחות
 
     this.myCategoryIncomeSer.GetAllCategory().subscribe(res => {
@@ -89,7 +94,7 @@ export class AddIncomeComponent implements OnInit {
     });
     //הבאת נתונים מהטופס
     this.eventForm = new FormGroup({
-      idBudget: new FormControl(this.log.ActiveBudget.id),
+      idBudget: new FormControl(this.activeBudget.id),
       date: new FormControl(""),
       sum: new FormControl(""),
       categoryIncome: new FormControl(""),

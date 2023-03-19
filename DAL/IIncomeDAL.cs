@@ -16,6 +16,7 @@ namespace DAL
         List<Income> GetIncomesByCategory(int category);
         List<Income> GetIncomesBySourceOfIncome(int sourceOfIncome);
         List<Income> GetIncomesByStatus(int status);
+        List<Income> GetIncomesByBudgetGroup(int idBudget);
 
     }
 }

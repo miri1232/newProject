@@ -49,6 +49,19 @@ namespace newProject.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetIncomesByBudgetGroup/{idBudget}")]
+        public IActionResult GetIncomesByBudgetGroup(int idBudget)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByBudgetGroup(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
 
 

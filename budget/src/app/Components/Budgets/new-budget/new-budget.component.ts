@@ -39,44 +39,45 @@ export class NewBudgetComponent implements OnInit {
 
   eventForm!: FormGroup;
 
-  
+
   ngOnInit(): void {
     this.lookupSer.GetAllTypeBudget().subscribe(res => {
       this.listTypeBudget = res;
       console.log(this.listTypeBudget);
     });
 
+    this.log.sharedActiveUser.subscribe(user => this.activeUser = user)
     this.eventForm = new FormGroup({
       nameBudget: new FormControl("", [Validators.required, Validators.pattern("")]),
-      manager: new FormControl(this.log.ActiveUser.id),
+      manager: new FormControl(this.activeUser.id),
       typeBudget: new FormControl(""),
-    });  
+    });
   }
 
 
-  
+
   AddBudget() {
 
-      if (this.eventForm.value != undefined) {
-          console.log("**שם תקציב**" + this.eventForm.value.nameBudget)
+    if (this.eventForm.value != undefined) {
+      console.log("**שם תקציב**" + this.eventForm.value.nameBudget)
 
-          this.newBudget.id = 0;
+      this.newBudget.id = 0;
 
-          this.newBudget.type = this.eventForm.value.typeBudget;
-          this.newBudget.manager = "0000";
-          this.newBudget.nameBudget = this.eventForm.value.nameBudget;
+      this.newBudget.type = this.eventForm.value.typeBudget;
+      this.newBudget.manager = "0000";
+      this.newBudget.nameBudget = this.eventForm.value.nameBudget;
 
 
-          this.myBudget.AddBudget(this.newBudget).subscribe(res1 => {
-              console.log("curent Budget ======>", res1)
-              this.newBudget = this.eventForm.value;
-              const modalRef = this.modalService.open(ActionDialogComponent);
-              modalRef.componentInstance.content =  " נוסף תקציב בכינוי  " +this.newBudget.nameBudget;
-              this.log.ActiveBudget = this.newBudget;
-              this.newBudget = new Budget();
-              this.router.navigate(['/BudgetHomePage']);
-            })
-      }
+      this.myBudget.AddBudget(this.newBudget).subscribe(res1 => {
+        console.log("curent Budget ======>", res1)
+        this.newBudget = this.eventForm.value;
+        const modalRef = this.modalService.open(ActionDialogComponent);
+        modalRef.componentInstance.content = " נוסף תקציב בכינוי  " + this.newBudget.nameBudget;
+        this.log.nextBudget(this.newBudget);
+        this.newBudget = new Budget();
+        this.router.navigate(['/BudgetHomePage']);
+      })
+    }
 
   }
 

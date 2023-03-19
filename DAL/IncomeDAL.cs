@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,37 @@ namespace DAL
         {
             try
             {
-                return _context.Incomes.Where(x => x.IdBudget==idBudget).ToList();
+                return _context.Incomes.Where(x => x.IdBudget == idBudget).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Income> GetIncomesByBudgetGroup(int idBudget)
+        {
+            try
+            {
+                var a = (from i in _context.Incomes.Where(x => x.IdBudget == idBudget).Include(x=>x.SourceOfIncomeNavigation).ToList()
+                         group i by i.SourceOfIncome into e                        
+                        select new {SourceOfIncome=e.Key, categoryName=e.FirstOrDefault().SourceOfIncomeNavigation.Detail, Sum=e.Sum(x => x.Sum) }).ToList();
+
+
+
+                //.GroupBy(x => new { x.CategoryIncome, x.SourceOfIncome })
+                //.Select(g => new
+                //{
+                //    category = g.Key.CategoryIncome,
+                //    source = g.Key.SourceOfIncome,
+                //    incomes = g.ToList(),
+                //});
+                //.GroupBy(x => new { x.CategoryIncome, x.SourceOfIncome },(key, group) => new
+                //{
+                //    Key1 = key.CategoryIncome,
+                //    Key2 = key.SourceOfIncome,
+                //    Result = group.ToList()
+                //});
+                return _context.Incomes.Where(x => x.IdBudget == idBudget).ToList();
             }
             catch (Exception ex)
             {
@@ -38,14 +69,14 @@ namespace DAL
         {
             try
             {
-                return _context.Incomes.Where(x =>x.Date >= start && x.Date <= end).ToList() ;
+                return _context.Incomes.Where(x => x.Date >= start && x.Date <= end).ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-       public List<Income> GetIncomesBySum(double min, double max)
+        public List<Income> GetIncomesBySum(double min, double max)
         {
             try
             {
@@ -61,7 +92,7 @@ namespace DAL
         {
             try
             {
-                return _context.Incomes.Where(x => x.CategoryIncome==category).ToList();
+                return _context.Incomes.Where(x => x.CategoryIncome == category).ToList();
             }
             catch (Exception ex)
             {
@@ -73,7 +104,7 @@ namespace DAL
         {
             try
             {
-                return _context.Incomes.Where(x => x.SourceOfIncome==sourceOfIncome).ToList();
+                return _context.Incomes.Where(x => x.SourceOfIncome == sourceOfIncome).ToList();
             }
             catch (Exception ex)
             {
@@ -85,7 +116,7 @@ namespace DAL
         {
             try
             {
-                return _context.Incomes.Where(x => x.Status==status).ToList();
+                return _context.Incomes.Where(x => x.Status == status).ToList();
             }
             catch (Exception ex)
             {

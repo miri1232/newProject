@@ -16,5 +16,7 @@ namespace BL
         List<IncomeDTO> GetIncomesByCategory(int category);
         List<IncomeDTO> GetIncomesBySourceOfIncome(int sourceOfIncome);
         List<IncomeDTO> GetIncomesByStatus(int status);
+        List<IncomeDTO> GetIncomesByBudgetGroup(int idBudget);
+
     }
 }

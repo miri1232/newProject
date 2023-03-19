@@ -14,11 +14,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './budget-home-page.component.html',
   styleUrls: ['./budget-home-page.component.scss'],
   template: `
-  <button type="button" ngbPopover="AddExpenseComponent" ngbPopoverPlacement="top" ngbPopoverContent>Open Popover</button>
 `
 
 })
 export class BudgetHomePageComponent implements OnInit {
+  activeBudget!: Budget;
 
   addExpenses: boolean = false;
   addIncomes: boolean = false;
@@ -28,19 +28,21 @@ export class BudgetHomePageComponent implements OnInit {
 
   constructor(
     private log: Logging,
-    private modalService: NgbModal, private budgetService: BudgetService, private activatedRoute: ActivatedRoute
+    private modalService: NgbModal, 
+    private budgetService: BudgetService, 
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
 
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(data => {
-      this.budgetService.GetBudgetById(data["budgetId"]).subscribe(budget => {
+    this.log.sharedActiveBudget.subscribe(budget => { 
+      this.activeBudget = budget;
+      this.budgetService.GetBudgetById(this.activeBudget.id).subscribe(budget => {
         this.b = budget;
       });
-    })
-
+    });
   }
 
   AddExpenses() {

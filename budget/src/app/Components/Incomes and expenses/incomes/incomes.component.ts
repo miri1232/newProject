@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Budget } from 'src/app/Classes/Budget';
 import { CategoryIncome } from 'src/app/Classes/CategoryIncome';
 import { Income } from 'src/app/Classes/Income';
 import { CategoryIncomeService } from 'src/app/Services/category-income.service';
@@ -12,30 +13,34 @@ import { Logging } from 'src/shared/log.service';
   styleUrls: ['./incomes.component.scss']
 })
 export class IncomesComponent implements OnInit {
-  
-  IncomeList : Income[] = [];
-  CategoryIncomeList : CategoryIncome[] = [];
 
+  IncomeList: Income[] = [];
+  CategoryIncomeList: CategoryIncome[] = [];
+
+  activeBudget!: Budget;
 
   constructor(
     private myIncomeServise: IncomesService,
-    private myCategoryIncome:CategoryIncomeService,
-    private log:Logging,
+    private myCategoryIncome: CategoryIncomeService,
+    private log: Logging,
 
   ) { }
 
   ngOnInit(): void {
-    this.myIncomeServise.GetIncomesByBudget(this.log.ActiveBudget.id).subscribe(exp => { 
+    this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+
+    this.myIncomeServise.GetIncomesByBudget(this.activeBudget.id).subscribe(exp => {
       this.IncomeList = exp;
       console.log(exp);
-  } );
- this.myCategoryIncome.GetAllCategory().subscribe(c => { 
+    });
+
+    this.myCategoryIncome.GetAllCategory().subscribe(c => {
       this.CategoryIncomeList = c;
       console.log(c);
-  } );
+    });
 
   }
 
-  
+
 
 }

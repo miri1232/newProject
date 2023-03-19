@@ -62,7 +62,7 @@ export class SignInComponent implements OnInit {
         this.newUser = this.eventForm.value;
         const modalRef = this.modalService.open(ActionDialogComponent);
         modalRef.componentInstance.content = this.newUser.firstName + " הרישום נקלט בהצלחה ";
-        this.log.ActiveUser = this.newUser;
+        this.log.nextUser(this.newUser)
         this.newUser = new User();
         this.router.navigate(['/ListBudgets']);
       })

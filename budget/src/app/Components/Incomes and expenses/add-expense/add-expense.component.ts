@@ -15,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Budget } from 'src/app/Classes/Budget';
 
 
 @Component({
@@ -24,6 +25,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AddExpenseComponent implements OnInit {
 
+  activeBudget!:Budget;
   // addCategory: boolean = false;
   // addSubCategory: boolean = false;
 
@@ -84,6 +86,8 @@ export class AddExpenseComponent implements OnInit {
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
       console.log(this.listStatus);
+      this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+
     });
     this.lookupSer.GetAllPaymentMethod().subscribe(res => {
       this.listPaymentMethod = res;
@@ -104,7 +108,7 @@ export class AddExpenseComponent implements OnInit {
 
     //הקמת הטופס
     this.eventForm = new FormGroup({
-      idBudget: new FormControl(this.log.ActiveBudget.id),
+      idBudget: new FormControl(this.activeBudget.id),
       date: new FormControl(""),
       sum: new FormControl(""),
       category: new FormControl(""),

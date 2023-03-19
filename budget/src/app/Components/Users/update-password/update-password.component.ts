@@ -67,7 +67,7 @@ this.userService.GetUserByID(this.IdToLogin).subscribe(res1 => {
    this.userService.UpdateUser(this.UserToUpdate).subscribe(res1 => {
         const modalRef = this.modalService.open(ActionDialogComponent);
         modalRef.componentInstance.content = this.UserToUpdate.firstName + " הסיסמא עודכנה בהצלחה ";
-        this.log.ActiveUser = this.UserToUpdate;
+        this.log.nextUser(this.UserToUpdate)
         this.IsSend=false;
         this.router.navigate(['/ListBudgets']);
       });
