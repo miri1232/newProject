@@ -1,9 +1,16 @@
-<p>bank works!</p>
+<!-- <p>bank works!</p> -->
  <div class="row">
   
+  <div >
+
+    <button class="btn btn-success" (click)="addBank=!addBank">הוספת בנק נוסף לתקציב</button>
+    <app-add-bank *ngIf="addBank" ></app-add-bank>
+    </div>
+
 <div class="card" style="width: 18rem;" *ngFor="let b of listBanksOfBudget">
     <!-- <a class="nav-link" href="{{b.link}}"><img src="{{b.logo_Bank}}" alt="">
     </a> -->
+    
     <div class="text-center mt-4 name">
 
         <img src="{{b.logo_Bank}}" class="card-img-top" alt="{{b.nameBank}}">
@@ -17,11 +24,7 @@
       </div>
 </div>
 
-      <div class="text-center mt-4 name">
-
-      <button class="btn btn-outline-success" (click)="addBank=!addBank">הוספת בנק לתקציב</button>
-      <app-add-bank *ngIf="addBank" ></app-add-bank>
-      </div>
+    
       <!-- </div> -->
 
 </div>

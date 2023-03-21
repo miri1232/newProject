@@ -13,39 +13,42 @@ import { Logging } from 'src/shared/log.service';
 export class BudgetsListComponent implements OnInit {
   [x: string]: any;
 
-public BudgetList :Budget[] | undefined;
+  public BudgetList: Budget[] | undefined;
 
   constructor(
-    private log:Logging,
-    private myBudgetServise: BudgetService ,
-    private router:Router,
+    private log: Logging,
+    private myBudgetServise: BudgetService,
+    private router: Router,
 
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
+    this.log.sharedActiveUser.subscribe(user => this.activeUser = user)
+  }
+  // b:Budget=this.log.ActiveBudget;
+  activeUser!: User;
+
+  ShowAllBudget() {
+    this.myBudgetServise.GetBudgetByUser(this.activeUser).subscribe(budget => {
+      this.BudgetList = budget;
+      console.log(this.BudgetList);
+
+    });
+    // this.BudgetList=this.myBudgetServise.GetBudgetByUser();
+  }
+
+
+
+  GoBudget(b: Budget) {
+    this.log.nextBudget(b);
+
+    this.router.navigate(['/BudgetHomePage']);
+    
 
   }
-// b:Budget=this.log.ActiveBudget;
-U:User=this.log.ActiveUser;
-
-  ShowAllBudget(){
-     this.myBudgetServise.GetBudgetByUser().subscribe(budget => { 
-       this.BudgetList=budget;
-       console.log(this.BudgetList);
-
-     });
-     // this.BudgetList=this.myBudgetServise.GetBudgetByUser();
-  }
 
 
-  
-     GoBudget( b : Budget){
-      this.log.ActiveBudget = b;
-
-      this.router.navigate(['/BudgetHomePage']);
-
-     }
-
-
-  }
+}
 

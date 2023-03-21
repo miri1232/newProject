@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Budget } from 'src/app/Classes/Budget';
 import { Category } from 'src/app/Classes/Category';
 import { Expense } from 'src/app/Classes/Expense';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ExpensesService } from 'src/app/Services/expenses.service';
+import { Logging } from 'src/shared/log.service';
 
 @Component({
   selector: 'app-expenses',
@@ -11,38 +13,42 @@ import { ExpensesService } from 'src/app/Services/expenses.service';
 })
 export class ExpensesComponent implements OnInit {
 
-ExpensesList : Expense[] = [];
-CategoryList : Category[] = [];
+  ExpensesList: Expense[] = [];
+  CategoryList: Category[] = [];
+
+  @Input()
+  budget!: Budget;
 
 
   constructor(
-        private myExpensesServise: ExpensesService ,
-        private myCategory:CategoryService,
+    private myExpensesServise: ExpensesService,
+    private myCategory: CategoryService,
+    private log: Logging,
   ) { }
 
   //הכנת משתנה לקליטת הקטגוריה שמתקבל מהמשתמש
   // @Input() CategoryToShow="";
 
   ngOnInit(): void {
-    this.myExpensesServise.GetAllExpenses().subscribe(exp => { 
+    this.myExpensesServise.GetExpensesByBudget(this.budget.id).subscribe(exp => {
       this.ExpensesList = exp;
       console.log(exp);
-  } );
- this.myCategory.GetAllCategory().subscribe(c => { 
+    });
+    this.myCategory.GetAllCategory().subscribe(c => {
       this.CategoryList = c;
       console.log(c);
-  } );
+    });
 
 
   }
 
-ConvertCategory(id:number){
+  ConvertCategory(id: number) {
 
-}
+  }
 
- CategoryToShow:string="";
-  
- //ExpensesList= this.myExpensesServise.GetAllExpenses();
+  CategoryToShow: string = "";
+
+  //ExpensesList= this.myExpensesServise.GetAllExpenses();
 
   // ShowAllExpenses(){
   //   this.myExpensesServise.GetAllExpenses().subscribe(exp => { 

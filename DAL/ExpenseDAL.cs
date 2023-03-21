@@ -22,6 +22,18 @@ namespace DAL
                 throw ex;
             }
         }
+        public List<Expense> GetExpensesByBudget(int budget)
+        {
+            try
+            {
+                return _context.Expenses.Where(x => x.IdBudget == budget).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Expense> GetExpensesByDate(DateTime start, DateTime end)
         {
             try

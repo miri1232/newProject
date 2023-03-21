@@ -34,6 +34,37 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        //שליפה לפי תקציב
+        [HttpGet]
+        [Route("GetIncomesByBudget/{idBudget}")]
+        public IActionResult GetIncomesByBudget(int idBudget)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByBudget(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetIncomesByBudgetGroup/{idBudget}")]
+        public IActionResult GetIncomesByBudgetGroup(int idBudget)
+        {
+            try
+            {
+                return Ok(_incomeBL.GetIncomesByBudgetGroup(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+
         //שליפה לפי טווח תאריכים
         [HttpGet]
         [Route("IncomesByDate")]

@@ -17,7 +17,9 @@ const appRouting:Routes=[
   { path: "Login",component:LoginComponent},
   { path: "UpdatePassword",component:UpdatePasswordComponent},
   {path:"ListBudgets",component:BudgetsListComponent},
-    {path:"BudgetHomePage",component:BudgetHomePageComponent},
+  {path:"BudgetHomePage",component:BudgetHomePageComponent},
+
+    // {path:"BudgetHomePage/:budgetId",component:BudgetHomePageComponent},
     {path:"NewBudget",component:NewBudgetComponent},
 
 

@@ -23,11 +23,12 @@ export class CategoryIncomeService {
   }
 
   AddCategoryIncome(newCategoryIncome:CategoryIncome):Observable<boolean> {
-    return this.http.post<boolean>(this.V_API + '/AddCategoryIncome',newCategoryIncome);
-  
+    return this.http.post<boolean>(this.V_API + '/AddCategoryIncome',newCategoryIncome); 
   }
   
-
+  AddSourceOfIncome(newSourceOfIncome:SourceOfIncome):Observable<boolean> {
+    return this.http.post<boolean>(this.V_API + '/AddSourceOfIncome',newSourceOfIncome);
+  }
  
   
 }

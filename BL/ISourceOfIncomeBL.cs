@@ -6,7 +6,7 @@ namespace BL
     public interface ISourceOfIncomeBL
     {
         List<SourceOfIncomeDTO> GetAllSourceOfIncomes();
-        SourceOfIncomeDTO GetSourceOfIncomeByID(int idSourceOfIncome);
+        List<SourceOfIncomeDTO> GetSourceOfIncomeByID(int idSourceOfIncome);
 
         bool AddSourceOfIncome(SourceOfIncomeDTO sourceOfIncomeDTO);
         bool UpdateSourceOfIncome(SourceOfIncomeDTO sourceOfIncomeDTO);

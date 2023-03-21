@@ -41,6 +41,10 @@ namespace DAL
             try
             {
                 User user = GetUserByID(idUser);
+                if(user == null)
+                {
+                    return false;
+                }
                 if (user.Password.Equals(password))
                     return true;
                 else

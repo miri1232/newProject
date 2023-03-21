@@ -9,23 +9,27 @@ import { Expense } from '../Classes/Expense';
 })
 export class ExpensesService {
 
-  readonly V_API = environment.ApiUrl+'/Expense';
+  readonly V_API = environment.ApiUrl + '/Expense';
 
-  
+
   constructor(
-    private http : HttpClient
-    ) { }
+    private http: HttpClient
+  ) { }
 
-    GetAllExpenses(): Observable<Expense[]>{
-          return this.http.get<Expense[]>(this.V_API+'/GetAllExpenses');
-    }
+  GetAllExpenses(): Observable<Expense[]> {
+    return this.http.get<Expense[]>(this.V_API + '/GetAllExpenses');
+  }
 
-      GetExpensesByCategory(ctg:string):Observable<Expense[]>{
-            return this.http.get<Expense[]>(this.V_API+'/GetExpensesByCategory');
-      }
-        
-      AddExpense(newExpense :Expense):Observable<boolean> {
-      return this.http.post<boolean>(this.V_API + '/AddExpense',newExpense);
+  GetExpensesByBudget(idBudget: number): Observable<Expense[]> {
+    return this.http.get<Expense[]>(this.V_API + '/GetExpensesByBudget/'+ idBudget);
+  }
+
+  // GetExpensesByCategory(ctg: number): Observable<Expense[]> {
+  //   return this.http.get<Expense[]>(this.V_API + '/GetExpensesByCategory', ctg);
+  // }
+
+  AddExpense(newExpense: Expense): Observable<boolean> {
+    return this.http.post<boolean>(this.V_API + '/AddExpense', newExpense);
   }
 
 

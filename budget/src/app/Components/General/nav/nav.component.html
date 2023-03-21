@@ -1,53 +1,55 @@
-<!-- <ul class="nav nav-tabs nav-justified" style="position: sticky, top=0px"> -->
-<!-- 
-  <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" 
-  style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
-    <li class="nav-item" role="presentation"> -->
+<ul class="nav nav-tabs nav-justified center" style="position: sticky, top=10px">
 
-  <ul class="nav nav-pills nav-fill">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page"  (click)="logIn()"> התחבר </a>
- <!-- *ngIf="activeUser.id == '' ; else user"  -->
-    </li>
-    
-    <ng-template #user>
-
-      <li class="nav-item">
-        <a class="nav-link disabled" > שלום {{activeUser.firstName}} </a>
-      </li>
-    <li class="nav-item">
-      <a class="nav-link"   (click)="logOut()">התנתק </a>
-    </li>  
-
-     </ng-template>
-
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="#">Much longer nav link</a>
-    </li> -->
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li> -->
-    <li class="nav-item">
-      <div class="logo">
-        <a  routerLink='/'>
-        <img src="../../../../assets/image/Logo.jpg" alt="" routerLink='/'></a>
-    </div> 
-    
+  <li class="nav-item" *ngIf="activeUser.id == undefined">
+    <a class="btn btn-outline-success2" (click)="logIn()"> התחבר </a>
   </li>
- 
-      
-    <!-- <li class="nav-item">
-      <a class="nav-link"   routerLink="/contact_Us">צור קשר – פניה </a>
-    </li> -->
+  <li *ngIf="activeUser.id != undefined" class="nav-item">
+    <a class="btn btn-outline-success2"> שלום {{activeUser.firstName}}</a>
+  </li>
+  <li *ngIf="activeUser.id != undefined" class="nav-item">
+    <a class="btn btn-outline-success2" (click)="logOut()">התנתק </a>
+  </li>
+  <li *ngIf="activeUser.id != undefined" class="nav-item">
+    <a class="btn btn-outline-success2"> עבור בין תקציבים </a>
+    <select class="btn btn-success">
+
+      <div *ngIf="budgetExist">
+        <option selected> {{activeBudget.nameBudget}}</option>
+
+        <option *ngFor="let b of BudgetList" (click)="GoBudget(b)">
+          <label> {{b.nameBudget}} </label>
+        </option>
+
+        <option href="NewBudget"> פתח תקציב חדש </option>
+      </div>
+    </select>
+  </li>
+  <li class="nav-item">
+    <a class="btn btn-outline-success2" routerLink='/'>לדף הבית</a>
+  </li>
+  <li class="nav-item">
+    <div class="logo" style="margin: 20px;">
+      <img src="../../../../assets/image/Logo.jpg">
+    </div>
+  </li>
+
+</ul>
 
 
-   
-    <!-- <li class="nav-item" *ngIf="activeUser.IsManager">
-      <a class="nav-link"   routerLink="/Manager">תפריט מנהל </a>
-    </li> -->
+<!-- *ngIf="ActiveBudget.id == '' ; else budget"
+      <button class="btn btn-outline-success" (click)="ShowAllBudget()" autoClose="outside" [ngbPopover]="listBudget"
+        ngbPopoverPlacement="outside" placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent> עבור
+        בין תקציבים </button> -->
+<!-- <button type="button" class="btn btn-outline-success"  autoClose="outside" [ngbPopover]="listBudget" ngbPopoverPlacement="outside" 
+placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוספת הוצאהpop</button>
+ -->
 
-  
-  </ul>
+<!-- <ng-template class="float-start" style="width: 1000rem;" #listBudget>
+        <div class="d-grid gap-2 col-6 mx-auto" *ngFor="let b of BudgetList">
+          <button type="button" class="btn btn-outline-success" (click)="GoBudget(b)"> {{b.nameBudget}}</button>
+        </div>
+      </ng-template> -->
 
 
-  <router-outlet></router-outlet>
+
+<router-outlet></router-outlet>

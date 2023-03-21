@@ -22,11 +22,11 @@ namespace DAL
                 throw ex;
             }
         }
-        public SourceOfIncome GetSourceOfIncomeByID(int idSourceOfIncome)
+        public List<SourceOfIncome> GetSourceOfIncomeByID(int idSourceOfIncome)
         {
             try
             {
-                return _context.SourceOfIncomes.Where(p => p.Id == idSourceOfIncome).FirstOrDefault();
+                return _context.SourceOfIncomes.Where(p => p.CategoryIncome == idSourceOfIncome).ToList();
             }
             catch (Exception ex)
             {

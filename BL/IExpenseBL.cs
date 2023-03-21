@@ -8,6 +8,7 @@ namespace BL
     public interface IExpenseBL
     {
         List<ExpenseDTO> GetAllExpenses();
+        List<ExpenseDTO> GetExpensesByBudget(int budget);
         List<ExpenseDTO> GetExpensesByDate(DateTime start, DateTime end);
         List<ExpenseDTO> GetExpensesBySum(double min, double max);
         List<ExpenseDTO> GetExpensesByCategory(int category);

@@ -38,13 +38,13 @@ namespace newProject.Controllers
 
         //שליפת ערך יחיד לפי ID תקציב
         [HttpGet]
-        [Route("GetBudgetByID")]
+        [Route("GetBudgetByID/{idBudget}")]
         public IActionResult GetBudgetByID(int idBudget)
         {
             try
             {
                 return Ok(_budgetBL.GetBudgetByID(idBudget));
-            }
+            }   
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);

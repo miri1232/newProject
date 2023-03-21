@@ -55,6 +55,28 @@ namespace BL
 
             return listExpenseDTO;
         }
+
+        public List<ExpenseDTO> GetExpensesByBudget(int budget)
+        {
+            List<Expense> expenseList = _expenseDAL.GetExpensesByBudget(budget);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+
+            List<Category> categories = _categoryDAL.GetAllCategory();
+            listExpenseDTO.ForEach(item => item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.Category).Detail);
+
+            List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
+            listExpenseDTO.ForEach(item => item.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == item.Subcategory).Detail);
+
+            List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
+            listExpenseDTO.ForEach(item => item.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == item.PaymentMethod).Detail);
+
+            List<Status> statuses = _lookupDAL.GetAllStatus();
+            listExpenseDTO.ForEach(item => item.StatusDetail
+            = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
+
+            return listExpenseDTO;
+        }
+
         public List<ExpenseDTO> GetExpensesByDate(DateTime start, DateTime end)
         {
             List<Expense> expenseList = _expenseDAL.GetExpensesByDate(start, end);

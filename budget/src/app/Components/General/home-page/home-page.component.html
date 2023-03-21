@@ -1,23 +1,23 @@
-<app-nav></app-nav>
-
-<p>home-page works!</p>
-
-ברוכים הבאים      <br/>
-<br/>
-ניהול תקציב משפחתי ומעקב אחרי הוצאות הוא צעד הכרחי בהחלטה לנהל את ההוצאות       <br/>
-במקום שהן ינהלו אותנו ולתפיסת השליטה בהתנהלות הפיננסית המשפחתית.       <br/>
-כשהתקציב מנוהל, לא תופתעו ממינוס בבנק אלא תמצאו דרכים להקטין אותו,       <br/>
-תמנעו מראש חריגה ממסגרת אשראי והוצאות לא צפויות לא יהפכו למשבר כלכלי.      <br/>
+<div class="wrapper">
 
 
-<br/>
+    <div class="text-center mt-4 name">
+        ברוכים הבאים למערכת in & out
+    </div>
+    <br />
+    <div class="text-center">
+
+        ניהול תקציב משפחתי ומעקב אחרי הוצאות הוא צעד הכרחי בהחלטה לנהל את ההוצאות <br />
+        במקום שהן ינהלו אותנו ולתפיסת השליטה בהתנהלות הפיננסית המשפחתית. <br />
+        כשהתקציב מנוהל, לא תופתעו ממינוס בבנק אלא תמצאו דרכים להקטין אותו, <br />
+        תמנעו מראש חריגה ממסגרת אשראי והוצאות לא צפויות לא יהפכו למשבר כלכלי. <br />
+    </div>
+    <br />
 
 
-<button class="btn mt-3"  (click)="Login()">התחבר</button> 
-או <button class="btn mt-3"  (click)="SignIn()"> הירשם</button>
-
-<app-login *ngIf="showLogin" ></app-login>
-<app-sign-in *ngIf="showSignIn"></app-sign-in> 
-
-
-
+    <button class="btn mt-3" (click)="Login()">התחבר</button>
+    <!-- <a style="color: #25870a;">  או   </a>  -->
+    <br />
+    <br />
+    <button class="btn mt-3" (click)="SignIn()"> הירשם</button>
+</div>

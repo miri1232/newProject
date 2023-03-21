@@ -39,11 +39,11 @@ namespace newProject.Controllers
         //שליפת ערך יחיד לפי ID 
         [HttpGet]
         [Route("GetSourceOfIncomeByID")]
-        public IActionResult GetSourceOfIncomeByID(int idSourceOfIncome)
+        public IActionResult GetSourceOfIncomeByID(int categoryIncome)
         {
             try
             {
-                return Ok(_sourceOfIncomeBL.GetSourceOfIncomeByID(idSourceOfIncome));
+                return Ok(_sourceOfIncomeBL.GetSourceOfIncomeByID(categoryIncome));
             }
             catch (Exception ex)
             {

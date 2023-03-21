@@ -6,6 +6,10 @@ import { BankOfBudget } from 'src/app/Classes/BankOfBudget';
 import { BankService } from 'src/app/Services/bank.service';
 import { LookupService } from 'src/app/Services/lookup.service';
 import { Logging } from 'src/shared/log.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-bank',
@@ -27,6 +31,7 @@ export class AddBankComponent implements OnInit {
      private bankOfBudgetSer:BankService,
      private lookupSer: LookupService,
      private formBuilder: FormBuilder,
+     private modalService: NgbModal,
 
   ) { }
 
@@ -60,7 +65,8 @@ AddBankOfBudget(){
 
 this.bankOfBudgetSer.AddBankOfBudget(this.eventForm.value).subscribe(res =>{
   if(res){
-alert(" נוסף לרשימת הבנקים המשוייכים לתקציב")
+    const modalRef = this.modalService.open(ActionDialogComponent);
+    modalRef.componentInstance.content = " נוסף לרשימת הבנקים המשוייכים לתקציב";
   }
 });
 } 
