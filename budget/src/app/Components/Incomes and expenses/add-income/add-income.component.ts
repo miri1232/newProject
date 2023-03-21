@@ -162,7 +162,7 @@ export class AddIncomeComponent implements OnInit {
        this.idSourceOfIncome=0;
   
       })
-    }
+ }
   
   
     }
