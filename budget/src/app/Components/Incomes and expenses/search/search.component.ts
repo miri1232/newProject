@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/Classes/Category';
 import { Status } from 'src/app/Classes/Status';
 import { Subcategory } from 'src/app/Classes/Subcategory';
+import { BudgetService } from 'src/app/Services/budget.service';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ExpensesService } from 'src/app/Services/expenses.service';
 import { LookupService } from 'src/app/Services/lookup.service';
@@ -30,7 +31,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private log: Logging,
     private formBuilder: FormBuilder,
-    //private myBudget: BudgetService,
+    private myBudget: BudgetService,
     private router: Router,
     private route: ActivatedRoute,
     private lookupSer: LookupService,

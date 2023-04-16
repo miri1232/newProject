@@ -39,11 +39,12 @@ namespace DAL
         {
             try
             {
-                var a = (from i in _context.Incomes.Where(x => x.IdBudget == idBudget).Include(x=>x.SourceOfIncomeNavigation).ToList()
+        var s = (from i in _context.Incomes.Where(x => x.IdBudget == idBudget).Include(x=>x.SourceOfIncomeNavigation).ToList()
                          group i by i.SourceOfIncome into e                        
-                        select new {SourceOfIncome=e.Key, categoryName=e.FirstOrDefault().SourceOfIncomeNavigation.Detail, Sum=e.Sum(x => x.Sum) }).ToList();
+                        select new {SourceOfIncome=e.Key, categoryName=e.FirstOrDefault()
+                        .SourceOfIncomeNavigation.Detail, Sum=e.Sum(x => x.Sum) }).ToList();        
 
-
+               // return s;
 
                 //.GroupBy(x => new { x.CategoryIncome, x.SourceOfIncome })
                 //.Select(g => new

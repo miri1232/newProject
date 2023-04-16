@@ -1,7 +1,12 @@
-<meta charset="utf-8" />
-<div class="wrapper">
 
-    <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddBankOfBudget()">
+<div class="form-dialog wrapper">
+    
+  
+    <div class="text-center mt-4 name">
+     הוספת בנק
+  </div> 
+
+  <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddBankOfBudget()">
 
         <!-- בחירה מתוך תיבה נפתחת -->
         <div class="form-field  align-items-center">
@@ -25,9 +30,9 @@
              formControlName="account_Number"  name="account_Number" required />
         </div>
 
-
-
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף חשבון</button>
 
     </form>
+
+</div>
 

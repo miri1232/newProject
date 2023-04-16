@@ -15,6 +15,8 @@ export class BudgetsListComponent implements OnInit {
 
   public BudgetList: Budget[] | undefined;
 
+  activeUser!: User;
+
   constructor(
     private log: Logging,
     private myBudgetServise: BudgetService,
@@ -26,9 +28,13 @@ export class BudgetsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.log.sharedActiveUser.subscribe(user => this.activeUser = user)
+    this.myBudgetServise.GetBudgetByUser(this.activeUser).subscribe(budget => {
+      this.BudgetList = budget;
+      console.log(this.BudgetList);
+
+    });
   }
   // b:Budget=this.log.ActiveBudget;
-  activeUser!: User;
 
   ShowAllBudget() {
     this.myBudgetServise.GetBudgetByUser(this.activeUser).subscribe(budget => {

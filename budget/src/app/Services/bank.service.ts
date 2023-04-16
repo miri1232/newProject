@@ -19,10 +19,10 @@ export class BankService {
 
 
         //שליפת רשימת בנקים לפי מספר תקציב
-    GetBankOfBudgetByIdBudget():Observable<BankOfBudget[]>{
+    GetBankOfBudgetByIdBudget(idBudget:number):Observable<BankOfBudget[]>{
       const categoryIncome=new HttpParams();
     
-      return this.http.get<BankOfBudget[]>(this.V_API + '/GetBankOfBudgetByIdBudget'+'/6');
+      return this.http.get<BankOfBudget[]>(this.V_API + '/GetBankOfBudgetByIdBudget/'+idBudget);
    
     }
 

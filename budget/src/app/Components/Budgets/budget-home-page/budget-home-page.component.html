@@ -1,6 +1,4 @@
 
-שם התקציב: {{b.nameBudget}}
-
 <br />
 <!-- <button type="button" class="btn btn-outline-success"  autoClose="outside" [ngbPopover]="AddExpense" ngbPopoverPlacement="outside" 
 placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוספת הוצאהpop</button>
@@ -14,7 +12,7 @@ placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוס
 
 <button class="btn btn-outline-success" (click)="AddExpenses()">הוספת הוצאה</button>
 <button class="btn btn-outline-success" (click)="AddIncomes()">הוספת הכנסה</button>
-<button class="btn btn-outline-success" (click)="AddPermission()">הוספת משתמשים לתקציב</button>
+<button *ngIf="activeUser.id==activeBudget.manager" class="btn btn-outline-success" (click)="AddPermission()">הוספת משתמשים לתקציב</button>
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
@@ -43,7 +41,7 @@ placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוס
     <app-incomes></app-incomes></div>
 
   <div class="tab-pane fade" id="pills-Expenses" role="tabpanel" aria-labelledby="pills-Expenses-tab" tabindex="0">
-    <app-expenses [budget]="b"></app-expenses></div>
+    <app-expenses ></app-expenses></div>
 
   <div class="tab-pane fade" id="pills-bank" role="tabpanel" aria-labelledby="pills-bank-tab" tabindex="0">
     <app-bank></app-bank></div>
