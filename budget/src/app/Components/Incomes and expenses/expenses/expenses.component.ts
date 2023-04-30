@@ -16,7 +16,6 @@ export class ExpensesComponent implements OnInit {
   ExpensesList: Expense[] = [];
   CategoryList: Category[] = [];
 
-  // sumExpenses: number=0;
   activeBudget!: Budget;
 
   constructor(
@@ -42,6 +41,10 @@ export class ExpensesComponent implements OnInit {
 
 
   }
+
+SumExpenses(i:number){
+  return this.ExpensesList.slice(0,i+1).reduce((a,b)=>a+b.sum,0);
+}
 
   ConvertCategory(id: number) {
 

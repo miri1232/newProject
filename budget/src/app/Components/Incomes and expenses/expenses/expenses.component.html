@@ -16,7 +16,7 @@
  <button (click)="ShowExpensesByCategory()">
     הוצאות לפי קטגוריה
   </button> -->
- 
+
 
 <app-search></app-search>
 
@@ -37,7 +37,9 @@
 
     </tr>
   </thead>
-  <tbody *ngFor="let e of ExpensesList; let i=index;">
+  <!-- <tbody *ngFor="let e of ExpensesList; let i=index,  s =0 ;"> -->
+  <tbody *ngFor=" let e of ExpensesList; let i=index;">
+
     <tr>
       <th scope="row">{{i+1}}</th>
       <td>{{e.date | date: 'dd/MM/yyyy' }}</td>
@@ -51,7 +53,8 @@
       <!-- <i [ngClass]="{e.frequency?'bi bi-check':'bi bi-check'}"></i> -->
       <td>{{e.statusDetail}}</td>
       <td>{{e.document}}</td>
-      <td>{{i + e.sum}}</td>
+      <!-- <td>{{s+e.sum | number: '1.0-0' }}</td> -->
+      <td>{{SumExpenses(i) | number: '1.0-0' }}</td>
 
     </tr>
 

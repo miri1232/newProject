@@ -20,35 +20,35 @@ export class BankComponent implements OnInit {
 
   activeBudget!: Budget;
 
-  addBank:boolean=false;
+  addBank: boolean = false;
 
   constructor(
     private LookupSer: LookupService,
     private router: Router,
-     private bankOfBudgetSer:BankService,
-     private log: Logging,
-     private modalService: NgbModal, 
-     private budgetService: BudgetService, 
-     private activatedRoute: ActivatedRoute,
+    private bankOfBudgetSer: BankService,
+    private log: Logging,
+    private modalService: NgbModal,
+    private budgetService: BudgetService,
+    private activatedRoute: ActivatedRoute,
     //  private addBankComp: AddBankComponent,
   ) { }
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
 
-    this.bankOfBudgetSer.GetBankOfBudgetByIdBudget(this.activeBudget.id).subscribe(res=>{
-      this.listBanksOfBudget=res;
-            console.log(this.listBanksOfBudget);
+    this.bankOfBudgetSer.GetBankOfBudgetByIdBudget(this.activeBudget.id).subscribe(res => {
+      this.listBanksOfBudget = res;
+      console.log(this.listBanksOfBudget);
     });
   }
 
-  AddBank(){
+  AddBank() {
     const modalRef2 = this.modalService.open(AddBankComponent);
-    modalRef2.componentInstance.idBudget= this.activeBudget
+    modalRef2.componentInstance.idBudget = this.activeBudget
   }
 
-  goToLinkBank(link:string){
-    window.location.href=link
+  goToLinkBank(link: string) {
+    window.open(link, "_blank");
   }
 
 }

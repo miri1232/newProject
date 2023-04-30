@@ -22,7 +22,8 @@ export class IncomesService {
         return this.http.get<Income[]>(this.V_API+'/GetIncomesByBudget/'+idBudget);
   }
   
-      
+   
+ 
 
 AddIncome(newIncome:Income):Observable<boolean> {
   

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Budget } from 'src/app/Classes/Budget';
+import { CategoryIncome } from 'src/app/Classes/CategoryIncome';
 import { Income } from 'src/app/Classes/Income';
 import { IncomesService } from 'src/app/Services/incomes.service';
 import { Logging } from 'src/shared/log.service';
@@ -12,7 +13,7 @@ import { Logging } from 'src/shared/log.service';
 export class ReportsComponent implements OnInit {
 
   activeBudget!: Budget;
-  IncomeList!:Income[];
+  IncomeList!:any;
 
 
   constructor(
@@ -21,12 +22,20 @@ export class ReportsComponent implements OnInit {
 
   ) { }
 
+
+
+  groupBy(xs:any, groupByFn:any) {
+    return xs.reduce(function(rv:any, x:any) {
+      (rv[groupByFn(x)] = rv[groupByFn(x)] || []).push(x);
+      return rv;
+    }, {});
+  };
+
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => { 
       this.activeBudget = budget;
       this.myIncomeServise.GetIncomesByBudget(this.activeBudget.id).subscribe(exp => {
-        this.IncomeList = exp;
-
+        this.IncomeList=this.groupBy(exp, (income:any)=>{return income.categoryIncome});
       });
     });
   }

@@ -110,10 +110,15 @@
 
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
-                <input type="text" id="document" placeholder="צירוף מסמך" 
+                
+                <input class="form-control" type="file" id="formFile" id="document" placeholder="צירוף מסמך" 
                 formControlName="document" name="document" />
-
             </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" id="formFile">
+              </div>
+
             <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף</button>
         </div>
 
