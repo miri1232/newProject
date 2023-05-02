@@ -1,20 +1,18 @@
 <div class="form-dialog wrapper" style="line-height: 250%">
 
     <div class="text-center mt-4 name">
-        הוספת הוצאה
+        עריכת הוצאה
     </div>
 
-    <form class="p-3 mt-6" [formGroup]="eventForm" (ngSubmit)="AddExpense()">
+    <form class="p-3 mt-6" [formGroup]="eventForm" (ngSubmit)="UpdateExpense()">
         <div class="row">
             <div class="col-sm-6">
 
                 <div class="form-field  align-items-center">
                     <span class="far fa-user" for="floatingDate">תאריך ההוצאה</span>
-                    <input type="date" id="date" placeholder="תאריך ההוצאה" class="form-control" id="defaultDate"
-                        [(ngModel)]="defaultDate" name="date" value="{{ defaultDate | date:'yyyy-MM-dd' }}" required />
-                    <!-- <input type="date" formControlName="defaultDate" name="date" id="date" 
-                     value="{{ defaultDate | date:'yyyy-MM-dd' }}"> -->
-
+                     <input type="date" id="date" placeholder="תאריך ההוצאה" class="form-control" id="defaultDate"
+                     [(ngModel)]="defaultDate" name="date" value="{{ defaultDate | date:'yyyy-MM-dd' }}" required />
+            
                 </div>
             </div>
 
@@ -33,7 +31,7 @@
                 <div class="form-field  align-items-center">
                     <span class="far fa-user">קטגוריה</span>
                     <select (change)="filterByCategory()" class="form-field d-flex align-items-center"
-                        placeholder="בחר קטגוריה" [(ngModel)]="idCategory" formControlName="category" required>
+                    [(ngModel)]="idCategory" formControlName="category" required>
                         <option selected [ngValue]=0>בחר קטגוריה</option>
                         <option type="number" *ngFor="let t of listCategory" [ngValue]="t.id" required>
                             <label> {{t.detail}} </label>
@@ -65,11 +63,15 @@
                     <!-- בחירה מתוך תיבה נפתחת לאחר שהוזנו נתונים בתיבת קטגוריה -->
                     <div class="form-field  align-items-center">
                         <span class="far fa-user">תת קטגוריה</span>
-                        <select class="form-field  align-items-center" placeholder="בחר תת קטגוריה"
-                            formControlName="subCategory" [(ngModel)]="idSubcategory" required>
+                        <select class="form-field  align-items-center" 
+                            formControlName="subCategory" [(ngModel)]="idSubcategory"  required>
+                            <!-- <option>jhkhk</option> -->
                             <option type="text" *ngFor="let t of listSubcategoryByCategory" [ngValue]="t.id" required>
                                 <label> {{t.detail}} </label>
                             </option>
+                            <!-- <option *ngFor="let t of listSubcategoryByCategory">
+                               lljljlkj
+                            </option> -->
                             <option type="text" [ngValue]=-1 required>
                                 <label> הוסף תת קטגוריה </label>
                             </option>
@@ -136,8 +138,16 @@
                         formControlName="document" name="document" />
                 </div>
             </div>
+            <div class="col-sm-6">
 
-            <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוסף</button>
+            <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">עדכן הוצאה</button>
+            </div>
+
+            <div class="col-sm-6">
+
+            <button class="btn mt-3" (click)="close()">ביטול</button>
+            </div>
+
         </div>
     </form>
 

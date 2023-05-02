@@ -31,6 +31,7 @@ export class AddIncomeComponent implements OnInit {
 
   public nameNewCategory!: string;
   public nameNewSourceOfIncome!: string;
+  defaultDate: Date = new Date(); // default to today's date
 
   newCategory = new Category();
   newSourceOfIncome = new SourceOfIncome();
@@ -97,7 +98,7 @@ export class AddIncomeComponent implements OnInit {
     });
     //הבאת נתונים מהטופס
     this.eventForm = new FormGroup({
-      date: new FormControl(""),
+      date: new FormControl(this.defaultDate),
       sum: new FormControl(""),
       categoryIncome: new FormControl(""),
       sourceOfIncome: new FormControl(""),

@@ -19,28 +19,23 @@ import { Budget } from 'src/app/Classes/Budget';
 import { BudgetService } from 'src/app/Services/budget.service';
 import { getLocaleDateTimeFormat } from '@angular/common';
 
-
 @Component({
-  selector: 'app-add-expense',
-  templateUrl: './add-expense.component.html',
-  styleUrls: ['./add-expense.component.scss']
+  selector: 'app-update-expense',
+  templateUrl: './update-expense.component.html',
+  styleUrls: ['./update-expense.component.scss']
 })
-export class AddExpenseComponent implements OnInit {
+export class UpdateExpenseComponent implements OnInit {
 
   @Input()
   activeBudget!: Budget;
-  
-  // addCategory: boolean = false;
-  // addSubCategory: boolean = false;
+  expenseToUpdate!: Expense;
+
 
   public nameNewCategory!: string;
-    public nameNewSubCategory!: string;
-    defaultDate: Date = new Date(); // default to today's date
-    newCategory = new Category();
+  public nameNewSubCategory!: string;
+  newCategory = new Category();
   newSubCategory = new Subcategory();
-
-  newExpense = new Expense();
-  // IsExpense: boolean | undefined;
+  defaultDate?: Date;
 
   //עבור יבוא מערכים לנתוני תיבה נפתחת
   public listCategory: Category[] | undefined;
@@ -49,17 +44,15 @@ export class AddExpenseComponent implements OnInit {
   public listPaymentMethod: PaymentMethod[] | undefined;
 
   //עבור רשימה נפתחת מצומצמת לתת קטגוריה
-  public idCategory: number = 0;
-  public idSubcategory: number = 0;
+  public idCategory: number = 0;//this.expenseToUpdate.category;
+  public idSubcategory: number = 0;//this.expenseToUpdate.subcategory; 
+
+  //public idCategory: number =2;
+  //public idSubcategory: number =3;
 
   public listSubcategoryByCategory: Subcategory[] = [];
 
 
-  //עבור תיבה נפתחת
-  // categoryFormControl = new FormControl(Validators.prototype);
-  // statusFormControl = new FormControl( Validators.required);
-  // subcategoryFormControl = new FormControl( Validators.required);
-  // paymentMethodFormControl = new FormControl( Validators.required);
 
 
   constructor(
@@ -73,21 +66,16 @@ export class AddExpenseComponent implements OnInit {
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
     private mySubCategory: SubCategoryService,
-   private modalService: NgbModal,
+    private modalService: NgbModal,
   ) { }
 
   eventForm!: FormGroup;
 
-  // ngDoCheck(): void {
-  //   this.mySubCategory.GetSubcategoryByCategory(this.idCategory).subscribe(res => {
-  //     this.listSubcategoryByCategory = res;
-  //     console.log(this.listSubcategoryByCategory);
-  //   });
-  // }
-
   ngOnInit(): void {
-    // this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
-
+    this.defaultDate = this.expenseToUpdate.date;
+    this.idCategory = this.expenseToUpdate.category;
+    this.idSubcategory = this.expenseToUpdate.subcategory;
+  
     // //יבוא נתונים עבור רשימות נפתחות
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -105,59 +93,40 @@ export class AddExpenseComponent implements OnInit {
       console.log(this.listCategory);
     });
     this.mySubCategory.GetAllSubcategory().subscribe(res => {
+      debugger
       this.listSubcategory = res;
       console.log(this.listSubcategory);
     });
-
-
-
-
+this.filterByCategory();
     //הקמת הטופס
     this.eventForm = new FormGroup({
-      idBudget: new FormControl(this.activeBudget.id),
-      date: new FormControl(this.defaultDate),
-      sum: new FormControl(""),
-      category: new FormControl(""),
-      subCategory: new FormControl(""),
-      detail: new FormControl(""),
-      paymentMethod: new FormControl(""),
-      frequency: new FormControl(false),
-      numberOfPayments:new FormControl("" ),
-      status: new FormControl(""),
-      document: new FormControl(""),
+      id: new FormControl(this.expenseToUpdate.id),
+      idBudget: new FormControl(this.expenseToUpdate.idBudget),
+      date: new FormControl(this.defaultDate),//+"/"+ | date: 'dd/MM/yyyy'),
+      sum: new FormControl(this.expenseToUpdate.sum),
+      category: new FormControl(this.expenseToUpdate.category),
+      categoryDetail: new FormControl(this.expenseToUpdate.categoryDetail),//
+       subCategory: new FormControl(this.expenseToUpdate.subcategory),
+      // subcategoryDetail: new FormControl(this.expenseToUpdate.subcategoryDetail),//
+      detail: new FormControl(this.expenseToUpdate.detail),
+      paymentMethod: new FormControl(this.expenseToUpdate.paymentMethod),
+      frequency: new FormControl(this.expenseToUpdate.frequency),
+      status: new FormControl(this.expenseToUpdate.status),
+      document: new FormControl(this.expenseToUpdate.document),
     });
 
-
-
   }
+
+
 
   filterByCategory() {
 
     console.log("idCategory", this.idCategory)
     this.mySubCategory.GetSubcategoryByCategory(this.idCategory).subscribe(res => {
-
+debugger
       this.listSubcategoryByCategory = res;
       console.log(this.listSubcategoryByCategory);
     });
-  }
-  AddExpense() {
-
-    if (this.eventForm.value != undefined) {
-      //  console.log("ההוצאה נקלטה")
-
-      this.newExpense = this.eventForm.value;
-
-      this.myExpense.AddExpense(this.eventForm.value).subscribe(res1 => {
-        console.log("curent user ======>", res1)
-        this.newExpense = this.eventForm.value;
-        const modalRef = this.modalService.open(ActionDialogComponent);
-        modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
-        this.activeModal.close();
-       
-        this.newExpense = new Expense();
-
-      })
-    }
   }
 
   AddCategory() {
@@ -167,7 +136,7 @@ export class AddExpenseComponent implements OnInit {
       this.myCategory.AddCategory(this.newCategory).subscribe(res1 => {
         console.log("אישור הוספת קטגוריה ======>", res1)
         // this.addCategory = false;
-        this.idCategory=0;
+        this.idCategory = 0;
         this.myCategory.GetAllCategory().subscribe(res => {
           this.listCategory = res;
           console.log(this.listCategory);
@@ -179,21 +148,51 @@ export class AddExpenseComponent implements OnInit {
   }
 
   AddSubcategory() {
-  if (this.nameNewSubCategory != undefined) {
-    console.log(this.nameNewSubCategory)
-    this.newSubCategory.detail = this.nameNewSubCategory;
-    this.newSubCategory.category = this.idCategory;
-  
-    this.mySubCategory.AddSubcategory(this.newSubCategory).subscribe(res1 => {
-      console.log("אישור הוספת תת קטגוריה ======>", res1)
-      // this.addSubCategory = false;
-      this.filterByCategory();
-     this.idSubcategory=0;
+    if (this.nameNewSubCategory != undefined) {
+      console.log(this.nameNewSubCategory)
+      this.newSubCategory.detail = this.nameNewSubCategory;
+      this.newSubCategory.category = this.idCategory;
 
-    })
+      this.mySubCategory.AddSubcategory(this.newSubCategory).subscribe(res1 => {
+        console.log("אישור הוספת תת קטגוריה ======>", res1)
+        // this.addSubCategory = false;
+        this.filterByCategory();
+        this.idSubcategory = 0;
+
+      })
+    }
+
+
+  }
+  close() {
+    this.activeModal.close();
+    const modalRef = this.modalService.open(ActionDialogComponent);
+    modalRef.componentInstance.content = "השינויים לא נשמרו";
+
+  }
+
+  UpdateExpense() {
+
+    if (this.eventForm.value != undefined) {
+      //  console.log("ההוצאה נקלטה")
+
+      this.expenseToUpdate = this.eventForm.value;
+
+      this.myExpense.UpdateExpense(this.eventForm.value).subscribe(res1 => {
+        console.log("curent user ======>", res1)
+        this.expenseToUpdate = this.eventForm.value;
+        const modalRef = this.modalService.open(ActionDialogComponent);
+        modalRef.componentInstance.content = "ההוצאה עודכנה בהצלחה";
+        this.activeModal.close();
+
+        this.expenseToUpdate = new Expense();
+
+      })
+    }
   }
 
 
-  }
+
+
+
 }
-
