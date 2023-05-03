@@ -7,9 +7,9 @@ namespace DTO.Models
     public partial class ObjectSumCategoryDTO
     {
 
-        public int Id { get; set; }
+        public int IdCategory { get; set; }
         public Dictionary<int, double> ListSumSubCategory { get; set; }
-        public double sum { get; set; }
+        public double sumCategory { get; set; }
 
     }
 }
