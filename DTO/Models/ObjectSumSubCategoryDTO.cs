@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text;
 
 namespace DTO.Models
 {
-    public partial class CategoryDTO
+    public partial class ObjectSumSubCategoryDTO
     {
-      
 
         public int Id { get; set; }
-        public string Detail { get; set; }
-
-
+        public double sum { get; set; }
     }
 }
