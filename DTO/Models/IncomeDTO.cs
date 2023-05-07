@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
 
 namespace DTO.Models
 {
@@ -24,6 +21,5 @@ namespace DTO.Models
         public string StatusDetail { get; set; }
         public byte[] Document { get; set; }
 
-        //public virtual BudgetDTO IdBudgetNavigation { get; set; }
     }
 }

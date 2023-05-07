@@ -5,6 +5,8 @@ import { Expense } from 'src/app/Classes/Expense';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ExpensesService } from 'src/app/Services/expenses.service';
 import { Logging } from 'src/shared/log.service';
+import { NgbModal, } from '@ng-bootstrap/ng-bootstrap';
+import { UpdateExpenseComponent } from '../update-expense/update-expense.component';
 
 @Component({
   selector: 'app-expenses',
@@ -16,13 +18,14 @@ export class ExpensesComponent implements OnInit {
   ExpensesList: Expense[] = [];
   CategoryList: Category[] = [];
 
-  // sumExpenses: number=0;
   activeBudget!: Budget;
 
   constructor(
     private myExpensesServise: ExpensesService,
     private myCategory: CategoryService,
     private log: Logging,
+    private modalService: NgbModal,
+
   ) { }
 
   //הכנת משתנה לקליטת הקטגוריה שמתקבל מהמשתמש
@@ -43,8 +46,24 @@ export class ExpensesComponent implements OnInit {
 
   }
 
+SumExpenses(i:number){
+  return this.ExpensesList.slice(0,i+1).reduce((a,b)=>a+b.sum,0);
+}
+
+UpdateExpense(e:Expense)
+{
+  const modalRef2 = this.modalService.open(UpdateExpenseComponent);
+  modalRef2.componentInstance.activeBudget = this.activeBudget;
+  modalRef2.componentInstance.expenseToUpdate = e;
+
+
+}
+
   ConvertCategory(id: number) {
 
+  }
+  sss(i:number){
+document.getElementById( i.toString())?.setAttribute("color","red")
   }
 
   CategoryToShow: string = "";

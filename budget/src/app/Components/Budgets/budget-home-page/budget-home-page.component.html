@@ -10,26 +10,61 @@ placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוס
 
 
 
-<button class="btn btn-outline-success" (click)="AddExpenses()">הוספת הוצאה</button>
-<button class="btn btn-outline-success" (click)="AddIncomes()">הוספת הכנסה</button>
-<button *ngIf="activeUser.id==activeBudget.manager" class="btn btn-outline-success" (click)="AddPermission()">הוספת משתמשים לתקציב</button>
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-      type="button" role="tab" aria-controls="pills-contact" aria-selected="false">דוחות</button>
+      type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+      <div class="logo2">
+      <img src="../../../../assets/image/Icon/report.gif" alt="דוחות">
+      </div>
+דוחות
+    </button>
   </li>
+
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-income-tab" data-bs-toggle="pill" data-bs-target="#pills-income" type="button"
-      role="tab" aria-controls="pills-income" aria-selected="true">הכנסות</button>
+      role="tab" aria-controls="pills-income" aria-selected="true">
+      <div class="logo2">
+        <img src="../../../../assets/image/Icon/income.gif" alt="דוחות">
+        </div>
+      הכנסות</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-Expenses-tab" data-bs-toggle="pill" data-bs-target="#pills-Expenses"
-      type="button" role="tab" aria-controls="pills-Expenses" aria-selected="false">הוצאות</button>
+      type="button" role="tab" aria-controls="pills-Expenses" aria-selected="false">
+      <div class="logo2">
+        <img src="../../../../assets/image/Icon/expenses.png" alt="דוחות">
+        </div>
+      הוצאות</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-bank-tab" data-bs-toggle="pill" data-bs-target="#pills-bank" type="button"
-      role="tab" aria-controls="pills-bank" aria-selected="false">בנקים</button>
+      role="tab" aria-controls="pills-bank" aria-selected="false">
+      <div class="logo2">
+        <img src="../../../../assets/image/Icon/Bank.gif" alt="דוחות">
+        </div>
+      בנקים</button>
+  </li>
+  <li>
+     <button class="btn btn-outline-success" (click)="AddIncomes()">
+      <div class="logo3">
+        <img src="../../../../assets/image/Icon/AddIncome.jpg" alt="דוחות">
+        </div>
+      הוספת הכנסה</button>
+
+    <button class="btn btn-outline-success" (click)="AddExpenses()">
+      <div class="logo3">
+        <img src="../../../../assets/image/Icon/Addexpense.png" alt="דוחות">
+        </div>
+      הוספת הוצאה</button>
+   
+    <button *ngIf="activeUser.id==activeBudget.manager" class="btn btn-outline-success" (click)="AddPermission()">
+      <div class="logo3">
+        <img src="../../../../assets/image/Icon/AddPermission.png.jpg" alt="דוחות">
+        </div>
+      הוספת משתמשים לתקציב</button>
+    
   </li>
 </ul>
 

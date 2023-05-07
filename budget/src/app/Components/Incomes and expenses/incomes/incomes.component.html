@@ -12,6 +12,8 @@
         <th scope="col">אופן תקבול</th>
         <th scope="col">סטטוס הכנסה</th>
         <th scope="col"> אסמכתא</th>
+        <th scope="col">יתרה מצטברת</th>
+
       </tr>
     </thead>
     <tbody *ngFor="let e of IncomeList; let i=index">
@@ -25,6 +27,8 @@
         <td>{{e.paymentMethodDetail}}</td>
         <td>{{e.statusDetail}}</td>
         <td>{{e.document}}</td>
+        <td>{{SumIncomes(i) | number: '1.0-0' }}</td>
+
       </tr>
   
   

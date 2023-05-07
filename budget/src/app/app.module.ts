@@ -28,6 +28,7 @@ import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.compone
 import { SearchComponent } from './Components/Incomes and expenses/search/search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportsComponent } from './Components/Incomes and expenses/reports/reports.component';
+import { UpdateExpenseComponent } from './Components/Incomes and expenses/update-expense/update-expense.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ReportsComponent } from './Components/Incomes and expenses/reports/repo
     AddBankComponent,
     SearchComponent,
     ReportsComponent,
+    UpdateExpenseComponent,
   
   ],
   imports: [

@@ -32,6 +32,9 @@ export class ExpensesService {
     return this.http.post<boolean>(this.V_API + '/AddExpense', newExpense);
   }
 
+  UpdateExpense(expenseToUpdate: Expense): Observable<boolean> {
+    return this.http.put<boolean>(this.V_API + '/UpdateExpense', expenseToUpdate);
 
+}
 
 }

@@ -42,5 +42,8 @@ export class IncomesComponent implements OnInit {
   }
 
 
+  SumIncomes(i:number){
+    return this.IncomeList.slice(0,i+1).reduce((a,b)=>a+b.sum,0);
+  }
 
 }
