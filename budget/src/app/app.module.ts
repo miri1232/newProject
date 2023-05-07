@@ -29,6 +29,7 @@ import { SearchComponent } from './Components/Incomes and expenses/search/search
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportsComponent } from './Components/Incomes and expenses/reports/reports.component';
 import { UpdateExpenseComponent } from './Components/Incomes and expenses/update-expense/update-expense.component';
+import { UpdateIncomeComponent } from './Components/Incomes and expenses/update-income/update-income.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { UpdateExpenseComponent } from './Components/Incomes and expenses/update
     SearchComponent,
     ReportsComponent,
     UpdateExpenseComponent,
+    UpdateIncomeComponent,
   
   ],
   imports: [

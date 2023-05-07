@@ -29,6 +29,10 @@ AddIncome(newIncome:Income):Observable<boolean> {
   
   return this.http.post<boolean>(this.V_API + '/AddIncome',newIncome);
 }
+UpdateIncome(incomeToUpdate: Income): Observable<boolean> {
+  return this.http.put<boolean>(this.V_API + '/UpdateIncome', incomeToUpdate);
+
+}
 
 
 
