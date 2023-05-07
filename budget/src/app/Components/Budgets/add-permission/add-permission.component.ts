@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Permission } from 'src/app/Classes/Permission';
@@ -8,8 +8,8 @@ import { PermissionService } from 'src/app/Services/permission.service';
 import { UserService } from 'src/app/Services/user.service';
 import { Logging } from 'src/shared/log.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
-import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { Budget } from 'src/app/Classes/Budget';
 
 @Component({
   selector: 'app-add-permission',
@@ -18,6 +18,9 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AddPermissionComponent implements OnInit {
 
+  @Input()
+  activeBudget!: Budget;
+  
   newPermission: Permission = new Permission();
   public listPermission: Permission[] | undefined;
   //עבור יבוא מערכים לנתוני תיבה נפתחת
@@ -27,7 +30,7 @@ export class AddPermissionComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private log: Logging,
     private router: Router,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private lookupSer: LookupService,
     private PermissionSer: PermissionService,
     private userService: UserService,
@@ -44,6 +47,8 @@ export class AddPermissionComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+
     //יבוא נתונים עבור רשימה נפתחת
     this.lookupSer.GetAllPermissionLevel().subscribe(res => {
       this.listPermissionLevel = res;
@@ -55,8 +60,8 @@ export class AddPermissionComponent implements OnInit {
     this.eventForm = new FormGroup({
       id: new FormControl(0),
       idUser: new FormControl(""),
-      idBudget: new FormControl(5),
-      permissionLevel: new FormControl(""),
+      idBudget: new FormControl(this.activeBudget.id),
+      permissionLevel: new FormControl("")
     });
 
   }

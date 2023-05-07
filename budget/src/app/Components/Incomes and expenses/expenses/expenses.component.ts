@@ -16,9 +16,8 @@ export class ExpensesComponent implements OnInit {
   ExpensesList: Expense[] = [];
   CategoryList: Category[] = [];
 
-  @Input()
-  budget!: Budget;
-
+  // sumExpenses: number=0;
+  activeBudget!: Budget;
 
   constructor(
     private myExpensesServise: ExpensesService,
@@ -30,7 +29,9 @@ export class ExpensesComponent implements OnInit {
   // @Input() CategoryToShow="";
 
   ngOnInit(): void {
-    this.myExpensesServise.GetExpensesByBudget(this.budget.id).subscribe(exp => {
+    this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+ 
+    this.myExpensesServise.GetExpensesByBudget(this.activeBudget.id).subscribe(exp => {
       this.ExpensesList = exp;
       console.log(exp);
     });

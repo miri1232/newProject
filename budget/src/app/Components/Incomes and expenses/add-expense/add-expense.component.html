@@ -46,6 +46,7 @@
                     <span class="far fa-user">קטגוריה</span>
                     <select (change)="filterByCategory()" class="form-field d-flex align-items-center"
                         placeholder="בחר קטגוריה" [(ngModel)]="idCategory" formControlName="category" required>
+                        <option selected [ngValue]=0>בחר קטגוריה</option>
                         <option type="number" *ngFor="let t of listCategory" [ngValue]="t.id" required>
                             <label> {{t.detail}} </label>
                         </option>
@@ -97,12 +98,19 @@
             </div>
 
 
-            <div class="col-sm-4">
+            <div class="col-md-4">
 
-                <span class="far fa-user">הוצאה חודשית קבועה?</span>
+                <span for="frequency" class="far fa-user">הוצאה חודשית קבועה?</span>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" placeholder="false" id="frequency"
-                        formControlName="frequency" name="frequency" />
+                        formControlName="frequency" name="frequency" checked/>
+
+                        <!-- <div class="col-md-4">
+                            <ul class="ks-cboxtags">
+                            <li>
+                                <input type="checkbox" id="checkboxOne" value="Order one" checked>
+                                <label for="checkboxOne">Task One</label>
+                            </li> -->
 
                 </div>
             </div>

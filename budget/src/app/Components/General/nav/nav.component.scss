@@ -1,6 +1,18 @@
-// .center{
-//     display: flex;
-//     text-align: center;
-//     justify-content: center;
-//     flex-direction: column;
-// }
+li{
+    margin: 5px;
+}
+
+
+
+.logo img {
+    margin: 15px;
+
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 2px #ecf0f3,
+        2px 3px 6px #a7aaa7,
+        -2px -3px 6px #fff;
+}

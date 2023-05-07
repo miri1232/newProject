@@ -55,12 +55,12 @@ body {
     padding:  20px;
     border: none;
     color:   #a0c0b1;
-
+font-size: large;
 }
 
 .nav-tabs {
     border-bottom: 3px solid #a0c0b1;
-    background-color: #105e3a;
+    background-color: #046036;
     justify-content: space-around;
         flex-basis: 1500px;
 
@@ -71,16 +71,16 @@ body {
 
 // }
 .nav-link{
-   color: #105e3a;
+   color: #046036;
 }
  .nav-link.active, .nav-pills .show>.nav-link {
-    color: #105e3a;
+    color: #046036;
     background-color: rgb(100, 189, 136);
     justify-content: space-around;
 
 }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    color: #105e3a;
+    color: #046036;
     background-color: rgb(100, 189, 136);
     justify-content: space-around;
 
@@ -118,7 +118,7 @@ body {
     font-size: 1.4rem;
     letter-spacing: 1.3px;
     padding-left: 10px;
-    color: #25870a;
+    color: #046036;
     font-weight: bold;
 
 }
@@ -165,7 +165,7 @@ body {
     box-shadow: none;
     width: 100%;
     height: 40px;
-    background-color:  #25870a;
+    background-color: #047743;
     color: #fff;
     border-radius: 25px;
     box-shadow: 3px 3px 3px #b1b1b1,
@@ -174,18 +174,18 @@ body {
 }
 
 .wrapper .btn:hover {
-    background-color:    #25870a;
+    background-color:    #046036;
 }
 
 .wrapper a {
     text-decoration: none;
     font-size: 0.8rem;
-    color: #25870a;
+    color:#046036;
     text-decoration: underline;
 }
 
 .wrapper a:hover {
-    color:  #25870a;
+    color: #046036;
     font-weight: bold;
 
 
@@ -203,11 +203,11 @@ input,a,select{
 }
 
 .form-container{
-    background: linear-gradient(#25870a,#1b6107);
+    background: linear-gradient(#046036,#1b6107);
     font-family: 'Roboto', sans-serif;
     font-size: 0;
     padding: 0 15px;
-    border: 1px solid #25870a;
+    border: 1px solid #046036;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
@@ -305,7 +305,7 @@ input,a,select{
 .form-horizontal .btn:hover,
 .form-horizontal .btn:focus{
     color: #fff;
-    background-color: #25870a;
+    background-color: #046036;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 .form-horizontal .forgot-pass{

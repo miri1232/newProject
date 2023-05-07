@@ -1,37 +1,35 @@
-<ul class="nav nav-tabs nav-justified center" style="position: sticky, top=10px">
+<ul class="nav nav-tabs nav-justified" style="position: sticky, top=10px">
 
   <li class="nav-item" *ngIf="activeUser.id == undefined">
-    <a class="btn btn-outline-success2" (click)="logIn()"> התחבר </a>
+    <h2 class="btn btn-outline-success2" (click)="logIn()"> התחבר </h2>
   </li>
-  <li *ngIf="activeUser.id != undefined" class="nav-item">
-    <a class="btn btn-outline-success2"> שלום {{activeUser.firstName}}</a>
-  </li>
-  <li *ngIf="activeUser.id != undefined" class="nav-item">
-    <a class="btn btn-outline-success2" (click)="logOut()">התנתק </a>
-  </li>
-  <li *ngIf="activeUser.id != undefined" class="nav-item">
-    <a class="btn btn-outline-success2"> עבור בין תקציבים </a>
-    <select class="btn btn-success">
 
-      <div *ngIf="budgetExist">
-        <option selected> {{activeBudget.nameBudget}}</option>
-
-        <option *ngFor="let b of BudgetList" (click)="GoBudget(b)">
-          <label> {{b.nameBudget}} </label>
-        </option>
-
-        <option href="NewBudget"> פתח תקציב חדש </option>
-      </div>
-    </select>
+  <li *ngIf="activeUser.id != undefined" class="nav-item">
+    <h2 class="btn btn-outline-success2"> שלום {{activeUser.firstName}}</h2>
   </li>
+
+  <li *ngIf="activeUser.id != undefined" class="nav-item">
+    <h2 class="btn btn-outline-success2" (click)="logOut()">התנתק </h2>
+  </li>
+
+  <li *ngIf="activeUser.id != undefined" class="nav-item">
+    <h2 class="btn btn-outline-success2" routerLink='/ListBudgets'>עבור בין תקציבים </h2>
+  </li>
+
+  <li class="nav-item" >
+    <h2 class="btn btn-outline-success2" routerLink='/'>לדף הבית</h2>
+  </li>
+
   <li class="nav-item">
-    <a class="btn btn-outline-success2" routerLink='/'>לדף הבית</a>
-  </li>
-  <li class="nav-item">
-    <div class="logo" style="margin: 20px;">
-      <img src="../../../../assets/image/Logo.jpg">
+    <div class="logo" >
+      <img  src="../../../../assets/image/Logo.jpg">
     </div>
   </li>
+ <li *ngIf="activeBudget.id != undefined" class="nav-item" style="background-color:#24a056; color: #046036; ">
+  <h4 class="btn btn-outline-success2"> {{activeBudget.nameBudget}}</h4>
+
+  </li>
+
 
 </ul>
 

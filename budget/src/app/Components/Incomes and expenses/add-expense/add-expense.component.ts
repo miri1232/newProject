@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/Classes/Category';
@@ -16,6 +16,7 @@ import { ActionDialogComponent } from '../../General/action-dialog/action-dialog
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Budget } from 'src/app/Classes/Budget';
+import { BudgetService } from 'src/app/Services/budget.service';
 
 
 @Component({
@@ -25,7 +26,9 @@ import { Budget } from 'src/app/Classes/Budget';
 })
 export class AddExpenseComponent implements OnInit {
 
-  activeBudget!:Budget;
+  @Input()
+  activeBudget!: Budget;
+  
   // addCategory: boolean = false;
   // addSubCategory: boolean = false;
 
@@ -62,9 +65,9 @@ export class AddExpenseComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private log: Logging,
     private formBuilder: FormBuilder,
-    //private myBudget: BudgetService,
+    private myBudget: BudgetService,
     private router: Router,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private lookupSer: LookupService,
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
@@ -82,11 +85,13 @@ export class AddExpenseComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    // this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+
     // //יבוא נתונים עבור רשימות נפתחות
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
       console.log(this.listStatus);
-      this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+      // this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
 
     });
     this.lookupSer.GetAllPaymentMethod().subscribe(res => {

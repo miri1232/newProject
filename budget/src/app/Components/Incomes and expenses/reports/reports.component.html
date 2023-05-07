@@ -1,69 +1,106 @@
-<div class="input-group input-daterange">
-    <label>בחר תקופה להצגה</label>
+<div>
+  <h5>בחר תקופה להצגה: </h5>
+  <h6 class="input-group input-daterange">
     <div>
-        <input type="date" class="form-control" title="תאריך התחלה" placeholder="fghtdfh" required>
+      החל מ-
+      <input type="date" class="form-control" title="תאריך התחלה" required>
     </div>
     <div>
+      עד-
+      <input type="date" class="form-control" title="תאריך סיום" required>
+    </div>
 
-        <input type="date" class="form-control" title="תאריך סיום" required>
-    </div>
+  </h6>
 </div>
 
-<label> האם להציג פירוט קטגורית משנה?</label>
-<input type="checkbox" id="date" placeholder="האם להציג פירוט קטגורית משנה?" />
+<!-- <label> האם להציג פירוט קטגורית משנה?</label>
+<input type="checkbox" id="date" placeholder="להציג קטגורית משנה?" /> -->
 
-<div class="accordion" id="accordionPanelsStayOpenExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-          הכנסות
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-        <div class="accordion-body">
-            <div class="accordion-item"  *ngFor="let i of IncomeList">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                   {{ i.}}
-                  </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                  <div class="accordion-body">
-          
-          
-                  </div>
-                </div>
+<br />
+<!-- 
+<div class="row justify-content-center">
+
+                       <div class="col-md-4">
+                            <ul class="ks-cboxtags">
+                            <li>
+                                <input type="checkbox" id="checkboxOne" value="Order one" checked>
+                                <label for="checkboxOne">האם להציג פירוט קטגורית משנה?</label>
+                            </li> -->
+
+<div class="accordion" id="accordionPanelsStayOpenExample" style="color: #046036;">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" style="color: #212529;"
+        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        הכנסות
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+      aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+        <strong>הצגת קטגוריות הכנסות</strong>
+
+        <div class="accordion-item" *ngFor="let i of IncomeList">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseOne">
+              <!-- {{ i.}} -->
+
+
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+
+
+            </div>
+          </div>
 
         </div>
       </div>
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-         הוצאות
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          הוצאות
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+        aria-labelledby="panelsStayOpen-headingTwo">
         <div class="accordion-body">
-          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin
+          adds the appropriate classes that we use to style each element. These classes control the overall appearance,
+          as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+          overriding our default variables. It's also worth noting that just about any HTML can go within the
+          <code>.accordion-body</code>, though the transition does limit overflow.
         </div>
       </div>
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+          aria-controls="panelsStayOpen-collapseThree">
           Accordion Item #3
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+        aria-labelledby="panelsStayOpen-headingThree">
         <div class="accordion-body">
-          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
+          adds the appropriate classes that we use to style each element. These classes control the overall appearance,
+          as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
+          overriding our default variables. It's also worth noting that just about any HTML can go within the
+          <code>.accordion-body</code>, though the transition does limit overflow.
         </div>
       </div>
     </div>
   </div>
 
-<!-- 
+  <!-- 
 <div class="just-padding">
 
     <div class="list-group list-group-root well">

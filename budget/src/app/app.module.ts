@@ -65,7 +65,7 @@ import { ReportsComponent } from './Components/Incomes and expenses/reports/repo
     CommonModule,
     NgbModule
   ],
-  providers: [],
+  providers: [BankComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

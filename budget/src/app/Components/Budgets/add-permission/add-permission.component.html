@@ -1,6 +1,5 @@
 <div class="form-dialog wrapper">
 
-
     <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="AddPermission()">
 
         <div class="form-field d-flex align-items-center">
@@ -20,6 +19,7 @@
                 </option>
             </select>
         </div>
+        
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">הוספת הרשאה</button>
 
     </form>

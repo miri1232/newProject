@@ -1,7 +1,12 @@
-<button type="button" class="btn btn-success" (click)="ShowAllBudget()"> הצג כל התקציבים </button>
+<div class="wrapper">
+  
+<!-- <button type="button" class="btn btn-success" (click)="ShowAllBudget()"> הצג כל התקציבים </button> -->
 
-<div *ngIf="BudgetList!=undefined">
-רשימת התקציבים:
+<!-- <div *ngIf="BudgetList!=undefined"> -->
+  <h4  style="color: rgb(12, 97, 12); text-align: center;">רשימת התקציבים:
+  </h4>
+<br/>
+<br/>
 
 
 <!-- משוייכים ל{{u.firstName}} -->
@@ -10,10 +15,12 @@
     <!-- <a href="/BudgetHomePage"> {{b.nameBudget}}</a>  -->
 
     <button type="button" class="btn btn-outline-success" (click)="GoBudget(b)"> {{b.nameBudget}}</button> 
+
     <br/>
   </div>
+<!-- </div> -->
+<div class="d-grid gap-2 col-6 mx-auto" >
+  <button type="button" class="btn btn-outline-success" routerLink='/NewBudget'> פתח תקציב חדש</button> 
+
 </div>
-<div>
-  <br/>
-<a type="button" class="btn btn-success" href="NewBudget"> פתח תקציב חדש </a>
 </div>

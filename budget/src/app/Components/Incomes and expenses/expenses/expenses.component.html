@@ -1,4 +1,5 @@
-<p>פירוט הוצאות</p>
+<p>פירוט הוצאות
+</p>
 <!--
 <button (click)="ShowAllExpenses()">
     הצג כל ההוצאות
@@ -15,8 +16,9 @@
  <button (click)="ShowExpensesByCategory()">
     הוצאות לפי קטגוריה
   </button> -->
-  
-<!-- <app-search></app-search> -->
+ 
+
+<app-search></app-search>
 
 <table class="table table-success table-striped">
   <thead>
@@ -31,9 +33,11 @@
       <th scope="col">הוצאה קבועה</th>
       <th scope="col">סטטוס הוצאה</th>
       <th scope="col"> אסמכתא</th>
+      <th scope="col">יתרה מצטברת</th>
+
     </tr>
   </thead>
-  <tbody *ngFor="let e of ExpensesList; let i=index">
+  <tbody *ngFor="let e of ExpensesList; let i=index;">
     <tr>
       <th scope="row">{{i+1}}</th>
       <td>{{e.date | date: 'dd/MM/yyyy' }}</td>
@@ -47,6 +51,8 @@
       <!-- <i [ngClass]="{e.frequency?'bi bi-check':'bi bi-check'}"></i> -->
       <td>{{e.statusDetail}}</td>
       <td>{{e.document}}</td>
+      <td>{{i + e.sum}}</td>
+
     </tr>
 
 
