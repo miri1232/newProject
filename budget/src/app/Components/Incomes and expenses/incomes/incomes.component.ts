@@ -6,6 +6,9 @@ import { CategoryIncomeService } from 'src/app/Services/category-income.service'
 import { CategoryService } from 'src/app/Services/category.service';
 import { IncomesService } from 'src/app/Services/incomes.service';
 import { Logging } from 'src/shared/log.service';
+import { UpdateExpenseComponent } from '../update-expense/update-expense.component';
+import { UpdateIncomeComponent } from '../update-income/update-income.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-incomes',
@@ -23,6 +26,7 @@ export class IncomesComponent implements OnInit {
     private myIncomeServise: IncomesService,
     private myCategoryIncome: CategoryIncomeService,
     private log: Logging,
+    private modalService: NgbModal
 
   ) { }
 
@@ -45,5 +49,15 @@ export class IncomesComponent implements OnInit {
   SumIncomes(i:number){
     return this.IncomeList.slice(0,i+1).reduce((a,b)=>a+b.sum,0);
   }
+
+  
+  UpdateIncome(e: Income)
+{
+  const modalRef2 = this.modalService.open(UpdateIncomeComponent);
+  modalRef2.componentInstance.activeBudget = this.activeBudget;
+  modalRef2.componentInstance.incomeToUpdate = e;
+
+
+}
 
 }

@@ -32,7 +32,8 @@
                     <!-- <input type="checkbox" id="category" placeholder=" סינון לפי קטגוריה" /> -->
                     <label>סינון לפי קטגוריה</label>
                     <select  (change)="filterByCategory()" class="form-select"  aria-label="Default select example"
-                       [(ngModel)]="idCategory" formControlName="category" required>
+                       [(ngModel)]="idCategory" [ngModelOptions]="{standalone: true}"
+                       required>
                         <option selected>בחר קטגוריה</option>
                         <option *ngFor="let t of listCategory" [ngValue]="t.id" required>
                             <label> {{t.detail}} </label>

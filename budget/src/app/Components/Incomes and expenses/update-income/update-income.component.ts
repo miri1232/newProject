@@ -65,6 +65,7 @@ export class UpdateIncomeComponent implements OnInit {
   eventForm!: FormGroup;
 
   ngOnInit(): void {
+    
     this.defaultDate = this.incomeToUpdate.date;
     this.idCategory = this.incomeToUpdate.categoryIncome;
     this.idSourceOfIncome = this.incomeToUpdate.sourceOfIncome;
@@ -157,7 +158,7 @@ export class UpdateIncomeComponent implements OnInit {
 
   }
 
-  UpdateExpense() {
+  UpdateIncome() {
 
     if (this.eventForm.value != undefined) {
       //  console.log("ההכנסה נקלטה")

@@ -20,7 +20,8 @@
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <select class="far fa-user" type="input" id="typeBudget"  placeholder="סוג תקציב" 
-            formControlName="typeBudget" [formControl]="typeBudgetFormControl" required>
+            formControlName="typeBudget" required>
+            <!-- [formControl]="typeBudgetFormControl" -->
                 <!-- <option type="number" selected>בחר סוג תקציב</option> -->
                 <option type="number" *ngFor="let t of listTypeBudget" [ngValue]=t.id >
                     <label type="number"> {{t.detail}} </label>  

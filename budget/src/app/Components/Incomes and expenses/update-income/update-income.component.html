@@ -4,15 +4,17 @@
         עריכת הכנסה
     </div>
 
-    <form class="p-3 mt-6" [formGroup]="eventForm" (ngSubmit)="UpdateExpense()">
+    <form class="p-3 mt-6" [formGroup]="eventForm" (ngSubmit)="UpdateIncome()">
         <div class="row">
             <div class="col-sm-6">
 
                 <div class="form-field  align-items-center">
                     <span class="far fa-user" for="floatingDate">תאריך ההכנסה</span>
-                     <input type="date" id="date" placeholder="תאריך ההכנסה" class="form-control" id="defaultDate"
-                     [(ngModel)]="defaultDate" name="date" value="{{ defaultDate | date:'yyyy-MM-dd' }}" required />
+                     
+                    <input type="date" id="date" placeholder="תאריך ההכנסה" class="form-control" id="defaultDate"
+                     [ngModelOptions]="{standalone: false}" [(ngModel)]="defaultDate" name="date" value="{{ defaultDate | date:'yyyy-MM-dd' }}" required />
             
+                     
                 </div>
             </div>
 
@@ -103,19 +105,9 @@
                 </div>
             </div>
             
-            <!-- <div class="col-md-5">
-                <br />
-                <div class="form-check">
-                    <label for="frequency" class="form-check-lable" style="font-size:medium;">הוצאה חודשית
-                        קבועה?</label>
-                    <input type="checkbox" class="form-check-input" placeholder="false" id="frequency"
-                        formControlName="frequency" name="frequency" checked />
-
-                </div>
-            </div> -->
 
             <!-- בחירה מתוך תיבה נפתחת -->
-            <div class="col-sm-4">
+            <div class="col-sm-6">
 
                 <div class="form-field  align-items-center">
                     <span class="far fa-user">סטטוס </span>
@@ -128,17 +120,16 @@
                 </div>
             </div>
             
-            <div class="col-sm-8">
                 <div class="form-field  align-items-center">
                     <span class="far fa-user">צירוף מסמך</span>
 
                     <input class="form-control" type="file" id="document" placeholder="צירוף מסמך"
                         formControlName="document" name="document" />
                 </div>
-            </div>
+
             <div class="col-sm-6">
 
-            <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">עדכן הוצאה</button>
+            <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">עדכן הכנסה</button>
             </div>
 
             <div class="col-sm-6">

@@ -13,7 +13,7 @@ import { Logging } from 'src/shared/log.service';
 export class ReportsComponent implements OnInit {
 
   activeBudget!: Budget;
-  IncomeList!:any;
+  IncomeList: Income[] =[];
 
 
   constructor(
@@ -24,18 +24,19 @@ export class ReportsComponent implements OnInit {
 
 
 
-  groupBy(xs:any, groupByFn:any) {
-    return xs.reduce(function(rv:any, x:any) {
-      (rv[groupByFn(x)] = rv[groupByFn(x)] || []).push(x);
-      return rv;
-    }, {});
-  };
+  // groupBy(xs: Income[], groupByFn: any) {
+  //   return xs.reduce(function (rv: Income, x: Income) {
+  //     (rv[groupByFn(x)] = rv[groupByFn(x)] || []).push(x);
+  //     return rv;
+  //   }, {});
+  // };
 
   ngOnInit(): void {
-    this.log.sharedActiveBudget.subscribe(budget => { 
+    this.log.sharedActiveBudget.subscribe(budget => {
       this.activeBudget = budget;
       this.myIncomeServise.GetIncomesByBudget(this.activeBudget.id).subscribe(exp => {
-        this.IncomeList=this.groupBy(exp, (income:any)=>{return income.categoryIncome});
+        this.IncomeList=exp;
+        //  this.IncomeList = this.groupBy(exp, (income: Income) => { return income.categoryIncome });
       });
     });
   }

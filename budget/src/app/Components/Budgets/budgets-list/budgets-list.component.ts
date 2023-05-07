@@ -11,7 +11,6 @@ import { Logging } from 'src/shared/log.service';
   styleUrls: ['./budgets-list.component.scss']
 })
 export class BudgetsListComponent implements OnInit {
-  [x: string]: any;
 
   public BudgetList: Budget[] | undefined;
 

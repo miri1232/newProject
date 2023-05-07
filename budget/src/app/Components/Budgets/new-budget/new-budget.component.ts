@@ -24,7 +24,7 @@ export class NewBudgetComponent implements OnInit {
   IsBudget: boolean | undefined;
 
   public listTypeBudget: TypeBudget[] | undefined;
-  typeBudgetFormControl = new FormControl(null, Validators.required);
+  // typeBudgetFormControl = new FormControl(null, Validators.required);
 
   constructor(
     private log: Logging,
