@@ -16,6 +16,9 @@ namespace BL
         List<ExpenseDTO> GetExpensesByPaymentMethod(int paymentMethod);
         List<ExpenseDTO> GetExpensesByStatus(int status);
         List<ExpenseDTO> SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status);
+        List<ObjectSumSubCategoryDTO> ReportSubCategoryExpenses(int idBudget);
+        List<ObjectSumCategoryDTO> ReportCategoryExpenses(int idBudget);
+
 
         bool AddExpense(ExpenseDTO expenseDTO);
         bool UpdateExpense(ExpenseDTO expenseDTO);

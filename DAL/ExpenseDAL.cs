@@ -125,6 +125,52 @@ namespace DAL
             }
         }
 
+        public List<ObjectSumCategory> ReportCategoryExpenses(int idBudget)
+        {
+            try
+            {                 
+                var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
+                .GroupBy(e =>   e.Category )
+                .Select(g => new ObjectSumCategory
+                {
+                    IdCategory = g.Key,
+                    sumCategory = g.Sum(e => e.Sum)
+                })
+            .ToList();
+
+                return expenseSummaries;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ObjectSumSubCategory> ReportSubCategoryExpenses(int idBudget)
+        {
+            try
+            {
+                var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
+                .GroupBy(e => new { e.Category, e.Subcategory })
+                .Select(g => new ObjectSumSubCategory
+                {
+                    Category = g.Key.Category,
+                    Subcategory = g.Key.Subcategory,
+                    TotalSum = g.Sum(e => e.Sum)
+                })
+            .ToList();
+
+                return expenseSummaries;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public bool AddExpense(Expense expense)
         {
             try

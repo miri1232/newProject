@@ -15,6 +15,8 @@ namespace DAL
         List<Expense> GetExpensesByPaymentMethod(int paymentMethod);
         List<Expense> GetExpensesByStatus(int status);
         List<Expense> SearchExpenses(DateTime start, DateTime end, double min, double max , int category , int Subcategory, int paymentMethod, int status);
+        List<ObjectSumSubCategory> ReportSubCategoryExpenses(int idBudget);
+        List<ObjectSumCategory> ReportCategoryExpenses(int idBudget);
 
         bool AddExpense(Expense expense);
         bool UpdateExpense(int id, Expense expense);

@@ -198,6 +198,39 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+     
+        //שליפת דוחות בסיכום תת קטגוריה
+        [HttpGet]
+        [Route("ReportSubCategoryExpenses/{idBudget}")]
+        public IActionResult ReportSubCategoryExpenses(int idBudget)
+        {
+            try
+            {
+                return Ok(_expenseBL.ReportSubCategoryExpenses(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+         //שליפת דוחות בסיכום קטגוריה
+        [HttpGet]
+        [Route("ReportCategoryExpenses/{idBudget}")]
+        public IActionResult ReportCategoryExpenses(int idBudget)
+        {
+            try
+            {
+                return Ok(_expenseBL.ReportCategoryExpenses(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
     }
 }
 

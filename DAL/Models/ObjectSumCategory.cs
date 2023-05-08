@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTO.Models
+namespace DAL.Models
 {
-    public partial class ObjectSumCategoryDTO
+  
+    public partial class ObjectSumCategory
     {
-
 
         public int IdCategory { get; set; }
         public double sumCategory { get; set; }
+
+
 
     }
 }

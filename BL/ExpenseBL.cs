@@ -142,8 +142,20 @@ namespace BL
             return isSucsess;
         }
 
-    
+        public List<ObjectSumSubCategoryDTO> ReportSubCategoryExpenses(int idBudget)
+        {
+            List<ObjectSumSubCategory> expenseList = _expenseDAL.ReportSubCategoryExpenses(idBudget);
+            List<ObjectSumSubCategoryDTO> listExpenseDTO = mapper.Map<List<ObjectSumSubCategory>, List<ObjectSumSubCategoryDTO>>(expenseList);
+            return listExpenseDTO;
+        }
+
+        public List<ObjectSumCategoryDTO> ReportCategoryExpenses(int idBudget)
+        {
+            List<ObjectSumCategory> expenseList = _expenseDAL.ReportCategoryExpenses(idBudget);
+            List<ObjectSumCategoryDTO> listExpenseDTO = mapper.Map<List<ObjectSumCategory>, List<ObjectSumCategoryDTO>>(expenseList);
+            return listExpenseDTO;
+        }
     }
 
-    
+
 }
