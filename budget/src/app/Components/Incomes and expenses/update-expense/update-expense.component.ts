@@ -93,7 +93,7 @@ export class UpdateExpenseComponent implements OnInit {
       console.log(this.listCategory);
     });
     this.mySubCategory.GetAllSubcategory().subscribe(res => {
-      debugger
+      
       this.listSubcategory = res;
       console.log(this.listSubcategory);
     });
@@ -123,7 +123,7 @@ this.filterByCategory();
 
     console.log("idCategory", this.idCategory)
     this.mySubCategory.GetSubcategoryByCategory(this.idCategory).subscribe(res => {
-debugger
+
       this.listSubcategoryByCategory = res;
       console.log(this.listSubcategoryByCategory);
     });

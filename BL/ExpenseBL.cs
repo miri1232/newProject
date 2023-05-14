@@ -38,18 +38,18 @@ namespace BL
         {
             List<Expense> expenseList = _expenseDAL.GetAllExpenses();
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
-            
+
             List<Category> categories = _categoryDAL.GetAllCategory();
             listExpenseDTO.ForEach(item => item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.Category).Detail);
-           
+
             List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
             listExpenseDTO.ForEach(item => item.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == item.Subcategory).Detail);
-            
+
             List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
             listExpenseDTO.ForEach(item => item.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == item.PaymentMethod).Detail);
-            
+
             List<Status> statuses = _lookupDAL.GetAllStatus();
-            listExpenseDTO.ForEach(item => item.StatusDetail 
+            listExpenseDTO.ForEach(item => item.StatusDetail
             = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
 
 
@@ -114,9 +114,9 @@ namespace BL
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
- public List<ExpenseDTO> SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status)
+        public List<ExpenseDTO> SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status)
         {
-            List<Expense> expenseList = _expenseDAL.SearchExpenses( start,  end,  min,  max,  category,  Subcategory,  paymentMethod,  status);
+            List<Expense> expenseList = _expenseDAL.SearchExpenses(start, end, min, max, category, Subcategory, paymentMethod, status);
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
@@ -142,17 +142,47 @@ namespace BL
             return isSucsess;
         }
 
-        public List<ObjectSumSubCategoryDTO> ReportSubCategoryExpenses(int idBudget)
-        {
-            List<ObjectSumSubCategory> expenseList = _expenseDAL.ReportSubCategoryExpenses(idBudget);
-            List<ObjectSumSubCategoryDTO> listExpenseDTO = mapper.Map<List<ObjectSumSubCategory>, List<ObjectSumSubCategoryDTO>>(expenseList);
-            return listExpenseDTO;
-        }
+        //public List<ObjectSumSubCategoryDTO> ReportSubCategoryExpenses(int idBudget)
+        //{
+        //    List<ObjectSumSubCategory> expenseList = _expenseDAL.ReportSubCategoryExpenses(idBudget);
+        //    List<ObjectSumSubCategoryDTO> listExpenseDTO = mapper.Map<List<ObjectSumSubCategory>, List<ObjectSumSubCategoryDTO>>(expenseList);
 
-        public List<ObjectSumCategoryDTO> ReportCategoryExpenses(int idBudget)
+        //    //List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
+        //    //listExpenseDTO.ForEach(item => item.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == item.IdSubcategory).Detail);
+
+
+        //    return listExpenseDTO;
+        //}
+
+        //public List<ObjectSumCategoryDTO> ReportCategoryExpenses(int idBudget)
+        //{
+        //    List<ObjectSumCategory> expenseList = _expenseDAL.ReportCategoryExpenses(idBudget);
+        //    List<ObjectSumCategoryDTO> listExpenseDTO = mapper.Map<List<ObjectSumCategory>, List<ObjectSumCategoryDTO>>(expenseList);
+
+
+        //    List<Category> categories = _categoryDAL.GetAllCategory();
+        //    listExpenseDTO.ForEach(item => item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.IdCategory).Detail);
+
+        //    return listExpenseDTO;
+        //}
+
+        public List<TotalSumCategoryDTO> ReportExpenses2(int idBudget)
         {
-            List<ObjectSumCategory> expenseList = _expenseDAL.ReportCategoryExpenses(idBudget);
-            List<ObjectSumCategoryDTO> listExpenseDTO = mapper.Map<List<ObjectSumCategory>, List<ObjectSumCategoryDTO>>(expenseList);
+            List<TotalSumCategory> expenseList = _expenseDAL.ReportExpenses2(idBudget);
+            List<TotalSumCategoryDTO> listExpenseDTO = mapper.Map<List<TotalSumCategory>, List<TotalSumCategoryDTO>>(expenseList);
+            //List<TotalSumSubCategoryDTO> listSubCategoryDTO = mapper.Map<List<TotalSumSubCategory>, List<TotalSumSubCategoryDTO>>(expenseList.listSubCategory);
+
+            List<Category> categories = _categoryDAL.GetAllCategory();
+            List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
+            listExpenseDTO.ForEach(item =>
+            {
+                item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.IdCategory).Detail;
+                item.listSubCategory
+    .ForEach(sc => sc.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == sc.IdSubcategory).Detail);
+
+            });
+
+
             return listExpenseDTO;
         }
     }

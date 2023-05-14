@@ -45,7 +45,7 @@ namespace DAL
                 throw ex;
             }
         }
-       
+
         public List<Expense> GetExpensesBySum(double min, double max)
         {
             try
@@ -62,7 +62,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expenses.Where(x => x.Category==category).ToList();
+                return _context.Expenses.Where(x => x.Category == category).ToList();
             }
             catch (Exception ex)
             {
@@ -86,7 +86,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expenses.Where(x => x.PaymentMethod==paymentMethod).ToList();
+                return _context.Expenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace DAL
         {
             try
             {
-                return _context.Expenses.Where(x => x.Status==status).ToList();
+                return _context.Expenses.Where(x => x.Status == status).ToList();
             }
             catch (Exception ex)
             {
@@ -105,17 +105,17 @@ namespace DAL
             }
         }
 
-        public List<Expense> SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status) 
+        public List<Expense> SearchExpenses(DateTime start, DateTime end, double min, double max, int category, int Subcategory, int paymentMethod, int status)
         {
             try
             {
                 List<Expense> listExpenses = _context.Expenses.ToList();
-                if(start!=null)  listExpenses= listExpenses.Where(x => x.Date >= start && x.Date <= end).ToList();
-                if(min!=null)  listExpenses= listExpenses.Where(x => x.Sum >= min && x.Sum <= max).ToList();
-                if(category != null)  listExpenses= listExpenses.Where(x => x.Category == category).ToList();
-                if(Subcategory != null)  listExpenses= listExpenses.Where(x => x.Subcategory == Subcategory).ToList();
-                if(paymentMethod != null)  listExpenses= listExpenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
-                if(status != null)  listExpenses= listExpenses.Where(x => x.Status == status).ToList();
+                if (start != null) listExpenses = listExpenses.Where(x => x.Date >= start && x.Date <= end).ToList();
+                if (min != null) listExpenses = listExpenses.Where(x => x.Sum >= min && x.Sum <= max).ToList();
+                if (category != null) listExpenses = listExpenses.Where(x => x.Category == category).ToList();
+                if (Subcategory != null) listExpenses = listExpenses.Where(x => x.Subcategory == Subcategory).ToList();
+                if (paymentMethod != null) listExpenses = listExpenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
+                if (status != null) listExpenses = listExpenses.Where(x => x.Status == status).ToList();
 
                 return listExpenses;
             }
@@ -125,18 +125,77 @@ namespace DAL
             }
         }
 
-        public List<ObjectSumCategory> ReportCategoryExpenses(int idBudget)
+        //public List<ObjectSumCategory> ReportCategoryExpenses(int idBudget)
+        //{
+        //    try
+        //    {
+        //        var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
+        //        .GroupBy(e => e.Category)
+        //        .Select(g => new ObjectSumCategory
+        //        {
+        //            IdCategory = g.Key,
+        //            sumCategory = g.Sum(e => e.Sum)
+        //        })
+        //    .ToList();
+
+        //        return expenseSummaries;
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        //public List<ObjectSumSubCategory> ReportSubCategoryExpenses(int idBudget)
+        //{
+        //    try
+        //    {
+        //        var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
+        //        .GroupBy(e => new { e.Subcategory,  e.Category})
+        //        .Select(g => new ObjectSumSubCategory
+        //        {
+        //            Subcategory = g.Key.Subcategory,
+        //            Category = g.Key.Category,
+        //            TotalSum = g.Sum(e => e.Sum)
+        //        })
+        //    .ToList();
+
+        //        return expenseSummaries;
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה
+        public List<TotalSumCategory> ReportExpenses2(int idBudget)
         {
+
             try
-            {                 
-                var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
-                .GroupBy(e =>   e.Category )
-                .Select(g => new ObjectSumCategory
-                {
-                    IdCategory = g.Key,
-                    sumCategory = g.Sum(e => e.Sum)
-                })
-            .ToList();
+            {
+                var expenseSummaries = _context.Expenses
+                        .Where(e => e.IdBudget == idBudget)
+                        .GroupBy(e => new { e.Category, e.Subcategory })
+                        .Select(t => new
+                        {
+                            Category = t.Key.Category,
+                            Subcategory = t.Key.Subcategory,
+                            TotalSum = t.Sum(e => e.Sum)
+                        }).ToList()
+                                .GroupBy(t => t.Category)
+                                .Select(g => new TotalSumCategory
+                                {
+                                    IdCategory = g.Key,
+                                    SumCategory = g.Sum(t => t.TotalSum),
+                                    listSubCategory = g.Select(t => new TotalSumSubCategory
+                                    {
+                                        IdSubcategory = t.Subcategory,
+                                        TotalSum = t.TotalSum
+                                    }).ToList()
+                                }).ToList();
 
                 return expenseSummaries;
             }
@@ -146,31 +205,6 @@ namespace DAL
                 throw ex;
             }
         }
-
-        public List<ObjectSumSubCategory> ReportSubCategoryExpenses(int idBudget)
-        {
-            try
-            {
-                var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
-                .GroupBy(e => new { e.Category, e.Subcategory })
-                .Select(g => new ObjectSumSubCategory
-                {
-                    Category = g.Key.Category,
-                    Subcategory = g.Key.Subcategory,
-                    TotalSum = g.Sum(e => e.Sum)
-                })
-            .ToList();
-
-                return expenseSummaries;
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
         public bool AddExpense(Expense expense)
         {
             try

@@ -200,29 +200,45 @@ namespace newProject.Controllers
         }
 
      
-        //שליפת דוחות בסיכום תת קטגוריה
-        [HttpGet]
-        [Route("ReportSubCategoryExpenses/{idBudget}")]
-        public IActionResult ReportSubCategoryExpenses(int idBudget)
-        {
-            try
-            {
-                return Ok(_expenseBL.ReportSubCategoryExpenses(idBudget));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+        ////שליפת דוחות בסיכום תת קטגוריה
+        //[HttpGet]
+        //[Route("ReportSubCategoryExpenses/{idBudget}")]
+        //public IActionResult ReportSubCategoryExpenses(int idBudget)
+        //{
+        //    try
+        //    {
+        //        return Ok(_expenseBL.ReportSubCategoryExpenses(idBudget));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
 
-         //שליפת דוחות בסיכום קטגוריה
+        // //שליפת דוחות בסיכום קטגוריה
+        //[HttpGet]
+        //[Route("ReportCategoryExpenses/{idBudget}")]
+        //public IActionResult ReportCategoryExpenses(int idBudget)
+        //{
+        //    try
+        //    {
+        //        return Ok(_expenseBL.ReportCategoryExpenses(idBudget));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
+
+   //שליפת דוחות בסיכום קטגוריה+תת קטגוריה
         [HttpGet]
-        [Route("ReportCategoryExpenses/{idBudget}")]
-        public IActionResult ReportCategoryExpenses(int idBudget)
+        [Route("ReportExpenses2/{idBudget}")]
+
+        public IActionResult ReportExpenses2(int idBudget)
         {
             try
             {
-                return Ok(_expenseBL.ReportCategoryExpenses(idBudget));
+                return Ok(_expenseBL.ReportExpenses2(idBudget));
             }
             catch (Exception ex)
             {

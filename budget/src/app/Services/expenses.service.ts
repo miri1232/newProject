@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Expense } from '../Classes/Expense';
-import { ObjectSumSubCategory } from '../Classes/ObjectSumSubCategory';
-import { ObjectSumCategory } from '../Classes/ObjectSumCategory';
+import { TotalSumCategory } from '../Classes/TotalSumCategory copy';
 
 @Injectable({
   providedIn: 'root'
@@ -39,12 +38,7 @@ export class ExpensesService {
 
 }
 
-ReportSubCategoryExpenses(idBudget: number): Observable<ObjectSumSubCategory[]> {
-  return this.http.get<ObjectSumSubCategory[]>(this.V_API + '/ReportSubCategoryExpenses/'+ idBudget);
+ReportExpenses2(idBudget: number): Observable<TotalSumCategory[]> {
+  return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses2/'+ idBudget);
 }
-
-ReportCategoryExpenses(idBudget: number): Observable<ObjectSumCategory[]> {
-  return this.http.get<ObjectSumCategory[]>(this.V_API + '/ReportCategoryExpenses/'+ idBudget);
-}
-
 }
