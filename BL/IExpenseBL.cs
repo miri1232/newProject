@@ -19,6 +19,7 @@ namespace BL
         //List<ObjectSumSubCategoryDTO> ReportSubCategoryExpenses(int idBudget);
         //List<ObjectSumCategoryDTO> ReportCategoryExpenses(int idBudget);
         List<TotalSumCategoryDTO> ReportExpenses2(int idBudget);
+        List<TotalSumCategoryDTO> ReportExpenses3(int idBudget, DateTime start, DateTime end);
 
 
         bool AddExpense(ExpenseDTO expenseDTO);

@@ -205,6 +205,42 @@ namespace DAL
                 throw ex;
             }
         }
+
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
+        public List<TotalSumCategory> ReportExpenses3(int idBudget, DateTime start, DateTime end)
+        {
+
+            try
+            {
+                var expenseSummaries = _context.Expenses
+                        .Where(e => e.IdBudget == idBudget && e.Date >= start && e.Date <= end)
+                        .GroupBy(e => new { e.Category, e.Subcategory })
+                        .Select(t => new
+                        {
+                            Category = t.Key.Category,
+                            Subcategory = t.Key.Subcategory,
+                            TotalSum = t.Sum(e => e.Sum)
+                        }).ToList()
+                                .GroupBy(t => t.Category)
+                                .Select(g => new TotalSumCategory
+                                {
+                                    IdCategory = g.Key,
+                                    SumCategory = g.Sum(t => t.TotalSum),
+                                    listSubCategory = g.Select(t => new TotalSumSubCategory
+                                    {
+                                        IdSubcategory = t.Subcategory,
+                                        TotalSum = t.TotalSum
+                                    }).ToList()
+                                }).ToList();
+
+                return expenseSummaries;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public bool AddExpense(Expense expense)
         {
             try

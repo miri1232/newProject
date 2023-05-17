@@ -18,6 +18,7 @@ namespace DAL
         //List<ObjectSumSubCategory> ReportSubCategoryExpenses(int idBudget);
         //List<ObjectSumCategory> ReportCategoryExpenses(int idBudget);
         List<TotalSumCategory> ReportExpenses2(int idBudget);
+        List<TotalSumCategory> ReportExpenses3(int idBudget, DateTime start, DateTime end);
 
 
         bool AddExpense(Expense expense);

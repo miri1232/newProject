@@ -22,8 +22,9 @@ export class ExpensesService {
   }
 
   GetExpensesByBudget(idBudget: number): Observable<Expense[]> {
-    return this.http.get<Expense[]>(this.V_API + '/GetExpensesByBudget/'+ idBudget);
+    return this.http.get<Expense[]>(this.V_API + '/GetExpensesByBudget/' + idBudget);
   }
+
 
   // GetExpensesByCategory(ctg: number): Observable<Expense[]> {
   //   return this.http.get<Expense[]>(this.V_API + '/GetExpensesByCategory', ctg);
@@ -36,9 +37,28 @@ export class ExpensesService {
   UpdateExpense(expenseToUpdate: Expense): Observable<boolean> {
     return this.http.put<boolean>(this.V_API + '/UpdateExpense', expenseToUpdate);
 
-}
+  }
 
-ReportExpenses2(idBudget: number): Observable<TotalSumCategory[]> {
-  return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses2/'+ idBudget);
-}
+  ReportExpenses2(idBudget: number): Observable<TotalSumCategory[]> {
+    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses2/' + idBudget);
+  }
+
+ ReportExpenses3(idBudget: number,start:Date, end:Date): Observable<TotalSumCategory[]> {
+    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' + idBudget + start +end );
+  }
+
+  
+// listCategory: TotalSumCategory[] = [];
+
+//  ReportExpenses2(idBudget: number,start:Date, end:Date): Observable<TotalSumCategory[]> {
+
+// const url = `this.V_API+ '/ReportExpenses2/'+?idBudget=${this.activeBudget.id}&start=${this.DateStart}&end=${this.DateEnd}`;
+// this.http.get<TotalSumCategory[]>(url).subscribe(response => {
+// this.listCategory=response;
+// });
+//     return this.listCategory;
+//   }
+
+
+     
 }

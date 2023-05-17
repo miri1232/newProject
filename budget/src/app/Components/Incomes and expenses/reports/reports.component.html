@@ -1,15 +1,20 @@
 <div>
   <h5>בחר תקופה להצגה: </h5>
-  <h6 class="input-group input-daterange">
-    <div>
-      החל מ-
-      <input type="date" class="form-control" title="תאריך התחלה" required>
+  <h6 class="input-group input-daterange row">
+    <div class=" col-2">
+     <span>  החל מתאריך - </span>
+      <input type="date" class="form-control" title="תאריך התחלה" id="DateStart" 
+      [(ngModel)]="DateStart" (change)="changeRange()"  name="DateStart" value="{{ DateStart | date:'yyyy-MM-dd' }}" required >
+   
     </div>
-    <div>
-      עד-
-      <input type="date" class="form-control" title="תאריך סיום" required>
-    </div>
+    <div class=" col-2">
+      <span>  עד תאריך -</span>
+      <input type="date" class="form-control" title="תאריך סיום" id="DateEnd"
+      [(ngModel)]="DateEnd" (change)="changeRange()" name="DateEnd" value="{{ DateEnd | date:'yyyy-MM-dd' }}" required >
+       </div>
 
+<div *ngIf=" DateStart > DateEnd" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
+</div>
   </h6>
 </div>
 
@@ -25,7 +30,7 @@
         הכנסות
       </button>
     </h2> -->
-    <!-- <div id="panelsStayOpen-collapseInc" class="accordion-collapse collapse show"
+  <!-- <div id="panelsStayOpen-collapseInc" class="accordion-collapse collapse show"
       aria-labelledby="panelsStayOpen-headingInc" aria-expanded="false">
       <div class="accordion-body">
 
@@ -47,43 +52,63 @@
         </div>
       </div>
     </div> -->
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" >
+  <div class="row">
+    <div class="col-4">
+      <h2 class="accordion">
         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-         data-bs-target="#panelsStayOpen-collapseExp"
-          aria-expanded="false"  aria-controls="panelsStayOpen-collapseExp">
+          data-bs-target="#panelsStayOpen-collapseExp" aria-expanded="true" aria-controls="panelsStayOpen-collapseExp">
+          הכנסות
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseExp" class="accordion-collapse collapse">
+
+      </div>
+
+    </div>
+
+
+
+    <div class="col-4">
+      <h2 class="accordion">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseExp" aria-expanded="false" aria-controls="panelsStayOpen-collapseExp">
           הוצאות
         </button>
       </h2>
-        <div id="panelsStayOpen-collapseExp" class="accordion-collapse collapse">
+      <div id="panelsStayOpen-collapseExp" class="accordion-collapse ">
 
-          <div class="accordion-body">
+        <div class="accordion-body row">
 
-            <div class="accordion-item" *ngFor="let c of listCategory">
+          <div class="accordion-item" *ngFor="let c of listCategory">
 
-              <h2 class="accordion-header" id="panelsStayOpen-headingExp">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
-                  [attr.data-bs-target]="'#panelsStayOpen-collapseExp'+ c.idCategory"
-                  aria-controls="'panelsStayOpen-collapseExp'+ c.idCategory">
-                  קטגוריה: {{ c.categoryDetail}} : {{ c.sumCategory | number: '1.0-0'}}
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseExp{{c.idCategory}}" class="accordion-collapse collapse "
-                aria-labelledby="'panelsStayOpen-headingExp'+ c.idCategory">
-                <div class="accordion-body">
+            
+            <h2 class="accordion-header" id="panelsStayOpen-headingExp">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                [attr.data-bs-target]="'#panelsStayOpen-collapseExp'+ c.idCategory"
+                aria-controls="'panelsStayOpen-collapseExp'+ c.idCategory" >
+                <span class="col-5" style="text-align: right;">  {{ c.categoryDetail}} : {{ c.sumCategory | number: '1.0-0'}}</span>
+                <span class="col"> </span>
+                <span class="badge badge-pill badge-success col-1"
+                  style="background-color: #046036;">{{c.listSubCategory.length}}</span>
 
-                  <div class="accordion-item" *ngFor="let sc of c.listSubCategory">
-                    <div >
-                      תת קטגוריה: {{ sc.subcategoryDetail}} : {{ sc.totalSum | number: '1.0-0'}}
-                    </div>
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseExp{{c.idCategory}}" class="accordion-collapse collapse "
+              aria-labelledby="'panelsStayOpen-headingExp'+ c.idCategory">
+              <div class="accordion-body">
+
+                <div class="accordion-item" *ngFor="let sc of c.listSubCategory">
+                  <div>
+                    {{ sc.subcategoryDetail}} : {{ sc.totalSum | number: '1.0-0'}}
                   </div>
                 </div>
-
               </div>
-            </div>
 
+            </div>
           </div>
+
         </div>
+      </div>
     </div>
   </div>
+</div>

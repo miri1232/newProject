@@ -185,6 +185,31 @@ namespace BL
 
             return listExpenseDTO;
         }
+
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
+
+       public List<TotalSumCategoryDTO> ReportExpenses3(int idBudget, DateTime start, DateTime end)
+        {
+            List<TotalSumCategory> expenseList = _expenseDAL.ReportExpenses3(idBudget, start, end);
+            List<TotalSumCategoryDTO> listExpenseDTO = mapper.Map<List<TotalSumCategory>, List<TotalSumCategoryDTO>>(expenseList);
+            //List<TotalSumSubCategoryDTO> listSubCategoryDTO = mapper.Map<List<TotalSumSubCategory>, List<TotalSumSubCategoryDTO>>(expenseList.listSubCategory);
+
+            List<Category> categories = _categoryDAL.GetAllCategory();
+            List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
+            listExpenseDTO.ForEach(item =>
+            {
+                item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.IdCategory).Detail;
+                item.listSubCategory
+    .ForEach(sc => sc.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == sc.IdSubcategory).Detail);
+
+            });
+
+
+            return listExpenseDTO;
+        }
+
+
+
     }
 
 
