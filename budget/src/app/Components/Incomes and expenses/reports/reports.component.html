@@ -1,22 +1,40 @@
-<div>
+<form>
   <h5>בחר תקופה להצגה: </h5>
-  <h6 class="input-group input-daterange row">
+  <div class="input-group input-daterange row">
     <div class=" col-2">
-     <span>  החל מתאריך - </span>
-      <input type="date" class="form-control" title="תאריך התחלה" id="DateStart" 
-      [(ngModel)]="DateStart" (change)="changeRange()"  name="DateStart" value="{{ DateStart | date:'yyyy-MM-dd' }}" required >
-   
+      <h6> החל מתאריך - </h6>
+      <input type="date" class="form-control" title="תאריך התחלה" id="DateStart"
+        (change)="changeRange()" name="DateStart" value="{{ DateStart | date:'dd/MM/yyyy' }}" required>
+
     </div>
     <div class=" col-2">
-      <span>  עד תאריך -</span>
-      <input type="date" class="form-control" title="תאריך סיום" id="DateEnd"
-      [(ngModel)]="DateEnd" (change)="changeRange()" name="DateEnd" value="{{ DateEnd | date:'yyyy-MM-dd' }}" required >
-       </div>
+      <h6> עד תאריך -</h6>
+      <input type="date" class="form-control" title="תאריך סיום" id="DateEnd" [(ngModel)]="DateEnd"
+        (change)="changeRange()" name="DateEnd" value="DateEnd | date:'yyyy-MM-dd'" required>
+    </div>
 
-<div *ngIf=" DateStart > DateEnd" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
-</div>
-  </h6>
-</div>
+    <div class="form-fieldd-flex align-items-center col-3">
+      <h6 >סטטוס הוצאה לתצוגה</h6>
+      <select class="form-select" placeholder="בחר סטטוס הוצאה"
+      [(ngModel)]="idStatus" (change)="changeRange()" required>
+        <option selected [ngValue]="0">
+        הצג הכל 
+        </option>
+        <option type="text" *ngFor="let t of listStatus" [ngValue]="t.id" required>
+          <label> {{t.detail}} </label>
+        </option>
+      </select>
+    </div>
+
+    <h6 *ngIf=" DateStart > DateEnd" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
+    </h6>
+
+
+  </div>
+
+</form>
+
+<!-- </div> -->
 
 <br />
 
@@ -53,7 +71,7 @@
       </div>
     </div> -->
   <div class="row">
-    <div class="col-4">
+    <div class="col-5">
       <h2 class="accordion">
         <button class="accordion-button" type="button" data-bs-toggle="collapse"
           data-bs-target="#panelsStayOpen-collapseExp" aria-expanded="true" aria-controls="panelsStayOpen-collapseExp">
@@ -68,7 +86,7 @@
 
 
 
-    <div class="col-4">
+    <div class="col-5">
       <h2 class="accordion">
         <button class="accordion-button" type="button" data-bs-toggle="collapse"
           data-bs-target="#panelsStayOpen-collapseExp" aria-expanded="false" aria-controls="panelsStayOpen-collapseExp">
@@ -81,12 +99,13 @@
 
           <div class="accordion-item" *ngFor="let c of listCategory">
 
-            
+
             <h2 class="accordion-header" id="panelsStayOpen-headingExp">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
                 [attr.data-bs-target]="'#panelsStayOpen-collapseExp'+ c.idCategory"
-                aria-controls="'panelsStayOpen-collapseExp'+ c.idCategory" >
-                <span class="col-5" style="text-align: right;">  {{ c.categoryDetail}} : {{ c.sumCategory | number: '1.0-0'}}</span>
+                aria-controls="'panelsStayOpen-collapseExp'+ c.idCategory">
+                <span class="col-5" style="text-align: right;"> {{ c.categoryDetail}} : {{ c.sumCategory | number:
+                  '1.0-0'}}</span>
                 <span class="col"> </span>
                 <span class="badge badge-pill badge-success col-1"
                   style="background-color: #046036;">{{c.listSubCategory.length}}</span>

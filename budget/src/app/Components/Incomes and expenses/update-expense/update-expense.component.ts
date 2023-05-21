@@ -47,13 +47,7 @@ export class UpdateExpenseComponent implements OnInit {
   public idCategory: number = 0;//this.expenseToUpdate.category;
   public idSubcategory: number = 0;//this.expenseToUpdate.subcategory; 
 
-  //public idCategory: number =2;
-  //public idSubcategory: number =3;
-
   public listSubcategoryByCategory: Subcategory[] = [];
-
-
-
 
   constructor(
     public activeModal: NgbActiveModal,

@@ -15,14 +15,12 @@ placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוס
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddIncome2.gif" title="הוסף הכנסה">
     </div>
-  <!-- הוספת הכנסה -->
 </button>
 
 <button class="nav-link myIcon" (click)="AddExpenses()">
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddExpense.gif" title="הוסף הוצאה">
     </div>
-  <!-- הוספת הוצאה -->
 </button>
 
 <button *ngIf="activeUser.id==activeBudget.manager" class="nav-link myIcon" (click)="AddPermission()">

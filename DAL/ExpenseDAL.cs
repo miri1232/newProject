@@ -207,13 +207,12 @@ namespace DAL
         }
 
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
-        public List<TotalSumCategory> ReportExpenses3(int idBudget, DateTime start, DateTime end)
+        public List<TotalSumCategory> ReportExpenses3(int idBudget, DateTime start, DateTime end, int status)
         {
-
             try
             {
                 var expenseSummaries = _context.Expenses
-                        .Where(e => e.IdBudget == idBudget && e.Date >= start && e.Date <= end)
+                        .Where(e => e.IdBudget == idBudget && e.Date >= start && e.Date <= end && (status==0 || e.Status==status))
                         .GroupBy(e => new { e.Category, e.Subcategory })
                         .Select(t => new
                         {

@@ -43,8 +43,8 @@ export class ExpensesService {
     return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses2/' + idBudget);
   }
 
- ReportExpenses3(idBudget: number,start:Date, end:Date): Observable<TotalSumCategory[]> {
-    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' + idBudget +"/"+ start +"/"+end );
+ ReportExpenses3(idBudget: number,start:Date, end:Date, status:number): Observable<TotalSumCategory[]> {
+    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' + idBudget +"/"+ start +"/"+end +"/"+status);
   }
 
   
