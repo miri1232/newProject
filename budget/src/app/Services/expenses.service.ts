@@ -44,7 +44,7 @@ export class ExpensesService {
   }
 
  ReportExpenses3(idBudget: number,start:Date, end:Date): Observable<TotalSumCategory[]> {
-    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' + idBudget + start +end );
+    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' + idBudget +"/"+ start +"/"+end );
   }
 
   

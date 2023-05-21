@@ -249,7 +249,7 @@ namespace newProject.Controllers
 
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
         [HttpGet]
-        [Route("ReportExpenses3/{idBudget,start,end}")]
+        [Route("ReportExpenses3/{idBudget}/{start}/{end}")]
 
         public IActionResult ReportExpenses3(int idBudget, DateTime start, DateTime end)
         {
