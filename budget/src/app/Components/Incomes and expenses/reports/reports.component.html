@@ -4,13 +4,13 @@
     <div class=" col-2">
       <h6> החל מתאריך - </h6>
       <input type="date" class="form-control" title="תאריך התחלה" id="DateStart"
-        (change)="changeRange()" name="DateStart" value="{{ DateStart | date:'dd/MM/yyyy' }}" required>
+        name="DateStart" value="{{ DateStart | date:'dd/MM/yyyy' }}" required>
 
     </div>
     <div class=" col-2">
       <h6> עד תאריך -</h6>
       <input type="date" class="form-control" title="תאריך סיום" id="DateEnd" [(ngModel)]="DateEnd"
-        (change)="changeRange()" name="DateEnd" value="DateEnd | date:'yyyy-MM-dd'" required>
+         name="DateEnd" value="{{DateEnd | date:'dd/MM/yyyy'}}" required>
     </div>
 
     <div class="form-fieldd-flex align-items-center col-3">

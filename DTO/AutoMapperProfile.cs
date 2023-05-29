@@ -48,10 +48,6 @@ namespace DTO
             CreateMap<Subcategory, SubcategoryDTO>();
             CreateMap<TypeBudgetDTO, TypeBudget>();
             CreateMap<TypeBudget, TypeBudgetDTO>();
-           // CreateMap<ObjectSumSubCategoryDTO, ObjectSumSubCategory>();
-           // CreateMap<ObjectSumSubCategory, ObjectSumSubCategoryDTO>();
-           //CreateMap<ObjectSumCategoryDTO, ObjectSumCategory>();
-           // CreateMap<ObjectSumCategory, ObjectSumCategoryDTO>();
             CreateMap<TotalSumCategory, TotalSumCategoryDTO>();
             CreateMap<TotalSumSubCategory, TotalSumSubCategoryDTO>();
 

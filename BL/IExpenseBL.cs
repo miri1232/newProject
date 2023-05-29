@@ -22,8 +22,8 @@ namespace BL
         List<TotalSumCategoryDTO> ReportExpenses3(int idBudget, DateTime start, DateTime end, int status);
 
 
-        bool AddExpense(ExpenseDTO expenseDTO);
-        bool UpdateExpense(ExpenseDTO expenseDTO);
+        ExpenseDTO AddExpense(ExpenseDTO expenseDTO);
+        ExpenseDTO UpdateExpense(ExpenseDTO expenseDTO);
         bool DeleteExpense(ExpenseDTO expenseDTO);
     }
 }

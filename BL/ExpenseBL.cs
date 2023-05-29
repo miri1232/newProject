@@ -121,18 +121,45 @@ namespace BL
             return listExpenseDTO;
         }
 
-        public bool AddExpense(ExpenseDTO expenseDTO)
+        public ExpenseDTO AddExpense(ExpenseDTO expenseDTO)
         {
             Expense currentExpense = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
-            bool isSucsess = _expenseDAL.AddExpense(currentExpense);
-            return isSucsess;
+          
+            List<Category> categories = _categoryDAL.GetAllCategory();
+            expenseDTO.CategoryDetail = categories.FirstOrDefault(e => e.Id == currentExpense.Category).Detail;
+
+            List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
+            expenseDTO.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == currentExpense.Subcategory).Detail;
+
+            List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
+            expenseDTO.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == currentExpense.PaymentMethod).Detail;
+
+            List<Status> statuses = _lookupDAL.GetAllStatus();
+            expenseDTO.StatusDetail = statuses.FirstOrDefault(e => e.Id == currentExpense.Status).Detail;
+
+            Expense exp = _expenseDAL.AddExpense(currentExpense);
+            return expenseDTO;
         }
 
-        public bool UpdateExpense(ExpenseDTO expenseDTO)
+        public ExpenseDTO UpdateExpense(ExpenseDTO expenseDTO)
         {
+        
+
             Expense currentExpense = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
-            bool isSucsess = _expenseDAL.UpdateExpense(currentExpense.Id, currentExpense);
-            return isSucsess;
+            List<Category> categories = _categoryDAL.GetAllCategory();
+            expenseDTO.CategoryDetail = categories.FirstOrDefault(e => e.Id == currentExpense.Category).Detail;
+
+            List<Subcategory> subcategories = _subcategoryDAL.GetAllSubcategory();
+            expenseDTO.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == currentExpense.Subcategory).Detail;
+
+            List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
+            expenseDTO.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == currentExpense.PaymentMethod).Detail;
+
+            List<Status> statuses = _lookupDAL.GetAllStatus();
+            expenseDTO.StatusDetail = statuses.FirstOrDefault(e => e.Id == currentExpense.Status).Detail;
+
+            Expense exp = _expenseDAL.UpdateExpense(currentExpense.Id, currentExpense);
+            return expenseDTO;
         }
 
         public bool DeleteExpense(ExpenseDTO expenseDTO)

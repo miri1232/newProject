@@ -43,15 +43,16 @@ export class ExpensesComponent implements OnInit {
 
   ) {
     this.DateEnd = new Date();
+    this.myExpensesServise.sharedexpenseList$.subscribe(res => {
+      this.ExpensesList = res;
+    })
   }
 
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
 
-    this.myExpensesServise.GetExpensesByBudget(this.activeBudget.id).subscribe(exp => {
-      this.ExpensesList = exp;
-    });
+    this.myExpensesServise.GetExpensesByBudget(this.activeBudget.id);
 
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -74,10 +75,6 @@ export class ExpensesComponent implements OnInit {
     const modalRef2 = this.modalService.open(UpdateExpenseComponent);
     modalRef2.componentInstance.activeBudget = this.activeBudget;
     modalRef2.componentInstance.expenseToUpdate = e;
-    this.myExpensesServise.GetExpensesByBudget(this.activeBudget.id).subscribe(exp => {
-      this.ExpensesList = exp;
-    });
-
   }
 
   ConvertCategory(id: number) {

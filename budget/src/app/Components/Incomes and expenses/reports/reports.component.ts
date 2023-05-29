@@ -22,10 +22,10 @@ export class ReportsComponent implements OnInit {
 
   listCategory: TotalSumCategory[] = [];
   public listStatus: Status[] | undefined;
-public idStatus:number=0;
+  public idStatus: number = 0;
 
   DateEnd: Date = new Date(); // default to today's date
-  DateStart:Date=new Date();//default to befor mounth
+  DateStart: Date = new Date();//default to befor mounth
 
   constructor(
     private log: Logging,
@@ -33,8 +33,8 @@ public idStatus:number=0;
     private myExpense: ExpensesService,
     private lookupSer: LookupService,
 
-  ) {   
- }
+  ) {
+  }
 
 
   ngOnInit(): void {
@@ -50,20 +50,20 @@ public idStatus:number=0;
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
     });
-    this.DateStart.setMonth(this.DateStart.getMonth() - 1);  
+    // this.DateStart.setMonth(this.DateStart.getMonth() - 1);  
     // console.log(this.DateEnd);
     // console.log(this.DateStart);
 
   }
 
-changeRange(){
-  if(this.DateStart<=this.DateEnd){
+  changeRange() {
+    if (this.DateStart <= this.DateEnd) {
 
-    this.myExpense.ReportExpenses3(this.activeBudget.id,this.DateStart,this.DateEnd, this.idStatus).subscribe(exp => {
-      this.listCategory = exp;
-  });
+      this.myExpense.ReportExpenses3(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(exp => {
+        this.listCategory = exp;
+      });
+    }
   }
-}
 
 }
 

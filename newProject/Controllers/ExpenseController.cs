@@ -154,12 +154,12 @@ namespace newProject.Controllers
         //הוספה
         [HttpPost]
         [Route("AddExpense")]
-        public ActionResult<bool> AddExpense([FromBody] ExpenseDTO expenseDTO)
+        public ActionResult<ExpenseDTO> AddExpense([FromBody] ExpenseDTO expenseDTO)
         {
             try
             {
-                bool x = _expenseBL.AddExpense(expenseDTO);
-                return Ok(x);
+                ExpenseDTO exp= _expenseBL.AddExpense(expenseDTO);
+                return Ok(exp);
             }
             catch (Exception ex)
             {
@@ -174,8 +174,8 @@ namespace newProject.Controllers
         {
             try
             {
-                bool x = _expenseBL.UpdateExpense(expenseDTO);
-                return Ok(x);
+                ExpenseDTO exp = _expenseBL.UpdateExpense(expenseDTO);
+                return Ok(exp);
             }
             catch (Exception ex)
             {

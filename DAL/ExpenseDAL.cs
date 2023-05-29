@@ -125,50 +125,7 @@ namespace DAL
             }
         }
 
-        //public List<ObjectSumCategory> ReportCategoryExpenses(int idBudget)
-        //{
-        //    try
-        //    {
-        //        var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
-        //        .GroupBy(e => e.Category)
-        //        .Select(g => new ObjectSumCategory
-        //        {
-        //            IdCategory = g.Key,
-        //            sumCategory = g.Sum(e => e.Sum)
-        //        })
-        //    .ToList();
-
-        //        return expenseSummaries;
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-        //public List<ObjectSumSubCategory> ReportSubCategoryExpenses(int idBudget)
-        //{
-        //    try
-        //    {
-        //        var expenseSummaries = _context.Expenses.Where(e => e.IdBudget == idBudget)
-        //        .GroupBy(e => new { e.Subcategory,  e.Category})
-        //        .Select(g => new ObjectSumSubCategory
-        //        {
-        //            Subcategory = g.Key.Subcategory,
-        //            Category = g.Key.Category,
-        //            TotalSum = g.Sum(e => e.Sum)
-        //        })
-        //    .ToList();
-
-        //        return expenseSummaries;
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+   
 
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה
         public List<TotalSumCategory> ReportExpenses2(int idBudget)
@@ -240,13 +197,14 @@ namespace DAL
                 throw ex;
             }
         }
-        public bool AddExpense(Expense expense)
+        public Expense AddExpense(Expense expense)
         {
             try
             {
                 _context.Expenses.Add(expense);
                 _context.SaveChanges();
-                return true;
+                return expense;
+               // return true;
             }
             catch (Exception ex)
             {
@@ -254,14 +212,14 @@ namespace DAL
             }
         }
 
-        public bool UpdateExpense(int id, Expense expense)
+        public Expense UpdateExpense(int id, Expense expense)
         {
             try
             {
                 Expense currentExpense = _context.Expenses.SingleOrDefault(x => x.Id == id);
                 _context.Entry(currentExpense).CurrentValues.SetValues(expense);
                 _context.SaveChanges();
-                return true;
+                return expense;
             }
             catch (Exception ex)
             {
