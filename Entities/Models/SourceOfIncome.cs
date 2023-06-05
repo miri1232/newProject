@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DAL.Models
+namespace Entities.Models
 {
-    public partial class CategoryIncome
+    public partial class SourceOfIncome
     {
-        public CategoryIncome()
+        public SourceOfIncome()
         {
             Incomes = new HashSet<Income>();
-            SourceOfIncomes = new HashSet<SourceOfIncome>();
         }
 
         public int Id { get; set; }
+        public int CategoryIncome { get; set; }
         public string Detail { get; set; }
 
+        public virtual CategoryIncome CategoryIncomeNavigation { get; set; }
         public virtual ICollection<Income> Incomes { get; set; }
-        public virtual ICollection<SourceOfIncome> SourceOfIncomes { get; set; }
     }
 }

@@ -42,7 +42,7 @@ export class LookupService {
   }
   
   GetAllBank():Observable<Bank[]>{
-    const permissionLevel=new HttpParams(); 
+    const bank=new HttpParams(); 
     return this.http.get<Bank[]>(this.V_API + '/GetAllBank');
   }
 

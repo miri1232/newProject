@@ -64,7 +64,7 @@ export class NewBudgetComponent implements OnInit {
       this.newBudget.id = 0;
 
       this.newBudget.type = this.eventForm.value.typeBudget;
-      this.newBudget.manager = "0000";
+      this.newBudget.manager = this.eventForm.value.manager;
       this.newBudget.nameBudget = this.eventForm.value.nameBudget;
 
 

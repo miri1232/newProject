@@ -8,7 +8,7 @@ namespace BL
         List<BankOfBudgetDTO> GetAllBankOfBudgets();
         BankOfBudgetDTO GetBankOfBudgetByID(int idBankOfBudget);
         List<BankOfBudgetDTO> GetBankOfBudgetByIdBudget(int idBudget);
-        bool AddBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO);
+        int AddBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO);
         bool UpdateBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO);
         bool DeleteBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO);
     }

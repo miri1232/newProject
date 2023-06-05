@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { Category } from 'src/app/Classes/Category';
+import { Search } from 'src/app/Classes/Search';
 import { Status } from 'src/app/Classes/Status';
 import { Subcategory } from 'src/app/Classes/Subcategory';
 import { BudgetService } from 'src/app/Services/budget.service';
@@ -10,6 +12,7 @@ import { ExpensesService } from 'src/app/Services/expenses.service';
 import { LookupService } from 'src/app/Services/lookup.service';
 import { SubCategoryService } from 'src/app/Services/sub-category.service';
 import { Logging } from 'src/shared/log.service';
+
 
 @Component({
   selector: 'app-search',
@@ -26,7 +29,7 @@ export class SearchComponent implements OnInit {
     public idCategory:number=0;
     public listSubcategoryByCategory: Subcategory[]=[];
    
-
+ public objectToSearch !:Search;
     
   constructor(
     private log: Logging,
@@ -38,7 +41,12 @@ export class SearchComponent implements OnInit {
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
     private mySubCategory: SubCategoryService,
-  ) { }
+  ) {
+    const today = moment();
+    const oneMonthAgo = today.subtract(30, 'days');
+    // this.objectToSearch.dateStart.setDate(oneMonthAgo);
+
+  }
 
   ngOnInit(): void {
     

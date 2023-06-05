@@ -38,9 +38,17 @@ export class AddBankComponent implements OnInit {
     private bankComp: BankComponent,
   ) { }
 
-  eventForm!: FormGroup;
+  bankForm!: FormGroup;
 
   ngOnInit(): void {
+    //הקמת הטופס
+    this.bankForm = new FormGroup({
+      id: new FormControl(0),
+      idBudget: new FormControl(this.activeBudget.id),
+      idBank: new FormControl(""),
+      branch_Number: new FormControl("", [Validators.required]),
+      account_Number: new FormControl("", [Validators.required])
+    });
     // this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
 
     //יבוא נתונים עבור רשימה נפתחת
@@ -49,29 +57,20 @@ export class AddBankComponent implements OnInit {
       console.log(this.listBanks);
     });
 
-
-    //הקמת הטופס
-    this.eventForm = new FormGroup({
-      // id: new FormControl(0),
-      idBudget: new FormControl(this.activeBudget.id),
-      idBank: new FormControl(""),
-      branch_Number: new FormControl(""),
-      account_Number: new FormControl("")
-    });
-
   }
 
   AddBankOfBudget() {
 
-    if (this.eventForm.value != undefined) {
-      console.log("**פרטים**" + this.eventForm.value)
+    if (this.bankForm.value != undefined) {
+      console.log("**פרטים**" + this.bankForm.value)
 
-      this.bankOfBudgetSer.AddBankOfBudget(this.eventForm.value).subscribe(res => {
+      this.bankOfBudgetSer.AddBankOfBudget(this.bankForm.value).subscribe(res => {
         if (res) {
+          this.bankForm.controls['id'].setValue(res);
           const modalRef = this.modalService.open(ActionDialogComponent);
           modalRef.componentInstance.content = " נוסף לרשימת הבנקים המשוייכים לתקציב" + this.activeBudget.nameBudget;
-          this.activeModal.close();
 
+          this.activeModal.close(this.bankForm.value);
           this.bankComp.addBank = false;
         }
       });

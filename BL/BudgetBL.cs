@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DAL;
-using DAL.Models;
+using Entities.Models;
 using DTO;
 using DTO.Models;
 using System;
@@ -50,6 +50,7 @@ namespace BL
         public bool AddBudget(BudgetDTO budgetDTO)
         {
             Budget currentBudget = mapper.Map<BudgetDTO, Budget>(budgetDTO);
+            currentBudget.Permissions.Add(new Permission { IdBudget = budgetDTO.Id, IdUser = budgetDTO.Manager, PermissionLevel = 1 });
             bool isSucsess = _budgetDAL.AddBudget(currentBudget);
             return isSucsess;
         }

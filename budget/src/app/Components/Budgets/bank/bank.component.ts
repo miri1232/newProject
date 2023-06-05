@@ -43,8 +43,11 @@ export class BankComponent implements OnInit {
   }
 
   AddBank() {
-    const modalRef2 = this.modalService.open(AddBankComponent);
-    modalRef2.componentInstance.idBudget = this.activeBudget
+    let modalRef2 = this.modalService.open(AddBankComponent);
+    modalRef2.componentInstance.activeBudget = this.activeBudget;
+    modalRef2.result.then((result) => {
+      this.listBanksOfBudget?.push(result);
+    })
   }
 
   goToLinkBank(link: string) {

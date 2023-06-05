@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DAL;
-using DAL.Models;
+using Entities.Models;
 using DTO;
 using DTO.Models;
 using System;
@@ -89,11 +89,11 @@ namespace BL
             return ListBankOfBudgetDTO;
         }
 
-        public bool AddBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO)
+        public int AddBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO)
                {
             BankOfBudget currentBankOfBudget = mapper.Map<BankOfBudgetDTO, BankOfBudget>(bankOfBudgetDTO);
-            bool isSucsess = _bankOfBudgetDAL.AddBankOfBudget(currentBankOfBudget);
-            return isSucsess;
+            int id = _bankOfBudgetDAL.AddBankOfBudget(currentBankOfBudget);
+            return id;
         }
 
         public bool UpdateBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO)

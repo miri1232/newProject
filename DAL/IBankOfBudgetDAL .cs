@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+﻿using Entities.Models;
 using System.Collections.Generic;
 
 namespace DAL
@@ -8,7 +8,7 @@ namespace DAL
          List<BankOfBudget> GetAllBankOfBudgets();
         BankOfBudget GetBankOfBudgetByID(int idBankOfBudget);
         List<BankOfBudget> GetBankOfBudgetByIdBudget(int idBudget);
-         bool AddBankOfBudget(BankOfBudget bBankOfudget);
+         int AddBankOfBudget(BankOfBudget bBankOfudget);
          bool UpdateBankOfBudget(int id, BankOfBudget bankOfBudget);
          bool DeleteBankOfBudget(int id);
        

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DAL.Models
+namespace Entities.Models
 {
     public partial class Bank
     {

@@ -1,10 +1,11 @@
 ﻿using System;
+using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace DAL.Models
+namespace DAL
 {
     public partial class dbBudgetContext : DbContext
     {

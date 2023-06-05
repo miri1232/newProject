@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+﻿using Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,13 +48,13 @@ namespace DAL
         }
 
 
-        public bool AddBankOfBudget(BankOfBudget bankOfBudget)
+        public int AddBankOfBudget(BankOfBudget bankOfBudget)
         {
             try
             {
                 _context.BankOfBudgets.Add(bankOfBudget);
                 _context.SaveChanges();
-                return true;
+                return bankOfBudget.Id;
             }
             catch (Exception ex)
             {

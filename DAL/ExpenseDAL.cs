@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using Entities.Models;
+using DTO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,7 +126,27 @@ namespace DAL
             }
         }
 
-   
+        public List<Expense> SearchExpensesObject(SearchDTO searchDTO)
+        {
+            try
+            {               
+                //לעדכן פונקציה לשליפה ממסד הנתונים
+
+                List<Expense> listExpenses = _context.Expenses.ToList();
+
+                //if (searchDTO.dateStar != null) listExpenses = listExpenses.Where(x => x.Date >= start && x.Date <= end).ToList();
+                //if (min != null) listExpenses = listExpenses.Where(x => x.Sum >= min && x.Sum <= max).ToList();
+                //if (category != null) listExpenses = listExpenses.Where(x => x.Category == category).ToList();
+                //if (Subcategory != null) listExpenses = listExpenses.Where(x => x.Subcategory == Subcategory).ToList();
+                //if (paymentMethod != null) listExpenses = listExpenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
+                //if (status != null) listExpenses = listExpenses.Where(x => x.Status == status).ToList();
+                return listExpenses;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה
         public List<TotalSumCategory> ReportExpenses2(int idBudget)
@@ -197,13 +218,13 @@ namespace DAL
                 throw ex;
             }
         }
-        public Expense AddExpense(Expense expense)
+        public int AddExpense(Expense expense)
         {
             try
             {
                 _context.Expenses.Add(expense);
                 _context.SaveChanges();
-                return expense;
+                return expense.Id;
                // return true;
             }
             catch (Exception ex)

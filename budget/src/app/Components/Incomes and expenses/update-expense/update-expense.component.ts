@@ -171,7 +171,6 @@ this.filterByCategory();
       //  console.log("ההוצאה נקלטה")
 
       this.expenseToUpdate = this.eventForm.value;
-
       this.myExpense.UpdateExpense(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)
         this.expenseToUpdate = this.eventForm.value;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DAL;
-using DAL.Models;
+using Entities.Models;
 using DTO;
 using DTO.Models;
 using System;
@@ -121,6 +121,13 @@ namespace BL
             return listExpenseDTO;
         }
 
+        public List<ExpenseDTO> SearchExpensesObject(SearchDTO searchDTO)
+        {
+            List<Expense> expenseList = _expenseDAL.SearchExpensesObject(searchDTO);
+            List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
+            return listExpenseDTO;
+        }
+
         public ExpenseDTO AddExpense(ExpenseDTO expenseDTO)
         {
             Expense currentExpense = mapper.Map<ExpenseDTO, Expense>(expenseDTO);
@@ -137,7 +144,8 @@ namespace BL
             List<Status> statuses = _lookupDAL.GetAllStatus();
             expenseDTO.StatusDetail = statuses.FirstOrDefault(e => e.Id == currentExpense.Status).Detail;
 
-            Expense exp = _expenseDAL.AddExpense(currentExpense);
+            int expId = _expenseDAL.AddExpense(currentExpense);
+            expenseDTO.Id = expId;
             return expenseDTO;
         }
 
@@ -234,8 +242,6 @@ namespace BL
 
             return listExpenseDTO;
         }
-
-
 
     }
 

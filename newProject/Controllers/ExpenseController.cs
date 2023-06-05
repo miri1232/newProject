@@ -63,6 +63,7 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
         //שליפה לפי טווח סכום
         [HttpGet]
         [Route("ExpensesBySum")]
@@ -145,6 +146,20 @@ namespace newProject.Controllers
             try
             {
                 return Ok(_expenseBL.SearchExpenses(start, end, min, max, category, Subcategory, paymentMethod, status));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }   
+        //שליפה לפי כל הסינונים באמצעות אובייקט
+        [HttpGet]
+        [Route("SearchExpensesObject")]
+        public IActionResult SearchExpensesObject(SearchDTO searchDTO)
+        {
+            try
+            {
+                return Ok(_expenseBL.SearchExpensesObject(searchDTO));
             }
             catch (Exception ex)
             {

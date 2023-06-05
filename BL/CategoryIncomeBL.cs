@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DAL;
-using DAL.Models;
+using Entities.Models;
 using DTO;
 using DTO.Models;
 using System;

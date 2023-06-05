@@ -10,7 +10,7 @@
 
                 <div class="form-field  align-items-center">
                     <span class="far fa-user" for="floatingDate">תאריך ההוצאה</span>
-                     <input type="date" id="date" placeholder="תאריך ההוצאה" class="form-control" id="defaultDate"
+                     <input type="date" id="date" placeholder="תאריך ההוצאה" class="form-control" formControlName="defaultDate" id="defaultDate"
                      [(ngModel)]="defaultDate" name="date" value="{{ defaultDate | date:'yyyy-MM-dd' }}" required />
             
                 </div>
