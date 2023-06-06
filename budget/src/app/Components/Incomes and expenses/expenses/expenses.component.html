@@ -1,93 +1,90 @@
-<p>פירוט הוצאות
-</p>
-<!--
-<button (click)="ShowAllExpenses()">
-    הצג כל ההוצאות
-  </button>
+<form class="p-3 mt-6" [formGroup]="searchForm" (ngSubmit)="search()">
 
- <p>
-    <label >הכנס קטגוריה: </label>
-<input  type="text" 
- name="question" [(ngModel)]="CategoryToShow"  >
-   {{CategoryToShow}} 
+  <div class="input-group input-daterange row">
+    <!-- <h5>סינון לפי תאריך</h5> -->
 
-</p>
-
- <button (click)="ShowExpensesByCategory()">
-    הוצאות לפי קטגוריה
-  </button> -->
-  <div >
-
-    <h5>סינון לפי תאריך</h5>
-    <div class="input-group input-daterange row">
     <div class="col-2">
-      <h6> החל מתאריך - </h6>
-      <input type="date" class="form-control" title="תאריך התחלה" id="DateStart" [(ngModel)]="DateStart"
-      (change)="search()" name="DateStart" value="{{ DateStart | date:'yyyy-MM-dd' }}" required>
+      <span> החל מתאריך - </span>
+      <input type="date" class="form-control" title="תאריך התחלה" id="dateStart" name="dateStart"
+        formControlName="dateStart" required>
+      <!-- value="{{ searchForm.dateStart | date:'yyyy-MM-dd' }}" -->
 
     </div>
     <div class="col-2">
-      <h6> עד תאריך -</h6>
-      <input type="date" class="form-control" title="תאריך סיום" id="DateEnd" [(ngModel)]="DateEnd"
-      (change)="search()" name="DateEnd">
+      <span> עד תאריך -</span>
+      <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" formControlName="dateEnd" name="DateEnd"
+        required>
+      <!-- value="{{ searchForm.dateEnd | date:'yyyy-MM-dd' }}"  -->
     </div>
 
-    <div class="form-fieldd-flex align-items-center col-2">
-      <h6 >סטטוס הוצאה לתצוגה</h6>
-      <select class="form-select" placeholder="בחר סטטוס הוצאה" formControlName="status"
-      (change)="search()" [(ngModel)]="idStatus" >
-        <option  [ngValue]=0>
-        הצג הכל 
-        </option>
-        <option type="text" *ngFor="let t of listStatus" [ngValue]="t.id" >
+    <!-- <h5>סינון לפי סכום</h5> -->
+    <div class="col-2">
+      <span> החל מסכום - </span>
+      <input type="number" class="input-group-text" title="סכום מינימום" id="sumMin" name="sumMin" formControlName="sumMin"
+        required>
+      <!-- value="{{ sumMin | number: '1.0-0' }}"  -->
+    </div>
+
+    <div class="col-2">
+      <span> עד סכום -</span>
+      <input type="number" class="form-control" title="סכום מקסימום" id="sumMax" name="sumMax" formControlName="sumMax"
+        required>
+      <!-- value="{{ sumMax | number: '1.0-0' }}"  -->
+    </div>
+
+    <div class="col-2">
+      <span>סטטוס הוצאה לתצוגה</span>
+      <select class="form-select" placeholder="בחר סטטוס הוצאה" formControlName="status" formControlName="status" id="status">
+        <option selected> הצג הכל </option>
+        <option type="text" *ngFor="let t of listStatus" [ngValue]="t.id">
           <label> {{t.detail}} </label>
         </option>
       </select>
     </div>
 
-    <div class="form-fieldd-flex align-items-center col-2">
-      <!-- <input type="checkbox" id="category" placeholder=" סינון לפי קטגוריה" /> -->
-      <h6>סינון לפי קטגוריה</h6>
-       <!-- [ngModelOptions]="{standalone: true}"  -->
+    <div class="col-2">
+      <span>סינון לפי קטגוריה</span>
 
-      <select  (change)="search();filterByCategory()" class="form-select"  aria-label="Default select example"
-         [(ngModel)]="idCategory"  >
-        
-          <option selected>בחר קטגוריה</option>
-          <option *ngFor="let t of listCategory" [ngValue]="t.id" >
-              <label> {{t.detail}} </label>
-          </option>
+      <select (change)="filterByCategory()" class="form-select" aria-label="Default select example"
+        formControlName="category" id="category">
+
+        <option selected>בחר קטגוריה</option>
+        <option *ngFor="let t of listCategory" [ngValue]="t.id">
+          <label> {{t.detail}} </label>
+        </option>
       </select>
 
     </div>
 
-      <div class="form-fieldd-flex align-items-center col-2">
-              <div *ngIf="idCategory==0; else byCtegory" ></div>
+    <div class="col-2">
+      <div *ngIf="idCategory==0; else byCtegory"></div>
 
-    <ng-template #byCtegory>
+      <ng-template #byCtegory>
 
-      <h6>סינון לפי תת קטגוריה</h6>
-       <!-- [ngModelOptions]="{standalone: true}"  -->
+        <span>סינון לפי תת קטגוריה</span>
 
-      <select  (change)="search()" class="form-select"  aria-label="Default select example"
-         [(ngModel)]="idSubCategory"  >
-        
+        <select class="form-select" aria-label="Default select example" formControlName="subCategory" id="subCategory">
+
           <option selected>בחר תת קטגוריה</option>
-          <option *ngFor="let t of listSubcategoryByCategory" [ngValue]="t.id" >
-              <label> {{t.detail}} </label>
+          <option *ngFor="let t of listSubcategoryByCategory" [ngValue]="t.id">
+            <label> {{t.detail}} </label>
           </option>
-      </select> 
-          </ng-template>
+        </select>
+      </ng-template>
+    </div>
 
+    <!-- <h6 *ngIf="searchForm.dateStart > searchForm.dateEnd" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה </h6>
+  <h6 *ngIf="searchForm.sumMin > searchForm.sumMax" style="color: red;">הכנס סכום גבוה מהסכום המינימלי</h6> -->
+
+    <button class="button" class="btn btn-success" type="submit" >בצע סינון</button>
   </div>
 
+</form>
 
-  </div>
 
-    <h6 *ngIf=" DateStart > DateEnd" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
-    </h6>
-  </div>
-  <br/>
+
+
+<br />
 
 
 <!-- <app-search></app-search> -->
@@ -95,7 +92,7 @@
 <table class="table table-success table-striped">
   <thead>
     <tr>
-      <th scope="col"> <img style="width: 20px; " title="עריכה" src="../../../../assets/image/Update.png">  </th>
+      <th scope="col"> <img style="width: 20px; " title="עריכה" src="../../../../assets/image/Update.png"> </th>
       <th scope="col">תאריך</th>
       <th scope="col">סכום</th>
       <th scope="col">קטגוריה</th>
@@ -108,13 +105,15 @@
       <th scope="col">יתרה מצטברת</th>
     </tr>
   </thead>
-  
+
   <tbody *ngFor=" let e of ExpensesList; let i=index;">
 
     <tr>
       <th>
-        <button style="border:none" onmouseover="this.style.backgroundColor='#046036'" onmouseout="this.style.backgroundColor=null" scope="row" (click)="UpdateExpense(e)"><img style="width: 20px; " title="עריכה" src="../../../../assets/image/Update.png"></button>
-       </th>
+        <button style="border:none" onmouseover="this.style.backgroundColor='#046036'"
+          onmouseout="this.style.backgroundColor=null" scope="row" (click)="UpdateExpense(e)"><img style="width: 20px; "
+            title="עריכה" src="../../../../assets/image/Update.png"></button>
+      </th>
       <td>{{e.date | date: 'dd/MM/yyyy' }}</td>
       <td>{{e.sum | number: '1.0-0' }}</td>
       <td>{{e.categoryDetail}}</td>

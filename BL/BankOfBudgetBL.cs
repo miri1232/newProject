@@ -89,11 +89,23 @@ namespace BL
             return ListBankOfBudgetDTO;
         }
 
-        public int AddBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO)
+        public BankOfBudgetDTO AddBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO)
                {
+            //BankOfBudget currentBankOfBudget = mapper.Map<BankOfBudgetDTO, BankOfBudget>(bankOfBudgetDTO);
+            //BankOfBudgetDTO id = _bankOfBudgetDAL.AddBankOfBudget(currentBankOfBudget);
+            //return id;
+
             BankOfBudget currentBankOfBudget = mapper.Map<BankOfBudgetDTO, BankOfBudget>(bankOfBudgetDTO);
-            int id = _bankOfBudgetDAL.AddBankOfBudget(currentBankOfBudget);
-            return id;
+
+            List<Bank> banks = _lookupDAL.GetAllBank();
+            bankOfBudgetDTO.Logo_Bank = banks.FirstOrDefault(e => e.Id == currentBankOfBudget.IdBank).Logo_Bank;
+            bankOfBudgetDTO.Link = banks.FirstOrDefault(e => e.Id == currentBankOfBudget.IdBank).Link;
+            bankOfBudgetDTO.NameBank = banks.FirstOrDefault(e => e.Id == currentBankOfBudget.IdBank).NameBank;
+
+        
+            int bankId = _bankOfBudgetDAL.AddBankOfBudget(currentBankOfBudget);
+            bankOfBudgetDTO.Id = bankId;
+            return bankOfBudgetDTO;
         }
 
         public bool UpdateBankOfBudget(BankOfBudgetDTO bankOfBudgetDTO)

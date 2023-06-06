@@ -11,6 +11,8 @@ import { LookupService } from 'src/app/Services/lookup.service';
 import { Subcategory } from 'src/app/Classes/Subcategory';
 import { Status } from 'src/app/Classes/Status';
 import { SubCategoryService } from 'src/app/Services/sub-category.service';
+import { Search } from 'src/app/Classes/Search';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-expenses',
@@ -26,12 +28,15 @@ export class ExpensesComponent implements OnInit {
   public idCategory: number = 0;
   public listSubcategoryByCategory: Subcategory[] = [];
 
-  public idStatus: number = 0;
-  public DateEnd: Date = new Date(); // default to today's date
-  public DateStart: Date = new Date();//default to befor mounth
-  public idSubCategory: number = 0;
+  // public idStatus: number = 0;
+  // public DateEnd: Date = new Date(); // default to today's date
+  // public DateStart: Date = new Date();//default to befor mounth
+  // public idSubCategory: number = 0;
+
+  // public objectToSearch:Search=new Search();
 
   activeBudget!: Budget;
+  searchForm!: FormGroup;
 
   constructor(
     private myExpensesServise: ExpensesService,
@@ -42,7 +47,7 @@ export class ExpensesComponent implements OnInit {
     private lookupSer: LookupService,
 
   ) {
-    this.DateEnd = new Date();
+   // this.DateEnd = new Date();
     this.myExpensesServise.sharedexpenseList$.subscribe(res => {
       this.ExpensesList = res;
     })
@@ -65,7 +70,24 @@ export class ExpensesComponent implements OnInit {
       console.log(this.listSubcategory);
     });
 
+    //הקמת טופס לחיפוש
+    this.searchForm = new FormGroup({
+      idBudget: new FormControl(this.activeBudget.id),
+      dateEnd: new FormControl(""),
+      dateStart: new FormControl(""),
+      sumMin: new FormControl(0),
+      sumMax: new FormControl(9999999),
+      category: new FormControl(0),
+      subCategory: new FormControl(0),
+      status: new FormControl(0),
+    });
+
   }
+
+  search(){
+    this.myExpensesServise.SearchExpensesObject( this.searchForm.value);
+  }
+
 
   SumExpenses(i: number) {
     return this.ExpensesList.slice(0, i + 1).reduce((a, b) => a + b.sum, 0);
@@ -91,14 +113,6 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
-  search() {
-    // if(this.DateStart<=this.DateEnd){
-
-    //   this.myExpense.ReportExpenses3(this.activeBudget.id,this.DateStart,this.DateEnd, this.idStatus).subscribe(exp => {
-    //     this.listCategory = exp;
-    // });
-    // } 
-  }
 
   CategoryToShow: string = "";
 

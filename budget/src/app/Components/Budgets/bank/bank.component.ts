@@ -16,11 +16,11 @@ import { AddBankComponent } from '../add-bank/add-bank.component';
 })
 export class BankComponent implements OnInit {
 
-  public listBanksOfBudget: BankOfBudget[] | undefined;
+  listBanksOfBudget: BankOfBudget[] =[];
 
   activeBudget!: Budget;
 
-  addBank: boolean = false;
+  // addBank: boolean = false;
 
   constructor(
     private LookupSer: LookupService,
@@ -31,23 +31,28 @@ export class BankComponent implements OnInit {
     private budgetService: BudgetService,
     private activatedRoute: ActivatedRoute,
     //  private addBankComp: AddBankComponent,
-  ) { }
+  ) { 
+    this.bankOfBudgetSer.sharedBankList$.subscribe(res => {
+      this.listBanksOfBudget = res;
+            console.log(this.listBanksOfBudget);
+
+    })    
+  }
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
 
     this.bankOfBudgetSer.GetBankOfBudgetByIdBudget(this.activeBudget.id).subscribe(res => {
       this.listBanksOfBudget = res;
-      console.log(this.listBanksOfBudget);
     });
   }
 
   AddBank() {
-    let modalRef2 = this.modalService.open(AddBankComponent);
+    const modalRef2 = this.modalService.open(AddBankComponent);
     modalRef2.componentInstance.activeBudget = this.activeBudget;
-    modalRef2.result.then((result) => {
-      this.listBanksOfBudget?.push(result);
-    })
+    // modalRef2.result.then((result) => {
+    //   this.listBanksOfBudget?.push(result);
+   // })
   }
 
   goToLinkBank(link: string) {

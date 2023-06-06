@@ -120,7 +120,7 @@ namespace BL
             List<ExpenseDTO> listExpenseDTO = mapper.Map<List<Expense>, List<ExpenseDTO>>(expenseList);
             return listExpenseDTO;
         }
-
+        //שליפת הוצאות באמצעות אובייקט
         public List<ExpenseDTO> SearchExpensesObject(SearchDTO searchDTO)
         {
             List<Expense> expenseList = _expenseDAL.SearchExpensesObject(searchDTO);

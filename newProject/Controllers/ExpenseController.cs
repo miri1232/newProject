@@ -151,10 +151,11 @@ namespace newProject.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-        }   
+        }  
+        
         //שליפה לפי כל הסינונים באמצעות אובייקט
         [HttpGet]
-        [Route("SearchExpensesObject")]
+        [Route("SearchExpensesObject /{searchDTO}")]
         public IActionResult SearchExpensesObject(SearchDTO searchDTO)
         {
             try

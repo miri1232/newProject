@@ -129,18 +129,18 @@ namespace DAL
         public List<Expense> SearchExpensesObject(SearchDTO searchDTO)
         {
             try
-            {               
+            {
                 //לעדכן פונקציה לשליפה ממסד הנתונים
 
-                List<Expense> listExpenses = _context.Expenses.ToList();
-
-                //if (searchDTO.dateStar != null) listExpenses = listExpenses.Where(x => x.Date >= start && x.Date <= end).ToList();
-                //if (min != null) listExpenses = listExpenses.Where(x => x.Sum >= min && x.Sum <= max).ToList();
-                //if (category != null) listExpenses = listExpenses.Where(x => x.Category == category).ToList();
-                //if (Subcategory != null) listExpenses = listExpenses.Where(x => x.Subcategory == Subcategory).ToList();
-                //if (paymentMethod != null) listExpenses = listExpenses.Where(x => x.PaymentMethod == paymentMethod).ToList();
-                //if (status != null) listExpenses = listExpenses.Where(x => x.Status == status).ToList();
-                return listExpenses;
+               return  _context.Expenses
+                       .Where(exp => exp.IdBudget == searchDTO.IdBudget
+                     // && exp.Date >= searchDTO.DateStart && exp.Date <= searchDTO.DateEnd
+                      && (searchDTO.Status == 0 || exp.Status == searchDTO.Status)
+                      && exp.Sum >= searchDTO.SumMin && exp.Sum <= searchDTO.SumMax
+                      && (searchDTO.Category == 0 || exp.Category == searchDTO.Category)
+                     && (searchDTO.Subcategory == 0 || exp.Subcategory == searchDTO.Subcategory)
+                       ).ToList(); 
+                
             }
             catch (Exception ex)
             {

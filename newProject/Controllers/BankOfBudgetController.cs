@@ -70,11 +70,11 @@ namespace newProject.Controllers
         //הוספה
         [HttpPost]
         [Route("AddBankOfBudget")]
-        public ActionResult<int> AddBankOfBudget([FromBody] BankOfBudgetDTO bankOfBudgetDTO)
+        public ActionResult<BankOfBudgetDTO> AddBankOfBudget([FromBody] BankOfBudgetDTO bankOfBudgetDTO)
         {
             try
             {
-                int x = _bankOfBudgetBL.AddBankOfBudget(bankOfBudgetDTO);
+                BankOfBudgetDTO x = _bankOfBudgetBL.AddBankOfBudget(bankOfBudgetDTO);
                 return Ok(x);
             }
             catch (Exception ex)

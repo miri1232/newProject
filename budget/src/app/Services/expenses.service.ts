@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Expense } from '../Classes/Expense';
 import { TotalSumCategory } from '../Classes/TotalSumCategory copy';
 import { map } from 'rxjs/operators';
+import { Search } from '../Classes/Search';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +21,17 @@ export class ExpensesService {
     private http: HttpClient
   ) { }
 
-
-  GetAllExpenses() {
-    this.http.get<Expense[]>(this.V_API + '/GetAllExpenses').subscribe(res => {
-      this.expenseList.next(res);
-    });
-  }
-
   GetExpensesByBudget(idBudget: number) {
     this.http.get<Expense[]>(this.V_API + '/GetExpensesByBudget/' + idBudget).subscribe(res => {
       this.expenseList.next(res);
     });
   }
 
-
-  // GetExpensesByCategory(ctg: number): Observable<Expense[]> {
-  //   return this.http.get<Expense[]>(this.V_API + '/GetExpensesByCategory', ctg);
-  // }
+  SearchExpensesObject(s: Search){
+     this.http.get<Expense[]>(this.V_API + '/SearchExpensesObject/' + s).subscribe(res => {
+      this.expenseList.next(res);
+    });
+  }
 
   AddExpense(newExpense: Expense): Observable<boolean> {
     return this.http.post<Expense>(this.V_API + '/AddExpense', newExpense).pipe(

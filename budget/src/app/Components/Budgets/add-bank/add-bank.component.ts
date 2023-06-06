@@ -62,7 +62,7 @@ export class AddBankComponent implements OnInit {
   AddBankOfBudget() {
 
     if (this.bankForm.value != undefined) {
-      console.log("**פרטים**" + this.bankForm.value)
+      // console.log("**פרטים**" + this.bankForm.value)
 
       this.bankOfBudgetSer.AddBankOfBudget(this.bankForm.value).subscribe(res => {
         if (res) {
@@ -71,7 +71,7 @@ export class AddBankComponent implements OnInit {
           modalRef.componentInstance.content = " נוסף לרשימת הבנקים המשוייכים לתקציב" + this.activeBudget.nameBudget;
 
           this.activeModal.close(this.bankForm.value);
-          this.bankComp.addBank = false;
+          // this.bankComp.addBank = false;
         }
       });
     }
