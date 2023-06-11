@@ -73,8 +73,8 @@ export class ExpensesComponent implements OnInit {
     //הקמת טופס לחיפוש
     this.searchForm = new FormGroup({
       idBudget: new FormControl(this.activeBudget.id),
-      dateEnd: new FormControl(""),
-      dateStart: new FormControl(""),
+      dateEnd: new FormControl(new Date()),
+      dateStart: new FormControl(new Date()),
       sumMin: new FormControl(0),
       sumMax: new FormControl(9999999),
       category: new FormControl(0),
@@ -86,6 +86,9 @@ export class ExpensesComponent implements OnInit {
 
   search(){
     this.myExpensesServise.SearchExpensesObject( this.searchForm.value);
+    this.myExpensesServise.sharedexpenseList$.subscribe(res => {
+      this.ExpensesList = res;
+    })
   }
 
 

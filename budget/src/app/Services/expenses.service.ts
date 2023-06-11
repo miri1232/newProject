@@ -33,6 +33,12 @@ export class ExpensesService {
     });
   }
 
+  // SearchExpensesObject(searchParams: any) {
+  //   this.http.get<Expense[]>(`${this.V_API}/SearchExpensesObject`, { params: searchParams }).subscribe(res => {
+  //     this.expenseList.next(res);
+  //   });
+  // }
+  
   AddExpense(newExpense: Expense): Observable<boolean> {
     return this.http.post<Expense>(this.V_API + '/AddExpense', newExpense).pipe(
       map((res: any) => {
