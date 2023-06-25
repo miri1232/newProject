@@ -25,10 +25,8 @@ export class ExpensesComponent implements OnInit {
 
   //  eventForm!: FormGroup;
   today = new Date();
-
-
   public end = new Date();
-  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1);
+ public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1);
 
   ExpensesList: Expense[] = [];
   public listCategory: Category[] | undefined;
@@ -37,14 +35,9 @@ export class ExpensesComponent implements OnInit {
   public idCategory: number = 0;
   public listSubcategoryByCategory: Subcategory[] = [];
 
-  // public idStatus: number = 0;
-  // public DateEnd: Date = new Date(); // default to today's date
-  // public DateStart: Date = new Date();//default to befor mounth
-  // public idSubCategory: number = 0;
-
-  // public objectToSearch:Search=new Search();
-
   activeBudget!: Budget;
+  activeSearch!: Search;
+
   searchForm!: FormGroup;
 
   constructor(
@@ -56,7 +49,6 @@ export class ExpensesComponent implements OnInit {
     private lookupSer: LookupService,
 
   ) {
-    // this.DateEnd = new Date();
     this.myExpensesServise.sharedexpenseList$.subscribe(res => {
       this.ExpensesList = res;
     })
@@ -65,6 +57,8 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+    // this.log.sharedActiveSearch.subscribe(search => this.activeSearch = search)
+
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
     });
@@ -91,14 +85,16 @@ export class ExpensesComponent implements OnInit {
 
   search(event: any) {
     this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
-    this.searchForm.controls["dateEnd"].setValue(event.target.DateEnd.value)
+    this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
+    // this.log.nextSearch(this.searchForm.value);
+    if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
 
     this.myExpensesServise.SearchExpensesObject(this.searchForm.value);
     this.myExpensesServise.sharedexpenseList$.subscribe(res => {
       this.ExpensesList = res;
     })
   }
-
+  }
 
   SumExpenses(i: number) {
     return this.ExpensesList.slice(0, i + 1).reduce((a, b) => a + b.sum, 0);
@@ -124,24 +120,7 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
-
-  CategoryToShow: string = "";
-
-  // ShowAllExpenses(){
-  //   this.myExpensesServise.GetAllExpenses().subscribe(exp => { 
-  //     this.ExpensesList = exp;
-  //     console.log(exp);
-  // } );
-  // }
-
-  // ShowExpensesByCategory(){
-  //   this.myExpensesServise.GetExpensesByCategory(this.CategoryToShow).subscribe(exp => { 
-  //     this.ExpensesList = exp;
-  //     console.log(exp);
-  //     });
-  //                         }
-
-
+  // CategoryToShow: string = "";
 
 }
 

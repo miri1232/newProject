@@ -1,3 +1,4 @@
+
 <form class="p-3 mt-6" [formGroup]="searchForm" (ngSubmit)="search($event)">
 
   <div class="input-group input-daterange row">
@@ -11,7 +12,7 @@
     </div>
     <div class="col-2">
       <span> עד תאריך -</span>
-      <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="DateEnd"
+      <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="dateEnd"
        required [(ngModel)]="end" value="{{ end | date:'yyyy-MM-dd' }}">
       <!-- formControlName="dateEnd" -->
     </div>
@@ -80,6 +81,9 @@
 
     <button class="button" class="btn btn-success" type="submit">בצע סינון</button>
   </div>
+
+  <h6 *ngIf=" start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
+  </h6>
 
 </form>
 

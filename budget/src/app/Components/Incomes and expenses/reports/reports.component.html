@@ -1,41 +1,38 @@
-<form class="p-3 mt-6"  (ngSubmit)="changeRange()">
+<form class="p-3 mt-6" [formGroup]="searchForm" (ngSubmit)="changeRange($event)">
   <h5>בחר תקופה להצגה: </h5>
   <div class="input-group input-daterange row">
     <div class=" col-2">
       <h6> החל מתאריך - </h6>
-      <input type="date" class="form-control" title="תאריך התחלה" id="DateStart"
-        name="DateStart" value="{{ DateStart | date:'dd/MM/yyyy' }}" required>
-
+      <input type="date" class="form-control" title="תאריך התחלה" id="dateStart" name="dateStart"
+      [(ngModel)]="start"   value="{{ start | date:'dd/MM/yyyy' }}" required> 
     </div>
+    
     <div class=" col-2">
       <h6> עד תאריך -</h6>
-      <input type="date" class="form-control" title="תאריך סיום" id="DateEnd" [(ngModel)]="DateEnd"
-         name="DateEnd" value="{{DateEnd | date:'dd/MM/yyyy'}}" required>
+      <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="dateEnd" 
+      [(ngModel)]="end"  value="{{ end | date:'yyyy-MM-dd' }}" required>
     </div>
 
     <div class="form-fieldd-flex align-items-center col-2">
-      <h6 >סטטוס לתצוגה</h6>
-      <select class="form-select" placeholder="בחר סטטוס"
-      [(ngModel)]="idStatus"  required>
-        <option selected [ngValue]="0">
-        הצג הכל 
-        </option>
-        <option type="text" *ngFor="let t of listStatus" [ngValue]="t.id" required>
+      <h6>סטטוס לתצוגה</h6>
+      <select class="form-select" placeholder="בחר סטטוס הוצאה" formControlName="status" formControlName="status"
+        id="status">
+        <option [ngValue]=0 selected> הצג הכל </option>
+        <option type="text" *ngFor="let t of listStatus" [ngValue]="t.id">
           <label> {{t.detail}} </label>
         </option>
       </select>
     </div>
 
- <div class="form-fieldd-flex align-items-center col-2">
-  <h6>אישור סינון</h6>
-  <button class="button" class="btn btn-success" type="submit">בצע סינון</button>
-</div>
-    <h6 *ngIf=" DateStart > DateEnd" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
-    </h6>
+    <div class="form-fieldd-flex align-items-center col-2">
+      <h6>אישור סינון</h6>
+      <button class="button" class="btn btn-success" type="submit">בצע סינון</button>
+    </div>
 
-
- 
   </div>
+
+  <h6 *ngIf=" start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
+  </h6>
 
 </form>
 
@@ -59,10 +56,10 @@
         <div id="panelsStayOpen-collapseInc" class="accordion-collapse ">
 
           <div class="accordion-body row">
-  
+
             <div class="accordion-item" *ngFor="let i of listCategoryIncomes">
-  
-  
+
+
               <h2 class="accordion-header" id="panelsStayOpen-headingInc">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
                   [attr.data-bs-target]="'#panelsStayOpen-collapseInc'+ i.idCategory"
@@ -72,28 +69,28 @@
                   <span class="col"> </span>
                   <span class="badge badge-pill badge-success col-1"
                     style="background-color: #046036;">{{i.listSourceCategory.length}}</span>
-  
+
                 </button>
               </h2>
               <div id="panelsStayOpen-collapseInc{{i.idCategory}}" class="accordion-collapse collapse "
                 aria-labelledby="'panelsStayOpen-headingInc'+ i.idCategory">
                 <div class="accordion-body">
-  
+
                   <div class="accordion-item" *ngFor="let si of i.listSourceCategory">
                     <div>
                       {{ si.SourcecategoryDetail}} : {{ si.totalSum | number: '1.0-0'}}
                     </div>
                   </div>
                 </div>
-  
+
               </div>
             </div>
-  
+
           </div>
         </div>
       </div>
 
-      </div>
+    </div>
 
 
     <div class="col-5">

@@ -1,33 +1,27 @@
 
-<br />
-<!-- <button type="button" class="btn btn-outline-success"  autoClose="outside" [ngbPopover]="AddExpense" ngbPopoverPlacement="outside" 
-placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent>הוספת הוצאהpop</button>
-
-
-<ng-template  class="float-start" style="width: 1000rem;"  #AddExpense>
-<app-add-expense></app-add-expense>
-</ng-template> -->
-
-
 <nav class="nav navToAdd "  >
 
  <button class="nav-link myIcon" (click)="AddIncomes()" >
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddIncome2.gif" title="הוסף הכנסה">
     </div>
+        <span>הוסף הכנסה</span>
+
 </button>
 
 <button class="nav-link myIcon" (click)="AddExpenses()">
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddExpense.gif" title="הוסף הוצאה">
-    </div>
+  </div>
+      <span>הוסף הוצאה</span>
+
 </button>
 
 <button *ngIf="activeUser.id==activeBudget.manager" class="nav-link myIcon" (click)="AddPermission()">
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddPermission2.gif" title="הוסף משתמש">
     </div>
-  <!-- הוספת משתמשים לתקציב -->
+    <span>הוסף משתמש</span>
 </button>
 </nav>
 

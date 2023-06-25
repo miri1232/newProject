@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Budget } from 'src/app/Classes/Budget';
 import { CategoryIncome } from 'src/app/Classes/CategoryIncome';
 import { Income } from 'src/app/Classes/Income';
+import { Search } from 'src/app/Classes/Search';
 import { Status } from 'src/app/Classes/Status';
-
 import { TotalSumCategory } from 'src/app/Classes/TotalSumCategory';
 import { TotalSumCategoryIncome } from 'src/app/Classes/TotalSumCategoryIncome';
-//import { TotalSumCategoryIncome } from 'src/app/Classes/TotalSumCategoryIncome';
 import { ExpensesService } from 'src/app/Services/expenses.service';
 import { IncomesService } from 'src/app/Services/incomes.service';
 import { LookupService } from 'src/app/Services/lookup.service';
@@ -19,14 +19,21 @@ import { Logging } from 'src/shared/log.service';
 })
 export class ReportsComponent implements OnInit {
 
+  today = new Date();
+  public end = new Date();
+ public start = new Date(this.today.getFullYear(), this.today.getMonth() - 3);
+
+
   activeBudget!: Budget;
-  //IncomeList: Income[] = [];
+
+  searchForm!: FormGroup;
 
   listCategoryIncomes: TotalSumCategoryIncome[] = [];
   listCategory: TotalSumCategory[] = [];
   public listStatus: Status[] | undefined;
   public idStatus: number = 0;
 
+  
   DateEnd: Date = new Date(); // default to today's date
   DateStart: Date = new Date();//default to befor mounth
 
@@ -42,32 +49,46 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => {
-      this.activeBudget = budget;
-  
-      this.myIncomeSer.ReportIncomes(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(inc => {
-        this.listCategoryIncomes = inc;
-      });  
-
-      this.myExpenseSer.ReportExpenses3(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(exp => {
-        this.listCategory = exp;
-      });
+      this.activeBudget = budget;     
     });
+
+    // this.myIncomeSer.ReportIncomes(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(inc => {
+    //   this.listCategoryIncomes = inc;
+    // });  
+
+   
+
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
     });
-    
+    this.searchForm = new FormGroup({
+      idBudget: new FormControl(this.activeBudget.id),
+      dateEnd: new FormControl(this.end),
+      dateStart: new FormControl(this.start),
+      sumMin: new FormControl(0),
+      sumMax: new FormControl(9999999),
+      category: new FormControl(0),
+      subCategory: new FormControl(0),
+      status: new FormControl(0),
+    });
+
+    this.myExpenseSer.ReportExpenses3(this.searchForm.value);
+
   }
 
-  changeRange() {
-    if (this.DateStart <= this.DateEnd) {
+  changeRange(event: any) {
+    this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
+    this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
+    
+    if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
      
-      this.myIncomeSer.ReportIncomes(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(inc => {
-        this.listCategoryIncomes = inc;
-      });
+      // this.myIncomeSer.ReportIncomes(this.searchForm.value).subscribe(inc => {
+      //   this.listCategoryIncomes = inc;
+      // });
 
-      this.myExpenseSer.ReportExpenses3(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(exp => {
-        this.listCategory = exp;
-      });
+      // this.myExpenseSer.ReportExpenses3(this.searchForm.value).subscribe(exp => {
+      //   this.listCategory = exp;
+      // });
 
     }
   }

@@ -17,6 +17,9 @@ export class ExpensesService {
   private expenseList = new BehaviorSubject<Expense[]>([]);
   sharedexpenseList$ = this.expenseList.asObservable();
 
+  private repotrExp = new BehaviorSubject<TotalSumCategory[]>([]);
+  sharedreportExp$ = this.repotrExp.asObservable();
+
   constructor(
     private http: HttpClient
   ) { }
@@ -68,10 +71,13 @@ export class ExpensesService {
     return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses2/' + idBudget);
   }
 
-  ReportExpenses3(idBudget: number, start: Date, end: Date, status: number): Observable<TotalSumCategory[]> {
-    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' + idBudget + "/" + start + "/" + end + "/" + status);
+  ReportExpenses3(s: Search) {
+    this.http.post<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' , s).subscribe(res => {
+      this.repotrExp.next(res);
+    });
   }
-
+    
+   
 
   // listCategory: TotalSumCategory[] = [];
 

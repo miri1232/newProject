@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { Budget } from "src/app/Classes/Budget";
+import { Search } from "src/app/Classes/Search";
 import { User } from "src/app/Classes/User";
 import { BudgetService } from "src/app/Services/budget.service";
 import { UserService } from "src/app/Services/user.service";
@@ -21,15 +22,14 @@ export class Logging {
   private ActiveUser = new BehaviorSubject(new User());
   sharedActiveUser = this.ActiveUser.asObservable();
 
-
+  // private ActiveSearch = new BehaviorSubject(new Search());
+  // sharedActiveSearch = this.ActiveSearch.asObservable();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute
   ) {
-    // this.ActiveUser.id = '300668852';
-    // this.ActiveUser.firstName = 'Miri';
-    // this.ActiveBudget.id=5;
+
   }
   nextUser(newUser: User) {
     this.ActiveUser.next(newUser);
@@ -39,11 +39,16 @@ export class Logging {
     this.ActiveBudget.next(newBudget);
   }
 
+  // nextSearch(newSearch:Search){
+  //   this.ActiveSearch.next(newSearch);
+  // }
+
   logOutUser() {
     this.ActiveUser.next(new User());
-    console.log(this.ActiveUser);
 
     this.ActiveBudget.next(new Budget());
+
+    // this.ActiveSearch.next(new Search());
 
     this.router.navigate([''])
 
@@ -51,6 +56,8 @@ export class Logging {
 
   logOutBudget() {
     this.ActiveBudget.next(new Budget());
+    // this.ActiveSearch.next(new Search());
+
   }
 
 

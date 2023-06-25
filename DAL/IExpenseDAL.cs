@@ -18,7 +18,7 @@ namespace DAL
         List<Expense> SearchExpenses(DateTime start, DateTime end, double min, double max , int category , int Subcategory, int paymentMethod, int status);
         List<Expense> SearchExpensesObject(SearchDTO searchDTO);
         List<TotalSumCategory> ReportExpenses2(int idBudget);
-        List<TotalSumCategory> ReportExpenses3(int idBudget, DateTime start, DateTime end, int status);
+        List<TotalSumCategory> ReportExpenses3(SearchDTO searchDTO);
         int AddExpense(Expense expense);
         Expense UpdateExpense(int id, Expense expense);
         bool DeleteExpense(int id);

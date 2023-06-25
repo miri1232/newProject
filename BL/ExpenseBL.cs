@@ -235,9 +235,9 @@ namespace BL
 
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
 
-       public List<TotalSumCategoryDTO> ReportExpenses3(int idBudget, DateTime start, DateTime end, int status)
+       public List<TotalSumCategoryDTO> ReportExpenses3(SearchDTO searchDTO)
         {
-            List<TotalSumCategory> expenseList = _expenseDAL.ReportExpenses3(idBudget, start, end,  status);
+            List<TotalSumCategory> expenseList = _expenseDAL.ReportExpenses3(searchDTO);
             List<TotalSumCategoryDTO> listExpenseDTO = mapper.Map<List<TotalSumCategory>, List<TotalSumCategoryDTO>>(expenseList);
 
             List<Category> categories = _categoryDAL.GetAllCategory();
