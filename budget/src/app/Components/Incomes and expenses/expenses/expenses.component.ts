@@ -13,6 +13,8 @@ import { Status } from 'src/app/Classes/Status';
 import { SubCategoryService } from 'src/app/Services/sub-category.service';
 import { Search } from 'src/app/Classes/Search';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-expenses',
@@ -20,6 +22,13 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./expenses.component.scss']
 })
 export class ExpensesComponent implements OnInit {
+
+  //  eventForm!: FormGroup;
+  today = new Date();
+
+
+  public end = new Date();
+  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1);
 
   ExpensesList: Expense[] = [];
   public listCategory: Category[] | undefined;
@@ -47,7 +56,7 @@ export class ExpensesComponent implements OnInit {
     private lookupSer: LookupService,
 
   ) {
-   // this.DateEnd = new Date();
+    // this.DateEnd = new Date();
     this.myExpensesServise.sharedexpenseList$.subscribe(res => {
       this.ExpensesList = res;
     })
@@ -56,9 +65,6 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
-
-    this.myExpensesServise.GetExpensesByBudget(this.activeBudget.id);
-
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
     });
@@ -69,23 +75,25 @@ export class ExpensesComponent implements OnInit {
       this.listSubcategory = res;
       console.log(this.listSubcategory);
     });
-
     //הקמת טופס לחיפוש
     this.searchForm = new FormGroup({
       idBudget: new FormControl(this.activeBudget.id),
-      dateEnd: new FormControl(new Date()),
-      dateStart: new FormControl(new Date()),
+      dateEnd: new FormControl(this.end),
+      dateStart: new FormControl(this.start),
       sumMin: new FormControl(0),
       sumMax: new FormControl(9999999),
       category: new FormControl(0),
       subCategory: new FormControl(0),
       status: new FormControl(0),
     });
-
+    this.myExpensesServise.SearchExpensesObject(this.searchForm.value);
   }
 
-  search(){
-    this.myExpensesServise.SearchExpensesObject( this.searchForm.value);
+  search(event: any) {
+    this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
+    this.searchForm.controls["dateEnd"].setValue(event.target.DateEnd.value)
+
+    this.myExpensesServise.SearchExpensesObject(this.searchForm.value);
     this.myExpensesServise.sharedexpenseList$.subscribe(res => {
       this.ExpensesList = res;
     })

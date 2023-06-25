@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using DTO.Models;
+using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -125,6 +126,42 @@ namespace DAL
             }
         }
 
+
+
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
+        public List<TotalSumCategoryIncome> ReportIncomes(int idBudget, DateTime start, DateTime end, int status)
+        {
+            try
+            {
+                var expenseSummaries = _context.Incomes
+                        .Where(e => e.IdBudget == idBudget && e.Date >= start && e.Date <= end && (status == 0 || e.Status == status))
+                        .GroupBy(e => new { e.CategoryIncome, e.SourceOfIncome })
+                        .Select(t => new
+                        {
+                            Category = t.Key.CategoryIncome,
+                            SourceCategory = t.Key.SourceOfIncome,
+                            TotalSum = t.Sum(e => e.Sum)
+                        }).ToList()
+                                .GroupBy(t => t.Category)
+                                .Select(g => new TotalSumCategoryIncome
+                                {
+                                    IdCategory = g.Key,
+                                    SumCategory = g.Sum(t => t.TotalSum),
+                                    listTotalSourceCategoryIncome = g.Select(t => new TotalSumSourceCategoryIncome
+                                    {
+                                        IdSourceCategory = t.SourceCategory,
+                                        TotalSum = t.TotalSum
+                                    }).ToList()
+                                }).ToList();
+
+                return expenseSummaries;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public bool AddIncome(Income income)
         {

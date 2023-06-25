@@ -4,13 +4,13 @@
         עריכת הוצאה
     </div>
 
-    <form class="p-3 mt-6" [formGroup]="eventForm" (ngSubmit)="UpdateExpense()">
+    <form class="p-3 mt-6" [formGroup]="eventForm" (ngSubmit)="UpdateExpense($event)">
         <div class="row">
             <div class="col-sm-6">
 
                 <div class="form-field  align-items-center">
                     <span class="far fa-user" for="floatingDate">תאריך ההוצאה</span>
-                     <input type="date" id="date" placeholder="תאריך ההוצאה" class="form-control" formControlName="defaultDate" id="defaultDate"
+                     <input type="date" id="date" placeholder="תאריך ההוצאה" class="form-control"
                      [(ngModel)]="defaultDate" name="date" value="{{ defaultDate | date:'yyyy-MM-dd' }}" required />
             
                 </div>

@@ -35,11 +35,16 @@ namespace DAL
             }
         }
 
-        public List<Expense> GetExpensesByDate(DateTime start, DateTime end)
+        public List<Expense> GetExpensesByDate(int idBudget)
         {
             try
             {
-                return _context.Expenses.Where(x => x.Date >= start && x.Date <= end).ToList();
+                DateTime currentDate = DateTime.Now;
+                DateTime start = new DateTime(currentDate.Year, currentDate.Month-1, 1);
+
+                List<Expense> listExpenses = _context.Expenses.ToList();
+                 listExpenses = listExpenses.Where(x => x.Date >= start && x.Date <= currentDate).ToList();
+                return listExpenses;
             }
             catch (Exception ex)
             {
@@ -131,16 +136,18 @@ namespace DAL
             try
             {
                 //לעדכן פונקציה לשליפה ממסד הנתונים
-
-               return  _context.Expenses
+                var a =
+                 _context.Expenses
                        .Where(exp => exp.IdBudget == searchDTO.IdBudget
-                     // && exp.Date >= searchDTO.DateStart && exp.Date <= searchDTO.DateEnd
+                     && exp.Date >= searchDTO.DateStart && exp.Date <= searchDTO.DateEnd
                       && (searchDTO.Status == 0 || exp.Status == searchDTO.Status)
                       && exp.Sum >= searchDTO.SumMin && exp.Sum <= searchDTO.SumMax
                       && (searchDTO.Category == 0 || exp.Category == searchDTO.Category)
                      && (searchDTO.Subcategory == 0 || exp.Subcategory == searchDTO.Subcategory)
-                       ).ToList(); 
-                
+                       ).ToList();
+                return a;
+
+
             }
             catch (Exception ex)
             {
@@ -190,7 +197,7 @@ namespace DAL
             try
             {
                 var expenseSummaries = _context.Expenses
-                        .Where(e => e.IdBudget == idBudget && e.Date >= start && e.Date <= end && (status==0 || e.Status==status))
+                        .Where(e => e.IdBudget == idBudget && e.Date >= start && e.Date <= end && (status == 0 || e.Status == status))
                         .GroupBy(e => new { e.Category, e.Subcategory })
                         .Select(t => new
                         {
@@ -225,7 +232,7 @@ namespace DAL
                 _context.Expenses.Add(expense);
                 _context.SaveChanges();
                 return expense.Id;
-               // return true;
+                // return true;
             }
             catch (Exception ex)
             {

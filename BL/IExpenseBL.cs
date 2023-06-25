@@ -9,7 +9,7 @@ namespace BL
     {
         List<ExpenseDTO> GetAllExpenses();
         List<ExpenseDTO> GetExpensesByBudget(int budget);
-        List<ExpenseDTO> GetExpensesByDate(DateTime start, DateTime end);
+        List<ExpenseDTO> GetExpensesByDate(int idBudget);
         List<ExpenseDTO> GetExpensesBySum(double min, double max);
         List<ExpenseDTO> GetExpensesByCategory(int category);
         List<ExpenseDTO> GetExpensesBySubcategory(int subcategory);

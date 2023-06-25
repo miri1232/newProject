@@ -140,6 +140,23 @@ namespace newProject.Controllers
             }
         }
 
+
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
+        [HttpGet]
+        [Route("ReportIncomes/{idBudget}/{start}/{end}/{status}")]
+        public IActionResult ReportIncomes()
+        {
+            int idBudget=0; DateTime start=new DateTime(); DateTime end = new DateTime(); int status=0;
+            try
+            {
+                return Ok(_incomeBL.ReportIncomes(idBudget, start, end, status));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //הוספה
         [HttpPost]
         [Route("AddIncome")]

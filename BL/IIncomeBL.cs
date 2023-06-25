@@ -17,6 +17,7 @@ namespace BL
         List<IncomeDTO> GetIncomesBySourceOfIncome(int sourceOfIncome);
         List<IncomeDTO> GetIncomesByStatus(int status);
         List<IncomeDTO> GetIncomesByBudgetGroup(int idBudget);
+        List<TotalSumCategoryIncomeDTO> ReportIncomes(int idBudget, DateTime start, DateTime end, int status);
 
     }
 }

@@ -3,7 +3,7 @@ export class Search {
 
     idBudget!: number;
     dateEnd: Date=new Date();
-    dateStart: Date=new Date();
+    dateStart: Date=new Date(this.dateEnd.getFullYear(), this.dateEnd.getMonth() - 1, 1);
     sumMin: number = 0;
     sumMax: number = 9999999;
     category: number = 0;

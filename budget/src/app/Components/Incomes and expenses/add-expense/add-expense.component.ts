@@ -35,7 +35,7 @@ export class AddExpenseComponent implements OnInit {
 
   public nameNewCategory!: string;
     public nameNewSubCategory!: string;
-    defaultDate: Date = new Date(); // default to today's date
+   public defaultDate: Date = new Date(); // default to today's date
     newCategory = new Category();
   newSubCategory = new Subcategory();
 

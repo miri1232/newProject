@@ -51,12 +51,13 @@ namespace newProject.Controllers
 
         //שליפה לפי טווח תאריכים
         [HttpGet]
-        [Route("ExpensesByDate")]
-        public IActionResult GetExpensesByDate(DateTime start, DateTime end)
+        [Route("ExpensesByDate/{idBudget}")]
+        public IActionResult GetExpensesByDate(int idBudget)
         {
             try
             {
-                return Ok(_expenseBL.GetExpensesByDate(start, end));
+               
+                return Ok(_expenseBL.GetExpensesByDate(idBudget));
             }
             catch (Exception ex)
             {
@@ -71,7 +72,7 @@ namespace newProject.Controllers
         {
             try
             {
-                return Ok(_expenseBL.GetExpensesBySum( min,  max));
+                return Ok(_expenseBL.GetExpensesBySum(min, max));
             }
             catch (Exception ex)
             {
@@ -151,12 +152,12 @@ namespace newProject.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-        }  
-        
+        }
+
         //שליפה לפי כל הסינונים באמצעות אובייקט
-        [HttpGet]
-        [Route("SearchExpensesObject /{searchDTO}")]
-        public IActionResult SearchExpensesObject(SearchDTO searchDTO)
+        [HttpPost]
+        [Route("SearchExpensesObject")]
+        public IActionResult SearchExpensesObject([FromBody] SearchDTO searchDTO)
         {
             try
             {
@@ -167,6 +168,41 @@ namespace newProject.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה
+        [HttpGet]
+        [Route("ReportExpenses2/{idBudget}")]
+
+        public IActionResult ReportExpenses2(int idBudget)
+        {
+            try
+            {
+                return Ok(_expenseBL.ReportExpenses2(idBudget));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
+        [HttpGet]
+        [Route("ReportExpenses3/{idBudget}/{start}/{end}/{status}")]
+
+        public IActionResult ReportExpenses3(int idBudget, DateTime start, DateTime end, int status)
+        {
+            try
+            {
+                return Ok(_expenseBL.ReportExpenses3(idBudget, start, end, status));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //הוספה
         [HttpPost]
         [Route("AddExpense")]
@@ -174,7 +210,7 @@ namespace newProject.Controllers
         {
             try
             {
-                ExpenseDTO exp= _expenseBL.AddExpense(expenseDTO);
+                ExpenseDTO exp = _expenseBL.AddExpense(expenseDTO);
                 return Ok(exp);
             }
             catch (Exception ex)
@@ -215,7 +251,7 @@ namespace newProject.Controllers
             }
         }
 
-     
+
         ////שליפת דוחות בסיכום תת קטגוריה
         //[HttpGet]
         //[Route("ReportSubCategoryExpenses/{idBudget}")]
@@ -246,38 +282,6 @@ namespace newProject.Controllers
         //    }
         //}
 
-   //שליפת דוחות בסיכום קטגוריה+תת קטגוריה
-        [HttpGet]
-        [Route("ReportExpenses2/{idBudget}")]
-
-        public IActionResult ReportExpenses2(int idBudget)
-        {
-            try
-            {
-                return Ok(_expenseBL.ReportExpenses2(idBudget));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-
-        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
-        [HttpGet]
-        [Route("ReportExpenses3/{idBudget}/{start}/{end}/{status}")]
-
-        public IActionResult ReportExpenses3(int idBudget, DateTime start, DateTime end, int status)
-        {
-            try
-            {
-                return Ok(_expenseBL.ReportExpenses3(idBudget, start, end, status));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
 
 
     }

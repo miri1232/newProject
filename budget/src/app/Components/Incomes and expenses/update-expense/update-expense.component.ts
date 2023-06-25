@@ -69,7 +69,7 @@ export class UpdateExpenseComponent implements OnInit {
     this.defaultDate = this.expenseToUpdate.date;
     this.idCategory = this.expenseToUpdate.category;
     this.idSubcategory = this.expenseToUpdate.subcategory;
-  
+
     // //יבוא נתונים עבור רשימות נפתחות
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -87,11 +87,11 @@ export class UpdateExpenseComponent implements OnInit {
       console.log(this.listCategory);
     });
     this.mySubCategory.GetAllSubcategory().subscribe(res => {
-      
+
       this.listSubcategory = res;
       console.log(this.listSubcategory);
     });
-this.filterByCategory();
+    this.filterByCategory();
     //הקמת הטופס
     this.eventForm = new FormGroup({
       id: new FormControl(this.expenseToUpdate.id),
@@ -100,7 +100,7 @@ this.filterByCategory();
       sum: new FormControl(this.expenseToUpdate.sum),
       category: new FormControl(this.expenseToUpdate.category),
       categoryDetail: new FormControl(this.expenseToUpdate.categoryDetail),//
-       subCategory: new FormControl(this.expenseToUpdate.subcategory),
+      subCategory: new FormControl(this.expenseToUpdate.subcategory),
       // subcategoryDetail: new FormControl(this.expenseToUpdate.subcategoryDetail),//
       detail: new FormControl(this.expenseToUpdate.detail),
       paymentMethod: new FormControl(this.expenseToUpdate.paymentMethod),
@@ -165,11 +165,11 @@ this.filterByCategory();
 
   }
 
-  UpdateExpense() {
+  UpdateExpense(event:any) {
 
     if (this.eventForm.value != undefined) {
       //  console.log("ההוצאה נקלטה")
-
+      this.eventForm.controls["date"].setValue(event.target.date.value)
       this.expenseToUpdate = this.eventForm.value;
       this.myExpense.UpdateExpense(this.eventForm.value).subscribe(res1 => {
         console.log("curent user ======>", res1)

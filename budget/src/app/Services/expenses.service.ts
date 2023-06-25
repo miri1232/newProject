@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Expense } from '../Classes/Expense';
-import { TotalSumCategory } from '../Classes/TotalSumCategory copy';
+import { TotalSumCategory } from '../Classes/TotalSumCategory';
 import { map } from 'rxjs/operators';
 import { Search } from '../Classes/Search';
 
@@ -21,14 +21,14 @@ export class ExpensesService {
     private http: HttpClient
   ) { }
 
-  GetExpensesByBudget(idBudget: number) {
-    this.http.get<Expense[]>(this.V_API + '/GetExpensesByBudget/' + idBudget).subscribe(res => {
+  ExpensesByDate(idBudget: number) {
+    this.http.get<Expense[]>(this.V_API + '/ExpensesByDate/' + idBudget).subscribe(res => {
       this.expenseList.next(res);
     });
   }
 
   SearchExpensesObject(s: Search){
-     this.http.get<Expense[]>(this.V_API + '/SearchExpensesObject/' + s).subscribe(res => {
+     this.http.post<Expense[]>(this.V_API + '/SearchExpensesObject/' , s).subscribe(res => {
       this.expenseList.next(res);
     });
   }
