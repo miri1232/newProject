@@ -197,7 +197,10 @@ namespace DAL
             try
             {
                 var expenseSummaries = _context.Expenses
-                        .Where(e => e.IdBudget == searchDTO.IdBudget && e.Date >= searchDTO.DateStart && e.Date <= searchDTO.DateEnd && (searchDTO.Status == 0 || e.Status == searchDTO.Status))
+                        .Where(e => e.IdBudget == searchDTO.IdBudget
+                        && e.Date >= searchDTO.DateStart 
+                        && e.Date <= searchDTO.DateEnd 
+                        && (searchDTO.Status == 0 || e.Status == searchDTO.Status))
                         .GroupBy(e => new { e.Category, e.Subcategory })
                         .Select(t => new
                         {

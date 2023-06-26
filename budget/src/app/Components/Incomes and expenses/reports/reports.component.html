@@ -28,11 +28,13 @@
       <h6>אישור סינון</h6>
       <button class="button" class="btn btn-success" type="submit">בצע סינון</button>
     </div>
+ 
 
   </div>
-
-  <h6 *ngIf=" start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
+   
+ <h6 *ngIf="start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
   </h6>
+ 
 
 </form>
 

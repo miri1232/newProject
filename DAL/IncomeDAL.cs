@@ -129,12 +129,15 @@ namespace DAL
 
 
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
-        public List<TotalSumCategoryIncome> ReportIncomes(int idBudget, DateTime start, DateTime end, int status)
+        public List<TotalSumCategoryIncome> ReportIncomes(SearchDTO searchDTO)
         {
             try
             {
-                var expenseSummaries = _context.Incomes
-                        .Where(e => e.IdBudget == idBudget && e.Date >= start && e.Date <= end && (status == 0 || e.Status == status))
+                var incomeSummaries = _context.Incomes
+                        .Where(e => e.IdBudget == searchDTO.IdBudget
+                        && e.Date >= searchDTO.DateStart 
+                        && e.Date <= searchDTO.DateEnd
+                        && (searchDTO.Status == 0 || e.Status == searchDTO.Status))
                         .GroupBy(e => new { e.CategoryIncome, e.SourceOfIncome })
                         .Select(t => new
                         {
@@ -147,14 +150,14 @@ namespace DAL
                                 {
                                     IdCategory = g.Key,
                                     SumCategory = g.Sum(t => t.TotalSum),
-                                    listTotalSourceCategoryIncome = g.Select(t => new TotalSumSourceCategoryIncome
+                                    listSourceCategoryIncome = g.Select(t => new TotalSumSourceCategoryIncome
                                     {
                                         IdSourceCategory = t.SourceCategory,
                                         TotalSum = t.TotalSum
                                     }).ToList()
                                 }).ToList();
 
-                return expenseSummaries;
+                return incomeSummaries;
             }
 
             catch (Exception ex)

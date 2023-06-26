@@ -18,7 +18,7 @@ export class IncomesService {
   sharedIncomeList$ = this.incomeList.asObservable();
 
   private repotrInc = new BehaviorSubject<TotalSumCategoryIncome[]>([]);
-  sharedreportInc$ = this.repotrInc.asObservable();
+  sharedReportInc$ = this.repotrInc.asObservable();
 
   constructor(
     private http : HttpClient

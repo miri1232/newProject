@@ -130,22 +130,21 @@ namespace BL
             return listIncomeDTO;
         }
 
-        public List<TotalSumCategoryIncomeDTO> ReportIncomes(int idBudget, DateTime start, DateTime end, int status)
+        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
+
+        public List<TotalSumCategoryIncomeDTO> ReportIncomes(SearchDTO searchDTO)
         {
-            List<TotalSumCategoryIncome> incomesList = _incomeDAL.ReportIncomes(idBudget, start, end, status);
+            List<TotalSumCategoryIncome> incomesList = _incomeDAL.ReportIncomes(searchDTO);
             List<TotalSumCategoryIncomeDTO> incomesListDTO = mapper.Map<List<TotalSumCategoryIncome>, List<TotalSumCategoryIncomeDTO>>(incomesList);
 
             List<CategoryIncome> categories = _categoryIncomeDAL.GetAllCategoryIncome();
             List<SourceOfIncome> sourcecategories = _sourceOfIncomeDAL.GetAllSourceOfIncomes();
-
             incomesListDTO.ForEach(item =>
             {
-                item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.IdCategory).Detail;
-                item.listSourceCategoryIncome.ForEach(sc => sc.SourceCategoryDetail = sourcecategories.FirstOrDefault(e => e.Id == sc.IdSourceCategory).Detail);
-
+                item.CategoryDetail = categories.FirstOrDefault(c => c.Id == item.IdCategory).Detail;
+                item.listSourceCategoryIncome.ForEach(sc => sc.SourceCategoryDetail = sourcecategories
+                .FirstOrDefault(e => e.Id == sc.IdSourceCategory).Detail);
             });
-
-
 
             return incomesListDTO;
         }

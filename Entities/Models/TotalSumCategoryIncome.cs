@@ -10,7 +10,7 @@ namespace Entities.Models
         public int IdCategory { get; set; }
         public string CategoryDetail { get; set; }
         public double SumCategory { get; set; }
-        public List<TotalSumSourceCategoryIncome> listTotalSourceCategoryIncome { get; set; }
+        public List<TotalSumSourceCategoryIncome> listSourceCategoryIncome { get; set; }
 
     }
 }

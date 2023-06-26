@@ -142,14 +142,14 @@ namespace newProject.Controllers
 
 
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
-        [HttpGet]
-        [Route("ReportIncomes/{idBudget}/{start}/{end}/{status}")]
-        public IActionResult ReportIncomes()
+        [HttpPost]
+        [Route("ReportIncomes")]
+        public IActionResult ReportIncomes([FromBody] SearchDTO searchDTO)
         {
-            int idBudget=0; DateTime start=new DateTime(); DateTime end = new DateTime(); int status=0;
+            //int idBudget=0; DateTime start=new DateTime(); DateTime end = new DateTime(); int status=0;
             try
             {
-                return Ok(_incomeBL.ReportIncomes(idBudget, start, end, status));
+                return Ok(_incomeBL.ReportIncomes(searchDTO));
             }
             catch (Exception ex)
             {

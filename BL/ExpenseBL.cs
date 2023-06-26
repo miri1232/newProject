@@ -246,7 +246,8 @@ namespace BL
             listExpenseDTO.ForEach(item =>
             {
                 item.CategoryDetail = categories.FirstOrDefault(e => e.Id == item.IdCategory).Detail;
-                item.listSubCategory.ForEach(sc => sc.SubcategoryDetail = subcategories.FirstOrDefault(e => e.Id == sc.IdSubcategory).Detail);
+                item.listSubCategory.ForEach(sc => sc.SubcategoryDetail = subcategories
+                .FirstOrDefault(e => e.Id == sc.IdSubcategory).Detail);
 
             });
 

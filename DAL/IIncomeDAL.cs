@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using DTO.Models;
+using Entities.Models;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ namespace DAL
         List<Income> GetIncomesBySourceOfIncome(int sourceOfIncome);
         List<Income> GetIncomesByStatus(int status);
         List<Income> GetIncomesByBudgetGroup(int idBudget);
-        List<TotalSumCategoryIncome> ReportIncomes(int idBudget, DateTime start, DateTime end, int status);
+        List<TotalSumCategoryIncome> ReportIncomes(SearchDTO searchDTO);
 
     }
 }

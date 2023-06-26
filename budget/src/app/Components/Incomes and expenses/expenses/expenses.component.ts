@@ -26,7 +26,7 @@ export class ExpensesComponent implements OnInit {
   //  eventForm!: FormGroup;
   today = new Date();
   public end = new Date();
- public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1);
+  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1);
 
   ExpensesList: Expense[] = [];
   public listCategory: Category[] | undefined;
@@ -36,7 +36,6 @@ export class ExpensesComponent implements OnInit {
   public listSubcategoryByCategory: Subcategory[] = [];
 
   activeBudget!: Budget;
-  activeSearch!: Search;
 
   searchForm!: FormGroup;
 
@@ -57,7 +56,6 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
-    // this.log.sharedActiveSearch.subscribe(search => this.activeSearch = search)
 
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -86,14 +84,14 @@ export class ExpensesComponent implements OnInit {
   search(event: any) {
     this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
     this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
-    // this.log.nextSearch(this.searchForm.value);
+
     if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
 
-    this.myExpensesServise.SearchExpensesObject(this.searchForm.value);
-    this.myExpensesServise.sharedexpenseList$.subscribe(res => {
-      this.ExpensesList = res;
-    })
-  }
+      this.myExpensesServise.SearchExpensesObject(this.searchForm.value);
+      this.myExpensesServise.sharedexpenseList$.subscribe(res => {
+        this.ExpensesList = res;
+      })
+    }
   }
 
   SumExpenses(i: number) {

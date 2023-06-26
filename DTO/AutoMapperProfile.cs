@@ -50,7 +50,8 @@ namespace DTO
             CreateMap<TypeBudget, TypeBudgetDTO>();
             CreateMap<TotalSumCategory, TotalSumCategoryDTO>();
             CreateMap<TotalSumSubCategory, TotalSumSubCategoryDTO>();
-
+            CreateMap<TotalSumCategoryIncome, TotalSumCategoryIncomeDTO>();
+            CreateMap<TotalSumSourceCategoryIncome, TotalSumSourceCategoryIncomeDTO>();
 
         }
 

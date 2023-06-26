@@ -21,7 +21,7 @@ export class ReportsComponent implements OnInit {
 
   today = new Date();
   public end = new Date();
- public start = new Date(this.today.getFullYear(), this.today.getMonth() - 3);
+  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 3);
 
 
   activeBudget!: Budget;
@@ -34,8 +34,8 @@ export class ReportsComponent implements OnInit {
   public idStatus: number = 0;
 
   
-  DateEnd: Date = new Date(); // default to today's date
-  DateStart: Date = new Date();//default to befor mounth
+  // dateEnd: Date = new Date(); // default to today's date
+  // dateStart: Date = new Date();//default to befor mounth
 
   constructor(
     private log: Logging,
@@ -73,13 +73,14 @@ export class ReportsComponent implements OnInit {
     });
 
     this.myExpenseSer.ReportExpenses3(this.searchForm.value);
+    this.myIncomeSer.ReportIncomes(this.searchForm.value);
 
   }
 
   changeRange(event: any) {
     this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
     this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
-    
+  
     if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
      
       // this.myIncomeSer.ReportIncomes(this.searchForm.value).subscribe(inc => {
@@ -89,7 +90,14 @@ export class ReportsComponent implements OnInit {
       // this.myExpenseSer.ReportExpenses3(this.searchForm.value).subscribe(exp => {
       //   this.listCategory = exp;
       // });
-
+      this.myExpenseSer.ReportExpenses3(this.searchForm.value);
+      this.myExpenseSer.sharedreportExp$.subscribe(res => {
+        this.listCategory = res;
+      })
+       this.myIncomeSer.ReportIncomes(this.searchForm.value);
+      this.myIncomeSer.sharedReportInc$.subscribe(res => {
+        this.listCategoryIncomes = res;
+      })
     }
   }
 
