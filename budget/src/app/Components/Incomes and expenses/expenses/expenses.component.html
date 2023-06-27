@@ -5,13 +5,13 @@
     <!-- <h5>סינון לפי תאריך</h5> -->
 
     <div class="col-2">
-      <span> החל מתאריך - </span>
+      <h6> החל מתאריך - </h6>
       <input type="date" class="form-control" title="תאריך התחלה" id="dateStart" name="dateStart"
         [(ngModel)]="start" required value="{{ start | date:'yyyy-MM-dd' }}">
 
     </div>
     <div class="col-2">
-      <span> עד תאריך -</span>
+      <h6> עד תאריך -</h6>
       <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="dateEnd"
        required [(ngModel)]="end" value="{{ end | date:'yyyy-MM-dd' }}">
       <!-- formControlName="dateEnd" -->
@@ -19,21 +19,21 @@
 
     <!-- <h5>סינון לפי סכום</h5> -->
     <div class="col-2">
-      <span> החל מסכום - </span>
+      <h6> החל מסכום - </h6>
       <input type="number" class="form-control" title="סכום מינימום" id="sumMin" name="sumMin"
         formControlName="sumMin" required> 
       <!-- value="{{ sumMin | number: '1.0-0' }}"  -->
     </div>
 
     <div class="col-2">
-      <span> עד סכום -</span>
+      <h6> עד סכום -</h6>
       <input type="number" class="form-control" title="סכום מקסימום" id="sumMax" name="sumMax" 
       formControlName="sumMax" required>
       <!-- value="{{ sumMax | number: '1.0-0' }}"  -->
     </div>
 
     <div class="col-2">
-      <span>סטטוס הוצאה לתצוגה</span>
+      <h6>סטטוס הוצאה לתצוגה</h6>
       <select class="form-select" placeholder="בחר סטטוס הוצאה" formControlName="status" formControlName="status"
         id="status">
         <option [ngValue]=0 selected> הצג הכל </option>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="col-2">
-      <span>סינון לפי קטגוריה</span>
+      <h6>סינון לפי קטגוריה</h6>
 
       <select (change)="filterByCategory()" class="form-select" aria-label="Default select example"
         formControlName="category" id="category">
@@ -62,7 +62,7 @@
 
       <ng-template #byCtegory>
 
-        <span>סינון לפי תת קטגוריה</span>
+        <h6>סינון לפי תת קטגוריה</h6>
 
         <select class="form-select" aria-label="Default select example" formControlName="subCategory" id="subCategory">
 

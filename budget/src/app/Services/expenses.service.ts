@@ -24,23 +24,17 @@ export class ExpensesService {
     private http: HttpClient
   ) { }
 
-  ExpensesByDate(idBudget: number) {
-    this.http.get<Expense[]>(this.V_API + '/ExpensesByDate/' + idBudget).subscribe(res => {
-      this.expenseList.next(res);
-    });
-  }
+  // ExpensesByDate(idBudget: number) {
+  //   this.http.get<Expense[]>(this.V_API + '/ExpensesByDate/' + idBudget).subscribe(res => {
+  //     this.expenseList.next(res);
+  //   });
+  // }
 
   SearchExpensesObject(s: Search){
      this.http.post<Expense[]>(this.V_API + '/SearchExpensesObject/' , s).subscribe(res => {
       this.expenseList.next(res);
     });
   }
-
-  // SearchExpensesObject(searchParams: any) {
-  //   this.http.get<Expense[]>(`${this.V_API}/SearchExpensesObject`, { params: searchParams }).subscribe(res => {
-  //     this.expenseList.next(res);
-  //   });
-  // }
   
   AddExpense(newExpense: Expense): Observable<boolean> {
     return this.http.post<Expense>(this.V_API + '/AddExpense', newExpense).pipe(
@@ -67,29 +61,14 @@ export class ExpensesService {
     );
   }
 
-  ReportExpenses2(idBudget: number): Observable<TotalSumCategory[]> {
-    return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses2/' + idBudget);
-  }
+  // ReportExpenses2(idBudget: number): Observable<TotalSumCategory[]> {
+  //   return this.http.get<TotalSumCategory[]>(this.V_API + '/ReportExpenses2/' + idBudget);
+  // }
 
   ReportExpenses3(s: Search) {
     this.http.post<TotalSumCategory[]>(this.V_API + '/ReportExpenses3/' , s).subscribe(res => {
       this.repotrExp.next(res);
     });
   }
-    
-   
-
-  // listCategory: TotalSumCategory[] = [];
-
-  //  ReportExpenses2(idBudget: number,start:Date, end:Date): Observable<TotalSumCategory[]> {
-
-  // const url = `this.V_API+ '/ReportExpenses2/'+?idBudget=${this.activeBudget.id}&start=${this.DateStart}&end=${this.DateEnd}`;
-  // this.http.get<TotalSumCategory[]>(url).subscribe(response => {
-  // this.listCategory=response;
-  // });
-  //     return this.listCategory;
-  //   }
-
-
 
 }

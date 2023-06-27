@@ -131,6 +131,8 @@ namespace DAL
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
         public List<TotalSumCategoryIncome> ReportIncomes(SearchDTO searchDTO)
         {
+            searchDTO.DateStart = searchDTO.DateStart.AddDays(0);
+
             try
             {
                 var incomeSummaries = _context.Incomes

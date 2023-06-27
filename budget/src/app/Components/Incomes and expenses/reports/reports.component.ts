@@ -21,7 +21,7 @@ export class ReportsComponent implements OnInit {
 
   today = new Date();
   public end = new Date();
-  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 3);
+  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 3, 1);
 
 
   activeBudget!: Budget;
@@ -29,7 +29,7 @@ export class ReportsComponent implements OnInit {
   searchForm!: FormGroup;
 
   listCategoryIncomes: TotalSumCategoryIncome[] = [];
-  listCategory: TotalSumCategory[] = [];
+  listCategoryExpenses: TotalSumCategory[] = [];
   public listStatus: Status[] | undefined;
   public idStatus: number = 0;
 
@@ -44,7 +44,16 @@ export class ReportsComponent implements OnInit {
     private lookupSer: LookupService,
 
   ) {
+   // this.myExpenseSer.ReportExpenses3(this.searchForm.value);
+    this.myExpenseSer.sharedreportExp$.subscribe(res => {
+      this.listCategoryExpenses = res;
+    });
+   //  this.myIncomeSer.ReportIncomes(this.searchForm.value);
+    this.myIncomeSer.sharedReportInc$.subscribe(res => {
+      this.listCategoryIncomes = res;
+    });
   }
+
 
 
   ngOnInit(): void {
@@ -55,8 +64,6 @@ export class ReportsComponent implements OnInit {
     // this.myIncomeSer.ReportIncomes(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(inc => {
     //   this.listCategoryIncomes = inc;
     // });  
-
-   
 
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -92,12 +99,12 @@ export class ReportsComponent implements OnInit {
       // });
       this.myExpenseSer.ReportExpenses3(this.searchForm.value);
       this.myExpenseSer.sharedreportExp$.subscribe(res => {
-        this.listCategory = res;
-      })
+        this.listCategoryExpenses = res;
+      });
        this.myIncomeSer.ReportIncomes(this.searchForm.value);
-      this.myIncomeSer.sharedReportInc$.subscribe(res => {
+       this.myIncomeSer.sharedReportInc$.subscribe(res => {
         this.listCategoryIncomes = res;
-      })
+      });
     }
   }
 

@@ -23,7 +23,7 @@ export class IncomesComponent implements OnInit {
 
   today = new Date();
   public end = new Date();
-  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1);
+  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1, 1 );
 
   IncomeList: Income[] = [];
   public CategoryIncomeList: CategoryIncome[] = [];

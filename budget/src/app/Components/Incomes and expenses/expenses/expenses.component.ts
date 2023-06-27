@@ -26,7 +26,7 @@ export class ExpensesComponent implements OnInit {
   //  eventForm!: FormGroup;
   today = new Date();
   public end = new Date();
-  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1);
+  public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1, 1);
 
   ExpensesList: Expense[] = [];
   public listCategory: Category[] | undefined;

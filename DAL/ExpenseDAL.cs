@@ -135,7 +135,7 @@ namespace DAL
         {
             try
             {
-                //לעדכן פונקציה לשליפה ממסד הנתונים
+                searchDTO.DateStart = searchDTO.DateStart.AddDays(0);
                 var a =
                  _context.Expenses
                        .Where(exp => exp.IdBudget == searchDTO.IdBudget
@@ -194,6 +194,8 @@ namespace DAL
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
         public List<TotalSumCategory> ReportExpenses3(SearchDTO searchDTO)
         {
+            searchDTO.DateStart = searchDTO.DateStart.AddDays(0);
+
             try
             {
                 var expenseSummaries = _context.Expenses

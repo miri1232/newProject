@@ -1,16 +1,16 @@
 <form class="p-3 mt-6" [formGroup]="searchForm" (ngSubmit)="changeRange($event)">
   <h5>בחר תקופה להצגה: </h5>
   <div class="input-group input-daterange row">
-    <div class=" col-2">
+    <div class="col-2">
       <h6> החל מתאריך - </h6>
-      <input type="date" class="form-control" title="תאריך התחלה" id="dateStart" name="dateStart"
-      [(ngModel)]="start"   value="{{ start | date:'dd/MM/yyyy' }}" required> 
+      <input type="date" class="form-control" title="תאריך התחלה" id="dateStart" name="dateStart" [(ngModel)]="start"
+        required value="{{ start | date:'yyyy-MM-dd' }}">
     </div>
-    
+
     <div class=" col-2">
       <h6> עד תאריך -</h6>
-      <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="dateEnd" 
-      [(ngModel)]="end"  value="{{ end | date:'yyyy-MM-dd' }}" required>
+      <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="dateEnd" [(ngModel)]="end"
+        value="{{ end | date:'yyyy-MM-dd' }}" required>
     </div>
 
     <div class="form-fieldd-flex align-items-center col-2">
@@ -28,20 +28,14 @@
       <h6>אישור סינון</h6>
       <button class="button" class="btn btn-success" type="submit">בצע סינון</button>
     </div>
- 
-
   </div>
-   
- <h6 *ngIf="start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
+
+  <h6 *ngIf="start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
   </h6>
- 
 
 </form>
 
-<!-- </div> -->
-
 <br />
-
 
 <div class="accordion" id="accordionPanelsStayOpenExample" style="color: #046036;">
 
@@ -49,51 +43,40 @@
     <div class="col-5">
       <h2 class="accordion">
         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          data-bs-target="#panelsStayOpen-collapseInc" aria-Incanded="true" aria-controls="panelsStayOpen-collapseInc">
+          data-bs-target="#panelsStayOpen-collapseInc" aria-expanded="false" aria-controls="panelsStayOpen-collapseInc">
           הכנסות
         </button>
       </h2>
       <div id="panelsStayOpen-collapseInc" class="accordion-collapse collapse">
-
         <div id="panelsStayOpen-collapseInc" class="accordion-collapse ">
-
           <div class="accordion-body row">
-
             <div class="accordion-item" *ngFor="let i of listCategoryIncomes">
-
-
-              <h2 class="accordion-header" id="panelsStayOpen-headingInc">
+             <h2 class="accordion-header" id="panelsStayOpen-headingInc">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
                   [attr.data-bs-target]="'#panelsStayOpen-collapseInc'+ i.idCategory"
                   aria-controls="'panelsStayOpen-collapseInc'+ i.idCategory">
-                  <span class="col-5" style="text-align: right;"> {{ i.categoryDetail}} : {{ i.sumCategory | number:
-                    '1.0-0'}}</span>
+                  <span class="col-5" style="text-align: right;"> 
+                    {{ i.categoryDetail}} : {{ i.sumCategory | number:'1.0-0'}}</span>
                   <span class="col"> </span>
                   <span class="badge badge-pill badge-success col-1"
                     style="background-color: #046036;">{{i.listSourceCategory.length}}</span>
-
                 </button>
               </h2>
               <div id="panelsStayOpen-collapseInc{{i.idCategory}}" class="accordion-collapse collapse "
                 aria-labelledby="'panelsStayOpen-headingInc'+ i.idCategory">
                 <div class="accordion-body">
-
                   <div class="accordion-item" *ngFor="let si of i.listSourceCategory">
                     <div>
                       {{ si.SourcecategoryDetail}} : {{ si.totalSum | number: '1.0-0'}}
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
-
 
     <div class="col-5">
       <h2 class="accordion">
@@ -103,39 +86,32 @@
         </button>
       </h2>
       <div id="panelsStayOpen-collapseExp" class="accordion-collapse ">
-
         <div class="accordion-body row">
-
-          <div class="accordion-item" *ngFor="let c of listCategory">
-
-
+          <div class="accordion-item" *ngFor="let c of listCategoryExpenses">
             <h2 class="accordion-header" id="panelsStayOpen-headingExp">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
                 [attr.data-bs-target]="'#panelsStayOpen-collapseExp'+ c.idCategory"
                 aria-controls="'panelsStayOpen-collapseExp'+ c.idCategory">
-                <span class="col-5" style="text-align: right;"> {{ c.categoryDetail}} : {{ c.sumCategory | number:
-                  '1.0-0'}}</span>
+                <span class="col-5" style="text-align: right;">
+                   {{ c.categoryDetail}} : {{ c.sumCategory | number:'1.0-0'}}</span>
                 <span class="col"> </span>
                 <span class="badge badge-pill badge-success col-1"
                   style="background-color: #046036;">{{c.listSubCategory.length}}</span>
-
               </button>
             </h2>
             <div id="panelsStayOpen-collapseExp{{c.idCategory}}" class="accordion-collapse collapse "
               aria-labelledby="'panelsStayOpen-headingExp'+ c.idCategory">
               <div class="accordion-body">
-
                 <div class="accordion-item" *ngFor="let sc of c.listSubCategory">
                   <div>
                     {{ sc.subcategoryDetail}} : {{ sc.totalSum | number: '1.0-0'}}
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
+</div>
