@@ -15,7 +15,6 @@ import { PaymentsListComponent } from './Components/Incomes and expenses/payment
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './Components/General/home-page/home-page.component';
 import { UpdatePasswordComponent } from './Components/Users/update-password/update-password.component';
-import { UpdateUsedComponent } from './Components/Users/update-used/update-used.component';
 import { NavComponent } from './Components/General/nav/nav.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -25,7 +24,6 @@ import { AlertComponent } from './Components/General/alert/alert.component';
 import { ActionDialogComponent } from './Components/General/action-dialog/action-dialog.component';
 import { BankComponent } from './Components/Budgets/bank/bank.component';
 import { AddBankComponent } from './Components/Budgets/add-bank/add-bank.component';
-import { SearchComponent } from './Components/Incomes and expenses/search/search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportsComponent } from './Components/Incomes and expenses/reports/reports.component';
 import { UpdateExpenseComponent } from './Components/Incomes and expenses/update-expense/update-expense.component';
@@ -45,7 +43,6 @@ import { UpdateIncomeComponent } from './Components/Incomes and expenses/update-
     PaymentsListComponent,
     HomePageComponent,
     UpdatePasswordComponent,
-    UpdateUsedComponent,
     NavComponent,
     BudgetHomePageComponent,
     AddPermissionComponent,
@@ -53,7 +50,6 @@ import { UpdateIncomeComponent } from './Components/Incomes and expenses/update-
     ActionDialogComponent,
     BankComponent,
     AddBankComponent,
-    SearchComponent,
     ReportsComponent,
     UpdateExpenseComponent,
     UpdateIncomeComponent,
