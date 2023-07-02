@@ -1,7 +1,7 @@
 export class TotalSumSourceCategoryIncome{
 
  idSubcategory !: number;
- SourcecategoryDetail!: string;
+ sourceCategoryDetail!: string;
  totalSum !: number;
     
 }

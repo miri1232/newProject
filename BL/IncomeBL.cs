@@ -130,6 +130,27 @@ namespace BL
             return listIncomeDTO;
         }
 
+        //שליפת הכנסות באמצעות אובייקט
+        public List<IncomeDTO> SearchIncomesObject(SearchDTO searchDTO)
+        {
+            List<Income> incomesList = _incomeDAL.SearchIncomesObject(searchDTO);
+            List<IncomeDTO> listIncomeDTO = mapper.Map<List<Income>, List<IncomeDTO>>(incomesList);
+            List<CategoryIncome> categories = _categoryIncomeDAL.GetAllCategoryIncome();
+            listIncomeDTO.ForEach(item => item.CategoryIncomeDetail = categories.FirstOrDefault(e => e.Id == item.CategoryIncome).Detail);
+
+            List<SourceOfIncome> sourceOfIncome = _sourceOfIncomeDAL.GetAllSourceOfIncomes();
+            listIncomeDTO.ForEach(item => item.SourceOfIncomeDetail = sourceOfIncome.FirstOrDefault(e => e.Id == item.SourceOfIncome).Detail);
+
+            List<PaymentMethod> paymentMethods = _lookupDAL.GetAllPaymentMethod();
+            listIncomeDTO.ForEach(item => item.PaymentMethodDetail = paymentMethods.FirstOrDefault(e => e.Id == item.PaymentMethod).Detail);
+
+            List<Status> statuses = _lookupDAL.GetAllStatus();
+            listIncomeDTO.ForEach(item => item.StatusDetail
+            = statuses.FirstOrDefault(e => e.Id == item.Status).Detail);
+            return listIncomeDTO;
+        }
+
+
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
 
         public List<TotalSumCategoryIncomeDTO> ReportIncomes(SearchDTO searchDTO)

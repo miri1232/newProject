@@ -126,9 +126,31 @@ namespace DAL
             }
         }
 
+    public List<Income> SearchIncomesObject(SearchDTO searchDTO)
+        {
+            try
+            {
+                searchDTO.DateStart = searchDTO.DateStart.AddDays(0);
+                var a =
+                 _context.Incomes
+                       .Where(inc => inc.IdBudget == searchDTO.IdBudget
+                     && inc.Date >= searchDTO.DateStart && inc.Date <= searchDTO.DateEnd
+                      && (searchDTO.Status == 0 || inc.Status == searchDTO.Status)
+                      && inc.Sum >= searchDTO.SumMin && inc.Sum <= searchDTO.SumMax
+                      && (searchDTO.Category == 0 || inc.CategoryIncome == searchDTO.Category)
+                     && (searchDTO.Subcategory == 0 || inc.SourceOfIncome == searchDTO.Subcategory)
+                       ).ToList();
+                return a;
 
 
-        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //שליפת דוחות הכנסות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
         public List<TotalSumCategoryIncome> ReportIncomes(SearchDTO searchDTO)
         {
             searchDTO.DateStart = searchDTO.DateStart.AddDays(0);

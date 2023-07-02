@@ -191,7 +191,7 @@ namespace DAL
             }
         }
 
-        //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
+        //שליפת דוחות הוצאות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים 
         public List<TotalSumCategory> ReportExpenses3(SearchDTO searchDTO)
         {
             searchDTO.DateStart = searchDTO.DateStart.AddDays(0);

@@ -141,6 +141,21 @@ namespace newProject.Controllers
         }
 
 
+        //שליפה לפי כל הסינונים באמצעות אובייקט
+        [HttpPost]
+        [Route("SearchIncomesObject")]
+        public IActionResult SearchExpensesObject([FromBody] SearchDTO searchDTO)
+        {
+            try
+            {
+                return Ok(_incomeBL.SearchIncomesObject(searchDTO));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         //שליפת דוחות בסיכום קטגוריה+תת קטגוריה בטווח תאריכים
         [HttpPost]
         [Route("ReportIncomes")]

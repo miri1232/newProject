@@ -47,29 +47,28 @@
           הכנסות
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseInc" class="accordion-collapse collapse">
-        <div id="panelsStayOpen-collapseInc" class="accordion-collapse ">
-          <div class="accordion-body row">
-            <div class="accordion-item" *ngFor="let i of listCategoryIncomes">
-             <h2 class="accordion-header" id="panelsStayOpen-headingInc">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
-                  [attr.data-bs-target]="'#panelsStayOpen-collapseInc'+ i.idCategory"
-                  aria-controls="'panelsStayOpen-collapseInc'+ i.idCategory">
-                  <span class="col-5" style="text-align: right;"> 
-                    {{ i.categoryDetail}} : {{ i.sumCategory | number:'1.0-0'}}</span>
-                  <span class="col"> </span>
-                  <span class="badge badge-pill badge-success col-1"
-                    style="background-color: #046036;">{{i.listSourceCategory.length}}</span>
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseInc{{i.idCategory}}" class="accordion-collapse collapse "
-                aria-labelledby="'panelsStayOpen-headingInc'+ i.idCategory">
-                <div class="accordion-body">
-                  <div class="accordion-item" *ngFor="let si of i.listSourceCategory">
-                    <div>
-                      {{ si.SourcecategoryDetail}} : {{ si.totalSum | number: '1.0-0'}}
-                    </div>
+      <div id="panelsStayOpen-collapseInc" class="accordion-collapse ">
+        <div class="accordion-body row" >
+          <div class="accordion-item" *ngFor="let i of listCategoryIncomes" >
+            <h2 class="accordion-header" id="panelsStayOpen-headingInc">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                [attr.data-bs-target]="'#panelsStayOpen-collapseInc'+ i.idCategory"
+                aria-controls="'panelsStayOpen-collapseInc'+ i.idCategory">
+                <span class="col-5" style="text-align: right;">
+                  {{ i.categoryDetail}} : {{ i.sumCategory | number:'1.0-0'}}</span>
+                <span class="col"> </span>
+                <span class="badge badge-pill badge-success col-1"
+                  style="background-color: #046036;">{{i.listSourceCategoryIncome.length}}</span>
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseInc{{i.idCategory}}" class="accordion-collapse collapse "
+              aria-labelledby="'panelsStayOpen-headingInc'+ i.idCategory">
+              <div class="accordion-body">
+                <div class="accordion-item" *ngFor="let si of i.listSourceCategoryIncome">
+                  <div>
+                    {{ si.sourceCategoryDetail}} : {{ si.totalSum | number: '1.0-0'}}
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -93,7 +92,7 @@
                 [attr.data-bs-target]="'#panelsStayOpen-collapseExp'+ c.idCategory"
                 aria-controls="'panelsStayOpen-collapseExp'+ c.idCategory">
                 <span class="col-5" style="text-align: right;">
-                   {{ c.categoryDetail}} : {{ c.sumCategory | number:'1.0-0'}}</span>
+                  {{ c.categoryDetail}} : {{ c.sumCategory | number:'1.0-0'}}</span>
                 <span class="col"> </span>
                 <span class="badge badge-pill badge-success col-1"
                   style="background-color: #046036;">{{c.listSubCategory.length}}</span>
@@ -113,5 +112,7 @@
         </div>
       </div>
     </div>
+
+
   </div>
 </div>

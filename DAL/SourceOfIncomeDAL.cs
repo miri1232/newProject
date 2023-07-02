@@ -22,7 +22,7 @@ namespace DAL
                 throw ex;
             }
         }
-        public List<SourceOfIncome> GetSourceOfIncomeByID(int idSourceOfIncome)
+        public List<SourceOfIncome> GetSourceOfIncomeByCategory(int idSourceOfIncome)
         {
             try
             {

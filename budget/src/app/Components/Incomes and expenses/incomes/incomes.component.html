@@ -1,41 +1,106 @@
-<app-search></app-search>
+<form class="p-3 mt-6" [formGroup]="searchForm" (ngSubmit)="search($event)">
+
+  <div class="input-group input-daterange row">
+
+    <!-- <h5>סינון לפי תאריך</h5> -->
+    <div class="col-2">
+      <h6> החל מתאריך - </h6>
+      <input type="date" class="form-control" title="תאריך התחלה" id="dateStart" name="dateStart" [(ngModel)]="start"
+        required value="{{ start | date:'yyyy-MM-dd' }}">
+
+    </div>
+    <div class="col-2">
+      <h6> עד תאריך -</h6>
+      <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="dateEnd" required [(ngModel)]="end"
+        value="{{ end | date:'yyyy-MM-dd' }}">
+    </div>
+
+    <!-- <h5>סינון לפי סכום</h5> -->
+    <div class="col-2">
+      <h6> החל מסכום - </h6>
+      <input type="number" class="form-control" title="סכום מינימום" id="sumMin" name="sumMin" formControlName="sumMin"
+        required>
+    </div>
+
+    <div class="col-2">
+      <h6> עד סכום -</h6>
+      <input type="number" class="form-control" title="סכום מקסימום" id="sumMax" name="sumMax" formControlName="sumMax"
+        required>
+    </div>
+
+    <div class="col-2">
+      <h6>סטטוס הכנסות לתצוגה</h6>
+      <select class="form-select" placeholder="בחר סטטוס הכנסה" formControlName="status" formControlName="status"
+        id="status">
+        <option [ngValue]=0 selected> הצג הכל </option>
+        <option type="text" *ngFor="let t of listStatus" [ngValue]="t.id">
+          <label> {{t.detail}} </label>
+        </option>
+      </select>
+    </div>
+
+    <div class="col-2">
+      <h6>סינון לפי קטגוריה</h6>
+
+      <select (change)="filterByCategory()" class="form-select" aria-label="Default select example"
+        formControlName="category" id="category">
+
+        <option [ngValue]=0 selected> הצג הכל </option>
+        <option *ngFor="let t of listCategory" [ngValue]="t.id">
+          <label> {{t.detail}} </label>
+        </option>
+      </select>
+
+    </div>
+
+    <div class="d-grid gap-2">
+      <br />
+      <button class="button" class="btn btn-success" type="submit">בצע סינון</button>
+    </div>
+  </div>
+  <h6 *ngIf=" start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
+  </h6>
+
+</form>
+<br />
 
 
 <table class="table table-success table-striped">
-    <thead>
-      <tr>
-        <th scope="col"> <img style="width: 20px; " title="עריכה" src="../../../../assets/image/Update.png">  </th>
-        <th scope="col">תאריך</th>
-        <th scope="col">סכום</th>
-        <th scope="col">קטגוריה</th>
-        <th scope="col">מקור הכנסה </th>
-        <th scope="col">פרטים</th>
-        <th scope="col">אופן תקבול</th>
-        <th scope="col">סטטוס הכנסה</th>
-        <th scope="col"> אסמכתא</th>
-        <th scope="col">יתרה מצטברת</th>
+  <thead>
+    <tr>
+      <th scope="col"> <img style="width: 20px; " title="עריכה" src="../../../../assets/image/Update.png"> </th>
+      <th scope="col">תאריך</th>
+      <th scope="col">סכום</th>
+      <th scope="col">קטגוריה</th>
+      <th scope="col">מקור הכנסה </th>
+      <th scope="col">פרטים</th>
+      <th scope="col">אופן תקבול</th>
+      <th scope="col">סטטוס הכנסה</th>
+      <th scope="col"> אסמכתא</th>
+      <th scope="col">יתרה מצטברת</th>
 
-      </tr>
-    </thead>
-    <tbody *ngFor="let e of IncomeList; let i=index">
-      <tr>
-        <th>
-        <button style="border:none" onmouseover="this.style.backgroundColor='#046036'" onmouseout="this.style.backgroundColor=null" 
-        scope="row" (click)="UpdateIncome(e)"><img style="width: 20px; " title="עריכה" src="../../../../assets/image/Update.png"></button>
-        </th>
-        <td>{{e.date | date: 'dd/MM/yyyy' }}</td>
-        <td>{{e.sum | number: '1.0-0' }}</td>
-        <td>{{e.categoryIncomeDetail}}</td>
-        <td>{{e.sourceOfIncomeDetail}}</td>
-        <td>{{e.detail}}</td>
-        <td>{{e.paymentMethodDetail}}</td>
-        <td>{{e.statusDetail}}</td>
-        <td>{{e.document}}</td>
-        <td>{{SumIncomes(i) | number: '1.0-0' }}</td>
+    </tr>
+  </thead>
+  <tbody *ngFor="let e of IncomeList; let i=index">
+    <tr>
+      <th>
+        <button style="border:none" onmouseover="this.style.backgroundColor='#046036'"
+          onmouseout="this.style.backgroundColor=null" scope="row" (click)="UpdateIncome(e)"><img style="width: 20px; "
+            title="עריכה" src="../../../../assets/image/Update.png"></button>
+      </th>
+      <td>{{e.date | date: 'dd/MM/yyyy' }}</td>
+      <td>{{e.sum | number: '1.0-0' }}</td>
+      <td>{{e.categoryIncomeDetail}}</td>
+      <td>{{e.sourceOfIncomeDetail}}</td>
+      <td>{{e.detail}}</td>
+      <td>{{e.paymentMethodDetail}}</td>
+      <td>{{e.statusDetail}}</td>
+      <td>{{e.document}}</td>
+      <td>{{SumIncomes(i) | number: '1.0-0' }}</td>
 
-      </tr>
-  
-  
-    </tbody>
-  
-  </table>
+    </tr>
+
+
+  </tbody>
+
+</table>

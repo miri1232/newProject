@@ -23,7 +23,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ExpensesComponent implements OnInit {
 
-  //  eventForm!: FormGroup;
   today = new Date();
   public end = new Date();
   public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1, 1);
@@ -65,7 +64,6 @@ export class ExpensesComponent implements OnInit {
     });
     this.mySubCategory.GetAllSubcategory().subscribe(res => {
       this.listSubcategory = res;
-      console.log(this.listSubcategory);
     });
     //הקמת טופס לחיפוש
     this.searchForm = new FormGroup({

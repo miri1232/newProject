@@ -24,6 +24,8 @@ export class IncomesService {
     private http : HttpClient
   ) { }
   
+  
+
   GetAllIncomes(): Observable<Income[]>{
         return this.http.get<Income[]>(this.V_API+'/GetAllIncomes');
   }

@@ -33,7 +33,7 @@ export class ReportsComponent implements OnInit {
   public listStatus: Status[] | undefined;
   public idStatus: number = 0;
 
-  
+
   // dateEnd: Date = new Date(); // default to today's date
   // dateStart: Date = new Date();//default to befor mounth
 
@@ -44,21 +44,18 @@ export class ReportsComponent implements OnInit {
     private lookupSer: LookupService,
 
   ) {
-   // this.myExpenseSer.ReportExpenses3(this.searchForm.value);
-    this.myExpenseSer.sharedreportExp$.subscribe(res => {
-      this.listCategoryExpenses = res;
-    });
-   //  this.myIncomeSer.ReportIncomes(this.searchForm.value);
-    this.myIncomeSer.sharedReportInc$.subscribe(res => {
-      this.listCategoryIncomes = res;
-    });
+
   }
 
 
 
   ngOnInit(): void {
+
+    console.log(this.listCategoryExpenses, "הוצאות= ===>");
+    console.log(this.listCategoryIncomes, "הכנסות ====>");
+
     this.log.sharedActiveBudget.subscribe(budget => {
-      this.activeBudget = budget;     
+      this.activeBudget = budget;
     });
 
     // this.myIncomeSer.ReportIncomes(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(inc => {
@@ -82,14 +79,23 @@ export class ReportsComponent implements OnInit {
     this.myExpenseSer.ReportExpenses3(this.searchForm.value);
     this.myIncomeSer.ReportIncomes(this.searchForm.value);
 
+    // this.myExpenseSer.ReportExpenses3(this.searchForm.value);
+    this.myExpenseSer.sharedreportExp$.subscribe(res => {
+      this.listCategoryExpenses = res;
+    });
+    //  this.myIncomeSer.ReportIncomes(this.searchForm.value);
+    this.myIncomeSer.sharedReportInc$.subscribe(res => {
+      this.listCategoryIncomes = res;
+    });
+
   }
 
   changeRange(event: any) {
     this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
     this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
-  
+
     if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
-     
+
       // this.myIncomeSer.ReportIncomes(this.searchForm.value).subscribe(inc => {
       //   this.listCategoryIncomes = inc;
       // });
@@ -101,8 +107,8 @@ export class ReportsComponent implements OnInit {
       this.myExpenseSer.sharedreportExp$.subscribe(res => {
         this.listCategoryExpenses = res;
       });
-       this.myIncomeSer.ReportIncomes(this.searchForm.value);
-       this.myIncomeSer.sharedReportInc$.subscribe(res => {
+      this.myIncomeSer.ReportIncomes(this.searchForm.value);
+      this.myIncomeSer.sharedReportInc$.subscribe(res => {
         this.listCategoryIncomes = res;
       });
     }

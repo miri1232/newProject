@@ -2,8 +2,8 @@
 <form class="p-3 mt-6" [formGroup]="searchForm" (ngSubmit)="search($event)">
 
   <div class="input-group input-daterange row">
-    <!-- <h5>סינון לפי תאריך</h5> -->
 
+    <!-- <h5>סינון לפי תאריך</h5> -->
     <div class="col-2">
       <h6> החל מתאריך - </h6>
       <input type="date" class="form-control" title="תאריך התחלה" id="dateStart" name="dateStart"
@@ -14,7 +14,6 @@
       <h6> עד תאריך -</h6>
       <input type="date" class="form-control" title="תאריך סיום" id="dateEnd" name="dateEnd"
        required [(ngModel)]="end" value="{{ end | date:'yyyy-MM-dd' }}">
-      <!-- formControlName="dateEnd" -->
     </div>
 
     <!-- <h5>סינון לפי סכום</h5> -->
@@ -22,14 +21,12 @@
       <h6> החל מסכום - </h6>
       <input type="number" class="form-control" title="סכום מינימום" id="sumMin" name="sumMin"
         formControlName="sumMin" required> 
-      <!-- value="{{ sumMin | number: '1.0-0' }}"  -->
     </div>
 
     <div class="col-2">
       <h6> עד סכום -</h6>
       <input type="number" class="form-control" title="סכום מקסימום" id="sumMax" name="sumMax" 
       formControlName="sumMax" required>
-      <!-- value="{{ sumMax | number: '1.0-0' }}"  -->
     </div>
 
     <div class="col-2">
@@ -45,55 +42,31 @@
 
     <div class="col-2">
       <h6>סינון לפי קטגוריה</h6>
-
       <select (change)="filterByCategory()" class="form-select" aria-label="Default select example"
         formControlName="category" id="category">
 
-        <option [ngValue]=0 selected>בחר קטגוריה</option>
+        <option [ngValue]=0 selected> הצג הכל </option>
         <option *ngFor="let t of listCategory" [ngValue]="t.id">
           <label> {{t.detail}} </label>
         </option>
       </select>
 
     </div>
-<!-- 
-    <div  class="col-2" >
-      <div *ngIf="category==0; else byCtegory"></div>
-
-      <ng-template #byCtegory>
-
-        <h6>סינון לפי תת קטגוריה</h6>
-
-        <select class="form-select" aria-label="Default select example" formControlName="subCategory" id="subCategory">
-
-          <option [ngValue]=0 selected>הצג הכל</option>
-          <option *ngFor="let t of listSubcategoryByCategory" [ngValue]="t.id">
-            <label> {{t.detail}} </label>
-          </option>
-        </select>
-      </ng-template>
-    </div> -->
-
 
     <!-- //למה מתקבלת הודעת שגיאה?? -->
     <!-- <h6 *ngIf="searchForm.dateStart > searchForm.dateEnd" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה </h6> -->
     <!-- <h6 *ngIf="searchForm.sumMin > searchForm.sumMax" style="color: red;">הכנס סכום גבוה מהסכום המינימלי</h6> -->
-
-    <button class="button" class="btn btn-success" type="submit">בצע סינון</button>
+<div class="d-grid gap-2">
+  <br/>
+    <button  class="button" class="btn btn-success" type="submit">בצע סינון</button>
   </div>
-
+</div>
   <h6 *ngIf=" start > end" style="color: red;">תאריך התחלת התקופה אינו יכול להיות גדול מתאריך סיום התקופה
   </h6>
 
 </form>
 
-
-
-
 <br />
-
-
-<!-- <app-search></app-search> -->
 
 <table class="table table-success table-striped">
   <thead>

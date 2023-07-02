@@ -36,14 +36,14 @@ namespace newProject.Controllers
             }
         }
 
-        //שליפת ערך יחיד לפי ID 
+        //שליפה לפי קטגוריה
         [HttpGet]
-        [Route("GetSourceOfIncomeByID")]
-        public IActionResult GetSourceOfIncomeByID(int categoryIncome)
+        [Route("GetSourceOfIncomeByCategory")]
+        public IActionResult GetSourceOfIncomeByCategory(int categoryIncome)
         {
             try
             {
-                return Ok(_sourceOfIncomeBL.GetSourceOfIncomeByID(categoryIncome));
+                return Ok(_sourceOfIncomeBL.GetSourceOfIncomeByCategory(categoryIncome));
             }
             catch (Exception ex)
             {

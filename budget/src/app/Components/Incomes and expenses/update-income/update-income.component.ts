@@ -110,7 +110,7 @@ export class UpdateIncomeComponent implements OnInit {
   filterByCategory() {
 
     console.log("idCategory", this.idCategory)
-    this.mySourceOfIncomeSer.GetSourceOfIncomeByID(this.idCategory).subscribe(res => {
+    this.mySourceOfIncomeSer.GetSourceOfIncomeByCategory(this.idCategory).subscribe(res => {
 
       this.listSourceOfIncomeByCategory = res;
       console.log(this.listSourceOfIncomeByCategory);

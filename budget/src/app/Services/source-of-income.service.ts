@@ -24,12 +24,13 @@ export class SourceOfIncomeService {
     return this.http.get<SourceOfIncome[]>(this.V_API + '/GetAllSourceOfIncomes');
   }
 
-  GetSourceOfIncomeByID(categoryIncome:number) : Observable<SourceOfIncome[]> {
+  GetSourceOfIncomeByCategory(categoryIncome:number) : Observable<SourceOfIncome[]> {
     const p=new HttpParams().set('categoryIncome',categoryIncome);
 
-     return this.http.get<SourceOfIncome[]>(this.V_API + '/GetSourceOfIncomeByID',{responseType: 'json',params:p});
+     return this.http.get<SourceOfIncome[]>(this.V_API + '/GetSourceOfIncomeByCategory',{responseType: 'json',params:p});
 
 }
+
 AddSourceOfIncome(newSourceOfIncome:SourceOfIncome):Observable<boolean> {
   return this.http.post<boolean>(this.V_API + '/AddSourceOfIncome',newSourceOfIncome);
 

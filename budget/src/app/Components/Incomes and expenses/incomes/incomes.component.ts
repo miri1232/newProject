@@ -13,6 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { LookupService } from 'src/app/Services/lookup.service';
 import { SourceOfIncomeService } from 'src/app/Services/source-of-income.service';
 import { Status } from 'src/app/Classes/Status';
+import { SourceOfIncome } from 'src/app/Classes/SourceOfIncome';
 
 @Component({
   selector: 'app-incomes',
@@ -26,9 +27,11 @@ export class IncomesComponent implements OnInit {
   public start = new Date(this.today.getFullYear(), this.today.getMonth() - 1, 1 );
 
   IncomeList: Income[] = [];
-  public CategoryIncomeList: CategoryIncome[] = [];
-
+  public listCategory: CategoryIncome[] = [];
+  public listSourceOfCategoryIncome: SourceOfIncome[] = [];
   public listStatus: Status[] | undefined;
+  public idCategory: number = 0;
+  public listSourceOfCategoryIncomeByCategory: SourceOfIncome[] = [];
 
   activeBudget!: Budget;
 
@@ -56,14 +59,14 @@ export class IncomesComponent implements OnInit {
     });
     this.myIncomeServise.GetIncomesByBudget(this.activeBudget.id).subscribe(exp => {
       this.IncomeList = exp;
-      console.log(exp);
     });
 
     this.myCategoryIncome.GetAllCategory().subscribe(c => {
-      this.CategoryIncomeList = c;
-      console.log(c);
+      this.listCategory = c;
     });
-    
+    this.mySourceOfCategoryIncome.GetAllSourceOfIncomes().subscribe(res => {
+      this.listSourceOfCategoryIncome = res;
+    });
 //הקמת טופס לחיפוש
 this.searchForm = new FormGroup({
   idBudget: new FormControl(this.activeBudget.id),
@@ -75,9 +78,22 @@ this.searchForm = new FormGroup({
   subCategory: new FormControl(0),
   status: new FormControl(0),
 });
-// this.myIncomeServise.SearchIncomesObject$(this.searchForm.value);
+ this.myIncomeServise.SearchIncomesObject(this.searchForm.value);
   }
 
+
+  search(event: any) {
+    this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
+    this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
+
+    if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
+
+      this.myIncomeServise.SearchIncomesObject(this.searchForm.value);
+      this.myIncomeServise.sharedIncomeList$.subscribe(res => {
+        this.IncomeList = res;
+      })
+    }
+  }
 
   SumIncomes(i:number){
     return this.IncomeList.slice(0,i+1).reduce((a,b)=>a+b.sum,0);
@@ -89,8 +105,17 @@ this.searchForm = new FormGroup({
   const modalRef2 = this.modalService.open(UpdateIncomeComponent);
   modalRef2.componentInstance.activeBudget = this.activeBudget;
   modalRef2.componentInstance.incomeToUpdate = e;
+}
+
+sss(i: number) {
+  document.getElementById(i.toString())?.setAttribute("color", "red")
+}
 
 
+filterByCategory() {
+  this.mySourceOfCategoryIncome.GetSourceOfIncomeByCategory(this.idCategory).subscribe(res => {
+    this.listSourceOfCategoryIncomeByCategory = res;
+  });
 }
 
 }

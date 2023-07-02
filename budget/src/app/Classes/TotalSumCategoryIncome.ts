@@ -5,7 +5,7 @@ export class TotalSumCategoryIncome{
  idCategory !: number;
  categoryDetail!: string;
  sumCategory !: number;
- listSourceCategory:TotalSumSourceCategoryIncome[]=[];
+ listSourceCategoryIncome:TotalSumSourceCategoryIncome[]=[];
 
 
 }
