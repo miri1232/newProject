@@ -24,11 +24,11 @@ export class SignInComponent implements OnInit {
 
 
   constructor(
-    private log:Logging,
+    private log: Logging,
     private formBuilder: FormBuilder,
     private myUser: UserService,
-    private router:Router,
-    private route:ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private modalService: NgbModal
 
   ) { }
@@ -37,28 +37,27 @@ export class SignInComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
-        //הקמת הטופס
-        this.eventForm = new FormGroup({
 
-          password: new FormControl("", [Validators.required, Validators.minLength(5)]),
-          firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-          lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
-          email: new FormControl("", [Validators.required, Validators.email]),
-          id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*")]),
-          phone: new FormControl("", [Validators.required]),
-          dateBirth: new FormControl(new Date(0), [Validators.required]),
+    //הקמת הטופס
+    this.eventForm = new FormGroup({
+
+      password: new FormControl("", [Validators.required, Validators.minLength(5)]),
+      firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*")]),
+      phone: new FormControl("", [Validators.required]),
+      dateBirth: new FormControl(new Date(0), [Validators.required]),
 
     });
   }
 
- 
+
   AddUser() {
     if (this.eventForm.value != undefined) {
       console.log("**פרטים**" + this.eventForm.value.firstName)
 
       this.myUser.AddUser(this.eventForm.value).subscribe(res1 => {
-        console.log("curent user ======>", res1)
         this.newUser = this.eventForm.value;
         const modalRef = this.modalService.open(ActionDialogComponent);
         modalRef.componentInstance.content = this.newUser.firstName + " הרישום נקלט בהצלחה ";
@@ -66,8 +65,6 @@ export class SignInComponent implements OnInit {
         this.newUser = new User();
         this.router.navigate(['/ListBudgets']);
       })
-
-
     }
   }
 

@@ -3,7 +3,7 @@
   
   <div >
 
-    <button class="btn btn-outline-success" (click)="AddBank()">הוספת בנק נוסף לתקציב</button>
+    <button *ngIf="permissionLevel!=3" class="btn btn-outline-success" (click)="AddBank()">הוספת בנק נוסף לתקציב</button>
     <!-- <app-add-bank *ngIf="addBank" ></app-add-bank> -->
     </div>
 

@@ -154,7 +154,6 @@ namespace DAL
         public List<TotalSumCategoryIncome> ReportIncomes(SearchDTO searchDTO)
         {
             searchDTO.DateStart = searchDTO.DateStart.AddDays(0);
-
             try
             {
                 var incomeSummaries = _context.Incomes
@@ -180,10 +179,8 @@ namespace DAL
                                         TotalSum = t.TotalSum
                                     }).ToList()
                                 }).ToList();
-
                 return incomeSummaries;
             }
-
             catch (Exception ex)
             {
                 throw ex;

@@ -40,10 +40,10 @@ namespace DAL
             try
             {
                 DateTime currentDate = DateTime.Now;
-                DateTime start = new DateTime(currentDate.Year, currentDate.Month-1, 1);
+                DateTime start = new DateTime(currentDate.Year, currentDate.Month - 1, 1);
 
                 List<Expense> listExpenses = _context.Expenses.ToList();
-                 listExpenses = listExpenses.Where(x => x.Date >= start && x.Date <= currentDate).ToList();
+                listExpenses = listExpenses.Where(x => x.Date >= start && x.Date <= currentDate).ToList();
                 return listExpenses;
             }
             catch (Exception ex)
@@ -146,8 +146,6 @@ namespace DAL
                      && (searchDTO.Subcategory == 0 || exp.Subcategory == searchDTO.Subcategory)
                        ).ToList();
                 return a;
-
-
             }
             catch (Exception ex)
             {
@@ -200,8 +198,8 @@ namespace DAL
             {
                 var expenseSummaries = _context.Expenses
                         .Where(e => e.IdBudget == searchDTO.IdBudget
-                        && e.Date >= searchDTO.DateStart 
-                        && e.Date <= searchDTO.DateEnd 
+                        && e.Date >= searchDTO.DateStart
+                        && e.Date <= searchDTO.DateEnd
                         && (searchDTO.Status == 0 || e.Status == searchDTO.Status))
                         .GroupBy(e => new { e.Category, e.Subcategory })
                         .Select(t => new

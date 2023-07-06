@@ -10,6 +10,5 @@ namespace DTO.Models
         public string NameBudget { get; set; }
         public int Type { get; set; }
         public string Manager { get; set; }
-
     }
 }

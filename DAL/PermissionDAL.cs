@@ -35,7 +35,28 @@ namespace DAL
                 throw ex;
             }
         }
+        public int GetLevelPermissionForBudgetByID(int idBudget, string id)
+        {
+            try
+            {
 
+                var permission = _context.Permissions.SingleOrDefault(p => p.IdBudget == idBudget && p.IdUser.Equals(id));
+
+                if (permission != null)
+                {
+                    return permission.PermissionLevel;
+                }
+                else
+                {
+                    return 8;
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public bool AddPermission(Permission permission)
         {

@@ -18,10 +18,8 @@ namespace DTO.Models
         public int PaymentMethod { get; set; }
         public string PaymentMethodDetail { get; set; }
         public bool Frequency { get; set; }
-      //  public int NumberOfPayments { get; set; }
         public int Status { get; set; }
         public string StatusDetail { get; set; }
         public byte[] Document { get; set; }
-
     }
 }

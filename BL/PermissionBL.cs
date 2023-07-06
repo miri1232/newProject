@@ -34,6 +34,14 @@ namespace BL
             List<PermissionDTO> idUsersPermissionListDTO = mapper.Map<List<Permission>, List<PermissionDTO>>(idUsersPermissionList);
             return idUsersPermissionListDTO;
         }
+       public int GetLevelPermissionForBudgetByID(int idBudget, string id)
+{
+            int PermissionLevelForUser = _permissionDAL.GetLevelPermissionForBudgetByID(idBudget,id);
+           
+            return PermissionLevelForUser;
+        }
+
+
 
         public bool AddPermission(PermissionDTO permissionDTO)
         {

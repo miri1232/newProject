@@ -7,6 +7,8 @@ namespace BL
     {
         List<PermissionDTO> GetAllPermission();
         List<PermissionDTO> GetAllPermissionForBudget(int idBudget);
+        int GetLevelPermissionForBudgetByID(int idBudget, string id);
+
         bool AddPermission(PermissionDTO permissionDTO);
         bool UpdatePermission(PermissionDTO permissionDTO);
         bool DeletePermission(PermissionDTO permissionDTO);

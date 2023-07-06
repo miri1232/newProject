@@ -20,6 +20,5 @@ namespace DTO.Models
         public int Status { get; set; }
         public string StatusDetail { get; set; }
         public byte[] Document { get; set; }
-
     }
 }

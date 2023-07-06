@@ -50,17 +50,9 @@ export class ReportsComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    console.log(this.listCategoryExpenses, "הוצאות= ===>");
-    console.log(this.listCategoryIncomes, "הכנסות ====>");
-
     this.log.sharedActiveBudget.subscribe(budget => {
       this.activeBudget = budget;
     });
-
-    // this.myIncomeSer.ReportIncomes(this.activeBudget.id, this.DateStart, this.DateEnd, this.idStatus).subscribe(inc => {
-    //   this.listCategoryIncomes = inc;
-    // });  
 
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -95,14 +87,6 @@ export class ReportsComponent implements OnInit {
     this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
 
     if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
-
-      // this.myIncomeSer.ReportIncomes(this.searchForm.value).subscribe(inc => {
-      //   this.listCategoryIncomes = inc;
-      // });
-
-      // this.myExpenseSer.ReportExpenses3(this.searchForm.value).subscribe(exp => {
-      //   this.listCategory = exp;
-      // });
       this.myExpenseSer.ReportExpenses3(this.searchForm.value);
       this.myExpenseSer.sharedreportExp$.subscribe(res => {
         this.listCategoryExpenses = res;

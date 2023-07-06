@@ -1,7 +1,7 @@
 
 <nav class="nav navToAdd "  >
-
- <button class="nav-link myIcon" (click)="AddIncomes()" >
+<h6 *ngIf="permissionLevel==3" >רמת ההרשאה שלך בתקציב זה אינה מאפשרות להוסיף או לעדכן נתונים</h6>
+ <button *ngIf="permissionLevel!=3" class="nav-link myIcon" (click)="AddIncomes()" >
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddIncome2.gif" title="הוסף הכנסה">
     </div>
@@ -9,7 +9,7 @@
 
 </button>
 
-<button class="nav-link myIcon" (click)="AddExpenses()">
+<button *ngIf="permissionLevel!=3" class="nav-link myIcon" (click)="AddExpenses()">
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddExpense.gif" title="הוסף הוצאה">
   </div>
@@ -17,7 +17,7 @@
 
 </button>
 
-<button *ngIf="activeUser.id==activeBudget.manager" class="nav-link myIcon" (click)="AddPermission()">
+<button *ngIf="permissionLevel==1" class="nav-link myIcon" (click)="AddPermission()">
   <div class="logo3">
     <img src="../../../../assets/image/Icon/AddPermission2.gif" title="הוסף משתמש">
     </div>

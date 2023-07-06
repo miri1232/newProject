@@ -9,7 +9,6 @@ namespace DTO.Models
 {
     public partial class BankDTO
     {
-
         public int Id { get; set; }
         public string NameBank { get; set; }
         public string Link { get; set; }

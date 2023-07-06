@@ -165,21 +165,16 @@ export class UpdateExpenseComponent implements OnInit {
 
   }
 
-  UpdateExpense(event:any) {
-
+  UpdateExpense(event: any) {
     if (this.eventForm.value != undefined) {
-      //  console.log("ההוצאה נקלטה")
       this.eventForm.controls["date"].setValue(event.target.date.value)
       this.expenseToUpdate = this.eventForm.value;
       this.myExpense.UpdateExpense(this.eventForm.value).subscribe(res1 => {
-        console.log("curent user ======>", res1)
         this.expenseToUpdate = this.eventForm.value;
         const modalRef = this.modalService.open(ActionDialogComponent);
         modalRef.componentInstance.content = "ההוצאה עודכנה בהצלחה";
         this.activeModal.close();
-
         this.expenseToUpdate = new Expense();
-
       })
     }
   }

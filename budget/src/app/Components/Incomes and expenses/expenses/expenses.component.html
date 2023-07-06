@@ -89,7 +89,7 @@
 
     <tr>
       <th>
-        <button style="border:none" onmouseover="this.style.backgroundColor='#046036'"
+        <button *ngIf="permissionLevel!=3"  style="border:none" onmouseover="this.style.backgroundColor='#046036'"
           onmouseout="this.style.backgroundColor=null" scope="row" (click)="UpdateExpense(e)"><img style="width: 20px; "
             title="עריכה" src="../../../../assets/image/Update.png"></button>
       </th>

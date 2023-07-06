@@ -9,6 +9,7 @@ import { BudgetService } from 'src/app/Services/budget.service';
 import { ActivatedRoute } from '@angular/router';
 import { BankService } from 'src/app/Services/bank.service';
 import { User } from 'src/app/Classes/User';
+import { PermissionService } from 'src/app/Services/permission.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class BudgetHomePageComponent implements OnInit {
 
   activeBudget!: Budget;
   activeUser!: User;
+  permissionLevel: number=0;
 
   addExpenses: boolean = false;
   addIncomes: boolean = false;
@@ -36,8 +38,8 @@ export class BudgetHomePageComponent implements OnInit {
     private budgetService: BudgetService,
     private activatedRoute: ActivatedRoute,
     private bankOfBudgetSer: BankService,
-
-
+    private permissionSer:PermissionService,
+ 
   ) { }
 
 
@@ -45,7 +47,7 @@ export class BudgetHomePageComponent implements OnInit {
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
     this.log.sharedActiveUser.subscribe(user => this.activeUser = user)
-
+    this.permissionSer.GetLevelPermissionForBudgetByID(this.activeBudget.id, this.activeUser.id).subscribe(level => this.permissionLevel = level)
   }
 
   AddExpenses() {

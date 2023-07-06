@@ -42,13 +42,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     //הקמת הטופס
     this.eventForm = new FormGroup({
-
       password: new FormControl("", [Validators.required, Validators.minLength(4)]),
       id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*")]),
     });
-
   }
-
   checkUser() {
     this.mess.a = "cccc";
     this.userService.LoginUserByID(this.IdToLogin, this.PassToLogin).subscribe(res => {
@@ -60,7 +57,6 @@ export class LoginComponent implements OnInit {
           modalRef.componentInstance.content = this.currentUser.firstName + " התחברת בהצלחה";
           this.log.nextUser(this.currentUser)
           this.router.navigate(['/ListBudgets']);
-
         });
       } else {
         this.IdToLogin = "";

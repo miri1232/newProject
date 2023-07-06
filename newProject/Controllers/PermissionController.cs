@@ -48,6 +48,23 @@ namespace newProject.Controllers
             }
         }
 
+        //שליפת רמת הרשאה למשתמש בתוך תקציב
+         [HttpGet]
+        [Route("GetLevelPermissionForBudgetByID")]
+        public IActionResult GetLevelPermissionForBudgetByID(int idBudget, string id)
+        {
+            try
+            {
+                return Ok(_permissionBL.GetLevelPermissionForBudgetByID(idBudget,id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+
         //הוספה
         [HttpPost]
         [Route("AddPermission")]

@@ -14,6 +14,5 @@ namespace DTO.Models
         public string NameBank { get; set; }
         public string Link { get; set; }
         public string Logo_Bank { get; set; }
-
     }
 }

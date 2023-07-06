@@ -17,9 +17,7 @@ export class UserService {
 
   LoginUserByID(id: string, pass: string): Observable<boolean> {
     const p=new HttpParams().set('idUser',id).set('password',pass);
-    
-    // return this.http.get<boolean>(this.V_API + '/LoginUserByID/'+id+'/');
-    return this.http.get<boolean>(this.V_API + '/LoginUserByID',{params:p});
+        return this.http.get<boolean>(this.V_API + '/LoginUserByID',{params:p});
   }
 
   GetUserByID(id: string): Observable<User> {

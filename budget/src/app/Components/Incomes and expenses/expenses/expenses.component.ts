@@ -14,6 +14,8 @@ import { SubCategoryService } from 'src/app/Services/sub-category.service';
 import { Search } from 'src/app/Classes/Search';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/Classes/User';
+import { PermissionService } from 'src/app/Services/permission.service';
 
 
 @Component({
@@ -35,7 +37,8 @@ export class ExpensesComponent implements OnInit {
   public listSubcategoryByCategory: Subcategory[] = [];
 
   activeBudget!: Budget;
-
+  activeUser!: User;
+  permissionLevel: number = 0;
   searchForm!: FormGroup;
 
   constructor(
@@ -45,16 +48,20 @@ export class ExpensesComponent implements OnInit {
     private log: Logging,
     private modalService: NgbModal,
     private lookupSer: LookupService,
+    private permissionSer: PermissionService,
 
   ) {
     this.myExpensesServise.sharedexpenseList$.subscribe(res => {
       this.ExpensesList = res;
     })
+
   }
 
 
   ngOnInit(): void {
     this.log.sharedActiveBudget.subscribe(budget => this.activeBudget = budget)
+    this.log.sharedActiveUser.subscribe(user => this.activeUser = user)
+    this.permissionSer.GetLevelPermissionForBudgetByID(this.activeBudget.id, this.activeUser.id).subscribe(level => this.permissionLevel = level)
 
     this.lookupSer.GetAllStatus().subscribe(res => {
       this.listStatus = res;
@@ -82,9 +89,7 @@ export class ExpensesComponent implements OnInit {
   search(event: any) {
     this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
     this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
-
     if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
-
       this.myExpensesServise.SearchExpensesObject(this.searchForm.value);
       this.myExpensesServise.sharedexpenseList$.subscribe(res => {
         this.ExpensesList = res;

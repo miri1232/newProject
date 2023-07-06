@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -24,6 +24,12 @@ GetAllPermissionForBudget(idBudget:number):Observable<Permission[]> {
     return this.http.get<Permission[]>(this.V_API + '/GetAllPermissionForBudget');
 }
 
+GetLevelPermissionForBudgetByID(idBudget:number, idUser:string):Observable<number> {
+  const p=new HttpParams().set('idBudget',idBudget).set('id',idUser);
+
+    return this.http.get<number>(this.V_API + '/GetLevelPermissionForBudgetByID',{params:p});
+
+}
 
 
 
