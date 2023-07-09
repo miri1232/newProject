@@ -15,7 +15,7 @@
             <span class="far fa-user">שם פרטי</span>
             <input type="text"  id="firstName" 
              formControlName="firstName" name="firstName"  />
-            <div class="text-danger" *ngIf="eventForm['controls'].firstName.dirty && eventForm['controls'].firstName.errors?.required">שדה חובה</div>
+            <div class="text-danger" *ngIf="eventForm['controls'].firstName.errors?.required">שדה חובה</div>
         </div>
         </div>
 
@@ -25,7 +25,7 @@
             <span class="far fa-user">שם משפחה</span>
             <input type="text"  id="lastName" 
              formControlName="lastName" name="lastName" required/>
-             <div class="text-danger" *ngIf="eventForm['controls'].lastName.dirty && eventForm['controls'].lastName.errors?.required">שדה חובה</div>
+             <div class="text-danger" *ngIf="eventForm['controls'].lastName.errors?.required">שדה חובה</div>
         </div>
 
         </div>
@@ -36,7 +36,7 @@
             <span class="far fa-user">תעודת זהות</span>
             <input type="text"  id="userId" 
             formControlName="id" name="userId" />
-            <div class="text-danger" *ngIf="eventForm['controls'].id.dirty && eventForm['controls'].id.errors?.required">שדה חובה</div>
+            <div class="text-danger" *ngIf="eventForm['controls'].id.errors?.required">שדה חובה</div>
         </div>
 
         </div>
@@ -46,8 +46,9 @@
         <div class=" form-field align-items-center" style="width: 18rem;">
             <span class="far fa-user">מספר נייד</span>
             <input type="text"  id="phone" 
-            formControlName="phone" name="phone" />
-            <div class="text-danger" *ngIf="eventForm['controls'].phone.dirty && eventForm['controls'].phone.errors?.required">שדה חובה</div>
+            formControlName="phone" name="phone"
+             pattern="05?[0-9]-?[0-9]{7}"  required /> 
+            <div class="text-danger" *ngIf="eventForm['controls'].phone.errors?.required">שדה חובה</div>
         </div>
 
         </div>
@@ -57,7 +58,7 @@
             <span class="far fa-user">כתובת מייל</span>
             <input type="email"  id="email" 
             formControlName="email" name="email" />
-            <div class="text-danger" *ngIf="eventForm['controls'].email.dirty && eventForm['controls'].email.errors?.required">הכנס כתובת מייל תקינה </div>
+            <div class="text-danger" *ngIf=" eventForm['controls'].email.errors?.required">   שדה חובה </div>
         </div>
 
         <div class="col-sm-6">
@@ -66,7 +67,8 @@
             <span class="far fa-user">תאריך לידה</span>
             <input type="date"  id="dateBirth" 
             formControlName="dateBirth" name="dateBirth" />
-            <div class="text-danger" *ngIf="eventForm['controls'].dateBirth.dirty && eventForm['controls'].dateBirth.errors?.required">שדה חובה</div>
+            <div class="text-danger" *ngIf="eventForm['controls'].dateBirth.errors?.required">שדה חובה</div>
+            <!-- <div class="text-danger" *ngIf="eventForm['controls'].dateBirth.dirty && eventForm['controls'].dateBirth.errors?.required">שדה חובה</div> -->
         </div>
 
         </div>
@@ -76,7 +78,7 @@
             <span class="fas fa-key">בחר סיסמא</span>
             <input type="password"  id="password" 
             formControlName="password" name="password" />
-            <div class="text-danger" *ngIf="eventForm['controls'].password.dirty && eventForm['controls'].password.errors?.required">שדה חובה</div>
+            <div class="text-danger" *ngIf="eventForm['controls'].password.errors?.required">שדה חובה</div>
         </div>
 
         </div>

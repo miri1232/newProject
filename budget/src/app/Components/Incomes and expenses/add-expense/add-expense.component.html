@@ -14,6 +14,8 @@
                         [(ngModel)]="defaultDate" name="date" value="{{ defaultDate | date:'yyyy-MM-dd' }}" required />
                     <!-- <input type="date" formControlName="defaultDate" name="date" id="date" 
                      value="{{ defaultDate | date:'yyyy-MM-dd' }}"> -->
+                     <!-- <div class="text-danger" *ngIf="eventForm['controls'].defaultDate.dirty && eventForm['controls'].defaultDate.errors?.required">שדה חובה</div> -->
+
 
                 </div>
             </div>
@@ -24,6 +26,8 @@
                     <span class="far fa-user" for="floatingSum">סכום ההוצאה</span>
                     <input type="number" id="floatingSum" placeholder="0.00" formControlName="sum" name="sum"
                         required />
+                        <!-- <div class="text-danger" *ngIf="eventForm['controls'].floatingSum.dirty && eventForm['controls'].floatingSum.errors?.required">שדה חובה</div> -->
+
                 </div>
             </div>
 
@@ -48,7 +52,7 @@
                 <div *ngIf="idCategory==-1" class="form-field  align-items-center">
                     <input type="text" [(ngModel)]="nameNewCategory" [ngModelOptions]="{standalone: true}"
                         placeholder="שם הקטגוריה" />
-                    <i class="bi bi-check-circle" (click)="AddCategory()"></i>
+                    <i class="bi bi-check-circle" (click)="AddCategory()"required >לחץ לאישור</i>
                 </div>
             </div>
 

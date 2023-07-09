@@ -35,6 +35,7 @@ namespace DAL
                 throw ex;
             }
         }
+
         public int GetLevelPermissionForBudgetByID(int idBudget, string id)
         {
             try
