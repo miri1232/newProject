@@ -17,7 +17,7 @@
   </li>
 
   <li class="nav-item" >
-    <h2 class="btn btn-outline-success2" routerLink='/'>לדף הבית</h2>
+    <h2 class="btn btn-outline-success2" routerLink='/'>דף הבית</h2>
   </li>
 
   <li class="nav-item">
@@ -26,8 +26,21 @@
     </div>
   </li>
  <li *ngIf="activeBudget.id != undefined" class="nav-item" style="background-color:#24a056; color: #046036; ">
-  <h4 class="btn btn-outline-success2" routerLink='/BudgetHomePage'> {{activeBudget.nameBudget}}</h4>
+  <button class="btn btn-outline-success2" (click)="ShowAllPermissionForBudget()"> {{activeBudget.nameBudget}}</button>
+<!-- 
+  <button class="btn btn-outline-success" (click)="ShowAllPermissionForBudget()" autoClose="outside" [ngbPopover]="listPermissionToShow"
+  ngbPopoverPlacement="outside" placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent> רשימת
+  מורשים לשימוש בתקציב </button> 
+ <h6 type="button" class="btn btn-outline-success"  autoClose="outside" [ngbPopover]="listPermissionToShow" ngbPopoverPlacement="outside" 
+placement="bottom" container="body" popoverClass="mb-3" ngbPopoverContent > </h6> -->
+<!-- 
+<select class="form-field  align-items-center" placeholder="רשימת מורשים לכניסה לתקציב"
+ required>
+<option type="text" *ngFor="let p of listPermission" [ngValue]="p.id" required>
+    <label> {{p.FirstName}} + " " + {{p.LastName}}+":"+{{p.PermissionLevelDetail}} </label>
+</option>
 
+</select> -->
   </li>
 
 

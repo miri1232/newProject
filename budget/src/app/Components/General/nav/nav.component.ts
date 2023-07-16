@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Budget } from 'src/app/Classes/Budget';
+import { Permission } from 'src/app/Classes/Permission';
 import { User } from 'src/app/Classes/User';
 import { BudgetService } from 'src/app/Services/budget.service';
 import { MessageService } from 'src/app/Services/message.service';
+import { PermissionService } from 'src/app/Services/permission.service';
 import { Logging } from 'src/shared/log.service';
+import { ActionDialogComponent } from '../action-dialog/action-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-nav',
@@ -21,12 +25,15 @@ export class NavComponent implements OnInit {
 
  public activeUser!: User;
  public activeBudget!: Budget ;
+ public listPermission:Permission[] | undefined;
 
   constructor(
     private log: Logging,
     private router: Router,
     private route: ActivatedRoute,
     private myBudgetServise: BudgetService,
+private permissionSer : PermissionService,
+   private modalService: NgbModal,
 
   ) { }
 
@@ -62,4 +69,13 @@ export class NavComponent implements OnInit {
       console.log(this.BudgetList);
     });
   }
+
+  ShowAllPermissionForBudget(){
+    this.permissionSer.GetAllPermissionForBudget(this.activeBudget.id).subscribe(p => this.listPermission = p);
+  console.log(this.listPermission);
+  
+  }
+
+
+
 }

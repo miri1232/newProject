@@ -29,14 +29,14 @@ export class AddExpenseComponent implements OnInit {
 
   @Input()
   activeBudget!: Budget;
-  
+
   // addCategory: boolean = false;
   // addSubCategory: boolean = false;
 
   public nameNewCategory!: string;
-    public nameNewSubCategory!: string;
-   public defaultDate: Date = new Date(); // default to today's date
-    newCategory = new Category();
+  public nameNewSubCategory!: string;
+  public defaultDate: Date = new Date(); // default to today's date
+  newCategory = new Category();
   newSubCategory = new Subcategory();
 
   newExpense = new Expense();
@@ -73,7 +73,7 @@ export class AddExpenseComponent implements OnInit {
     private myExpense: ExpensesService,
     private myCategory: CategoryService,
     private mySubCategory: SubCategoryService,
-   private modalService: NgbModal,
+    private modalService: NgbModal,
   ) { }
 
   eventForm!: FormGroup;
@@ -122,7 +122,7 @@ export class AddExpenseComponent implements OnInit {
       detail: new FormControl(""),
       paymentMethod: new FormControl(""),
       frequency: new FormControl(false),
-      numberOfPayments:new FormControl("" ),
+      numberOfPayments: new FormControl(""),
       status: new FormControl(""),
       document: new FormControl(""),
     });
@@ -153,7 +153,7 @@ export class AddExpenseComponent implements OnInit {
         const modalRef = this.modalService.open(ActionDialogComponent);
         modalRef.componentInstance.content = "ההוצאה נקלטה בהצלחה";
         this.activeModal.close();
-       
+
         this.newExpense = new Expense();
 
       })
@@ -167,7 +167,7 @@ export class AddExpenseComponent implements OnInit {
       this.myCategory.AddCategory(this.newCategory).subscribe(res1 => {
         console.log("אישור הוספת קטגוריה ======>", res1)
         // this.addCategory = false;
-        this.idCategory=0;
+        this.idCategory = 0;
         this.myCategory.GetAllCategory().subscribe(res => {
           this.listCategory = res;
           console.log(this.listCategory);
@@ -179,19 +179,19 @@ export class AddExpenseComponent implements OnInit {
   }
 
   AddSubcategory() {
-  if (this.nameNewSubCategory != undefined) {
-    console.log(this.nameNewSubCategory)
-    this.newSubCategory.detail = this.nameNewSubCategory;
-    this.newSubCategory.category = this.idCategory;
-  
-    this.mySubCategory.AddSubcategory(this.newSubCategory).subscribe(res1 => {
-      console.log("אישור הוספת תת קטגוריה ======>", res1)
-      // this.addSubCategory = false;
-      this.filterByCategory();
-     this.idSubcategory=0;
+    if (this.nameNewSubCategory != undefined) {
+      console.log(this.nameNewSubCategory)
+      this.newSubCategory.detail = this.nameNewSubCategory;
+      this.newSubCategory.category = this.idCategory;
 
-    })
-  }
+      this.mySubCategory.AddSubcategory(this.newSubCategory).subscribe(res1 => {
+        console.log("אישור הוספת תת קטגוריה ======>", res1)
+        // this.addSubCategory = false;
+        this.filterByCategory();
+        this.idSubcategory = 0;
+
+      })
+    }
 
 
   }

@@ -16,6 +16,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/Classes/User';
 import { PermissionService } from 'src/app/Services/permission.service';
+import { ActionDialogComponent } from '../../General/action-dialog/action-dialog.component';
 
 
 @Component({
@@ -89,11 +90,22 @@ export class ExpensesComponent implements OnInit {
   search(event: any) {
     this.searchForm.controls["dateStart"].setValue(event.target.dateStart.value)
     this.searchForm.controls["dateEnd"].setValue(event.target.dateEnd.value)
-    if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd) {
+    if (this.searchForm.value.dateStart <= this.searchForm.value.dateEnd &&
+      this.searchForm.value.sumMin <= this.searchForm.value.sumMax) {
       this.myExpensesServise.SearchExpensesObject(this.searchForm.value);
       this.myExpensesServise.sharedexpenseList$.subscribe(res => {
         this.ExpensesList = res;
       })
+    }
+    else if (this.searchForm.value.dateStart > this.searchForm.value.dateEnd) {
+      const modalRef = this.modalService.open(ActionDialogComponent);
+      modalRef.componentInstance.content = "תאריך תחילת התקופה לא יכול להיות מאוחר מתאריך סיום התקופה";
+
+    }
+    else {
+      const modalRef = this.modalService.open(ActionDialogComponent);
+      modalRef.componentInstance.content = "סכום מינימום חייב להיות קטן או שווה לסכום מקסימום";
+
     }
   }
 

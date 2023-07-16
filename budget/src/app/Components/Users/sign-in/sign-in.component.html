@@ -36,7 +36,7 @@
             <span class="far fa-user">תעודת זהות</span>
             <input type="text"  id="userId" 
             formControlName="id" name="userId" />
-            <div class="text-danger" *ngIf="eventForm['controls'].id.errors?.required">שדה חובה</div>
+            <div class="text-danger" *ngIf="eventForm['controls'].id.errors?.required">שדה חובה, 9 ספרות</div>
         </div>
 
         </div>
@@ -78,7 +78,7 @@
             <span class="fas fa-key">בחר סיסמא</span>
             <input type="password"  id="password" 
             formControlName="password" name="password" />
-            <div class="text-danger" *ngIf="eventForm['controls'].password.errors?.required">שדה חובה</div>
+            <div class="text-danger" *ngIf="eventForm['controls'].password.errors?.required">שדה חובה, מינימום 5 תווים</div>
         </div>
 
         </div>

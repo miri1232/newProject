@@ -4,17 +4,25 @@ using Entities.Models;
 using DTO;
 using DTO.Models;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BL
 {
     public class PermissionBL : IPermissionBL
     {
         private IPermissionDAL _permissionDAL;
+        private ILookupDAL _lookupDAL;
+        private IUserDAL _userDAL;
         IMapper mapper;
 
-        public PermissionBL(IPermissionDAL permissionDAL)
+        public PermissionBL(IPermissionDAL permissionDAL,IUserDAL userDAL, ILookupDAL lookupDAL)
         {
             _permissionDAL = permissionDAL;
+            _lookupDAL = lookupDAL;
+            _userDAL = userDAL;
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<AutoMapperProfile>();
@@ -32,6 +40,15 @@ namespace BL
         {
             List<Permission> idUsersPermissionList = _permissionDAL.GetAllPermissionForBudget(idBudget);
             List<PermissionDTO> idUsersPermissionListDTO = mapper.Map<List<Permission>, List<PermissionDTO>>(idUsersPermissionList);
+
+
+            List<PermissionLevel> permissionLevels = _lookupDAL.GetAllPermissionLevel();
+            idUsersPermissionListDTO.ForEach(item => item.PermissionLevelDetail = permissionLevels.FirstOrDefault(e => e.Id == item.PermissionLevel).Description);
+
+            List<User> users = _userDAL.GetAllUsers();
+            idUsersPermissionListDTO.ForEach(item => item.FirstName = users.FirstOrDefault(e => e.Id == item.IdUser).FirstName);
+            idUsersPermissionListDTO.ForEach(item => item.LastName = users.FirstOrDefault(e => e.Id == item.IdUser).LastName);
+
             return idUsersPermissionListDTO;
         }
        public int GetLevelPermissionForBudgetByID(int idBudget, string id)

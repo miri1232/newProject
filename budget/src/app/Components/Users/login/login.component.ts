@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     //הקמת הטופס
     this.eventForm = new FormGroup({
       password: new FormControl("", [Validators.required, Validators.minLength(4)]),
-      id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*")]),
+      id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*"),Validators.minLength(9)]),
     });
   }
   checkUser() {

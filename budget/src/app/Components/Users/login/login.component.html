@@ -9,27 +9,30 @@
     <form class="p-3 mt-3" [formGroup]="eventForm" (ngSubmit)="checkUser()">
 
         <div class="form-outline">
-        <div class="form-field align-items-center">
-            <span class="far fa-user" for="id">הכנס ת.ז.</span>
-            <input class="form-control" type="text" id="id" [(ngModel)]="IdToLogin" 
-            formControlName="id" name="id" required/>
-        </div>
+            <div class="form-field align-items-center">
+                <span class="far fa-user" for="id">הכנס ת.ז.</span>
+                <input class="form-control" type="text" id="id" [(ngModel)]="IdToLogin" formControlName="id" name="id"
+                  title="הכנס מספר ת.ז. בן 9 ספרות"  required />
+                <div class="text-danger" *ngIf="eventForm['controls'].id.errors?.required">הכנס מספר ת.ז. בן 9 ספרות
+                </div>
+            </div>
         </div>
 
         <div class="form-outline">
             <div class="form-field align-items-center">
                 <span class="fas fa-key form-label" for="password">הכנס סיסמא</span>
-                <input class="form-control" type="text" id="password" [(ngModel)]="PassToLogin" 
-                 formControlName="password" name="password" required/>
+                <input class="form-control" type="password" id="password" [(ngModel)]="PassToLogin"
+                    formControlName="password" name="password" required />
+
             </div>
         </div>
-        
+
         <button class="btn mt-3" type="submit" [disabled]="!eventForm.valid">התחבר</button>
     </form>
 
 
     <div class="text-center fs-6">
-        <a href="UpdatePassword">שכחת סיסמא</a> <a style="color: #046036;">  או   </a>  <a href="SignIn">אינך רשום </a>
+        <a href="UpdatePassword">שכחת סיסמא</a> <a style="color: #046036;"> או </a> <a href="SignIn">אינך רשום </a>
     </div>
 
 

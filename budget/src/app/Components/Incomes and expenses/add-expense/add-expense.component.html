@@ -51,8 +51,17 @@
 
                 <div *ngIf="idCategory==-1" class="form-field  align-items-center">
                     <input type="text" [(ngModel)]="nameNewCategory" [ngModelOptions]="{standalone: true}"
-                        placeholder="שם הקטגוריה" />
-                    <i class="bi bi-check-circle" (click)="AddCategory()"required >לחץ לאישור</i>
+                    placeholder="שם הקטגוריה" oninput="validateHebrewInput(this)" />
+                
+                <script>
+                function validateHebrewInput(element) {
+                  element.value = element.value.replace(/[^א-ת\s]/g, '');
+                }
+                </script>
+                
+                
+                         <!--  pattern="[א-ת]*" -->
+                    <i class="bi bi-check-circle" (click)="AddCategory()" required >לחץ לאישור</i>
                 </div>
             </div>
 
@@ -84,7 +93,8 @@
                     <div *ngIf="idSubcategory==-1" class="form-field  align-items-center">
                         <input type="text" [(ngModel)]="nameNewSubCategory" [ngModelOptions]="{standalone: true}"
                             placeholder="שם תת קטגוריה" />
-                        <i class="bi bi-check-circle" (click)="AddSubcategory()"></i>
+                             <!-- pattern="[א-ת]*" -->
+                        <i class="bi bi-check-circle" (click)="AddSubcategory()" >לחץ לאישור</i>
                     </div>
                 </ng-template>
             </div>

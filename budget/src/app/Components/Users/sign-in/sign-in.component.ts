@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
       firstName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
       lastName: new FormControl("", [Validators.required, Validators.pattern("[א-ת-a-z-A-Z ]*")]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*")]),
+      id: new FormControl("", [Validators.required, Validators.pattern("[0-9]*"),Validators.minLength(9)]),
       phone: new FormControl("", [Validators.required]),
       dateBirth: new FormControl(new Date(0), [Validators.required]),
 

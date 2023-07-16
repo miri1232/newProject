@@ -44,7 +44,9 @@
       <h2 class="accordion">
         <button class="accordion-button" type="button" data-bs-toggle="collapse"
           data-bs-target="#panelsStayOpen-collapseInc" aria-expanded="false" aria-controls="panelsStayOpen-collapseInc">
-          הכנסות
+          הכנסות: 
+          {{sumIncomes | number: '1.0-0' }}
+
         </button>
       </h2>
       <div id="panelsStayOpen-collapseInc" class="accordion-collapse ">
@@ -81,7 +83,9 @@
       <h2 class="accordion">
         <button class="accordion-button" type="button" data-bs-toggle="collapse"
           data-bs-target="#panelsStayOpen-collapseExp" aria-expanded="false" aria-controls="panelsStayOpen-collapseExp">
-          הוצאות
+          הוצאות:
+          {{sumExpenses | number: '1.0-0' }}
+
         </button>
       </h2>
       <div id="panelsStayOpen-collapseExp" class="accordion-collapse ">
